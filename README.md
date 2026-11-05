@@ -7,4 +7,4 @@ Cada respuesta correcta tira de la cuerda hacia su lado; gana quien lleve el pa�
 - **Sumas con dátiles**: cuentas con pequeñas historias y teclado numérico (3 niveles).
 - **Mixto**: alterna ambos tipos.
 
-Abre `index.html` en un navegador. No necesita instalación. Para añadir preguntas, edita el arreglo `QUIZ` en el script.
+Abre `index.html` en un navegador (la carpeta `assets/` con las ilustraciones de las niñas debe estar al lado). No necesita instalación. Para añadir preguntas, edita el arreglo `QUIZ` en el script.

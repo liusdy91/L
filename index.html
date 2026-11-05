@@ -101,7 +101,6 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .pullA .kidA,.pullB .kidB{animation:tug .4s}
 @keyframes tug{0%,100%{translate:0 0}45%{translate:var(--tx) 0}}
 .kidA{--tx:-7px}.kidB{--tx:7px}
-.fallen{transition:transform .8s ease-in;transform-origin:center bottom}
 .lantern{animation:sway 4s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 0}
 .lantern:nth-of-type(2n){animation-duration:5s}
 @keyframes sway{0%,100%{rotate:-4deg}50%{rotate:4deg}}
@@ -180,7 +179,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
         <div class="stat right"><span id="statNameB">Estrella</span><b id="pullsB">0</b></div>
       </div>
       <div class="scene">
-        <svg viewBox="0 0 600 330" role="img" aria-label="Dos equipos tirando de una cuerda frente a una mezquita de noche" id="scene">
+        <svg viewBox="0 0 600 330" role="img" aria-label="Dos equipos de niñas con hiyab tirando de una cuerda frente a una mezquita de noche" id="scene">
           <defs>
             <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#0a1b27"/><stop offset="1" stop-color="#1d4a5e"/>
@@ -191,27 +190,6 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
               <path d="M12 2 L22 12 L12 22 L2 12Z" fill="#b5844a"/>
               <circle cx="12" cy="12" r="3" fill="#2a7a6a"/>
             </pattern>
-            <!-- niño con kufi -->
-            <g id="boy">
-              <path d="M-4,-40 L-14,0 M4,-40 L12,0" stroke="#3a2c22" stroke-width="5" stroke-linecap="round" fill="none"/>
-              <path d="M-11,-80 Q0,-84 11,-80 L17,-30 Q0,-26 -17,-30Z" fill="#fbf6ea"/>
-              <path d="M-17,-30 Q0,-26 17,-30 L18,-27 Q0,-23 -18,-27Z" fill="var(--team)"/>
-              <path d="M2,-74 L22,-58" stroke="#fbf6ea" stroke-width="7" stroke-linecap="round"/>
-              <circle cx="22" cy="-58" r="4" fill="#c58c5c"/>
-              <circle cx="0" cy="-92" r="11" fill="#c58c5c"/>
-              <path d="M-11,-94 Q0,-108 11,-94Z" fill="var(--team)"/>
-              <circle cx="5" cy="-92" r="1.5" fill="#2a1a10"/>
-            </g>
-            <!-- niña con hiyab -->
-            <g id="girl">
-              <path d="M-4,-40 L-14,0 M4,-40 L12,0" stroke="#3a2c22" stroke-width="5" stroke-linecap="round" fill="none"/>
-              <path d="M-11,-80 Q0,-84 11,-80 L19,-24 Q0,-20 -19,-24Z" fill="var(--team)"/>
-              <path d="M2,-74 L22,-58" stroke="var(--team)" stroke-width="7" stroke-linecap="round"/>
-              <circle cx="22" cy="-58" r="4" fill="#e0aa7e"/>
-              <path d="M-13,-90 Q-14,-108 0,-108 Q14,-108 13,-90 Q14,-76 0,-74 Q-14,-76 -13,-90Z" fill="#fbf6ea"/>
-              <circle cx="1" cy="-91" r="8" fill="#e0aa7e"/>
-              <circle cx="5" cy="-92" r="1.5" fill="#2a1a10"/>
-            </g>
           </defs>
 
           <rect width="600" height="330" fill="url(#sky)"/>
@@ -255,17 +233,15 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 
           <!-- cuerda + equipos (se mueve en conjunto) -->
           <g id="rope">
-            <path d="M40 234 Q300 240 560 234" stroke="#c9a06a" stroke-width="5" fill="none"/>
-            <path d="M40 234 Q300 240 560 234" stroke="#8a6438" stroke-width="5" fill="none" stroke-dasharray="3 7"/>
+            <path d="M250 196.5 Q300 200 350 195.5" stroke="#c9a06a" stroke-width="4" fill="none"/>
+            <path d="M250 196.5 Q300 200 350 195.5" stroke="#8a6438" stroke-width="4" fill="none" stroke-dasharray="3 6"/>
             <!-- pañuelo central -->
-            <path d="M296 236 L304 236 L308 266 L300 260 L292 266Z" fill="#e9b949"/>
-            <g id="teamAGroup" style="--team:var(--teamA)">
-              <g class="kid kidA"><g transform="translate(110 292) skewX(13)"><use href="#girl"/></g></g>
-              <g class="kid kidA"><g transform="translate(170 292) skewX(13)"><use href="#boy"/></g></g>
+            <path d="M296 198 L304 198 L308 227 L300 221 L292 227Z" fill="#e9b949"/>
+            <g id="teamAGroup">
+              <g class="kid kidA"><g class="pose" data-pivot="155 296"><image href="assets/equipo-a.webp" x="40" y="102.7" width="230" height="193.3"/></g></g>
             </g>
-            <g id="teamBGroup" style="--team:var(--teamB)">
-              <g class="kid kidB"><g transform="translate(430 292) scale(-1 1) skewX(13)"><use href="#boy"/></g></g>
-              <g class="kid kidB"><g transform="translate(490 292) scale(-1 1) skewX(13)"><use href="#girl"/></g></g>
+            <g id="teamBGroup">
+              <g class="kid kidB"><g class="pose" data-pivot="445 296"><image href="assets/equipo-b.webp" x="330" y="101.4" width="230" height="194.6"/></g></g>
             </g>
           </g>
         </svg>
@@ -574,10 +550,8 @@ function pull(side){
 function finish(side){
   playing = false; clearInterval(tick);
   const loser = $(side==="A" ? "teamBGroup" : "teamAGroup");
-  loser.querySelectorAll(".kid > g").forEach(g => {
-    const t = g.getAttribute("transform");
-    g.dataset.orig = g.dataset.orig || t;
-    g.setAttribute("transform", t + (side==="A" ? " rotate(-70)" : " rotate(-70)"));
+  loser.querySelectorAll(".pose").forEach(g => {
+    g.setAttribute("transform", `rotate(${side==="A" ? -16 : 16} ${g.dataset.pivot})`);
   });
   sWin();
   setTimeout(() => {
@@ -593,7 +567,7 @@ function finish(side){
 }
 
 function resetKids(){
-  document.querySelectorAll(".kid > g").forEach(g => { if (g.dataset.orig) g.setAttribute("transform", g.dataset.orig); });
+  document.querySelectorAll(".pose").forEach(g => g.removeAttribute("transform"));
 }
 
 function fmt(ms){ const s=Math.floor(ms/1000); return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0"); }
