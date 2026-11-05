@@ -1,0 +1,940 @@
+<title>Tira de la Cuerda Islámica</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Nunito:wght@500;700;800;900&family=Amiri:wght@700&family=Cairo:wght@600;700;800&display=swap">
+<style>
+/* Layout: una sola pantalla de pizarra digital — panel equipo A | arena con la cuerda | panel equipo B.
+   Estética comprometida de noche de Ramadán (un solo tema oscuro, a propósito). */
+:root{
+  color-scheme: dark;
+  --night:#0d2230;      /* cielo nocturno */
+  --night-2:#143243;    /* paneles */
+  --night-3:#1c4458;    /* teclas */
+  --sand:#f4e7c9;       /* texto */
+  --sand-dim:#b9ad93;
+  --gold:#e9b949;       /* faroles, acentos */
+  --teamA:#2fa36b;      /* Media Luna — esmeralda */
+  --teamA-deep:#1d6e48;
+  --teamB:#5a74e0;      /* Estrella — lapislázuli */
+  --teamB-deep:#3549a3;
+  --ok:#3ccf7f;
+  --bad:#e5604f;
+  --font-display:"Reem Kufi","Cairo","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Nunito","Cairo","Segoe UI",system-ui,sans-serif;
+  --font-ar:"Amiri","Times New Roman",serif;
+}
+html,body{height:100%}
+body{
+  background:var(--night);
+  color:var(--sand);
+  font-family:var(--font-body);
+  font-size:16px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:10px;
+  box-sizing:border-box;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23f4e7c9' stroke-opacity='.05' stroke-width='1.2'%3E%3Cpath d='M40 10 L48 32 L70 40 L48 48 L40 70 L32 48 L10 40 L32 32Z'/%3E%3Crect x='25' y='25' width='30' height='30' transform='rotate(45 40 40)'/%3E%3Crect x='25' y='25' width='30' height='30'/%3E%3C/g%3E%3C/svg%3E");
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+.app{height:100%;display:flex;flex-direction:column;gap:10px;max-width:1500px;margin:0 auto}
+
+/* ---------- cabecera ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:12px;min-width:0}
+.brand h1{font-family:var(--font-display);font-weight:700;font-size:clamp(1.25rem,2.4vw,2rem);margin:0;letter-spacing:.02em;text-wrap:balance}
+.brand .ar{font-family:var(--font-ar);color:var(--gold);font-size:clamp(1.1rem,2vw,1.6rem)}
+.top-actions{display:flex;gap:8px}
+.ghost{background:transparent;border:1.5px solid color-mix(in srgb,var(--sand) 30%,transparent);border-radius:999px;padding:6px 14px;font-weight:700;font-size:.9rem}
+.ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ---------- tablero ---------- */
+.board{flex:1;min-height:0;display:grid;grid-template-columns:minmax(230px,1fr) minmax(0,1.7fr) minmax(230px,1fr);gap:12px}
+.panel{background:var(--night-2);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0;border-top:6px solid var(--c);position:relative;overflow:hidden}
+.panel.a{--c:var(--teamA);--cd:var(--teamA-deep)}
+.panel.b{--c:var(--teamB);--cd:var(--teamB-deep)}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.team-name{font-family:var(--font-display);font-weight:700;font-size:1.15rem;background:var(--c);color:#fff;padding:4px 14px;border-radius:999px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.score{font-family:var(--font-display);font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums;min-width:2ch;text-align:right}
+.story{font-size:.95rem;color:var(--sand-dim);line-height:1.35;min-height:2.7em;margin:0}
+.question{font-weight:900;font-size:clamp(1.05rem,1.6vw,1.35rem);line-height:1.25;margin:0;text-wrap:balance;min-height:3.75em;display:flex;align-items:center}
+.question.math{font-family:var(--font-display);font-size:clamp(2rem,3.6vw,3rem);min-height:auto;justify-content:center;letter-spacing:.04em}
+
+.options{display:grid;gap:8px}
+.opt{background:var(--night-3);border:2px solid transparent;border-radius:12px;padding:12px 12px;text-align:start;font-weight:800;font-size:clamp(.95rem,1.3vw,1.1rem);line-height:1.2;transition:transform .08s,background .15s}
+.opt:hover{border-color:var(--c)}
+.opt:active{transform:scale(.97)}
+.opt.right{background:var(--ok);color:#06281a}
+.opt.wrong{background:var(--bad);color:#fff}
+.opt:disabled{cursor:default}
+
+.display{background:var(--night);border-radius:12px;height:58px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:2rem;font-variant-numeric:tabular-nums;border:2px solid color-mix(in srgb,var(--c) 50%,transparent)}
+.display.empty{color:var(--sand-dim)}
+.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.key{background:var(--night-3);border:none;border-radius:12px;padding:0;height:clamp(44px,6.2vh,62px);font-family:var(--font-display);font-size:1.5rem;font-weight:700}
+.key:active{transform:scale(.95)}
+.key.del{background:var(--bad);color:#fff}
+.key.go{background:var(--c);color:#fff}
+
+.panel.flash-ok{animation:okflash .45s}
+.panel.flash-bad{animation:shake .4s}
+@keyframes okflash{0%{box-shadow:inset 0 0 0 0 var(--ok)}40%{box-shadow:inset 0 0 0 5px var(--ok)}100%{box-shadow:inset 0 0 0 0 var(--ok)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+
+/* ---------- selector de idioma ---------- */
+.langs{display:flex;gap:4px;background:var(--night);border-radius:999px;padding:3px}
+.langs button{background:transparent;border:none;border-radius:999px;padding:4px 10px;font-weight:800;font-size:.85rem;color:var(--sand-dim);min-width:2.4em}
+.langs button[lang="ar"]{font-family:var(--font-body);font-size:1rem;line-height:1}
+.langs button[aria-pressed="true"]{background:var(--gold);color:#2b1d00}
+.langs.small{align-self:flex-start}
+.panel .langs button[aria-pressed="true"]{background:var(--c);color:#fff}
+.card .hint{font-size:.9rem}
+.top-actions{flex-wrap:wrap;align-items:center}
+
+/* ---------- arena ---------- */
+.arena{background:var(--night-2);border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.stats{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+.stat{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sand-dim);font-weight:800}
+.stat b{display:block;font-family:var(--font-display);font-size:1.4rem;color:var(--sand);letter-spacing:0}
+.stat.right{text-align:right}
+.timer{font-family:var(--font-display);font-size:1.3rem;background:var(--night);padding:4px 14px;border-radius:999px;color:var(--gold)}
+.scene{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.scene svg{width:100%;height:100%;max-height:100%;display:block}
+.meter{display:flex;justify-content:space-between;font-size:.85rem;color:var(--sand-dim);font-weight:700}
+
+#rope{transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
+.kid{transform-box:fill-box}
+.pullA .kidA,.pullB .kidB{animation:tug .4s}
+@keyframes tug{0%,100%{translate:0 0}45%{translate:var(--tx) 0}}
+.kidA{--tx:-7px}.kidB{--tx:7px}
+.lantern{animation:sway 4s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 0}
+.lantern:nth-of-type(2n){animation-duration:5s}
+@keyframes sway{0%,100%{rotate:-4deg}50%{rotate:4deg}}
+
+/* ---------- capas (configuración / victoria) ---------- */
+.overlay{position:fixed;inset:0;background:color-mix(in srgb,var(--night) 82%,transparent);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px max(16px,env(safe-area-inset-right,0px)) 20px max(16px,env(safe-area-inset-left,0px));z-index:20;overflow:auto}
+.card{background:var(--night-2);border-radius:22px;padding:26px;max-width:620px;width:100%;display:flex;flex-direction:column;gap:18px;border:1px solid color-mix(in srgb,var(--gold) 35%,transparent);margin:auto}
+.card h2{font-family:var(--font-display);margin:0;font-size:clamp(1.6rem,3vw,2.2rem);text-wrap:balance}
+.card .ar{font-family:var(--font-ar);color:var(--gold);font-size:1.5rem;margin:0}
+.card p{margin:0;line-height:1.5;color:var(--sand-dim)}
+.field{display:flex;flex-direction:column;gap:8px}
+.field > span{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--sand-dim)}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{background:var(--night-3);border:2px solid transparent;border-radius:12px;padding:9px 14px;font-weight:800;text-align:start}
+.seg button > span{display:block}
+.seg button small{display:block;font-weight:600;color:var(--sand-dim);font-size:.78rem}
+.seg button[aria-pressed="true"]{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 16%,var(--night-3))}
+.names{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.names input{width:100%;background:var(--night);border:2px solid var(--c);border-radius:12px;padding:10px 12px;color:var(--sand);font:inherit;font-weight:800}
+.names .a{--c:var(--teamA)}.names .b{--c:var(--teamB)}
+.start{background:var(--gold);color:#2b1d00;border:none;border-radius:14px;padding:14px;font-family:var(--font-display);font-size:1.35rem;font-weight:700}
+.start:hover{filter:brightness(1.08)}
+.win-team{font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);margin:0;color:var(--c)}
+.win-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.win-stats div{background:var(--night);border-radius:12px;padding:10px 14px;font-weight:800}
+.win-stats b{font-family:var(--font-display);font-size:1.5rem;display:block}
+
+/* ---------- pantallas estrechas ---------- */
+@media (max-width:900px){
+  .board{grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr}
+  .arena{grid-column:1 / -1;order:-1}
+  .scene{min-height:180px}
+  html,body{height:auto}
+  .app{height:auto}
+}
+@media (max-width:520px){
+  .panel{padding:10px;gap:8px}
+  .team-name{font-size:.95rem;padding:3px 10px}
+  .question{font-size:1rem;min-height:5em}
+  .question.math{font-size:1.7rem}
+  .opt{padding:10px 8px;font-size:.9rem}
+  .key{height:44px;font-size:1.2rem}
+  .keypad{gap:6px}
+  .display{height:46px;font-size:1.5rem}
+  .names{grid-template-columns:1fr}
+  .card{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <h1 data-i18n="title">Tira de la Cuerda</h1>
+      <span class="ar" lang="ar">بِسْمِ ٱللَّٰهِ</span>
+    </div>
+    <div class="top-actions">
+      <div class="langs" id="langTop" role="group" aria-label="Idioma"></div>
+      <button class="ghost" id="soundBtn" type="button" aria-pressed="true">Sonido: sí</button>
+      <button class="ghost" id="menuBtn" type="button" data-i18n="newGame">Nueva partida</button>
+    </div>
+  </header>
+
+  <main class="board" id="board" dir="ltr">
+    <!-- Equipo A -->
+    <section class="panel a" id="panelA" aria-label="Media Luna">
+      <div class="panel-head"><span class="team-name" id="nameA">Media Luna</span><span class="score" id="scoreA">0</span></div>
+      <div class="langs small" id="langA" role="group"></div>
+      <div class="qzone" id="zoneA"></div>
+    </section>
+
+    <!-- Arena -->
+    <section class="arena" aria-label="Cuerda">
+      <div class="stats">
+        <div class="stat"><span id="statNameA">Media Luna</span><b id="pullsA">0</b></div>
+        <div class="timer" id="timer" dir="ltr">00:00</div>
+        <div class="stat right"><span id="statNameB">Estrella</span><b id="pullsB">0</b></div>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 600 330" role="img" aria-label="Dos equipos de niñas con hiyab tirando de una cuerda frente a una mezquita de noche" id="scene">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#0a1b27"/><stop offset="1" stop-color="#1d4a5e"/>
+            </linearGradient>
+            <radialGradient id="glow"><stop offset="0" stop-color="#ffd772" stop-opacity=".55"/><stop offset="1" stop-color="#ffd772" stop-opacity="0"/></radialGradient>
+            <pattern id="tiles" width="24" height="24" patternUnits="userSpaceOnUse">
+              <rect width="24" height="24" fill="#c99a5a"/>
+              <path d="M12 2 L22 12 L12 22 L2 12Z" fill="#b5844a"/>
+              <circle cx="12" cy="12" r="3" fill="#2a7a6a"/>
+            </pattern>
+          </defs>
+
+          <rect width="600" height="330" fill="url(#sky)"/>
+          <!-- estrellas -->
+          <g fill="#f4e7c9">
+            <circle cx="40" cy="30" r="1.4"/><circle cx="120" cy="60" r="1"/><circle cx="210" cy="22" r="1.6"/>
+            <circle cx="380" cy="40" r="1.2"/><circle cx="455" cy="18" r="1"/><circle cx="560" cy="70" r="1.5"/>
+            <circle cx="300" cy="80" r="1"/><circle cx="85" cy="110" r="1.1"/><circle cx="520" cy="120" r="1"/>
+          </g>
+          <!-- luna creciente -->
+          <circle cx="500" cy="62" r="26" fill="#f6e3a8"/>
+          <circle cx="512" cy="54" r="24" fill="#0f2331"/>
+          <!-- mezquita -->
+          <g fill="#0c1d29" opacity=".95">
+            <rect x="150" y="150" width="14" height="110"/><path d="M147 150 L157 122 L167 150Z"/><circle cx="157" cy="118" r="3" fill="#e9b949"/>
+            <rect x="436" y="150" width="14" height="110"/><path d="M433 150 L443 122 L453 150Z"/><circle cx="443" cy="118" r="3" fill="#e9b949"/>
+            <rect x="200" y="190" width="200" height="70"/>
+            <path d="M235 190 Q235 120 300 112 Q365 120 365 190Z"/>
+            <rect x="298" y="96" width="4" height="18"/>
+            <path d="M300 84 a8 8 0 1 0 6 13 a6.5 6.5 0 1 1 -6 -13Z" fill="#e9b949"/>
+            <path d="M205 190 Q205 165 225 160 Q245 165 245 190Z"/>
+            <path d="M355 190 Q355 165 375 160 Q395 165 395 190Z"/>
+          </g>
+          <g fill="#e9b949" opacity=".55">
+            <path d="M285 260 L285 222 Q300 204 315 222 L315 260Z"/>
+            <path d="M222 235 L222 215 Q232 205 242 215 L242 235Z"/><path d="M358 235 L358 215 Q368 205 378 215 L378 235Z"/>
+          </g>
+          <!-- faroles -->
+          <g>
+            <g class="lantern" transform="translate(60 0)"><line x1="0" y1="0" x2="0" y2="40" stroke="#e9b949"/><circle cx="0" cy="56" r="20" fill="url(#glow)"/><path d="M-7 42 L7 42 L10 56 L5 68 L-5 68 L-10 56Z" fill="#e9b949"/><path d="M-4 47 L4 47 L6 56 L3 64 L-3 64 L-6 56Z" fill="#fff3c4"/></g>
+            <g class="lantern" transform="translate(245 0)"><line x1="0" y1="0" x2="0" y2="22" stroke="#e9b949"/><circle cx="0" cy="38" r="18" fill="url(#glow)"/><path d="M-6 24 L6 24 L9 37 L4 48 L-4 48 L-9 37Z" fill="#e9b949"/><path d="M-3 28 L3 28 L5 37 L2 44 L-2 44 L-5 37Z" fill="#fff3c4"/></g>
+            <g class="lantern" transform="translate(395 0)"><line x1="0" y1="0" x2="0" y2="30" stroke="#e9b949"/><circle cx="0" cy="46" r="18" fill="url(#glow)"/><path d="M-6 32 L6 32 L9 45 L4 56 L-4 56 L-9 45Z" fill="#e9b949"/><path d="M-3 36 L3 36 L5 45 L2 52 L-2 52 L-5 45Z" fill="#fff3c4"/></g>
+          </g>
+          <!-- suelo -->
+          <rect x="0" y="292" width="600" height="38" fill="url(#tiles)"/>
+          <rect x="0" y="288" width="600" height="5" fill="#8a5e2e"/>
+          <!-- líneas de victoria y centro -->
+          <line x1="300" y1="140" x2="300" y2="292" stroke="#f4e7c9" stroke-width="2" stroke-dasharray="6 6" opacity=".7"/>
+          <line id="winLineA" x1="190" y1="268" x2="190" y2="292" stroke="var(--teamA)" stroke-width="4"/>
+          <line id="winLineB" x1="410" y1="268" x2="410" y2="292" stroke="var(--teamB)" stroke-width="4"/>
+
+          <!-- cuerda + equipos (se mueve en conjunto) -->
+          <g id="rope">
+            <path d="M250 200 Q300 202 350 197" stroke="#c9a06a" stroke-width="4" fill="none"/>
+            <path d="M250 200 Q300 202 350 197" stroke="#8a6438" stroke-width="4" fill="none" stroke-dasharray="3 6"/>
+            <!-- pañuelo central -->
+            <path d="M296 200 L304 200 L308 229 L300 223 L292 229Z" fill="#e9b949"/>
+            <g id="teamAGroup">
+              <g class="kid kidA"><g class="pose" data-pivot="155 296"><image href="assets/equipo-a.webp" x="40" y="103.2" width="230" height="192.8"/></g></g>
+            </g>
+            <g id="teamBGroup">
+              <g class="kid kidB"><g class="pose" data-pivot="445 296"><image href="assets/equipo-b.webp" x="330" y="102.3" width="230" height="193.7"/></g></g>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="meter"><span id="meterA">← Media Luna</span><span id="needText" dir="auto">7 tirones para ganar</span><span id="meterB">Estrella →</span></div>
+    </section>
+
+    <!-- Equipo B -->
+    <section class="panel b" id="panelB" aria-label="Estrella">
+      <div class="panel-head"><span class="team-name" id="nameB">Estrella</span><span class="score" id="scoreB">0</span></div>
+      <div class="langs small" id="langB" role="group"></div>
+      <div class="qzone" id="zoneB"></div>
+    </section>
+  </main>
+</div>
+
+<!-- Configuración -->
+<div class="overlay" id="setup">
+  <div class="card" role="dialog" aria-labelledby="setupTitle">
+    <p class="ar" lang="ar">ٱلسَّلَامُ عَلَيْكُمْ</p>
+    <h2 id="setupTitle" data-i18n="title">Tira de la Cuerda</h2>
+    <p data-i18n="intro">Dos equipos, una pantalla.</p>
+
+    <div class="field"><span data-i18n="language">Idioma</span>
+      <div class="seg" id="langSeg"></div>
+    </div>
+
+    <div class="field"><span data-i18n="modeLabel">Modo de juego</span>
+      <div class="seg" id="modeSeg">
+        <button type="button" data-v="quiz" aria-pressed="true"><span data-i18n="modeQuiz"></span><small data-i18n="modeQuizSub"></small></button>
+        <button type="button" data-v="math" aria-pressed="false"><span data-i18n="modeMath"></span><small data-i18n="modeMathSub"></small></button>
+        <button type="button" data-v="mix" aria-pressed="false"><span data-i18n="modeMix"></span><small data-i18n="modeMixSub"></small></button>
+      </div>
+    </div>
+
+    <div class="field"><span data-i18n="levelLabel">Nivel de las cuentas</span>
+      <div class="seg" id="levelSeg">
+        <button type="button" data-v="1" aria-pressed="true"><span data-i18n="lvl1"></span><small data-i18n="lvl1Sub"></small></button>
+        <button type="button" data-v="2" aria-pressed="false"><span data-i18n="lvl2"></span><small data-i18n="lvl2Sub"></small></button>
+        <button type="button" data-v="3" aria-pressed="false"><span data-i18n="lvl3"></span><small data-i18n="lvl3Sub"></small></button>
+      </div>
+    </div>
+
+    <div class="field"><span data-i18n="targetLabel">Tirones para ganar</span>
+      <div class="seg" id="targetSeg">
+        <button type="button" data-v="5" aria-pressed="false" data-num="5">5</button>
+        <button type="button" data-v="7" aria-pressed="true" data-num="7">7</button>
+        <button type="button" data-v="10" aria-pressed="false" data-num="10">10</button>
+      </div>
+    </div>
+
+    <div class="field"><span data-i18n="namesLabel">Nombres de los equipos</span>
+      <div class="names">
+        <label class="a"><input id="inA" maxlength="16" value="Media Luna"></label>
+        <label class="b"><input id="inB" maxlength="16" value="Estrella"></label>
+      </div>
+    </div>
+
+    <p class="hint" data-i18n="teamLangHint">Cada equipo puede cambiar su idioma durante la partida.</p>
+
+    <button class="start" id="startBtn" type="button" data-i18n="start">Bismillah, ¡a jugar!</button>
+  </div>
+</div>
+
+<!-- Victoria -->
+<div class="overlay" id="winBox" hidden>
+  <div class="card" role="dialog" aria-labelledby="winTeam">
+    <p class="ar" lang="ar">مَا شَاءَ ٱللَّٰهُ</p>
+    <p data-i18n="winPre">¡MashaAllah! La victoria es para</p>
+    <h3 class="win-team" id="winTeam">Media Luna</h3>
+    <div class="win-stats">
+      <div><span id="wsNameA">Media Luna</span><b id="wsA">0</b><span data-i18n="correctAnswers"></span></div>
+      <div><span id="wsNameB">Estrella</span><b id="wsB">0</b><span data-i18n="correctAnswers"></span></div>
+    </div>
+    <p id="winTime">00:00</p>
+    <div class="seg">
+      <button class="start" id="againBtn" type="button" style="flex:1" data-i18n="rematch">Revancha</button>
+      <button class="ghost" id="setupBtn2" type="button" data-i18n="changeSettings">Cambiar ajustes</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+/* ================= Textos de la interfaz ================= */
+const LANGS = { es:"Español", en:"English", ar:"العربية" };
+const SHORT = { es:"ES", en:"EN", ar:"ع" };
+const UI = {
+  es:{
+    title:"Tira de la Cuerda", newGame:"Nueva partida", soundOn:"Sonido: sí", soundOff:"Sonido: no",
+    intro:"Dos equipos, una pantalla. Cada respuesta correcta tira de la cuerda hacia tu lado. Gana el equipo que lleve el pañuelo dorado hasta su línea.",
+    language:"Idioma", modeLabel:"Modo de juego",
+    modeQuiz:"Preguntas islámicas", modeQuizSub:"Pilares, profetas, Corán",
+    modeMath:"Sumas con dátiles", modeMathSub:"Teclado numérico",
+    modeMix:"Mixto", modeMixSub:"Un poco de todo",
+    levelLabel:"Nivel de las cuentas", lvl1:"Fácil", lvl1Sub:"Sumas hasta 10", lvl2:"Medio", lvl2Sub:"Sumas hasta 20", lvl3:"Difícil", lvl3Sub:"Sumas y restas hasta 50",
+    targetLabel:"Tirones para ganar", namesLabel:"Nombres de los equipos",
+    teamLangHint:"Cada equipo puede cambiar su propio idioma durante la partida con los botones ES · EN · ع.",
+    start:"Bismillah, ¡a jugar!", winPre:"¡MashaAllah! La victoria es para", correctAnswers:"respuestas correctas",
+    time:"Tiempo", rematch:"Revancha", changeSettings:"Cambiar ajustes",
+    need: n => `${n} tirones para ganar`, teamA:"Media Luna", teamB:"Estrella",
+    del:"Borrar", check:"Comprobar", teamLang:"Idioma del equipo", nameLeft:"Nombre del equipo izquierdo", nameRight:"Nombre del equipo derecho",
+  },
+  en:{
+    title:"Tug of War", newGame:"New game", soundOn:"Sound: on", soundOff:"Sound: off",
+    intro:"Two teams, one screen. Every correct answer pulls the rope towards your side. The team that brings the golden ribbon to its line wins.",
+    language:"Language", modeLabel:"Game mode",
+    modeQuiz:"Islamic questions", modeQuizSub:"Pillars, prophets, Quran",
+    modeMath:"Sums with dates", modeMathSub:"Number keypad",
+    modeMix:"Mixed", modeMixSub:"A bit of everything",
+    levelLabel:"Maths level", lvl1:"Easy", lvl1Sub:"Sums up to 10", lvl2:"Medium", lvl2Sub:"Sums up to 20", lvl3:"Hard", lvl3Sub:"Sums and subtractions up to 50",
+    targetLabel:"Pulls to win", namesLabel:"Team names",
+    teamLangHint:"Each team can switch its own language during the game with the ES · EN · ع buttons.",
+    start:"Bismillah, let's play!", winPre:"MashaAllah! The winner is", correctAnswers:"correct answers",
+    time:"Time", rematch:"Rematch", changeSettings:"Change settings",
+    need: n => `${n} pulls to win`, teamA:"Crescent", teamB:"Star",
+    del:"Clear", check:"Check", teamLang:"Team language", nameLeft:"Left team name", nameRight:"Right team name",
+  },
+  ar:{
+    title:"شدّ الحبل", newGame:"لعبة جديدة", soundOn:"الصوت: يعمل", soundOff:"الصوت: متوقف",
+    intro:"فريقان وشاشة واحدة. كل إجابة صحيحة تشدّ الحبل نحو فريقك. يفوز الفريق الذي يوصل الشريط الذهبي إلى خطّه.",
+    language:"اللغة", modeLabel:"نوع اللعب",
+    modeQuiz:"أسئلة إسلامية", modeQuizSub:"الأركان، الأنبياء، القرآن",
+    modeMath:"الجمع بالتمر", modeMathSub:"لوحة أرقام",
+    modeMix:"مختلط", modeMixSub:"قليل من كل شيء",
+    levelLabel:"مستوى الحساب", lvl1:"سهل", lvl1Sub:"الجمع حتى 10", lvl2:"متوسط", lvl2Sub:"الجمع حتى 20", lvl3:"صعب", lvl3Sub:"الجمع والطرح حتى 50",
+    targetLabel:"عدد الشدّات للفوز", namesLabel:"أسماء الفريقين",
+    teamLangHint:"يستطيع كل فريق تغيير لغته أثناء اللعب بأزرار ES · EN · ع.",
+    start:"بسم الله، هيا نلعب!", winPre:"ما شاء الله! الفوز لفريق", correctAnswers:"إجابات صحيحة",
+    time:"الوقت", rematch:"مباراة أخرى", changeSettings:"تغيير الإعدادات",
+    need: n => `${n} شدّات للفوز`, teamA:"الهلال", teamB:"النجمة",
+    del:"مسح", check:"تحقّق", teamLang:"لغة الفريق", nameLeft:"اسم الفريق الأيسر", nameRight:"اسم الفريق الأيمن",
+  },
+};
+const DEFAULT_NAMES = Object.values(UI).flatMap(u => [u.teamA, u.teamB]);
+
+/* ================= Banco de preguntas =================
+   [pregunta, respuesta correcta, distractor, distractor, distractor]
+   Las tres listas van en el mismo orden: la posición N es la misma pregunta en cada idioma. */
+const QUIZ_ES = [
+  ["¿Cuántos pilares tiene el Islam?","5","3","6","7"],
+  ["¿Cuántas oraciones obligatorias hay cada día?","5","3","4","7"],
+  ["¿Cuál es el primer pilar del Islam?","La Shahada","El Zakat","El Hayy","El ayuno"],
+  ["¿En qué mes ayunan los musulmanes?","Ramadán","Muharram","Shawwal","Rayab"],
+  ["¿Qué libro fue revelado al Profeta Muhammad ﷺ?","El Corán","La Torá","El Zabur","El Inyil"],
+  ["¿Cuántas suras tiene el Corán?","114","99","120","30"],
+  ["¿Cuál es la primera sura del Corán?","Al-Fátiha","Al-Baqara","An-Nas","Al-Ijlás"],
+  ["¿Cuál es la última sura del Corán?","An-Nas","Al-Falaq","Al-Fátiha","Al-Kawzar"],
+  ["¿Cuál es la sura más larga del Corán?","Al-Baqara","Al-Imrán","Yasín","Al-Mulk"],
+  ["¿Cuál es la sura más corta del Corán?","Al-Kawzar","Yasín","Al-Kahf","Maryam"],
+  ["¿En qué ciudad nació el Profeta Muhammad ﷺ?","La Meca","Medina","Jerusalén","Damasco"],
+  ["¿A qué ciudad emigró el Profeta ﷺ en la Hégira?","Medina","Taif","Jerusalén","El Cairo"],
+  ["¿Qué ángel trajo la revelación al Profeta ﷺ?","Yibril","Mikail","Israfil","Malik"],
+  ["¿Dónde recibió el Profeta ﷺ la primera revelación?","La cueva de Hira","La cueva de Zaur","El monte Uhud","El monte Arafat"],
+  ["¿Cuál fue la primera palabra revelada del Corán?","¡Iqra! (¡Lee!)","¡Bismillah!","¡Salam!","¡Allahu Akbar!"],
+  ["¿Hacia dónde rezan los musulmanes?","Hacia la Kaaba","Hacia el sol","Hacia el norte","Hacia el mar"],
+  ["¿Cómo se llama la oración del amanecer?","Fayr","Duhr","Asr","Isha"],
+  ["¿Cómo se llama la oración de la puesta del sol?","Magrib","Fayr","Duhr","Isha"],
+  ["¿Cuántas rakat tiene la oración del Fayr?","2","3","4","1"],
+  ["¿Cuántas rakat tiene la oración del Magrib?","3","2","4","5"],
+  ["¿Cuántas rakat tiene la oración del Duhr?","4","2","3","5"],
+  ["¿Qué día se reza la oración del Yumu'a?","Viernes","Lunes","Sábado","Domingo"],
+  ["¿Qué fiesta se celebra al terminar Ramadán?","Eid al-Fitr","Eid al-Adha","Ashura","Año Nuevo islámico"],
+  ["¿Qué fiesta se celebra durante el Hayy, con el sacrificio?","Eid al-Adha","Eid al-Fitr","Ashura","Laylat al-Qadr"],
+  ["¿Cómo se llama la peregrinación a La Meca?","Hayy","Zakat","Sawm","Salat"],
+  ["¿Cómo se llama la caridad obligatoria?","Zakat","Hayy","Wudu","Adhán"],
+  ["¿Qué significa «Sawm»?","El ayuno","La oración","La caridad","La peregrinación"],
+  ["¿Cómo se llama la ablución antes de rezar?","Wudu","Adhán","Dua","Suyud"],
+  ["¿Cómo se llama la llamada a la oración?","Adhán","Wudu","Tasbih","Dua"],
+  ["¿Quién hace la llamada a la oración desde la mezquita?","El muecín","El califa","El mercader","El sultán"],
+  ["¿Qué compañero fue el primer muecín del Islam?","Bilal","Abu Bakr","Umar","Jalid"],
+  ["¿Qué profeta construyó el arca?","Nuh","Musa","Isa","Yusuf"],
+  ["¿Qué profeta fue tragado por una ballena?","Yunus","Ibrahim","Nuh","Dawud"],
+  ["¿Qué profeta construyó la Kaaba junto a su hijo Ismail?","Ibrahim","Musa","Nuh","Adam"],
+  ["¿Quién es la madre del profeta Isa?","Maryam","Asiya","Hawa","Jadiya"],
+  ["¿Qué profeta se enfrentó al Faraón?","Musa","Yunus","Salih","Lut"],
+  ["¿Qué profeta entendía el habla de las hormigas y los pájaros?","Sulayman","Yusuf","Hud","Yahya"],
+  ["¿Qué profeta fue arrojado a un pozo por sus hermanos?","Yusuf","Ismail","Ayyub","Harun"],
+  ["¿Quién era el padre del profeta Yusuf?","Yaqub","Ishaq","Ibrahim","Zakariya"],
+  ["¿Qué profeta es famoso por su paciencia en la enfermedad?","Ayyub","Sulayman","Dawud","Idris"],
+  ["¿Quién fue el primer ser humano y el primer profeta?","Adam","Nuh","Idris","Ibrahim"],
+  ["¿Quién es el último profeta?","Muhammad ﷺ","Isa","Musa","Ibrahim"],
+  ["¿Qué profeta recibió el Zabur (los Salmos)?","Dawud","Musa","Isa","Ibrahim"],
+  ["¿A qué profeta se le reveló la Torá?","Musa","Dawud","Nuh","Yahya"],
+  ["¿Quién fue el primer califa?","Abu Bakr","Umar","Uzman","Ali"],
+  ["¿Quién fue la primera esposa del Profeta ﷺ?","Jadiya","Aisha","Hafsa","Zaynab"],
+  ["¿Cómo se llama el pozo de agua bendita de La Meca?","Zamzam","Badr","Uhud","Hira"],
+  ["¿Qué decimos antes de comer?","Bismillah","Alhamdulillah","Inshallah","Allahu Akbar"],
+  ["¿Qué decimos después de estornudar?","Alhamdulillah","Bismillah","Inshallah","Mashallah"],
+  ["¿Cómo respondemos a «As-salamu alaykum»?","Wa alaykum as-salam","Bismillah","Inshallah","Alhamdulillah"],
+  ["¿Qué significa «Inshallah»?","Si Dios quiere","Gracias a Dios","Dios es el más grande","En el nombre de Dios"],
+  ["¿Qué significa «Alhamdulillah»?","Alabado sea Dios","Si Dios quiere","Dios es el más grande","En el nombre de Dios"],
+  ["¿Qué significa «Allahu Akbar»?","Dios es el más grande","Gracias a Dios","Si Dios quiere","Glorificado sea Dios"],
+  ["¿Cómo se llama la noche en que comenzó a revelarse el Corán?","Laylat al-Qadr","La noche de Eid","La noche de Ashura","La noche de Arafat"],
+  ["¿En qué mes comenzó a revelarse el Corán?","Ramadán","Muharram","Rayab","Dhul-Hiyya"],
+  ["¿En qué ciudad está la mezquita Al-Aqsa?","Jerusalén","La Meca","Medina","Estambul"],
+  ["¿En qué ciudad está la Mezquita del Profeta ﷺ?","Medina","La Meca","Jerusalén","Bagdad"],
+  ["¿Cuántos meses tiene el calendario islámico?","12","10","13","11"],
+  ["¿Cuál es el primer mes del calendario islámico?","Muharram","Ramadán","Safar","Shawwal"],
+  ["¿Cuántas vueltas se dan alrededor de la Kaaba en el tawaf?","7","3","5","10"],
+  ["¿Cuántos nombres de Allah menciona el conocido hadiz?","99","100","33","50"],
+  ["«Di: Él es Allah, Uno.» ¿De qué sura es?","Al-Ijlás","Al-Falaq","Al-Fátiha","An-Nasr"],
+  ["¿En qué sura está Ayat al-Kursi?","Al-Baqara","Yasín","Al-Mulk","Al-Kahf"],
+  ["¿Qué sura lleva el nombre de la madre del profeta Isa?","Maryam","Hud","Ta-Ha","Luqman"],
+  ["¿Cuántas veces se dice «SubhanAllah» en el tasbih tras la oración?","33","10","99","7"],
+  ["¿Cómo se llama el viaje nocturno del Profeta ﷺ a Jerusalén?","Al-Isra","La Hégira","El Hayy","Badr"],
+  ["Según la Sunna, ¿con qué se rompe el ayuno?","Con dátiles","Con pan","Con queso","Con arroz"],
+  ["¿Cómo se llama la comida antes del amanecer en Ramadán?","Suhur","Iftar","Eid","Tarawih"],
+  ["¿Cómo se llama la comida al romper el ayuno?","Iftar","Suhur","Zakat","Yumu'a"],
+  ["¿Cuántos días dura el mes de Ramadán?","29 o 30","40","15","7"],
+  ["¿Cómo se llama la oración nocturna especial de Ramadán?","Tarawih","Fayr","Yanaza","Istisqa"],
+];
+
+const QUIZ_EN = [
+  ["How many pillars does Islam have?","5","3","6","7"],
+  ["How many obligatory prayers are there each day?","5","3","4","7"],
+  ["What is the first pillar of Islam?","The Shahada","Zakat","Hajj","Fasting"],
+  ["In which month do Muslims fast?","Ramadan","Muharram","Shawwal","Rajab"],
+  ["Which book was revealed to the Prophet Muhammad ﷺ?","The Quran","The Torah","The Zabur","The Injil"],
+  ["How many surahs are in the Quran?","114","99","120","30"],
+  ["What is the first surah of the Quran?","Al-Fatiha","Al-Baqarah","An-Nas","Al-Ikhlas"],
+  ["What is the last surah of the Quran?","An-Nas","Al-Falaq","Al-Fatiha","Al-Kawthar"],
+  ["What is the longest surah of the Quran?","Al-Baqarah","Al Imran","Ya-Sin","Al-Mulk"],
+  ["What is the shortest surah of the Quran?","Al-Kawthar","Ya-Sin","Al-Kahf","Maryam"],
+  ["In which city was the Prophet Muhammad ﷺ born?","Makkah","Madinah","Jerusalem","Damascus"],
+  ["To which city did the Prophet ﷺ migrate in the Hijrah?","Madinah","Ta'if","Jerusalem","Cairo"],
+  ["Which angel brought the revelation to the Prophet ﷺ?","Jibril","Mika'il","Israfil","Malik"],
+  ["Where did the Prophet ﷺ receive the first revelation?","The cave of Hira","The cave of Thawr","Mount Uhud","Mount Arafat"],
+  ["What was the first word of the Quran to be revealed?","Iqra! (Read!)","Bismillah!","Salam!","Allahu Akbar!"],
+  ["Which way do Muslims face when they pray?","Towards the Kaaba","Towards the sun","Towards the north","Towards the sea"],
+  ["What is the dawn prayer called?","Fajr","Dhuhr","Asr","Isha"],
+  ["Which prayer is prayed at sunset?","Maghrib","Fajr","Dhuhr","Isha"],
+  ["How many rak'ahs does the Fajr prayer have?","2","3","4","1"],
+  ["How many rak'ahs does the Maghrib prayer have?","3","2","4","5"],
+  ["How many rak'ahs does the Dhuhr prayer have?","4","2","3","5"],
+  ["On which day is the Jumu'ah prayer?","Friday","Monday","Saturday","Sunday"],
+  ["Which celebration comes at the end of Ramadan?","Eid al-Fitr","Eid al-Adha","Ashura","Islamic New Year"],
+  ["Which celebration takes place during Hajj, with the sacrifice?","Eid al-Adha","Eid al-Fitr","Ashura","Laylat al-Qadr"],
+  ["What is the pilgrimage to Makkah called?","Hajj","Zakat","Sawm","Salah"],
+  ["What is the obligatory charity called?","Zakat","Hajj","Wudu","Adhan"],
+  ["What does «Sawm» mean?","Fasting","Prayer","Charity","Pilgrimage"],
+  ["What is the washing before prayer called?","Wudu","Adhan","Du'a","Sujud"],
+  ["What is the call to prayer called?","Adhan","Wudu","Tasbih","Du'a"],
+  ["Who calls to prayer from the mosque?","The muezzin","The caliph","The merchant","The sultan"],
+  ["Which companion was the first muezzin of Islam?","Bilal","Abu Bakr","Umar","Khalid"],
+  ["Which prophet built the ark?","Nuh","Musa","Isa","Yusuf"],
+  ["Which prophet was swallowed by a whale?","Yunus","Ibrahim","Nuh","Dawud"],
+  ["Which prophet built the Kaaba with his son Isma'il?","Ibrahim","Musa","Nuh","Adam"],
+  ["Who is the mother of the prophet Isa?","Maryam","Asiya","Hawwa","Khadijah"],
+  ["Which prophet stood up to Pharaoh?","Musa","Yunus","Salih","Lut"],
+  ["Which prophet understood the speech of ants and birds?","Sulayman","Yusuf","Hud","Yahya"],
+  ["Which prophet was thrown into a well by his brothers?","Yusuf","Isma'il","Ayyub","Harun"],
+  ["Who was the father of the prophet Yusuf?","Ya'qub","Ishaq","Ibrahim","Zakariya"],
+  ["Which prophet is famous for his patience in illness?","Ayyub","Sulayman","Dawud","Idris"],
+  ["Who was the first human and the first prophet?","Adam","Nuh","Idris","Ibrahim"],
+  ["Who is the last prophet?","Muhammad ﷺ","Isa","Musa","Ibrahim"],
+  ["Which prophet received the Zabur (Psalms)?","Dawud","Musa","Isa","Ibrahim"],
+  ["To which prophet was the Torah revealed?","Musa","Dawud","Nuh","Yahya"],
+  ["Who was the first caliph?","Abu Bakr","Umar","Uthman","Ali"],
+  ["Who was the first wife of the Prophet ﷺ?","Khadijah","Aisha","Hafsa","Zaynab"],
+  ["What is the blessed well of Makkah called?","Zamzam","Badr","Uhud","Hira"],
+  ["What do we say before eating?","Bismillah","Alhamdulillah","Insha'Allah","Allahu Akbar"],
+  ["What do we say after sneezing?","Alhamdulillah","Bismillah","Insha'Allah","Masha'Allah"],
+  ["How do we reply to «As-salamu alaykum»?","Wa alaykum as-salam","Bismillah","Insha'Allah","Alhamdulillah"],
+  ["What does «Insha'Allah» mean?","If God wills","Thanks be to God","God is the Greatest","In the name of God"],
+  ["What does «Alhamdulillah» mean?","All praise is for God","If God wills","God is the Greatest","In the name of God"],
+  ["What does «Allahu Akbar» mean?","God is the Greatest","Thanks be to God","If God wills","Glory be to God"],
+  ["On which night did the Quran begin to be revealed?","Laylat al-Qadr","The night of Eid","The night of Ashura","The night of Arafah"],
+  ["In which month did the Quran begin to be revealed?","Ramadan","Muharram","Rajab","Dhul-Hijjah"],
+  ["In which city is Al-Aqsa Mosque?","Jerusalem","Makkah","Madinah","Istanbul"],
+  ["In which city is the Prophet's Mosque ﷺ?","Madinah","Makkah","Jerusalem","Baghdad"],
+  ["How many months are in the Islamic calendar?","12","10","13","11"],
+  ["What is the first month of the Islamic calendar?","Muharram","Ramadan","Safar","Shawwal"],
+  ["How many times do pilgrims go around the Kaaba in tawaf?","7","3","5","10"],
+  ["How many names of Allah are mentioned in the well-known hadith?","99","100","33","50"],
+  ["«Say: He is Allah, the One.» Which surah is this from?","Al-Ikhlas","Al-Falaq","Al-Fatiha","An-Nasr"],
+  ["Which surah contains Ayat al-Kursi?","Al-Baqarah","Ya-Sin","Al-Mulk","Al-Kahf"],
+  ["Which surah is named after the mother of the prophet Isa?","Maryam","Hud","Ta-Ha","Luqman"],
+  ["How many times is «SubhanAllah» said in the tasbih after prayer?","33","10","99","7"],
+  ["What is the Prophet's ﷺ night journey to Jerusalem called?","Al-Isra","The Hijrah","Hajj","Badr"],
+  ["According to the Sunnah, what do we break the fast with?","Dates","Bread","Cheese","Rice"],
+  ["What is the meal before dawn in Ramadan called?","Suhur","Iftar","Eid","Tarawih"],
+  ["What is the meal to break the fast called?","Iftar","Suhur","Zakat","Jumu'ah"],
+  ["How many days does Ramadan last?","29 or 30","40","15","7"],
+  ["What is the special night prayer of Ramadan called?","Tarawih","Fajr","Janazah","Istisqa"],
+];
+
+const QUIZ_AR = [
+  ["كم عدد أركان الإسلام؟","5","3","6","7"],
+  ["كم عدد الصلوات المفروضة في اليوم؟","5","3","4","7"],
+  ["ما هو الركن الأول من أركان الإسلام؟","الشهادتان","الزكاة","الحج","الصوم"],
+  ["في أي شهر يصوم المسلمون؟","رمضان","محرم","شوال","رجب"],
+  ["ما الكتاب الذي أُنزل على النبي محمد ﷺ؟","القرآن","التوراة","الزبور","الإنجيل"],
+  ["كم عدد سور القرآن الكريم؟","114","99","120","30"],
+  ["ما هي أول سورة في القرآن؟","الفاتحة","البقرة","الناس","الإخلاص"],
+  ["ما هي آخر سورة في القرآن؟","الناس","الفلق","الفاتحة","الكوثر"],
+  ["ما هي أطول سورة في القرآن؟","البقرة","آل عمران","يس","الملك"],
+  ["ما هي أقصر سورة في القرآن؟","الكوثر","يس","الكهف","مريم"],
+  ["في أي مدينة وُلد النبي محمد ﷺ؟","مكة","المدينة","القدس","دمشق"],
+  ["إلى أي مدينة هاجر النبي ﷺ؟","المدينة","الطائف","القدس","القاهرة"],
+  ["أي مَلَك نزل بالوحي على النبي ﷺ؟","جبريل","ميكائيل","إسرافيل","مالك"],
+  ["أين نزل الوحي أول مرة على النبي ﷺ؟","غار حراء","غار ثور","جبل أحد","جبل عرفات"],
+  ["ما أول كلمة نزلت من القرآن؟","اقرأ","بسم الله","سلام","الله أكبر"],
+  ["إلى أين يتجه المسلمون في الصلاة؟","إلى الكعبة","إلى الشمس","إلى الشمال","إلى البحر"],
+  ["أي صلاة نصلّيها قبل طلوع الشمس؟","الفجر","الظهر","العصر","العشاء"],
+  ["أي صلاة نصلّيها عند غروب الشمس؟","المغرب","الفجر","الظهر","العشاء"],
+  ["كم عدد ركعات صلاة الفجر؟","2","3","4","1"],
+  ["كم عدد ركعات صلاة المغرب؟","3","2","4","5"],
+  ["كم عدد ركعات صلاة الظهر؟","4","2","3","5"],
+  ["في أي يوم تكون خطبة المسجد الأسبوعية؟","الجمعة","الاثنين","السبت","الأحد"],
+  ["ما العيد الذي يأتي بعد انتهاء رمضان؟","عيد الفطر","عيد الأضحى","عاشوراء","رأس السنة الهجرية"],
+  ["ما العيد الذي يكون في موسم الحج وفيه الأضحية؟","عيد الأضحى","عيد الفطر","عاشوراء","ليلة القدر"],
+  ["ماذا تُسمّى زيارة مكة لأداء المناسك في ذي الحجة؟","الحج","الزكاة","الصوم","الصلاة"],
+  ["ما اسم الصدقة الواجبة في المال؟","الزكاة","الحج","الوضوء","الأذان"],
+  ["ما معنى «الصوم»؟","الإمساك عن الطعام والشراب","الصلاة","الصدقة","الحج"],
+  ["ماذا نسمّي الطهارة بالماء قبل الصلاة؟","الوضوء","الأذان","الدعاء","السجود"],
+  ["ما اسم النداء إلى الصلاة؟","الأذان","الوضوء","التسبيح","الدعاء"],
+  ["من يرفع الأذان في المسجد؟","المؤذن","الخليفة","التاجر","السلطان"],
+  ["من هو الصحابي الذي كان أول مؤذن في الإسلام؟","بلال","أبو بكر","عمر","خالد"],
+  ["أي نبي صنع السفينة؟","نوح","موسى","عيسى","يوسف"],
+  ["أي نبي التقمه الحوت؟","يونس","إبراهيم","نوح","داود"],
+  ["أي نبي رفع قواعد الكعبة مع ابنه إسماعيل؟","إبراهيم","موسى","نوح","آدم"],
+  ["من هي أم النبي عيسى؟","مريم","آسية","حواء","خديجة"],
+  ["أي نبي واجه فرعون؟","موسى","يونس","صالح","لوط"],
+  ["أي نبي فهم كلام النمل والطير؟","سليمان","يوسف","هود","يحيى"],
+  ["أي نبي ألقاه إخوته في البئر؟","يوسف","إسماعيل","أيوب","هارون"],
+  ["من هو والد النبي يوسف؟","يعقوب","إسحاق","إبراهيم","زكريا"],
+  ["أي نبي اشتهر بصبره على المرض؟","أيوب","سليمان","داود","إدريس"],
+  ["من هو أول إنسان وأول نبي؟","آدم","نوح","إدريس","إبراهيم"],
+  ["من هو خاتم الأنبياء؟","محمد ﷺ","عيسى","موسى","إبراهيم"],
+  ["أي نبي أُنزل عليه الزبور؟","داود","موسى","عيسى","إبراهيم"],
+  ["على أي نبي أُنزلت التوراة؟","موسى","داود","نوح","يحيى"],
+  ["من هو أول الخلفاء الراشدين؟","أبو بكر","عمر","عثمان","علي"],
+  ["من هي أول زوجات النبي ﷺ؟","خديجة","عائشة","حفصة","زينب"],
+  ["ما اسم البئر المباركة في مكة؟","زمزم","بدر","أحد","حراء"],
+  ["ماذا نقول قبل الأكل؟","بسم الله","الحمد لله","إن شاء الله","الله أكبر"],
+  ["ماذا نقول بعد العطاس؟","الحمد لله","بسم الله","إن شاء الله","ما شاء الله"],
+  ["بماذا نردّ على «السلام عليكم»؟","وعليكم السلام","بسم الله","إن شاء الله","الحمد لله"],
+  ["ماذا نقول عندما نتحدث عن شيء سنفعله في المستقبل؟","إن شاء الله","الحمد لله","الله أكبر","بسم الله"],
+  ["ماذا نقول لنشكر الله على نعمه؟","الحمد لله","إن شاء الله","الله أكبر","بسم الله"],
+  ["بأي عبارة نبدأ الصلاة؟","الله أكبر","الحمد لله","إن شاء الله","سبحان الله"],
+  ["في أي ليلة بدأ نزول القرآن؟","ليلة القدر","ليلة العيد","ليلة عاشوراء","ليلة عرفة"],
+  ["في أي شهر بدأ نزول القرآن؟","رمضان","محرم","رجب","ذو الحجة"],
+  ["في أي مدينة يقع المسجد الأقصى؟","القدس","مكة","المدينة","إسطنبول"],
+  ["في أي مدينة يقع المسجد النبوي؟","المدينة المنورة","مكة","القدس","بغداد"],
+  ["كم عدد الأشهر في التقويم الهجري؟","12","10","13","11"],
+  ["ما هو أول شهر في التقويم الهجري؟","محرم","رمضان","صفر","شوال"],
+  ["كم شوطًا يطوف الحاج حول الكعبة؟","7","3","5","10"],
+  ["كم عدد أسماء الله الحسنى في الحديث المشهور؟","99","100","33","50"],
+  ["«قُلْ هُوَ اللَّهُ أَحَدٌ» من أي سورة؟","الإخلاص","الفلق","الفاتحة","النصر"],
+  ["في أي سورة آية الكرسي؟","البقرة","يس","الملك","الكهف"],
+  ["أي سورة سُمّيت باسم أم النبي عيسى؟","مريم","هود","طه","لقمان"],
+  ["كم مرة نقول «سبحان الله» في التسبيح بعد الصلاة؟","33","10","99","7"],
+  ["ما اسم رحلة النبي ﷺ ليلًا إلى بيت المقدس؟","الإسراء","الهجرة","الحج","بدر"],
+  ["حسب السنة، بماذا نفطر؟","التمر","الخبز","الجبن","الأرز"],
+  ["ما اسم الوجبة قبل الفجر في رمضان؟","السحور","الإفطار","العيد","التراويح"],
+  ["ما اسم الوجبة عند المغرب في رمضان؟","الإفطار","السحور","الزكاة","الجمعة"],
+  ["كم يومًا يدوم شهر رمضان؟","29 أو 30","40","15","7"],
+  ["ما اسم صلاة الليل الخاصة برمضان؟","التراويح","الفجر","الجنازة","الاستسقاء"],
+];
+const QUIZ = { es:QUIZ_ES, en:QUIZ_EN, ar:QUIZ_AR };
+if (QUIZ_EN.length !== QUIZ_ES.length || QUIZ_AR.length !== QUIZ_ES.length) console.error("Las listas de preguntas no tienen la misma longitud");
+
+/* ================= Sumas con historia ================= */
+// Nombres: [es/en, ar, femenino?]
+const NAMES = [["Amina","آمنة",1],["Yusuf","يوسف",0],["Fátima","فاطمة",1],["Omar","عمر",0],["Aisha","عائشة",1],["Bilal","بلال",0],
+               ["Maryam","مريم",1],["Hamza","حمزة",0],["Zaynab","زينب",1],["Ibrahim","إبراهيم",0],["Safiya","صفية",1],["Ali","علي",0]];
+// Objetos: es [plural, singular, femenino?], en [plural, singular], ar [plural con artículo]
+const ITEMS = [
+  {es:["dátiles","dátil",0], en:["dates","date"], ar:"التمرات"},
+  {es:["faroles de Ramadán","farol de Ramadán",0], en:["Ramadan lanterns","Ramadan lantern"], ar:"فوانيس رمضان"},
+  {es:["cuentas de tasbih","cuenta de tasbih",1], en:["tasbih beads","tasbih bead"], ar:"حبات المسبحة"},
+  {es:["libros","libro",0], en:["books","book"], ar:"الكتب"},
+  {es:["vasos de leche","vaso de leche",0], en:["glasses of milk","glass of milk"], ar:"أكواب الحليب"},
+  {es:["galletas de Eid","galleta de Eid",1], en:["Eid cookies","Eid cookie"], ar:"كعكات العيد"},
+  {es:["estrellas doradas","estrella dorada",1], en:["golden stars","golden star"], ar:"النجوم الذهبية"},
+];
+function storyText(q, lang){
+  const [nLatin, nAr, fem] = NAMES[q.ni], it = ITEMS[q.ii];
+  if (lang === "ar"){
+    return q.op === "+"
+      ? `عند ${nAr} ${q.a} من ${it.ar}، و${fem ? "حصلت" : "حصل"} على ${q.b} أخرى. كم أصبح العدد؟`
+      : `كان عند ${nAr} ${q.a} من ${it.ar}، و${fem ? "أهدت" : "أهدى"} ${q.b} منها. كم بقي؟`;
+  }
+  if (lang === "en"){
+    const w = k => k === 1 ? it.en[1] : it.en[0];
+    return q.op === "+"
+      ? `${nLatin} has ${q.a} ${w(q.a)} and gets ${q.b} more. How many now?`
+      : `${nLatin} had ${q.a} ${w(q.a)} and gives away ${q.b}. How many are left?`;
+  }
+  const [pl, sg, f] = it.es, w = k => k === 1 ? sg : pl, cu = f ? "Cuántas" : "Cuántos";
+  return q.op === "+"
+    ? `${nLatin} tiene ${q.a} ${w(q.a)} y recibe ${q.b} más. ¿${cu} tiene ahora?`
+    : `${nLatin} tenía ${q.a} ${w(q.a)} y regala ${q.b}. ¿${cu} le quedan?`;
+}
+
+/* ================= Utilidades ================= */
+const $ = id => document.getElementById(id);
+const rnd = (a,b) => a + Math.floor(Math.random()*(b-a+1));
+const shuffle = arr => { const a = arr.slice(); for (let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+const AR_DIGITS = "٠١٢٣٤٥٦٧٨٩";
+const num = (s, lang) => lang === "ar" ? String(s).replace(/[0-9]/g, d => AR_DIGITS[d]) : String(s);
+const store = {
+  get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k,v); } catch(e){} },
+};
+
+/* ================= Sonido ================= */
+let soundOn = true, actx = null;
+function beep(freqs, dur=.12, type="triangle", gap=.09){
+  if (!soundOn) return;
+  try {
+    actx = actx || new (window.AudioContext||window.webkitAudioContext)();
+    freqs.forEach((f,i) => {
+      const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime + i*gap;
+      o.type = type; o.frequency.value = f;
+      g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.25,t+.02); g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+      o.connect(g).connect(actx.destination); o.start(t); o.stop(t+dur+.02);
+    });
+  } catch(e) {}
+}
+const sOk = () => beep([660,880]);
+const sBad = () => beep([220,165],.18,"sawtooth",.1);
+const sWin = () => beep([523,659,784,1046,784,1046],.22,"triangle",.14);
+
+/* ================= Estado ================= */
+const saved = store.get("tdc-lang");
+const cfg = { lang: UI[saved] ? saved : "es", mode:"quiz", level:1, target:7, nameA:"Media Luna", nameB:"Estrella" };
+let pos = 0, playing = false, t0 = 0, tick = null, lastWinner = null;
+const teams = { A: null, B: null };
+
+function makeTeam(side){
+  return { side, lang: cfg.lang, correct:0, deck:shuffle([...QUIZ_ES.keys()]), di:0, q:null, input:"", locked:false };
+}
+
+/* ---- generación de preguntas (independientes del idioma) ---- */
+function mathQuestion(){
+  let a,b,op="+";
+  if (cfg.level===1){ a=rnd(1,9); b=rnd(1,10-a); }
+  else if (cfg.level===2){ a=rnd(2,15); b=rnd(1,20-a); }
+  else { if (Math.random()<.5){ a=rnd(5,35); b=rnd(2,50-a);} else { op="−"; a=rnd(10,50); b=rnd(2,a-1);} }
+  return { type:"math", a, b, op, ni:rnd(0,NAMES.length-1), ii:rnd(0,ITEMS.length-1), answer: op==="+" ? a+b : a-b };
+}
+function quizQuestion(team){
+  if (team.di >= team.deck.length){ team.deck = shuffle([...QUIZ_ES.keys()]); team.di = 0; }
+  return { type:"quiz", idx: team.deck[team.di++], order: shuffle([0,1,2,3]) }; // la opción 0 es la correcta
+}
+function nextQuestion(team){
+  const useMath = cfg.mode==="math" || (cfg.mode==="mix" && Math.random()<.4);
+  team.q = useMath ? mathQuestion() : quizQuestion(team);
+  team.input = ""; team.locked = false;
+  render(team);
+}
+
+/* ---- pintado del panel de un equipo, en el idioma de ese equipo ---- */
+function render(team){
+  const zone = $("zone"+team.side), q = team.q, L = team.lang, t = UI[L];
+  const panel = $("panel"+team.side);
+  panel.dir = L === "ar" ? "rtl" : "ltr";
+  panel.lang = L;
+  zone.innerHTML = "";
+  zone.style.display = "flex"; zone.style.flexDirection = "column"; zone.style.gap = "12px";
+  if (!q) return;
+  if (q.type==="quiz"){
+    const row = QUIZ[L][q.idx];
+    const h = document.createElement("p"); h.className="question"; h.textContent = num(row[0], L); zone.append(h);
+    const box = document.createElement("div"); box.className="options";
+    q.order.forEach(k => {
+      const b = document.createElement("button"); b.type="button"; b.className="opt"; b.textContent = num(row[k+1], L);
+      b.dataset.k = k;
+      b.addEventListener("click", () => answerQuiz(team, b, k));
+      box.append(b);
+    });
+    zone.append(box);
+  } else {
+    const s = document.createElement("p"); s.className="story"; s.textContent = num(storyText(q, L), L); zone.append(s);
+    const h = document.createElement("p"); h.className="question math";
+    h.textContent = num(`${q.a} ${q.op} ${q.b} = ${L==="ar" ? "؟" : "?"}`, L); zone.append(h);
+    const d = document.createElement("div"); d.className="display"; d.id="disp"+team.side; d.dir="ltr"; zone.append(d);
+    const pad = document.createElement("div"); pad.className="keypad"; pad.dir="ltr";
+    ["1","2","3","4","5","6","7","8","9","del","0","go"].forEach(k => {
+      const b = document.createElement("button"); b.type="button"; b.className="key";
+      if (k==="del"){ b.classList.add("del"); b.textContent="✕"; b.setAttribute("aria-label", t.del); }
+      else if (k==="go"){ b.classList.add("go"); b.textContent="✓"; b.setAttribute("aria-label", t.check); }
+      else b.textContent = num(k, L);
+      b.addEventListener("click", () => keyPress(team,k));
+      pad.append(b);
+    });
+    zone.append(pad);
+    updateDisplay(team);
+  }
+}
+
+function updateDisplay(team){
+  const d = $("disp"+team.side); if (!d) return;
+  d.textContent = num(team.input || "0", team.lang);
+  d.classList.toggle("empty", !team.input);
+}
+
+function keyPress(team,k){
+  if (!playing || team.locked) return;
+  if (k==="del"){ team.input=""; }
+  else if (k==="go"){ if (team.input) check(team, Number(team.input)===team.q.answer); return; }
+  else if (team.input.length<3){ team.input = (team.input==="0" ? "" : team.input) + k; }
+  updateDisplay(team);
+}
+
+function answerQuiz(team, btn, k){
+  if (!playing || team.locked) return;
+  const ok = k === 0;
+  team.locked = true;
+  [...$("zone"+team.side).querySelectorAll(".opt")].forEach(b => { b.disabled = true; if (b.dataset.k==="0") b.classList.add("right"); });
+  if (!ok) btn.classList.add("wrong");
+  check(team, ok, ok ? 550 : 1400);
+}
+
+function check(team, ok, delay=0){
+  const panel = $("panel"+team.side);
+  panel.classList.remove("flash-ok","flash-bad"); void panel.offsetWidth;
+  if (ok){
+    panel.classList.add("flash-ok"); sOk();
+    team.correct++; $("score"+team.side).textContent = num(team.correct, team.lang);
+    pull(team.side);
+    if (!playing) return;
+    team.locked = true;
+    setTimeout(() => playing && nextQuestion(team), delay || 350);
+  } else {
+    panel.classList.add("flash-bad"); sBad();
+    if (team.q.type==="math"){ team.input=""; updateDisplay(team); team.locked=false; }
+    else setTimeout(() => playing && nextQuestion(team), delay);
+  }
+}
+
+/* ---- la cuerda ---- */
+const MAX_SHIFT = 110; // unidades SVG hasta la línea de victoria
+function drawRope(){
+  $("rope").style.transform = `translateX(${(pos/cfg.target)*MAX_SHIFT}px)`;
+  $("pullsA").textContent = num(Math.max(0,-pos), teams.A?.lang || cfg.lang);
+  $("pullsB").textContent = num(Math.max(0,pos), teams.B?.lang || cfg.lang);
+}
+function pull(side){
+  pos += side==="A" ? -1 : 1;
+  drawRope();
+  const scene = $("scene");
+  scene.classList.remove("pullA","pullB"); void scene.getBoundingClientRect();
+  scene.classList.add(side==="A" ? "pullA" : "pullB");
+  if (Math.abs(pos) >= cfg.target) finish(side);
+}
+
+function finish(side){
+  playing = false; clearInterval(tick); lastWinner = side;
+  const loser = $(side==="A" ? "teamBGroup" : "teamAGroup");
+  loser.querySelectorAll(".pose").forEach(g => {
+    g.setAttribute("transform", `rotate(${side==="A" ? -16 : 16} ${g.dataset.pivot})`);
+  });
+  sWin();
+  setTimeout(() => { fillWin(); $("winBox").hidden = false; $("againBtn").focus(); }, 900);
+}
+function fillWin(){
+  if (!lastWinner) return;
+  const L = cfg.lang;
+  const w = $("winTeam"); w.textContent = lastWinner==="A" ? cfg.nameA : cfg.nameB;
+  w.style.setProperty("--c", lastWinner==="A" ? "var(--teamA)" : "var(--teamB)");
+  $("wsNameA").textContent = cfg.nameA; $("wsNameB").textContent = cfg.nameB;
+  $("wsA").textContent = num(teams.A.correct, L); $("wsB").textContent = num(teams.B.correct, L);
+  $("winTime").textContent = UI[L].time + ": " + num($("timer").textContent, L);
+}
+
+function resetKids(){ document.querySelectorAll(".pose").forEach(g => g.removeAttribute("transform")); }
+
+function fmt(ms){ const s=Math.floor(ms/1000); return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0"); }
+
+function showNames(){
+  ["nameA","statNameA"].forEach(id => $(id).textContent = cfg.nameA);
+  ["nameB","statNameB"].forEach(id => $(id).textContent = cfg.nameB);
+  $("panelA").setAttribute("aria-label", cfg.nameA); $("panelB").setAttribute("aria-label", cfg.nameB);
+  const label = (el, name, left) => {
+    const arrow = document.createElement("span"); arrow.textContent = left ? "← " : " →"; arrow.setAttribute("aria-hidden","true");
+    const n = document.createElement("bdi"); n.textContent = name;
+    el.replaceChildren(...(left ? [arrow, n] : [n, arrow]));
+  };
+  label($("meterA"), cfg.nameA, true); label($("meterB"), cfg.nameB, false);
+}
+
+function start(){
+  cfg.nameA = $("inA").value.trim() || UI[cfg.lang].teamA;
+  cfg.nameB = $("inB").value.trim() || UI[cfg.lang].teamB;
+  showNames();
+  pos = 0; lastWinner = null; resetKids();
+  teams.A = makeTeam("A"); teams.B = makeTeam("B");
+  drawRope(); renderTeamLangs();
+  $("scoreA").textContent = num(0, teams.A.lang); $("scoreB").textContent = num(0, teams.B.lang);
+  $("needText").textContent = num(UI[cfg.lang].need(cfg.target), cfg.lang);
+  $("setup").hidden = true; $("winBox").hidden = true;
+  playing = true; t0 = Date.now(); clearInterval(tick);
+  $("timer").textContent = num("00:00", cfg.lang);
+  tick = setInterval(() => $("timer").textContent = num(fmt(Date.now()-t0), cfg.lang), 250);
+  nextQuestion(teams.A); nextQuestion(teams.B);
+}
+
+/* ================= Idiomas ================= */
+function langButtons(container, current, onPick, short){
+  container.innerHTML = "";
+  Object.keys(LANGS).forEach(l => {
+    const b = document.createElement("button"); b.type = "button";
+    b.textContent = short ? SHORT[l] : LANGS[l];
+    b.lang = l; b.title = LANGS[l];
+    b.setAttribute("aria-pressed", String(l === current));
+    b.addEventListener("click", () => onPick(l));
+    container.append(b);
+  });
+}
+
+// Idioma general: interfaz y, a la vez, ambos equipos
+function setLang(l){
+  cfg.lang = l; store.set("tdc-lang", l);
+  const t = UI[l];
+  document.documentElement.lang = l;
+  document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
+  document.title = t.title;
+  document.querySelectorAll("[data-i18n]").forEach(el => { const v = t[el.dataset.i18n]; if (typeof v === "string") el.textContent = num(v, l); });
+  document.querySelectorAll("[data-num]").forEach(el => el.textContent = num(el.dataset.num, l));
+  $("soundBtn").textContent = soundOn ? t.soundOn : t.soundOff;
+  $("langTop").setAttribute("aria-label", t.language);
+  $("inA").setAttribute("aria-label", t.nameLeft); $("inB").setAttribute("aria-label", t.nameRight);
+  // Nombres por defecto: se traducen solo si nadie los ha cambiado
+  if (DEFAULT_NAMES.includes($("inA").value.trim())) $("inA").value = t.teamA;
+  if (DEFAULT_NAMES.includes($("inB").value.trim())) $("inB").value = t.teamB;
+  if (DEFAULT_NAMES.includes(cfg.nameA)) cfg.nameA = t.teamA;
+  if (DEFAULT_NAMES.includes(cfg.nameB)) cfg.nameB = t.teamB;
+  showNames();
+  $("needText").textContent = num(t.need(cfg.target), l);
+  $("timer").textContent = num(playing ? fmt(Date.now()-t0) : $("timer").textContent.replace(/[٠-٩]/g, d => AR_DIGITS.indexOf(d)), l);
+  langButtons($("langSeg"), l, setLang, false);
+  langButtons($("langTop"), l, setLang, true);
+  ["A","B"].forEach(s => { if (teams[s]) { teams[s].lang = l; render(teams[s]); $("score"+s).textContent = num(teams[s].correct, l); } });
+  renderTeamLangs(); drawRope(); fillWin();
+}
+
+// Idioma propio de cada equipo
+function renderTeamLangs(){
+  ["A","B"].forEach(s => {
+    const team = teams[s]; if (!team) return;
+    const box = $("lang"+s);
+    box.setAttribute("aria-label", UI[team.lang].teamLang);
+    langButtons(box, team.lang, l => {
+      team.lang = l; render(team); renderTeamLangs(); drawRope();
+      $("score"+s).textContent = num(team.correct, l);
+    }, true);
+  });
+}
+
+/* ---- controles de configuración ---- */
+function segment(id, key, cast){
+  const seg = $(id);
+  seg.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    seg.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x===b)));
+    cfg[key] = cast(b.dataset.v);
+    if (key === "target") $("needText").textContent = num(UI[cfg.lang].need(cfg.target), cfg.lang);
+  });
+}
+segment("modeSeg","mode",String);
+segment("levelSeg","level",Number);
+segment("targetSeg","target",Number);
+
+$("startBtn").addEventListener("click", start);
+$("againBtn").addEventListener("click", start);
+$("setupBtn2").addEventListener("click", () => { $("winBox").hidden = true; $("setup").hidden = false; });
+$("menuBtn").addEventListener("click", () => { playing=false; clearInterval(tick); $("winBox").hidden = true; $("setup").hidden = false; });
+$("soundBtn").addEventListener("click", e => {
+  soundOn = !soundOn; e.currentTarget.textContent = soundOn ? UI[cfg.lang].soundOn : UI[cfg.lang].soundOff;
+  e.currentTarget.setAttribute("aria-pressed", String(soundOn));
+});
+
+/* Estado de muestra detrás de la pantalla de inicio, para que el tablero se vea completo */
+teams.A = makeTeam("A"); teams.B = makeTeam("B");
+teams.A.q = quizQuestion(teams.A);
+teams.B.q = mathQuestion();
+pos = -2;
+setLang(cfg.lang);
+})();
+</script>
