@@ -1,0 +1,647 @@
+<title>Tira de la Cuerda Islámica</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Nunito:wght@500;700;800;900&family=Amiri:wght@700&display=swap">
+<style>
+/* Layout: una sola pantalla de pizarra digital — panel equipo A | arena con la cuerda | panel equipo B.
+   Estética comprometida de noche de Ramadán (un solo tema oscuro, a propósito). */
+:root{
+  color-scheme: dark;
+  --night:#0d2230;      /* cielo nocturno */
+  --night-2:#143243;    /* paneles */
+  --night-3:#1c4458;    /* teclas */
+  --sand:#f4e7c9;       /* texto */
+  --sand-dim:#b9ad93;
+  --gold:#e9b949;       /* faroles, acentos */
+  --teamA:#2fa36b;      /* Media Luna — esmeralda */
+  --teamA-deep:#1d6e48;
+  --teamB:#5a74e0;      /* Estrella — lapislázuli */
+  --teamB-deep:#3549a3;
+  --ok:#3ccf7f;
+  --bad:#e5604f;
+  --font-display:"Reem Kufi","Trebuchet MS",system-ui,sans-serif;
+  --font-body:"Nunito","Segoe UI",system-ui,sans-serif;
+  --font-ar:"Amiri","Times New Roman",serif;
+}
+html,body{height:100%}
+body{
+  background:var(--night);
+  color:var(--sand);
+  font-family:var(--font-body);
+  font-size:16px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:10px;
+  box-sizing:border-box;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23f4e7c9' stroke-opacity='.05' stroke-width='1.2'%3E%3Cpath d='M40 10 L48 32 L70 40 L48 48 L40 70 L32 48 L10 40 L32 32Z'/%3E%3Crect x='25' y='25' width='30' height='30' transform='rotate(45 40 40)'/%3E%3Crect x='25' y='25' width='30' height='30'/%3E%3C/g%3E%3C/svg%3E");
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+.app{height:100%;display:flex;flex-direction:column;gap:10px;max-width:1500px;margin:0 auto}
+
+/* ---------- cabecera ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:baseline;gap:12px;min-width:0}
+.brand h1{font-family:var(--font-display);font-weight:700;font-size:clamp(1.25rem,2.4vw,2rem);margin:0;letter-spacing:.02em;text-wrap:balance}
+.brand .ar{font-family:var(--font-ar);color:var(--gold);font-size:clamp(1.1rem,2vw,1.6rem)}
+.top-actions{display:flex;gap:8px}
+.ghost{background:transparent;border:1.5px solid color-mix(in srgb,var(--sand) 30%,transparent);border-radius:999px;padding:6px 14px;font-weight:700;font-size:.9rem}
+.ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ---------- tablero ---------- */
+.board{flex:1;min-height:0;display:grid;grid-template-columns:minmax(230px,1fr) minmax(0,1.7fr) minmax(230px,1fr);gap:12px}
+.panel{background:var(--night-2);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0;border-top:6px solid var(--c);position:relative;overflow:hidden}
+.panel.a{--c:var(--teamA);--cd:var(--teamA-deep)}
+.panel.b{--c:var(--teamB);--cd:var(--teamB-deep)}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.team-name{font-family:var(--font-display);font-weight:700;font-size:1.15rem;background:var(--c);color:#fff;padding:4px 14px;border-radius:999px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.score{font-family:var(--font-display);font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums;min-width:2ch;text-align:right}
+.story{font-size:.95rem;color:var(--sand-dim);line-height:1.35;min-height:2.7em;margin:0}
+.question{font-weight:900;font-size:clamp(1.05rem,1.6vw,1.35rem);line-height:1.25;margin:0;text-wrap:balance;min-height:3.75em;display:flex;align-items:center}
+.question.math{font-family:var(--font-display);font-size:clamp(2rem,3.6vw,3rem);min-height:auto;justify-content:center;letter-spacing:.04em}
+
+.options{display:grid;gap:8px}
+.opt{background:var(--night-3);border:2px solid transparent;border-radius:12px;padding:12px 12px;text-align:left;font-weight:800;font-size:clamp(.95rem,1.3vw,1.1rem);line-height:1.2;transition:transform .08s,background .15s}
+.opt:hover{border-color:var(--c)}
+.opt:active{transform:scale(.97)}
+.opt.right{background:var(--ok);color:#06281a}
+.opt.wrong{background:var(--bad);color:#fff}
+.opt:disabled{cursor:default}
+
+.display{background:var(--night);border-radius:12px;height:58px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:2rem;font-variant-numeric:tabular-nums;border:2px solid color-mix(in srgb,var(--c) 50%,transparent)}
+.display.empty{color:var(--sand-dim)}
+.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.key{background:var(--night-3);border:none;border-radius:12px;padding:0;height:clamp(44px,6.2vh,62px);font-family:var(--font-display);font-size:1.5rem;font-weight:700}
+.key:active{transform:scale(.95)}
+.key.del{background:var(--bad);color:#fff}
+.key.go{background:var(--c);color:#fff}
+
+.panel.flash-ok{animation:okflash .45s}
+.panel.flash-bad{animation:shake .4s}
+@keyframes okflash{0%{box-shadow:inset 0 0 0 0 var(--ok)}40%{box-shadow:inset 0 0 0 5px var(--ok)}100%{box-shadow:inset 0 0 0 0 var(--ok)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+
+/* ---------- arena ---------- */
+.arena{background:var(--night-2);border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.stats{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;font-variant-numeric:tabular-nums}
+.stat{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sand-dim);font-weight:800}
+.stat b{display:block;font-family:var(--font-display);font-size:1.4rem;color:var(--sand);letter-spacing:0}
+.stat.right{text-align:right}
+.timer{font-family:var(--font-display);font-size:1.3rem;background:var(--night);padding:4px 14px;border-radius:999px;color:var(--gold)}
+.scene{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
+.scene svg{width:100%;height:100%;max-height:100%;display:block}
+.meter{display:flex;justify-content:space-between;font-size:.85rem;color:var(--sand-dim);font-weight:700}
+
+#rope{transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
+.kid{transform-box:fill-box}
+.pullA .kidA,.pullB .kidB{animation:tug .4s}
+@keyframes tug{0%,100%{translate:0 0}45%{translate:var(--tx) 0}}
+.kidA{--tx:-7px}.kidB{--tx:7px}
+.fallen{transition:transform .8s ease-in;transform-origin:center bottom}
+.lantern{animation:sway 4s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 0}
+.lantern:nth-of-type(2n){animation-duration:5s}
+@keyframes sway{0%,100%{rotate:-4deg}50%{rotate:4deg}}
+
+/* ---------- capas (configuración / victoria) ---------- */
+.overlay{position:fixed;inset:0;background:color-mix(in srgb,var(--night) 82%,transparent);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px max(16px,env(safe-area-inset-right,0px)) 20px max(16px,env(safe-area-inset-left,0px));z-index:20;overflow:auto}
+.card{background:var(--night-2);border-radius:22px;padding:26px;max-width:620px;width:100%;display:flex;flex-direction:column;gap:18px;border:1px solid color-mix(in srgb,var(--gold) 35%,transparent);margin:auto}
+.card h2{font-family:var(--font-display);margin:0;font-size:clamp(1.6rem,3vw,2.2rem);text-wrap:balance}
+.card .ar{font-family:var(--font-ar);color:var(--gold);font-size:1.5rem;margin:0}
+.card p{margin:0;line-height:1.5;color:var(--sand-dim)}
+.field{display:flex;flex-direction:column;gap:8px}
+.field > span{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--sand-dim)}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{background:var(--night-3);border:2px solid transparent;border-radius:12px;padding:9px 14px;font-weight:800;text-align:left}
+.seg button small{display:block;font-weight:600;color:var(--sand-dim);font-size:.78rem}
+.seg button[aria-pressed="true"]{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 16%,var(--night-3))}
+.names{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.names input{width:100%;background:var(--night);border:2px solid var(--c);border-radius:12px;padding:10px 12px;color:var(--sand);font:inherit;font-weight:800}
+.names .a{--c:var(--teamA)}.names .b{--c:var(--teamB)}
+.start{background:var(--gold);color:#2b1d00;border:none;border-radius:14px;padding:14px;font-family:var(--font-display);font-size:1.35rem;font-weight:700}
+.start:hover{filter:brightness(1.08)}
+.win-team{font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);margin:0;color:var(--c)}
+.win-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.win-stats div{background:var(--night);border-radius:12px;padding:10px 14px;font-weight:800}
+.win-stats b{font-family:var(--font-display);font-size:1.5rem;display:block}
+
+/* ---------- pantallas estrechas ---------- */
+@media (max-width:900px){
+  .board{grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr}
+  .arena{grid-column:1 / -1;order:-1}
+  .scene{min-height:180px}
+  html,body{height:auto}
+  .app{height:auto}
+}
+@media (max-width:520px){
+  .panel{padding:10px;gap:8px}
+  .team-name{font-size:.95rem;padding:3px 10px}
+  .question{font-size:1rem;min-height:5em}
+  .question.math{font-size:1.7rem}
+  .opt{padding:10px 8px;font-size:.9rem}
+  .key{height:44px;font-size:1.2rem}
+  .keypad{gap:6px}
+  .display{height:46px;font-size:1.5rem}
+  .names{grid-template-columns:1fr}
+  .card{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <h1>Tira de la Cuerda</h1>
+      <span class="ar" lang="ar">بِسْمِ ٱللَّٰهِ</span>
+    </div>
+    <div class="top-actions">
+      <button class="ghost" id="soundBtn" type="button" aria-pressed="true">Sonido: sí</button>
+      <button class="ghost" id="menuBtn" type="button">Nueva partida</button>
+    </div>
+  </header>
+
+  <main class="board" id="board">
+    <!-- Equipo A -->
+    <section class="panel a" id="panelA" aria-label="Equipo A">
+      <div class="panel-head"><span class="team-name" id="nameA">Media Luna</span><span class="score" id="scoreA">0</span></div>
+      <div class="qzone" id="zoneA"></div>
+    </section>
+
+    <!-- Arena -->
+    <section class="arena" aria-label="Cuerda">
+      <div class="stats">
+        <div class="stat"><span id="statNameA">Media Luna</span><b id="pullsA">0</b></div>
+        <div class="timer" id="timer">00:00</div>
+        <div class="stat right"><span id="statNameB">Estrella</span><b id="pullsB">0</b></div>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 600 330" role="img" aria-label="Dos equipos tirando de una cuerda frente a una mezquita de noche" id="scene">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#0a1b27"/><stop offset="1" stop-color="#1d4a5e"/>
+            </linearGradient>
+            <radialGradient id="glow"><stop offset="0" stop-color="#ffd772" stop-opacity=".55"/><stop offset="1" stop-color="#ffd772" stop-opacity="0"/></radialGradient>
+            <pattern id="tiles" width="24" height="24" patternUnits="userSpaceOnUse">
+              <rect width="24" height="24" fill="#c99a5a"/>
+              <path d="M12 2 L22 12 L12 22 L2 12Z" fill="#b5844a"/>
+              <circle cx="12" cy="12" r="3" fill="#2a7a6a"/>
+            </pattern>
+            <!-- niño con kufi -->
+            <g id="boy">
+              <path d="M-4,-40 L-14,0 M4,-40 L12,0" stroke="#3a2c22" stroke-width="5" stroke-linecap="round" fill="none"/>
+              <path d="M-11,-80 Q0,-84 11,-80 L17,-30 Q0,-26 -17,-30Z" fill="#fbf6ea"/>
+              <path d="M-17,-30 Q0,-26 17,-30 L18,-27 Q0,-23 -18,-27Z" fill="var(--team)"/>
+              <path d="M2,-74 L22,-58" stroke="#fbf6ea" stroke-width="7" stroke-linecap="round"/>
+              <circle cx="22" cy="-58" r="4" fill="#c58c5c"/>
+              <circle cx="0" cy="-92" r="11" fill="#c58c5c"/>
+              <path d="M-11,-94 Q0,-108 11,-94Z" fill="var(--team)"/>
+              <circle cx="5" cy="-92" r="1.5" fill="#2a1a10"/>
+            </g>
+            <!-- niña con hiyab -->
+            <g id="girl">
+              <path d="M-4,-40 L-14,0 M4,-40 L12,0" stroke="#3a2c22" stroke-width="5" stroke-linecap="round" fill="none"/>
+              <path d="M-11,-80 Q0,-84 11,-80 L19,-24 Q0,-20 -19,-24Z" fill="var(--team)"/>
+              <path d="M2,-74 L22,-58" stroke="var(--team)" stroke-width="7" stroke-linecap="round"/>
+              <circle cx="22" cy="-58" r="4" fill="#e0aa7e"/>
+              <path d="M-13,-90 Q-14,-108 0,-108 Q14,-108 13,-90 Q14,-76 0,-74 Q-14,-76 -13,-90Z" fill="#fbf6ea"/>
+              <circle cx="1" cy="-91" r="8" fill="#e0aa7e"/>
+              <circle cx="5" cy="-92" r="1.5" fill="#2a1a10"/>
+            </g>
+          </defs>
+
+          <rect width="600" height="330" fill="url(#sky)"/>
+          <!-- estrellas -->
+          <g fill="#f4e7c9">
+            <circle cx="40" cy="30" r="1.4"/><circle cx="120" cy="60" r="1"/><circle cx="210" cy="22" r="1.6"/>
+            <circle cx="380" cy="40" r="1.2"/><circle cx="455" cy="18" r="1"/><circle cx="560" cy="70" r="1.5"/>
+            <circle cx="300" cy="80" r="1"/><circle cx="85" cy="110" r="1.1"/><circle cx="520" cy="120" r="1"/>
+          </g>
+          <!-- luna creciente -->
+          <circle cx="500" cy="62" r="26" fill="#f6e3a8"/>
+          <circle cx="512" cy="54" r="24" fill="#0f2331"/>
+          <!-- mezquita -->
+          <g fill="#0c1d29" opacity=".95">
+            <rect x="150" y="150" width="14" height="110"/><path d="M147 150 L157 122 L167 150Z"/><circle cx="157" cy="118" r="3" fill="#e9b949"/>
+            <rect x="436" y="150" width="14" height="110"/><path d="M433 150 L443 122 L453 150Z"/><circle cx="443" cy="118" r="3" fill="#e9b949"/>
+            <rect x="200" y="190" width="200" height="70"/>
+            <path d="M235 190 Q235 120 300 112 Q365 120 365 190Z"/>
+            <rect x="298" y="96" width="4" height="18"/>
+            <path d="M300 84 a8 8 0 1 0 6 13 a6.5 6.5 0 1 1 -6 -13Z" fill="#e9b949"/>
+            <path d="M205 190 Q205 165 225 160 Q245 165 245 190Z"/>
+            <path d="M355 190 Q355 165 375 160 Q395 165 395 190Z"/>
+          </g>
+          <g fill="#e9b949" opacity=".55">
+            <path d="M285 260 L285 222 Q300 204 315 222 L315 260Z"/>
+            <path d="M222 235 L222 215 Q232 205 242 215 L242 235Z"/><path d="M358 235 L358 215 Q368 205 378 215 L378 235Z"/>
+          </g>
+          <!-- faroles -->
+          <g>
+            <g class="lantern" transform="translate(60 0)"><line x1="0" y1="0" x2="0" y2="40" stroke="#e9b949"/><circle cx="0" cy="56" r="20" fill="url(#glow)"/><path d="M-7 42 L7 42 L10 56 L5 68 L-5 68 L-10 56Z" fill="#e9b949"/><path d="M-4 47 L4 47 L6 56 L3 64 L-3 64 L-6 56Z" fill="#fff3c4"/></g>
+            <g class="lantern" transform="translate(245 0)"><line x1="0" y1="0" x2="0" y2="22" stroke="#e9b949"/><circle cx="0" cy="38" r="18" fill="url(#glow)"/><path d="M-6 24 L6 24 L9 37 L4 48 L-4 48 L-9 37Z" fill="#e9b949"/><path d="M-3 28 L3 28 L5 37 L2 44 L-2 44 L-5 37Z" fill="#fff3c4"/></g>
+            <g class="lantern" transform="translate(395 0)"><line x1="0" y1="0" x2="0" y2="30" stroke="#e9b949"/><circle cx="0" cy="46" r="18" fill="url(#glow)"/><path d="M-6 32 L6 32 L9 45 L4 56 L-4 56 L-9 45Z" fill="#e9b949"/><path d="M-3 36 L3 36 L5 45 L2 52 L-2 52 L-5 45Z" fill="#fff3c4"/></g>
+          </g>
+          <!-- suelo -->
+          <rect x="0" y="292" width="600" height="38" fill="url(#tiles)"/>
+          <rect x="0" y="288" width="600" height="5" fill="#8a5e2e"/>
+          <!-- líneas de victoria y centro -->
+          <line x1="300" y1="140" x2="300" y2="292" stroke="#f4e7c9" stroke-width="2" stroke-dasharray="6 6" opacity=".7"/>
+          <line id="winLineA" x1="190" y1="268" x2="190" y2="292" stroke="var(--teamA)" stroke-width="4"/>
+          <line id="winLineB" x1="410" y1="268" x2="410" y2="292" stroke="var(--teamB)" stroke-width="4"/>
+
+          <!-- cuerda + equipos (se mueve en conjunto) -->
+          <g id="rope">
+            <path d="M40 234 Q300 240 560 234" stroke="#c9a06a" stroke-width="5" fill="none"/>
+            <path d="M40 234 Q300 240 560 234" stroke="#8a6438" stroke-width="5" fill="none" stroke-dasharray="3 7"/>
+            <!-- pañuelo central -->
+            <path d="M296 236 L304 236 L308 266 L300 260 L292 266Z" fill="#e9b949"/>
+            <g id="teamAGroup" style="--team:var(--teamA)">
+              <g class="kid kidA"><g transform="translate(110 292) skewX(13)"><use href="#girl"/></g></g>
+              <g class="kid kidA"><g transform="translate(170 292) skewX(13)"><use href="#boy"/></g></g>
+            </g>
+            <g id="teamBGroup" style="--team:var(--teamB)">
+              <g class="kid kidB"><g transform="translate(430 292) scale(-1 1) skewX(13)"><use href="#boy"/></g></g>
+              <g class="kid kidB"><g transform="translate(490 292) scale(-1 1) skewX(13)"><use href="#girl"/></g></g>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="meter"><span>← Media Luna</span><span id="needText">Gana quien lleve el pañuelo a su línea</span><span>Estrella →</span></div>
+    </section>
+
+    <!-- Equipo B -->
+    <section class="panel b" id="panelB" aria-label="Equipo B">
+      <div class="panel-head"><span class="team-name" id="nameB">Estrella</span><span class="score" id="scoreB">0</span></div>
+      <div class="qzone" id="zoneB"></div>
+    </section>
+  </main>
+</div>
+
+<!-- Configuración -->
+<div class="overlay" id="setup">
+  <div class="card" role="dialog" aria-labelledby="setupTitle">
+    <p class="ar" lang="ar">ٱلسَّلَامُ عَلَيْكُمْ</p>
+    <h2 id="setupTitle">Tira de la Cuerda</h2>
+    <p>Dos equipos, una pantalla. Cada respuesta correcta tira de la cuerda hacia tu lado. Gana el equipo que lleve el pañuelo dorado hasta su línea.</p>
+
+    <div class="field"><span>Modo de juego</span>
+      <div class="seg" id="modeSeg">
+        <button type="button" data-v="quiz" aria-pressed="true">Preguntas islámicas<small>Pilares, profetas, Corán</small></button>
+        <button type="button" data-v="math" aria-pressed="false">Sumas con dátiles<small>Teclado numérico</small></button>
+        <button type="button" data-v="mix" aria-pressed="false">Mixto<small>Un poco de todo</small></button>
+      </div>
+    </div>
+
+    <div class="field"><span>Nivel de las cuentas</span>
+      <div class="seg" id="levelSeg">
+        <button type="button" data-v="1" aria-pressed="true">Fácil<small>Sumas hasta 10</small></button>
+        <button type="button" data-v="2" aria-pressed="false">Medio<small>Sumas hasta 20</small></button>
+        <button type="button" data-v="3" aria-pressed="false">Difícil<small>Sumas y restas hasta 50</small></button>
+      </div>
+    </div>
+
+    <div class="field"><span>Tirones para ganar</span>
+      <div class="seg" id="targetSeg">
+        <button type="button" data-v="5" aria-pressed="false">5</button>
+        <button type="button" data-v="7" aria-pressed="true">7</button>
+        <button type="button" data-v="10" aria-pressed="false">10</button>
+      </div>
+    </div>
+
+    <div class="field"><span>Nombres de los equipos</span>
+      <div class="names">
+        <label class="a"><input id="inA" maxlength="16" value="Media Luna" aria-label="Nombre del equipo izquierdo"></label>
+        <label class="b"><input id="inB" maxlength="16" value="Estrella" aria-label="Nombre del equipo derecho"></label>
+      </div>
+    </div>
+
+    <button class="start" id="startBtn" type="button">Bismillah, ¡a jugar!</button>
+  </div>
+</div>
+
+<!-- Victoria -->
+<div class="overlay" id="winBox" hidden>
+  <div class="card" role="dialog" aria-labelledby="winTeam">
+    <p class="ar" lang="ar">مَا شَاءَ ٱللَّٰهُ</p>
+    <p>¡MashaAllah! La victoria es para</p>
+    <h3 class="win-team" id="winTeam">Media Luna</h3>
+    <div class="win-stats">
+      <div><span id="wsNameA">Media Luna</span><b id="wsA">0</b>respuestas correctas</div>
+      <div><span id="wsNameB">Estrella</span><b id="wsB">0</b>respuestas correctas</div>
+    </div>
+    <p id="winTime">Tiempo: 00:00</p>
+    <div class="seg">
+      <button class="start" id="againBtn" type="button" style="flex:1">Revancha</button>
+      <button class="ghost" id="setupBtn2" type="button">Cambiar ajustes</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+/* ================= Banco de preguntas =================
+   [pregunta, respuesta correcta, distractor, distractor, distractor] */
+const QUIZ = [
+  ["¿Cuántos pilares tiene el Islam?","5","3","6","7"],
+  ["¿Cuántas oraciones obligatorias hay cada día?","5","3","4","7"],
+  ["¿Cuál es el primer pilar del Islam?","La Shahada","El Zakat","El Hayy","El ayuno"],
+  ["¿En qué mes ayunan los musulmanes?","Ramadán","Muharram","Shawwal","Rayab"],
+  ["¿Qué libro fue revelado al Profeta Muhammad ﷺ?","El Corán","La Torá","El Zabur","El Inyil"],
+  ["¿Cuántas suras tiene el Corán?","114","99","120","30"],
+  ["¿Cuál es la primera sura del Corán?","Al-Fátiha","Al-Baqara","An-Nas","Al-Ijlás"],
+  ["¿Cuál es la última sura del Corán?","An-Nas","Al-Falaq","Al-Fátiha","Al-Kawzar"],
+  ["¿Cuál es la sura más larga del Corán?","Al-Baqara","Al-Imrán","Yasín","Al-Mulk"],
+  ["¿Cuál es la sura más corta del Corán?","Al-Kawzar","Yasín","Al-Kahf","Maryam"],
+  ["¿En qué ciudad nació el Profeta Muhammad ﷺ?","La Meca","Medina","Jerusalén","Damasco"],
+  ["¿A qué ciudad emigró el Profeta ﷺ en la Hégira?","Medina","Taif","Jerusalén","El Cairo"],
+  ["¿Qué ángel trajo la revelación al Profeta ﷺ?","Yibril","Mikail","Israfil","Malik"],
+  ["¿Dónde recibió el Profeta ﷺ la primera revelación?","La cueva de Hira","La cueva de Zaur","El monte Uhud","El monte Arafat"],
+  ["¿Cuál fue la primera palabra revelada del Corán?","¡Iqra! (¡Lee!)","¡Bismillah!","¡Salam!","¡Allahu Akbar!"],
+  ["¿Hacia dónde rezan los musulmanes?","Hacia la Kaaba","Hacia el sol","Hacia el norte","Hacia el mar"],
+  ["¿Cómo se llama la oración del amanecer?","Fayr","Duhr","Asr","Isha"],
+  ["¿Cómo se llama la oración de la puesta del sol?","Magrib","Fayr","Duhr","Isha"],
+  ["¿Cuántas rakat tiene la oración del Fayr?","2","3","4","1"],
+  ["¿Cuántas rakat tiene la oración del Magrib?","3","2","4","5"],
+  ["¿Cuántas rakat tiene la oración del Duhr?","4","2","3","5"],
+  ["¿Qué día se reza la oración del Yumu'a?","Viernes","Lunes","Sábado","Domingo"],
+  ["¿Qué fiesta se celebra al terminar Ramadán?","Eid al-Fitr","Eid al-Adha","Ashura","Año Nuevo islámico"],
+  ["¿Qué fiesta se celebra durante el Hayy, con el sacrificio?","Eid al-Adha","Eid al-Fitr","Ashura","Laylat al-Qadr"],
+  ["¿Cómo se llama la peregrinación a La Meca?","Hayy","Zakat","Sawm","Salat"],
+  ["¿Cómo se llama la caridad obligatoria?","Zakat","Hayy","Wudu","Adhán"],
+  ["¿Qué significa «Sawm»?","El ayuno","La oración","La caridad","La peregrinación"],
+  ["¿Cómo se llama la ablución antes de rezar?","Wudu","Adhán","Dua","Suyud"],
+  ["¿Cómo se llama la llamada a la oración?","Adhán","Wudu","Tasbih","Dua"],
+  ["¿Quién hace la llamada a la oración desde la mezquita?","El muecín","El califa","El mercader","El sultán"],
+  ["¿Qué compañero fue el primer muecín del Islam?","Bilal","Abu Bakr","Umar","Jalid"],
+  ["¿Qué profeta construyó el arca?","Nuh","Musa","Isa","Yusuf"],
+  ["¿Qué profeta fue tragado por una ballena?","Yunus","Ibrahim","Nuh","Dawud"],
+  ["¿Qué profeta construyó la Kaaba junto a su hijo Ismail?","Ibrahim","Musa","Nuh","Adam"],
+  ["¿Quién es la madre del profeta Isa?","Maryam","Asiya","Hawa","Jadiya"],
+  ["¿Qué profeta se enfrentó al Faraón?","Musa","Yunus","Salih","Lut"],
+  ["¿Qué profeta entendía el habla de las hormigas y los pájaros?","Sulayman","Yusuf","Hud","Yahya"],
+  ["¿Qué profeta fue arrojado a un pozo por sus hermanos?","Yusuf","Ismail","Ayyub","Harun"],
+  ["¿Quién era el padre del profeta Yusuf?","Yaqub","Ishaq","Ibrahim","Zakariya"],
+  ["¿Qué profeta es famoso por su paciencia en la enfermedad?","Ayyub","Sulayman","Dawud","Idris"],
+  ["¿Quién fue el primer ser humano y el primer profeta?","Adam","Nuh","Idris","Ibrahim"],
+  ["¿Quién es el último profeta?","Muhammad ﷺ","Isa","Musa","Ibrahim"],
+  ["¿Qué profeta recibió el Zabur (los Salmos)?","Dawud","Musa","Isa","Ibrahim"],
+  ["¿A qué profeta se le reveló la Torá?","Musa","Dawud","Nuh","Yahya"],
+  ["¿Quién fue el primer califa?","Abu Bakr","Umar","Uzman","Ali"],
+  ["¿Quién fue la primera esposa del Profeta ﷺ?","Jadiya","Aisha","Hafsa","Zaynab"],
+  ["¿Cómo se llama el pozo de agua bendita de La Meca?","Zamzam","Badr","Uhud","Hira"],
+  ["¿Qué decimos antes de comer?","Bismillah","Alhamdulillah","Inshallah","Allahu Akbar"],
+  ["¿Qué decimos después de estornudar?","Alhamdulillah","Bismillah","Inshallah","Mashallah"],
+  ["¿Cómo respondemos a «As-salamu alaykum»?","Wa alaykum as-salam","Bismillah","Inshallah","Alhamdulillah"],
+  ["¿Qué significa «Inshallah»?","Si Dios quiere","Gracias a Dios","Dios es el más grande","En el nombre de Dios"],
+  ["¿Qué significa «Alhamdulillah»?","Alabado sea Dios","Si Dios quiere","Dios es el más grande","En el nombre de Dios"],
+  ["¿Qué significa «Allahu Akbar»?","Dios es el más grande","Gracias a Dios","Si Dios quiere","Glorificado sea Dios"],
+  ["¿Cómo se llama la noche en que comenzó a revelarse el Corán?","Laylat al-Qadr","La noche de Eid","La noche de Ashura","La noche de Arafat"],
+  ["¿En qué mes comenzó a revelarse el Corán?","Ramadán","Muharram","Rayab","Dhul-Hiyya"],
+  ["¿En qué ciudad está la mezquita Al-Aqsa?","Jerusalén","La Meca","Medina","Estambul"],
+  ["¿En qué ciudad está la Mezquita del Profeta ﷺ?","Medina","La Meca","Jerusalén","Bagdad"],
+  ["¿Cuántos meses tiene el calendario islámico?","12","10","13","11"],
+  ["¿Cuál es el primer mes del calendario islámico?","Muharram","Ramadán","Safar","Shawwal"],
+  ["¿Cuántas vueltas se dan alrededor de la Kaaba en el tawaf?","7","3","5","10"],
+  ["¿Cuántos nombres de Allah menciona el conocido hadiz?","99","100","33","50"],
+  ["«Di: Él es Allah, Uno.» ¿De qué sura es?","Al-Ijlás","Al-Falaq","Al-Fátiha","An-Nasr"],
+  ["¿En qué sura está Ayat al-Kursi?","Al-Baqara","Yasín","Al-Mulk","Al-Kahf"],
+  ["¿Qué sura lleva el nombre de la madre del profeta Isa?","Maryam","Hud","Ta-Ha","Luqman"],
+  ["¿Cuántas veces se dice «SubhanAllah» en el tasbih tras la oración?","33","10","99","7"],
+  ["¿Cómo se llama el viaje nocturno del Profeta ﷺ a Jerusalén?","Al-Isra","La Hégira","El Hayy","Badr"],
+  ["Según la Sunna, ¿con qué se rompe el ayuno?","Con dátiles","Con pan","Con queso","Con arroz"],
+  ["¿Cómo se llama la comida antes del amanecer en Ramadán?","Suhur","Iftar","Eid","Tarawih"],
+  ["¿Cómo se llama la comida al romper el ayuno?","Iftar","Suhur","Zakat","Yumu'a"],
+  ["¿Cuántos días dura el mes de Ramadán?","29 o 30","40","15","7"],
+  ["¿Cómo se llama la oración nocturna especial de Ramadán?","Tarawih","Fayr","Yanaza","Istisqa"],
+];
+
+const NAMES = ["Amina","Yusuf","Fátima","Omar","Aisha","Bilal","Maryam","Hamza","Zaynab","Ibrahim","Safiya","Ali"];
+const ITEMS = [
+  ["dátiles","dátil"],["faroles de Ramadán","farol de Ramadán"],["cuentas de tasbih","cuenta de tasbih"],
+  ["libros","libro"],["vasos de leche","vaso de leche"],["galletas de Eid","galleta de Eid"],["estrellas doradas","estrella dorada"]
+];
+
+/* ================= Utilidades ================= */
+const $ = id => document.getElementById(id);
+const rnd = (a,b) => a + Math.floor(Math.random()*(b-a+1));
+const pick = arr => arr[Math.floor(Math.random()*arr.length)];
+const shuffle = arr => { const a = arr.slice(); for (let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+
+/* ================= Sonido ================= */
+let soundOn = true, actx = null;
+function beep(freqs, dur=.12, type="triangle", gap=.09){
+  if (!soundOn) return;
+  try {
+    actx = actx || new (window.AudioContext||window.webkitAudioContext)();
+    freqs.forEach((f,i) => {
+      const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime + i*gap;
+      o.type = type; o.frequency.value = f;
+      g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.25,t+.02); g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+      o.connect(g).connect(actx.destination); o.start(t); o.stop(t+dur+.02);
+    });
+  } catch(e) {}
+}
+const sOk = () => beep([660,880]);
+const sBad = () => beep([220,165],.18,"sawtooth",.1);
+const sWin = () => beep([523,659,784,1046,784,1046],.22,"triangle",.14);
+
+/* ================= Estado ================= */
+const cfg = { mode:"quiz", level:1, target:7, nameA:"Media Luna", nameB:"Estrella" };
+let pos = 0, playing = false, t0 = 0, tick = null;
+const teams = { A: null, B: null };
+
+function makeTeam(side){
+  return { side, correct:0, deck:shuffle(QUIZ), di:0, q:null, input:"", locked:false };
+}
+
+/* ---- generación de preguntas ---- */
+function mathQuestion(){
+  let a,b,op="+";
+  if (cfg.level===1){ a=rnd(1,9); b=rnd(1,10-a); }
+  else if (cfg.level===2){ a=rnd(2,15); b=rnd(1,20-a); }
+  else { if (Math.random()<.5){ a=rnd(5,35); b=rnd(2,50-a);} else { op="−"; a=rnd(10,50); b=rnd(2,a-1);} }
+  const n = pick(NAMES), it = pick(ITEMS);
+  const plural = k => k===1 ? it[1] : it[0];
+  const story = op==="+"
+    ? `${n} tiene ${a} ${plural(a)} y recibe ${b} más. ¿Cuántos tiene ahora?`
+    : `${n} tenía ${a} ${plural(a)} y regala ${b}. ¿Cuántos le quedan?`;
+  return { type:"math", text:`${a} ${op} ${b} = ?`, story, answer: op==="+" ? a+b : a-b };
+}
+function quizQuestion(team){
+  if (team.di >= team.deck.length){ team.deck = shuffle(QUIZ); team.di = 0; }
+  const [q, ok, ...bad] = team.deck[team.di++];
+  return { type:"quiz", text:q, answer:ok, options:shuffle([ok,...bad]) };
+}
+function nextQuestion(team){
+  const useMath = cfg.mode==="math" || (cfg.mode==="mix" && Math.random()<.4);
+  team.q = useMath ? mathQuestion() : quizQuestion(team);
+  team.input = ""; team.locked = false;
+  render(team);
+}
+
+/* ---- pintado del panel de un equipo ---- */
+function render(team){
+  const zone = $("zone"+team.side), q = team.q;
+  zone.innerHTML = "";
+  zone.style.display = "flex"; zone.style.flexDirection = "column"; zone.style.gap = "12px";
+  if (q.type==="quiz"){
+    const h = document.createElement("p"); h.className="question"; h.textContent=q.text; zone.append(h);
+    const box = document.createElement("div"); box.className="options";
+    q.options.forEach(o => {
+      const b = document.createElement("button"); b.type="button"; b.className="opt"; b.textContent=o;
+      b.addEventListener("click", () => answerQuiz(team, b, o));
+      box.append(b);
+    });
+    zone.append(box);
+  } else {
+    const s = document.createElement("p"); s.className="story"; s.textContent=q.story; zone.append(s);
+    const h = document.createElement("p"); h.className="question math"; h.textContent=q.text; zone.append(h);
+    const d = document.createElement("div"); d.className="display empty"; d.id="disp"+team.side; d.textContent="0"; zone.append(d);
+    const pad = document.createElement("div"); pad.className="keypad";
+    ["1","2","3","4","5","6","7","8","9","del","0","go"].forEach(k => {
+      const b = document.createElement("button"); b.type="button"; b.className="key";
+      if (k==="del"){ b.classList.add("del"); b.textContent="✕"; b.setAttribute("aria-label","Borrar"); }
+      else if (k==="go"){ b.classList.add("go"); b.textContent="✓"; b.setAttribute("aria-label","Comprobar"); }
+      else b.textContent=k;
+      b.addEventListener("click", () => keyPress(team,k));
+      pad.append(b);
+    });
+    zone.append(pad);
+  }
+}
+
+function updateDisplay(team){
+  const d = $("disp"+team.side); if (!d) return;
+  d.textContent = team.input || "0";
+  d.classList.toggle("empty", !team.input);
+}
+
+function keyPress(team,k){
+  if (!playing || team.locked) return;
+  if (k==="del"){ team.input=""; }
+  else if (k==="go"){ if (team.input) check(team, Number(team.input)===team.q.answer); return; }
+  else if (team.input.length<3){ team.input = (team.input==="0" ? "" : team.input) + k; }
+  updateDisplay(team);
+}
+
+function answerQuiz(team, btn, choice){
+  if (!playing || team.locked) return;
+  const ok = choice===team.q.answer;
+  team.locked = true;
+  const btns = [...$("zone"+team.side).querySelectorAll(".opt")];
+  btns.forEach(b => { b.disabled = true; if (b.textContent===team.q.answer) b.classList.add("right"); });
+  if (!ok) btn.classList.add("wrong");
+  check(team, ok, ok ? 550 : 1400);
+}
+
+function check(team, ok, delay=0){
+  const panel = $("panel"+team.side);
+  panel.classList.remove("flash-ok","flash-bad"); void panel.offsetWidth;
+  if (ok){
+    panel.classList.add("flash-ok"); sOk();
+    team.correct++; $("score"+team.side).textContent = team.correct;
+    pull(team.side);
+    if (!playing) return;
+    team.locked = true;
+    setTimeout(() => playing && nextQuestion(team), delay || 350);
+  } else {
+    panel.classList.add("flash-bad"); sBad();
+    if (team.q.type==="math"){ team.input=""; updateDisplay(team); team.locked=false; }
+    else setTimeout(() => playing && nextQuestion(team), delay);
+  }
+}
+
+/* ---- la cuerda ---- */
+const MAX_SHIFT = 110; // unidades SVG hasta la línea de victoria
+function drawRope(){
+  $("rope").style.transform = `translateX(${(pos/cfg.target)*MAX_SHIFT}px)`;
+  $("pullsA").textContent = Math.max(0,-pos);
+  $("pullsB").textContent = Math.max(0,pos);
+}
+function pull(side){
+  pos += side==="A" ? -1 : 1;
+  drawRope();
+  const scene = $("scene");
+  scene.classList.remove("pullA","pullB"); void scene.getBoundingClientRect();
+  scene.classList.add(side==="A" ? "pullA" : "pullB");
+  if (Math.abs(pos) >= cfg.target) finish(side);
+}
+
+function finish(side){
+  playing = false; clearInterval(tick);
+  const loser = $(side==="A" ? "teamBGroup" : "teamAGroup");
+  loser.querySelectorAll(".kid > g").forEach(g => {
+    const t = g.getAttribute("transform");
+    g.dataset.orig = g.dataset.orig || t;
+    g.setAttribute("transform", t + (side==="A" ? " rotate(-70)" : " rotate(-70)"));
+  });
+  sWin();
+  setTimeout(() => {
+    const winner = side==="A" ? cfg.nameA : cfg.nameB;
+    const w = $("winTeam"); w.textContent = winner;
+    w.style.setProperty("--c", side==="A" ? "var(--teamA)" : "var(--teamB)");
+    $("wsNameA").textContent = cfg.nameA; $("wsNameB").textContent = cfg.nameB;
+    $("wsA").textContent = teams.A.correct; $("wsB").textContent = teams.B.correct;
+    $("winTime").textContent = "Tiempo: " + $("timer").textContent;
+    $("winBox").hidden = false;
+    $("againBtn").focus();
+  }, 900);
+}
+
+function resetKids(){
+  document.querySelectorAll(".kid > g").forEach(g => { if (g.dataset.orig) g.setAttribute("transform", g.dataset.orig); });
+}
+
+function fmt(ms){ const s=Math.floor(ms/1000); return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0"); }
+
+function start(){
+  cfg.nameA = $("inA").value.trim() || "Media Luna";
+  cfg.nameB = $("inB").value.trim() || "Estrella";
+  ["nameA","statNameA"].forEach(id => $(id).textContent = cfg.nameA);
+  ["nameB","statNameB"].forEach(id => $(id).textContent = cfg.nameB);
+  document.querySelector(".meter span:first-child").textContent = "← " + cfg.nameA;
+  document.querySelector(".meter span:last-child").textContent = cfg.nameB + " →";
+  $("needText").textContent = `${cfg.target} tirones para ganar`;
+  pos = 0; resetKids(); drawRope();
+  teams.A = makeTeam("A"); teams.B = makeTeam("B");
+  $("scoreA").textContent = "0"; $("scoreB").textContent = "0";
+  $("setup").hidden = true; $("winBox").hidden = true;
+  playing = true; t0 = Date.now(); clearInterval(tick);
+  $("timer").textContent = "00:00";
+  tick = setInterval(() => $("timer").textContent = fmt(Date.now()-t0), 250);
+  nextQuestion(teams.A); nextQuestion(teams.B);
+}
+
+/* ---- controles de configuración ---- */
+function segment(id, key, cast){
+  const seg = $(id);
+  seg.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    seg.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x===b)));
+    cfg[key] = cast(b.dataset.v);
+  });
+}
+segment("modeSeg","mode",String);
+segment("levelSeg","level",Number);
+segment("targetSeg","target",Number);
+
+$("startBtn").addEventListener("click", start);
+$("againBtn").addEventListener("click", start);
+$("setupBtn2").addEventListener("click", () => { $("winBox").hidden = true; $("setup").hidden = false; });
+$("menuBtn").addEventListener("click", () => { playing=false; clearInterval(tick); $("winBox").hidden = true; $("setup").hidden = false; });
+$("soundBtn").addEventListener("click", e => {
+  soundOn = !soundOn; e.currentTarget.textContent = "Sonido: " + (soundOn ? "sí" : "no");
+  e.currentTarget.setAttribute("aria-pressed", String(soundOn));
+});
+
+/* Estado de muestra detrás de la pantalla de inicio, para que el tablero se vea completo */
+teams.A = makeTeam("A"); teams.B = makeTeam("B");
+teams.A.q = quizQuestion(teams.A); render(teams.A);
+cfg.mode = "math"; teams.B.q = mathQuestion(); render(teams.B); cfg.mode = "quiz";
+pos = -2; drawRope();
+})();
+</script>
