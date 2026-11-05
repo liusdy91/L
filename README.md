@@ -1,4 +1,4 @@
-# Tira de la Cuerda Islámica
+# Islamic Tug of War (Tira de la Cuerda Islámica)
 
 Juego para pizarra digital (o tablet/PC) en el que dos equipos compiten en la misma pantalla.
 Cada respuesta correcta tira de la cuerda hacia su lado; gana quien lleve el pañuelo dorado hasta su línea.

@@ -1,4 +1,17 @@
-<title>Tira de la Cuerda Islámica</title>
+<title>Islamic Tug of War</title>
+<meta name="description" content="A two-team classroom game: every correct answer about Islam or every right sum pulls the rope to your side. In English, Spanish and Arabic.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Islamic Tug of War">
+<meta property="og:title" content="Islamic Tug of War">
+<meta property="og:description" content="A two-team classroom game: every correct answer about Islam or every right sum pulls the rope to your side. In English, Spanish and Arabic.">
+<meta property="og:url" content="https://liusdy91.github.io/L/">
+<meta property="og:image" content="https://liusdy91.github.io/L/assets/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Islamic Tug of War">
+<meta name="twitter:image" content="https://liusdy91.github.io/L/assets/preview.jpg">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -874,7 +887,7 @@ function setLang(l){
   const t = UI[l];
   document.documentElement.lang = l;
   document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
-  document.title = t.title;
+  document.title = "Islamic Tug of War"; // el nombre al compartir es siempre en inglés
   document.querySelectorAll("[data-i18n]").forEach(el => { const v = t[el.dataset.i18n]; if (typeof v === "string") el.textContent = num(v, l); });
   document.querySelectorAll("[data-num]").forEach(el => el.textContent = num(el.dataset.num, l));
   $("soundBtn").textContent = soundOn ? t.soundOn : t.soundOff;
