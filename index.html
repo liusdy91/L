@@ -83,6 +83,24 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .opt:active{transform:scale(.97)}
 .opt.right{background:var(--ok);color:#06281a}
 .opt.wrong{background:var(--bad);color:#fff}
+.options.grid2{grid-template-columns:1fr 1fr}
+.opt.ar-opt{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:64px}
+.opt .ar-word{font-family:"Cairo",var(--font-body);font-size:clamp(1.3rem,2vw,1.7rem);line-height:1.2}
+.opt .tr{font-size:.78rem;font-weight:700;color:var(--sand-dim)}
+.opt.right .tr,.opt.wrong .tr{color:inherit}
+.opt .pic{font-size:clamp(1.8rem,3vw,2.4rem);line-height:1}
+.ar-card{background:var(--night);border-radius:16px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:6px;border:2px dashed color-mix(in srgb,var(--gold) 45%,transparent)}
+.ar-card .big{font-family:"Amiri","Cairo",serif;font-size:clamp(2.6rem,5vw,3.6rem);line-height:1.25;color:var(--gold)}
+.ar-card .big.pic{font-family:var(--font-body)}
+.ar-card .tr{font-size:.85rem;color:var(--sand-dim);font-weight:700}
+.swatch{display:inline-block;width:1.1em;height:1.1em;border-radius:50%;border:3px solid var(--sand);vertical-align:middle}
+.listen{background:var(--night-3);border:none;border-radius:999px;padding:5px 14px;font-weight:800;font-size:.85rem}
+.listen:hover{background:var(--c)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{background:var(--night-3);border:2px solid transparent;border-radius:999px;padding:6px 12px;font-weight:800;font-size:.9rem}
+.chips button[aria-pressed="true"]{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 16%,var(--night-3))}
+.chips button.all{border-style:dashed;border-color:color-mix(in srgb,var(--sand) 30%,transparent)}
+.cat-tag{font-size:.75rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--c);margin:0}
 .opt:disabled{cursor:default}
 
 .display{background:var(--night);border-radius:12px;height:58px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:2rem;font-variant-numeric:tabular-nums;border:2px solid color-mix(in srgb,var(--c) 50%,transparent)}
@@ -320,11 +338,20 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
       <div class="seg" id="modeSeg">
         <button type="button" data-v="quiz" aria-pressed="true"><span data-i18n="modeQuiz"></span><small data-i18n="modeQuizSub"></small></button>
         <button type="button" data-v="math" aria-pressed="false"><span data-i18n="modeMath"></span><small data-i18n="modeMathSub"></small></button>
+        <button type="button" data-v="arabic" aria-pressed="false"><span data-i18n="modeArabic"></span><small data-i18n="modeArabicSub"></small></button>
         <button type="button" data-v="mix" aria-pressed="false"><span data-i18n="modeMix"></span><small data-i18n="modeMixSub"></small></button>
       </div>
     </div>
 
-    <div class="field"><span data-i18n="levelLabel">Nivel de las cuentas</span>
+    <div class="field" id="catField"><span data-i18n="catLabel">Temas de las preguntas</span>
+      <div class="chips" id="catChips"></div>
+    </div>
+
+    <div class="field" id="topicField" hidden><span data-i18n="topicLabel">Qué aprender de árabe</span>
+      <div class="chips" id="topicChips"></div>
+    </div>
+
+    <div class="field" id="levelField"><span data-i18n="levelLabel">Nivel de las cuentas</span>
       <div class="seg" id="levelSeg">
         <button type="button" data-v="1" aria-pressed="true"><span data-i18n="lvl1"></span><small data-i18n="lvl1Sub"></small></button>
         <button type="button" data-v="2" aria-pressed="false"><span data-i18n="lvl2"></span><small data-i18n="lvl2Sub"></small></button>
@@ -384,6 +411,10 @@ const UI = {
     modeQuiz:"Preguntas islámicas", modeQuizSub:"Pilares, profetas, Corán",
     modeMath:"Sumas con dátiles", modeMathSub:"Teclado numérico",
     modeMix:"Mixto", modeMixSub:"Un poco de todo",
+    modeArabic:"Aprende árabe", modeArabicSub:"Letras, números y palabras",
+    catLabel:"Temas de las preguntas", topicLabel:"Qué aprender de árabe", all:"Todos",
+    qLetter:"¿Cómo se llama esta letra?", qNumber:"¿Qué número es?", qPic:"¿Cómo se dice en árabe?", qWord:"¿Qué significa esta palabra?", qPhrase:"¿Qué significa?",
+    listen:"Escuchar", learnTag:"Aprende árabe",
     levelLabel:"Nivel de las cuentas", lvl1:"Fácil", lvl1Sub:"Sumas hasta 10", lvl2:"Medio", lvl2Sub:"Sumas hasta 20", lvl3:"Difícil", lvl3Sub:"Sumas y restas hasta 50",
     targetLabel:"Tirones para ganar", namesLabel:"Nombres de los equipos",
     teamLangHint:"Cada equipo puede cambiar su propio idioma durante la partida con los botones ES · EN · ع.",
@@ -403,6 +434,10 @@ const UI = {
     modeQuiz:"Islamic questions", modeQuizSub:"Pillars, prophets, Quran",
     modeMath:"Sums with dates", modeMathSub:"Number keypad",
     modeMix:"Mixed", modeMixSub:"A bit of everything",
+    modeArabic:"Learn Arabic", modeArabicSub:"Letters, numbers and words",
+    catLabel:"Question topics", topicLabel:"What to learn in Arabic", all:"All",
+    qLetter:"What is this letter called?", qNumber:"Which number is this?", qPic:"How do you say it in Arabic?", qWord:"What does this word mean?", qPhrase:"What does it mean?",
+    listen:"Listen", learnTag:"Learn Arabic",
     levelLabel:"Maths level", lvl1:"Easy", lvl1Sub:"Sums up to 10", lvl2:"Medium", lvl2Sub:"Sums up to 20", lvl3:"Hard", lvl3Sub:"Sums and subtractions up to 50",
     targetLabel:"Pulls to win", namesLabel:"Team names",
     teamLangHint:"Each team can switch its own language during the game with the ES · EN · ع buttons.",
@@ -422,6 +457,10 @@ const UI = {
     modeQuiz:"أسئلة إسلامية", modeQuizSub:"الأركان، الأنبياء، القرآن",
     modeMath:"الجمع بالتمر", modeMathSub:"لوحة أرقام",
     modeMix:"مختلط", modeMixSub:"قليل من كل شيء",
+    modeArabic:"تعلّم العربية", modeArabicSub:"حروف وأرقام وكلمات",
+    catLabel:"مواضيع الأسئلة", topicLabel:"ماذا نتعلّم من العربية", all:"الكل",
+    qLetter:"ما اسم هذا الحرف؟", qNumber:"ما هذا العدد؟", qPic:"ما اسم هذه الصورة؟", qWord:"ما معنى هذه الكلمة؟", qPhrase:"ما معناها؟",
+    listen:"استمع", learnTag:"تعلّم العربية",
     levelLabel:"مستوى الحساب", lvl1:"سهل", lvl1Sub:"الجمع حتى 10", lvl2:"متوسط", lvl2Sub:"الجمع حتى 20", lvl3:"صعب", lvl3Sub:"الجمع والطرح حتى 50",
     targetLabel:"عدد الشدّات للفوز", namesLabel:"أسماء الفريقين",
     teamLangHint:"يستطيع كل فريق تغيير لغته أثناء اللعب بأزرار ES · EN · ع.",
@@ -512,6 +551,20 @@ const QUIZ_ES = [
   ["¿Cómo se llama la comida al romper el ayuno?","Iftar","Suhur","Zakat","Yumu'a"],
   ["¿Cuántos días dura el mes de Ramadán?","29 o 30","40","15","7"],
   ["¿Cómo se llama la oración nocturna especial de Ramadán?","Tarawih","Fayr","Yanaza","Istisqa"],
+  ["¿Cuántos pilares tiene la fe (Imán)?","6","5","4","10"],
+  ["¿Qué significa «Tawhid»?","Creer que Allah es Uno","Rezar cinco veces","Dar caridad","Ayunar en Ramadán"],
+  ["¿Quién creó los cielos y la tierra?","Allah","Los ángeles","Los profetas","Las personas"],
+  ["¿Cómo se llaman los seres creados de luz que siempre obedecen a Allah?","Los ángeles","Los yinn","Los profetas","Los compañeros"],
+  ["¿Cómo se llamaba la madre del Profeta ﷺ?","Amina","Halima","Fátima","Jadiya"],
+  ["¿Qué tío cuidó al Profeta ﷺ después de la muerte de su abuelo?","Abu Talib","Abu Lahab","Al-Abbás","Hamza"],
+  ["¿Cuál fue la primera gran batalla de los musulmanes?","Badr","Uhud","Al-Jandaq","Hunayn"],
+  ["¿En qué ciudad está la Kaaba?","La Meca","Medina","Jerusalén","El Cairo"],
+  ["¿En qué monte se reúnen los peregrinos el día más importante del Hayy?","Arafat","Uhud","Hira","Zaur"],
+  ["¿En qué mes se hace el Hayy?","Dhul-Hiyya","Ramadán","Muharram","Rayab"],
+  ["¿Qué decimos al ver algo bonito?","Mashallah","Inshallah","Bismillah","Astagfirullah"],
+  ["¿Con qué mano comemos?","Con la derecha","Con la izquierda","Con las dos","Da igual"],
+  ["¿Qué decimos para pedir perdón a Allah?","Astagfirullah","SubhanAllah","Mashallah","Bismillah"],
+  ["¿Con qué pie entramos a la mezquita?","Con el derecho","Con el izquierdo","Saltando","Da igual"],
 ];
 
 const QUIZ_EN = [
@@ -586,6 +639,20 @@ const QUIZ_EN = [
   ["What is the meal to break the fast called?","Iftar","Suhur","Zakat","Jumu'ah"],
   ["How many days does Ramadan last?","29 or 30","40","15","7"],
   ["What is the special night prayer of Ramadan called?","Tarawih","Fajr","Janazah","Istisqa"],
+  ["How many pillars of faith (Iman) are there?","6","5","4","10"],
+  ["What does «Tawhid» mean?","Believing that Allah is One","Praying five times","Giving charity","Fasting in Ramadan"],
+  ["Who created the heavens and the earth?","Allah","The angels","The prophets","People"],
+  ["What are the beings made of light who always obey Allah called?","Angels","Jinn","Prophets","Companions"],
+  ["What was the name of the Prophet's ﷺ mother?","Amina","Halima","Fatimah","Khadijah"],
+  ["Which uncle looked after the Prophet ﷺ after his grandfather died?","Abu Talib","Abu Lahab","Al-Abbas","Hamza"],
+  ["What was the first major battle of the Muslims?","Badr","Uhud","Al-Khandaq","Hunayn"],
+  ["In which city is the Kaaba?","Makkah","Madinah","Jerusalem","Cairo"],
+  ["On which mountain do pilgrims gather on the most important day of Hajj?","Arafat","Uhud","Hira","Thawr"],
+  ["In which month is Hajj performed?","Dhul-Hijjah","Ramadan","Muharram","Rajab"],
+  ["What do we say when we see something beautiful?","Masha'Allah","Insha'Allah","Bismillah","Astaghfirullah"],
+  ["Which hand do we eat with?","The right hand","The left hand","Both hands","It doesn't matter"],
+  ["What do we say to ask Allah for forgiveness?","Astaghfirullah","SubhanAllah","Masha'Allah","Bismillah"],
+  ["Which foot do we enter the mosque with?","The right foot","The left foot","Jumping in","It doesn't matter"],
 ];
 
 const QUIZ_AR = [
@@ -660,8 +727,75 @@ const QUIZ_AR = [
   ["ما اسم الوجبة عند المغرب في رمضان؟","الإفطار","السحور","الزكاة","الجمعة"],
   ["كم يومًا يدوم شهر رمضان؟","29 أو 30","40","15","7"],
   ["ما اسم صلاة الليل الخاصة برمضان؟","التراويح","الفجر","الجنازة","الاستسقاء"],
+  ["كم عدد أركان الإيمان؟","6","5","4","10"],
+  ["ما معنى «التوحيد»؟","الإيمان بأن الله واحد","الصلاة خمس مرات","إعطاء الصدقة","صيام رمضان"],
+  ["من خلق السماوات والأرض؟","الله","الملائكة","الأنبياء","الناس"],
+  ["ما اسم المخلوقات التي خُلقت من نور وتطيع الله دائمًا؟","الملائكة","الجن","الأنبياء","الصحابة"],
+  ["ما اسم أم النبي ﷺ؟","آمنة","حليمة","فاطمة","خديجة"],
+  ["أي عمّ كفل النبي ﷺ بعد وفاة جده؟","أبو طالب","أبو لهب","العباس","حمزة"],
+  ["ما أول غزوة كبرى للمسلمين؟","بدر","أحد","الخندق","حنين"],
+  ["في أي مدينة توجد الكعبة؟","مكة","المدينة","القدس","القاهرة"],
+  ["على أي جبل يقف الحجاج في أهم يوم من أيام الحج؟","عرفات","أحد","حراء","ثور"],
+  ["في أي شهر يكون الحج؟","ذو الحجة","رمضان","محرم","رجب"],
+  ["ماذا نقول عندما نرى شيئًا جميلًا؟","ما شاء الله","إن شاء الله","بسم الله","أستغفر الله"],
+  ["بأي يد نأكل؟","باليد اليمنى","باليد اليسرى","باليدين معًا","لا فرق"],
+  ["ماذا نقول لنطلب المغفرة من الله؟","أستغفر الله","سبحان الله","ما شاء الله","بسم الله"],
+  ["بأي قدم ندخل المسجد؟","بالقدم اليمنى","بالقدم اليسرى","قفزًا","لا فرق"],
 ];
 const QUIZ = { es:QUIZ_ES, en:QUIZ_EN, ar:QUIZ_AR };
+
+/* ---- Categorías de las preguntas islámicas (posición de cada pregunta en las listas) ---- */
+const CATS = {
+  fe:       { es:"Pilares y fe", en:"Pillars & faith", ar:"الأركان والإيمان", q:[0,2,24,25,60,71,72,73,74] },
+  salah:    { es:"Salah (oración)", en:"Salah (prayer)", ar:"الصلاة", q:[1,15,16,17,18,19,20,21,27,28,29,64] },
+  ayuno:    { es:"Ramadán y ayuno", en:"Ramadan & fasting", ar:"رمضان والصيام", q:[3,22,26,53,66,67,68,69,70] },
+  coran:    { es:"Corán", en:"Quran", ar:"القرآن", q:[4,5,6,7,8,9,14,54,61,62,63] },
+  profetas: { es:"Profetas", en:"Prophets", ar:"الأنبياء", q:[31,32,33,34,35,36,37,38,39,40,41,42,43] },
+  historia: { es:"Historia del Islam", en:"Islamic history", ar:"السيرة والتاريخ", q:[10,11,12,13,30,44,45,65,75,76,77] },
+  hayy:     { es:"Hayy y lugares santos", en:"Hajj & holy places", ar:"الحج والأماكن المقدسة", q:[23,46,55,56,57,58,59,78,79,80] },
+  adab:     { es:"Modales y duas", en:"Manners & duas", ar:"الآداب والأذكار", q:[47,48,49,50,51,52,81,82,83,84] },
+};
+const CAT_OF = [];
+Object.entries(CATS).forEach(([id, c]) => c.q.forEach(i => CAT_OF[i] = id));
+if (CAT_OF.length !== QUIZ_ES.length || CAT_OF.some(x => !x)) console.error("Hay preguntas sin categoría");
+
+/* ---- Aprende árabe ---- */
+// Letras: [letra, nombre latino, nombre árabe, grupo de letras parecidas]
+const LETTERS = [
+  ["ا","Alif","ألف"],["ب","Ba","باء"],["ت","Ta","تاء","t"],["ث","Tha","ثاء"],["ج","Yim","جيم"],["ح","Ḥa","حاء","h"],["خ","Jaa","خاء"],
+  ["د","Dal","دال"],["ذ","Dhal","ذال"],["ر","Ra","راء"],["ز","Zay","زاي"],["س","Sin","سين"],["ش","Shin","شين"],["ص","Sad","صاد"],
+  ["ض","Dad","ضاد"],["ط","Ṭa","طاء","t"],["ظ","Ẓa","ظاء"],["ع","Ayn","عين"],["غ","Gayn","غين"],["ف","Fa","فاء"],["ق","Qaf","قاف"],
+  ["ك","Kaf","كاف"],["ل","Lam","لام"],["م","Mim","ميم"],["ن","Nun","نون"],["ه","Ha","هاء","h"],["و","Waw","واو"],["ي","Ya","ياء"],
+];
+const LETTER_EN = { "Yim":"Jim", "Jaa":"Kha", "Gayn":"Ghayn" };
+const NUMBERS = [["واحد","wāḥid"],["اثنان","ithnān"],["ثلاثة","thalātha"],["أربعة","arbaʿa"],["خمسة","khamsa"],
+                 ["ستة","sitta"],["سبعة","sabʿa"],["ثمانية","thamāniya"],["تسعة","tisʿa"],["عشرة","ʿashara"]];
+// Palabras: [dibujo, árabe, pronunciación, español, inglés]; los colores llevan "#color" como dibujo
+const WORDS = {
+  animales: [["🐱","قطة","qiṭṭa","gato","cat"],["🐶","كلب","kalb","perro","dog"],["🐪","جمل","jamal","camello","camel"],["🐎","حصان","ḥiṣān","caballo","horse"],
+             ["🐦","عصفور","ʿuṣfūr","pájaro","bird"],["🐟","سمكة","samaka","pez","fish"],["🦁","أسد","asad","león","lion"],["🐑","خروف","kharūf","oveja","sheep"]],
+  comida:   [["🍎","تفاحة","tuffāḥa","manzana","apple"],["🍌","موزة","mawza","plátano","banana"],["🍇","عنب","ʿinab","uvas","grapes"],["🍊","برتقالة","burtuqāla","naranja","orange"],
+             ["🥛","حليب","ḥalīb","leche","milk"],["💧","ماء","māʾ","agua","water"],["🍞","خبز","khubz","pan","bread"],["🌴","نخلة","nakhla","palmera","palm tree"]],
+  colores:  [["#d64541","أحمر","aḥmar","rojo","red"],["#3b6fd1","أزرق","azraq","azul","blue"],["#2fa36b","أخضر","akhḍar","verde","green"],["#f2c230","أصفر","aṣfar","amarillo","yellow"],
+             ["#ffffff","أبيض","abyaḍ","blanco","white"],["#111111","أسود","aswad","negro","black"]],
+  familia:  [["👩","أم","umm","mamá","mother"],["👨","أب","ab","papá","father"],["👦","أخ","akh","hermano","brother"],["👧","أخت","ukht","hermana","sister"],
+             ["👵","جدة","jadda","abuela","grandmother"],["👴","جد","jadd","abuelo","grandfather"]],
+  cosas:    [["☀️","شمس","shams","sol","sun"],["🌙","قمر","qamar","luna","moon"],["⭐","نجمة","najma","estrella","star"],["📖","كتاب","kitāb","libro","book"],
+             ["🕌","مسجد","masjid","mezquita","mosque"],["🏠","بيت","bayt","casa","house"],["🚪","باب","bāb","puerta","door"],["✏️","قلم","qalam","lápiz","pencil"]],
+};
+const PHRASES = [["صباح الخير","ṣabāḥ al-khayr","Buenos días","Good morning"],["مساء الخير","masāʾ al-khayr","Buenas tardes","Good evening"],
+                 ["شكرًا","shukran","Gracias","Thank you"],["من فضلك","min faḍlik","Por favor","Please"],["نعم","naʿam","Sí","Yes"],["لا","lā","No","No"],
+                 ["مع السلامة","maʿa as-salāma","Adiós","Goodbye"],["كيف حالك؟","kayfa ḥāluk","¿Cómo estás?","How are you?"]];
+const TOPICS = {
+  letras:   { es:"Letras", en:"Letters", ar:"الحروف" },
+  numeros:  { es:"Números", en:"Numbers", ar:"الأعداد" },
+  animales: { es:"Animales", en:"Animals", ar:"الحيوانات" },
+  comida:   { es:"Comida", en:"Food", ar:"الطعام" },
+  colores:  { es:"Colores", en:"Colours", ar:"الألوان" },
+  familia:  { es:"Familia", en:"Family", ar:"العائلة" },
+  cosas:    { es:"Cosas", en:"Things", ar:"الأشياء" },
+  saludos:  { es:"Saludos", en:"Greetings", ar:"التحيات" },
+};
 if (QUIZ_EN.length !== QUIZ_ES.length || QUIZ_AR.length !== QUIZ_ES.length) console.error("Las listas de preguntas no tienen la misma longitud");
 
 /* ================= Sumas con historia ================= */
@@ -728,13 +862,14 @@ const sWin = () => beep([523,659,784,1046,784,1046],.22,"triangle",.14);
 
 /* ================= Estado ================= */
 const saved = store.get("tdc-lang");
-const cfg = { lang: UI[saved] ? saved : "es", mode:"quiz", level:1, target:7, nameA:"Media Luna", nameB:"Estrella", players:2, cpuSecs:6 };
+const cfg = { lang: UI[saved] ? saved : "es", mode:"quiz", level:1, target:7, nameA:"Media Luna", nameB:"Estrella", players:2, cpuSecs:6,
+              cats: new Set(Object.keys(CATS)), topics: new Set(Object.keys(TOPICS)) };
 let cpuTimer = null;
 let pos = 0, playing = false, t0 = 0, tick = null, lastWinner = null;
 const teams = { A: null, B: null };
 
 function makeTeam(side){
-  return { side, lang: cfg.lang, correct:0, deck:shuffle([...QUIZ_ES.keys()]), di:0, q:null, input:"", locked:false,
+  return { side, lang: cfg.lang, correct:0, deck:quizDeck(), di:0, q:null, input:"", locked:false, recent:[],
            cpu: side === "B" && cfg.players === 1 };
 }
 
@@ -746,15 +881,128 @@ function mathQuestion(){
   else { if (Math.random()<.5){ a=rnd(5,35); b=rnd(2,50-a);} else { op="−"; a=rnd(10,50); b=rnd(2,a-1);} }
   return { type:"math", a, b, op, ni:rnd(0,NAMES.length-1), ii:rnd(0,ITEMS.length-1), answer: op==="+" ? a+b : a-b };
 }
+function quizDeck(){
+  const ids = [...QUIZ_ES.keys()].filter(i => cfg.cats.has(CAT_OF[i]));
+  return shuffle(ids.length ? ids : [...QUIZ_ES.keys()]);
+}
 function quizQuestion(team){
-  if (team.di >= team.deck.length){ team.deck = shuffle([...QUIZ_ES.keys()]); team.di = 0; }
+  if (team.di >= team.deck.length){ team.deck = quizDeck(); team.di = 0; }
   return { type:"quiz", idx: team.deck[team.di++], order: shuffle([0,1,2,3]) }; // la opción 0 es la correcta
 }
+// Pregunta de árabe: guarda solo índices, el texto se genera en el idioma de cada equipo
+function pickOthers(n, total, correct, ok = () => true){
+  return shuffle([...Array(total).keys()].filter(i => i !== correct && ok(i))).slice(0, n);
+}
+function arabicQuestion(team){
+  const topics = [...cfg.topics];
+  let topic, item, tries = 0;
+  do {
+    topic = topics[rnd(0, topics.length-1)];
+    const size = topic==="letras" ? LETTERS.length : topic==="numeros" ? NUMBERS.length : topic==="saludos" ? PHRASES.length : WORDS[topic].length;
+    item = rnd(0, size-1);
+  } while ((team.recent.includes(topic+item) || (team.lang==="ar" && topic==="saludos" && topics.length>1)) && ++tries < 20);
+  team.recent = [topic+item, ...team.recent].slice(0, 6);
+  if (topic === "letras"){
+    const grp = LETTERS[item][3];
+    const others = pickOthers(3, LETTERS.length, item, i => !grp || LETTERS[i][3] !== grp);
+    return { type:"arabic", kind:"letter", topic, items:[item, ...others], order: shuffle([0,1,2,3]) };
+  }
+  if (topic === "numeros"){
+    return { type:"arabic", kind:"number", topic, items:[item, ...pickOthers(3, NUMBERS.length, item)], order: shuffle([0,1,2,3]) };
+  }
+  if (topic === "saludos"){
+    return { type:"arabic", kind:"phrase", topic, items:[item, ...pickOthers(3, PHRASES.length, item)], order: shuffle([0,1,2,3]) };
+  }
+  const kind = Math.random() < .5 ? "pic" : "word";
+  return { type:"arabic", kind, topic, items:[item, ...pickOthers(3, WORDS[topic].length, item)], order: shuffle([0,1,2,3]) };
+}
 function nextQuestion(team){
-  const useMath = cfg.mode==="math" || (cfg.mode==="mix" && Math.random()<.4);
-  team.q = useMath ? mathQuestion() : quizQuestion(team);
+  const r = Math.random();
+  const kind = cfg.mode==="math" ? "math" : cfg.mode==="arabic" ? "arabic" : cfg.mode==="quiz" ? "quiz"
+             : r < .4 ? "quiz" : r < .7 ? "arabic" : "math";
+  team.q = kind==="math" ? mathQuestion() : kind==="arabic" ? arabicQuestion(team) : quizQuestion(team);
   team.input = ""; team.locked = false;
   render(team);
+}
+
+/* ---- voz en árabe (si el navegador tiene una voz árabe) ---- */
+let arVoice = null;
+function findVoice(){
+  try { arVoice = speechSynthesis.getVoices().find(v => /^ar/i.test(v.lang)) || null; } catch(e){ arVoice = null; }
+}
+try { findVoice(); speechSynthesis.addEventListener("voiceschanged", () => { findVoice(); ["A","B"].forEach(s => teams[s] && teams[s].q?.type==="arabic" && !teams[s].locked && render(teams[s])); }); } catch(e){}
+function speakAr(text){
+  if (!arVoice || !soundOn) return;
+  try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.voice = arVoice; u.lang = arVoice.lang; u.rate = .8; speechSynthesis.speak(u); } catch(e){}
+}
+function arabicSpoken(q){
+  const i = q.items[0];
+  if (q.kind==="letter") return LETTERS[i][2];
+  if (q.kind==="number") return NUMBERS[i][0];
+  if (q.kind==="phrase") return PHRASES[i][0];
+  return WORDS[q.topic][i][1];
+}
+
+function picEl(pic){
+  const span = document.createElement("span");
+  if (pic.startsWith("#")){ span.className = "swatch"; span.style.background = pic; }
+  else span.textContent = pic;
+  return span;
+}
+function renderArabic(team, zone){
+  const q = team.q, L = team.lang, t = UI[L], showTr = L !== "ar";
+  const tag = document.createElement("p"); tag.className = "cat-tag"; tag.textContent = t.learnTag + " · " + TOPICS[q.topic][L]; zone.append(tag);
+  const prompt = { letter:t.qLetter, number:t.qNumber, pic:t.qPic, word:t.qWord, phrase:t.qPhrase }[q.kind];
+  const h = document.createElement("p"); h.className = "question"; h.style.minHeight = "auto"; h.textContent = prompt; zone.append(h);
+  // tarjeta con lo que hay que reconocer
+  const card = document.createElement("div"); card.className = "ar-card";
+  const big = document.createElement("div"); big.className = "big"; big.lang = "ar";
+  const i0 = q.items[0];
+  if (q.kind==="letter") big.textContent = LETTERS[i0][0];
+  else if (q.kind==="number") big.textContent = NUMBERS[i0][0];
+  else if (q.kind==="phrase") big.textContent = PHRASES[i0][0];
+  else if (q.kind==="word") big.textContent = WORDS[q.topic][i0][1];
+  else { big.classList.add("pic"); big.append(picEl(WORDS[q.topic][i0][0])); }
+  card.append(big);
+  if (showTr && (q.kind==="word" || q.kind==="phrase" || q.kind==="number")){
+    const tr = document.createElement("span"); tr.className = "tr"; tr.dir = "ltr";
+    tr.textContent = q.kind==="number" ? NUMBERS[i0][1] : q.kind==="phrase" ? PHRASES[i0][1] : WORDS[q.topic][i0][2];
+    card.append(tr);
+  }
+  if (arVoice && q.kind !== "pic"){
+    const lb = document.createElement("button"); lb.type = "button"; lb.className = "listen"; lb.textContent = "🔊 " + t.listen;
+    lb.addEventListener("click", () => speakAr(arabicSpoken(q)));
+    card.append(lb);
+  }
+  zone.append(card);
+  // opciones
+  const box = document.createElement("div"); box.className = "options grid2";
+  q.order.forEach(k => {
+    const idx = q.items[k];
+    const b = document.createElement("button"); b.type = "button"; b.className = "opt ar-opt"; b.dataset.k = k;
+    const main = document.createElement("span"), sub = document.createElement("span");
+    sub.className = "tr"; sub.dir = "ltr";
+    if (q.kind==="letter"){
+      main.textContent = L==="ar" ? LETTERS[idx][2] : (L==="en" && LETTER_EN[LETTERS[idx][1]]) || LETTERS[idx][1];
+      if (L==="ar") main.className = "ar-word";
+    } else if (q.kind==="number"){
+      main.className = "ar-word"; main.textContent = num(idx+1, L);
+    } else if (q.kind==="phrase"){
+      main.textContent = L==="ar" ? PHRASES[idx][0] : PHRASES[idx][L==="en" ? 3 : 2];
+    } else if (q.kind==="pic"){
+      const w = WORDS[q.topic][idx];
+      main.className = "ar-word"; main.lang = "ar"; main.textContent = w[1];
+      if (showTr) sub.textContent = w[2];
+    } else {
+      const w = WORDS[q.topic][idx];
+      main.className = "pic"; main.append(picEl(w[0]));
+      if (showTr) sub.textContent = L==="en" ? w[4] : w[3];
+    }
+    b.append(main); if (sub.textContent) b.append(sub);
+    b.addEventListener("click", () => answerQuiz(team, b, k));
+    box.append(b);
+  });
+  zone.append(box);
 }
 
 /* ---- pintado del panel de un equipo, en el idioma de ese equipo ---- */
@@ -767,8 +1015,10 @@ function render(team){
   zone.style.display = "flex"; zone.style.flexDirection = "column"; zone.style.gap = "12px";
   if (team.cpu) { renderCpu(team); return; }
   if (!q) return;
+  if (q.type==="arabic"){ renderArabic(team, zone); return; }
   if (q.type==="quiz"){
     const row = QUIZ[L][q.idx];
+    const tag = document.createElement("p"); tag.className = "cat-tag"; tag.textContent = CATS[CAT_OF[q.idx]][L]; zone.append(tag);
     const h = document.createElement("p"); h.className="question"; h.textContent = num(row[0], L); zone.append(h);
     const box = document.createElement("div"); box.className="options";
     q.order.forEach(k => {
@@ -817,7 +1067,8 @@ function answerQuiz(team, btn, k){
   team.locked = true;
   [...$("zone"+team.side).querySelectorAll(".opt")].forEach(b => { b.disabled = true; if (b.dataset.k==="0") b.classList.add("right"); });
   if (!ok) btn.classList.add("wrong");
-  check(team, ok, ok ? 550 : 1400);
+  if (team.q.type === "arabic") speakAr(arabicSpoken(team.q));
+  check(team, ok, ok ? (team.q.type === "arabic" ? 900 : 550) : 1600);
 }
 
 function check(team, ok, delay=0){
@@ -975,6 +1226,7 @@ function setLang(l){
   if (DEFAULT_NAMES.includes(cfg.nameB)) cfg.nameB = t.teamB;
   if (teams.B?.cpu) cfg.nameB = t.cpuName;
   updatePlayersUI();
+  updateModeUI();
   showNames();
   $("needText").textContent = num(t.need(cfg.target), l);
   $("timer").textContent = num(playing ? fmt(Date.now()-t0) : $("timer").textContent.replace(/[٠-٩]/g, d => AR_DIGITS.indexOf(d)), l);
@@ -1009,6 +1261,34 @@ function segment(id, key, cast){
   });
 }
 segment("modeSeg","mode",String);
+function renderChips(boxId, defs, set){
+  const box = $(boxId), L = cfg.lang; box.innerHTML = "";
+  const allOn = set.size === Object.keys(defs).length;
+  const all = document.createElement("button"); all.type = "button"; all.className = "all";
+  all.textContent = UI[L].all; all.setAttribute("aria-pressed", String(allOn));
+  all.addEventListener("click", () => { Object.keys(defs).forEach(k => set.add(k)); renderChips(boxId, defs, set); });
+  box.append(all);
+  Object.entries(defs).forEach(([id, d]) => {
+    const b = document.createElement("button"); b.type = "button"; b.textContent = d[L];
+    b.setAttribute("aria-pressed", String(!allOn && set.has(id)));
+    b.addEventListener("click", () => {
+      // desde «Todos», un clic deja solo ese tema; después se suman o quitan temas
+      if (set.size === Object.keys(defs).length){ set.clear(); set.add(id); }
+      else if (set.has(id)){ set.delete(id); if (!set.size) Object.keys(defs).forEach(k => set.add(k)); }
+      else set.add(id);
+      renderChips(boxId, defs, set);
+    });
+    box.append(b);
+  });
+}
+function updateModeUI(){
+  $("catField").hidden = !(cfg.mode === "quiz" || cfg.mode === "mix");
+  $("topicField").hidden = !(cfg.mode === "arabic" || cfg.mode === "mix");
+  $("levelField").hidden = !(cfg.mode === "math" || cfg.mode === "mix");
+  renderChips("catChips", CATS, cfg.cats);
+  renderChips("topicChips", TOPICS, cfg.topics);
+}
+$("modeSeg").addEventListener("click", updateModeUI);
 segment("playersSeg","players",Number);
 segment("cpuSeg","cpuSecs",Number);
 function updatePlayersUI(){

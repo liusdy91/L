@@ -5,9 +5,12 @@ Cada respuesta correcta tira de la cuerda hacia su lado; gana quien lleve el pa�
 
 - **Preguntas islámicas**: pilares, oraciones, profetas, Corán, fiestas y expresiones (opción múltiple).
 - **Sumas con dátiles**: cuentas con pequeñas historias y teclado numérico (3 niveles).
-- **Mixto**: alterna ambos tipos.
+- **Aprende árabe**: letras, números, animales, comida, colores, familia, cosas y saludos, con dibujos y pronunciación. Si el navegador tiene voz en árabe, aparece el botón 🔊 Escuchar.
+- **Mixto**: alterna preguntas islámicas, árabe y sumas.
+
+**Temas de las preguntas islámicas**: Pilares y fe, Salah, Ramadán y ayuno, Corán, Profetas, Historia del Islam, Hayy y lugares santos, Modales y duas. En la pantalla de inicio se eligen uno, varios o todos.
 - **Un jugador**: juegas solo contra la computadora, que tira de la cuerda cada 9, 6 o 4 segundos según la velocidad elegida.
 
 **Idiomas**: español, inglés y árabe (con escritura de derecha a izquierda y números arábigos orientales). El idioma general se elige en la pantalla de inicio o en la cabecera, y cada equipo puede cambiar el suyo durante la partida con los botones ES · EN · ع.
 
-Abre `index.html` en un navegador (la carpeta `assets/` con las ilustraciones de las niñas debe estar al lado). No necesita instalación. Para añadir preguntas, edita las listas `QUIZ_ES`, `QUIZ_EN` y `QUIZ_AR` en el script: la misma posición en cada lista es la misma pregunta, así que añade cada pregunta en las tres. Las traducciones al inglés y al árabe conviene que las revise una persona hablante.
+Abre `index.html` en un navegador (la carpeta `assets/` con las ilustraciones de las niñas debe estar al lado). No necesita instalación. Para añadir preguntas, edita las listas `QUIZ_ES`, `QUIZ_EN` y `QUIZ_AR` en el script: la misma posición en cada lista es la misma pregunta, así que añade cada pregunta en las tres y su número en la categoría que toque dentro de `CATS`. El vocabulario de árabe está en `LETTERS`, `NUMBERS`, `WORDS` y `PHRASES`. Las traducciones al inglés y al árabe conviene que las revise una persona hablante.
