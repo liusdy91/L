@@ -16,3 +16,5 @@ Cada respuesta correcta tira de la cuerda hacia su lado; gana quien lleve el pa�
 Abre `index.html` en un navegador (la carpeta `assets/` con las ilustraciones de las niñas debe estar al lado). No necesita instalación. Para añadir preguntas, edita las listas `QUIZ_ES`, `QUIZ_EN` y `QUIZ_AR` en el script: la misma posición en cada lista es la misma pregunta, así que añade cada pregunta en las tres y su número en la categoría que toque dentro de `CATS`. El vocabulario de árabe está en `LETTERS`, `NUMBERS`, `WORDS` y `PHRASES`. Las traducciones al inglés y al árabe conviene que las revise una persona hablante.
 
 **Fuentes**: cada pregunta islámica muestra su fuente (Corán o hadiz sahih). La lista completa, con enlaces, está en [FUENTES.md](FUENTES.md).
+
+**Instalar como app**: abre https://liusdy91.github.io/L/ y pulsa «Instalar app» (Android, Chrome o Edge), o en iPhone/iPad Safari → Compartir → «Añadir a pantalla de inicio». Funciona sin internet una vez instalada (`manifest.webmanifest` y `sw.js`). Si cambias imágenes o iconos, sube el número de `VERSION` en `sw.js`.

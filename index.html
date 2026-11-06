@@ -1,4 +1,14 @@
+<meta charset="utf-8">
 <title>Islamic Tug of War</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0d2230">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Tug of War">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="description" content="A two-team classroom game: every correct answer about Islam or every right sum pulls the rope to your side. In English, Spanish and Arabic.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Islamic Tug of War">
@@ -45,7 +55,8 @@ body{
   font-size:16px;
   padding-left:max(16px, env(safe-area-inset-left, 0px));
   padding-right:max(16px, env(safe-area-inset-right, 0px));
-  padding-block:10px;
+  padding-top:max(10px, env(safe-area-inset-top, 0px));
+  padding-bottom:max(10px, env(safe-area-inset-bottom, 0px));
   box-sizing:border-box;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23f4e7c9' stroke-opacity='.05' stroke-width='1.2'%3E%3Cpath d='M40 10 L48 32 L70 40 L48 48 L40 70 L32 48 L10 40 L32 32Z'/%3E%3Crect x='25' y='25' width='30' height='30' transform='rotate(45 40 40)'/%3E%3Crect x='25' y='25' width='30' height='30'/%3E%3C/g%3E%3C/svg%3E");
 }
@@ -63,6 +74,8 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .brand .ar{font-family:var(--font-ar);color:var(--gold);font-size:clamp(1.1rem,2vw,1.6rem)}
 .top-actions{display:flex;gap:8px}
 .ghost{background:transparent;border:1.5px solid color-mix(in srgb,var(--sand) 30%,transparent);border-radius:999px;padding:6px 14px;font-weight:700;font-size:.9rem}
+.ghost.install{border-color:var(--gold);color:var(--gold)}
+.install-steps{margin:0;padding-inline-start:1.2em;display:grid;gap:8px;line-height:1.5;color:var(--sand)}
 .ghost:hover{border-color:var(--gold);color:var(--gold)}
 
 /* ---------- tablero ---------- */
@@ -209,6 +222,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
     </div>
     <div class="top-actions">
       <div class="langs" id="langTop" role="group" aria-label="Idioma"></div>
+      <button class="ghost install" id="installBtn" type="button" hidden>Instalar app</button>
       <button class="ghost" id="soundBtn" type="button" aria-pressed="true">Sonido: sí</button>
       <button class="ghost" id="menuBtn" type="button" data-i18n="newGame">Nueva partida</button>
     </div>
@@ -381,6 +395,19 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
   </div>
 </div>
 
+<!-- Cómo instalar -->
+<div class="overlay" id="installBox" hidden>
+  <div class="card" role="dialog" aria-labelledby="installTitle">
+    <h2 id="installTitle" data-i18n="installTitle">Instala el juego como app</h2>
+    <p data-i18n="installIntro">Tendrás su icono en la pantalla de inicio y funcionará sin internet.</p>
+    <ol class="install-steps">
+      <li data-i18n="installIos">En iPhone o iPad (Safari): pulsa Compartir y luego «Añadir a pantalla de inicio».</li>
+      <li data-i18n="installAndroid">En Android o en el ordenador (Chrome o Edge): abre el menú ⋮ y elige «Instalar app» o «Añadir a pantalla de inicio».</li>
+    </ol>
+    <button class="start" id="installClose" type="button" data-i18n="close">Entendido</button>
+  </div>
+</div>
+
 <!-- Victoria -->
 <div class="overlay" id="winBox" hidden>
   <div class="card" role="dialog" aria-labelledby="winTeam">
@@ -407,6 +434,9 @@ const SHORT = { es:"ES", en:"EN", ar:"ع" };
 const UI = {
   es:{
     title:"Tira de la Cuerda", newGame:"Nueva partida", soundOn:"Sonido: sí", soundOff:"Sonido: no",
+    install:"Instalar app", installTitle:"Instala el juego como app", installIntro:"Tendrás su icono en la pantalla de inicio y funcionará sin internet.",
+    installIos:"En iPhone o iPad (Safari): pulsa el botón Compartir (el cuadrado con la flecha) y luego «Añadir a pantalla de inicio».",
+    installAndroid:"En Android o en el ordenador (Chrome o Edge): abre el menú ⋮ y elige «Instalar app» o «Añadir a pantalla de inicio».", close:"Entendido",
     intro:"Dos equipos, una pantalla. Cada respuesta correcta tira de la cuerda hacia tu lado. Gana el equipo que lleve el pañuelo dorado hasta su línea.",
     language:"Idioma", modeLabel:"Modo de juego",
     modeQuiz:"Preguntas islámicas", modeQuizSub:"Pilares, profetas, Corán",
@@ -430,6 +460,9 @@ const UI = {
   },
   en:{
     title:"Tug of War", newGame:"New game", soundOn:"Sound: on", soundOff:"Sound: off",
+    install:"Install app", installTitle:"Install the game as an app", installIntro:"You'll get its icon on your home screen and it will work without internet.",
+    installIos:"On iPhone or iPad (Safari): tap the Share button (the square with the arrow), then «Add to Home Screen».",
+    installAndroid:"On Android or a computer (Chrome or Edge): open the ⋮ menu and choose «Install app» or «Add to Home screen».", close:"Got it",
     intro:"Two teams, one screen. Every correct answer pulls the rope towards your side. The team that brings the golden ribbon to its line wins.",
     language:"Language", modeLabel:"Game mode",
     modeQuiz:"Islamic questions", modeQuizSub:"Pillars, prophets, Quran",
@@ -453,6 +486,9 @@ const UI = {
   },
   ar:{
     title:"شدّ الحبل", newGame:"لعبة جديدة", soundOn:"الصوت: يعمل", soundOff:"الصوت: متوقف",
+    install:"تثبيت التطبيق", installTitle:"ثبّت اللعبة كتطبيق", installIntro:"ستظهر أيقونتها على الشاشة الرئيسية وتعمل دون إنترنت.",
+    installIos:"على iPhone أو iPad (Safari): اضغط زر المشاركة (المربع والسهم) ثم «إضافة إلى الشاشة الرئيسية».",
+    installAndroid:"على Android أو الحاسوب (Chrome أو Edge): افتح القائمة ⋮ واختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».", close:"حسنًا",
     intro:"فريقان وشاشة واحدة. كل إجابة صحيحة تشدّ الحبل نحو فريقك. يفوز الفريق الذي يوصل الشريط الذهبي إلى خطّه.",
     language:"اللغة", modeLabel:"نوع اللعب",
     modeQuiz:"أسئلة إسلامية", modeQuizSub:"الأركان، الأنبياء، القرآن",
@@ -1246,6 +1282,7 @@ function setLang(l){
   document.querySelectorAll("[data-i18n]").forEach(el => { const v = t[el.dataset.i18n]; if (typeof v === "string") el.textContent = num(v, l); });
   document.querySelectorAll("[data-num]").forEach(el => el.textContent = num(el.dataset.num, l));
   $("soundBtn").textContent = soundOn ? t.soundOn : t.soundOff;
+  $("installBtn").textContent = t.install;
   $("langTop").setAttribute("aria-label", t.language);
   $("inA").setAttribute("aria-label", t.nameLeft); $("inB").setAttribute("aria-label", t.nameRight);
   // Nombres por defecto: se traducen solo si nadie los ha cambiado
@@ -1345,6 +1382,27 @@ teams.A = makeTeam("A"); teams.B = makeTeam("B");
 teams.A.q = quizQuestion(teams.A);
 teams.B.q = mathQuestion();
 pos = -2;
+/* ---- app instalable (solo en la web pública, no dentro de Claude) ---- */
+const isPublicSite = /github\.io$/.test(location.hostname);
+const isInstalled = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+let installPrompt = null;
+if (isPublicSite && "serviceWorker" in navigator){
+  navigator.serviceWorker.register("sw.js").catch(() => {});
+}
+if (isPublicSite && !isInstalled) $("installBtn").hidden = false;
+window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); installPrompt = e; if (!isInstalled) $("installBtn").hidden = false; });
+window.addEventListener("appinstalled", () => { $("installBtn").hidden = true; installPrompt = null; });
+$("installBtn").addEventListener("click", async () => {
+  if (installPrompt){
+    installPrompt.prompt();
+    try { await installPrompt.userChoice; } catch(e){}
+    installPrompt = null;
+  } else {
+    $("installBox").hidden = false; $("installClose").focus();
+  }
+});
+$("installClose").addEventListener("click", () => { $("installBox").hidden = true; });
+
 setLang(cfg.lang);
 })();
 </script>
