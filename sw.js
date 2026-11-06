@@ -1,6 +1,6 @@
 // Service worker: lets the game install as an app and work without internet.
 // Bump VERSION whenever the game files change so devices pick up the new version.
-const VERSION = "tug-of-war-v3";
+const VERSION = "tug-of-war-v4";
 const APP_FILES = [
   "./",
   "./index.html",
@@ -11,6 +11,7 @@ const APP_FILES = [
   "./assets/icon-512.png",
   "./assets/icon-maskable-512.png",
   "./assets/icon-180.png",
+  "./assets/vendor/qrcode.min.js",
 ];
 
 self.addEventListener("install", event => {
