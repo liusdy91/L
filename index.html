@@ -106,6 +106,12 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .langs.small{align-self:flex-start}
 .panel .langs button[aria-pressed="true"]{background:var(--c);color:#fff}
 .card .hint{font-size:.9rem}
+.cpu{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding-block:20px}
+.cpu-icon{width:96px;height:96px;max-width:100%}
+.cpu-msg{margin:0;font-weight:800;font-size:1.1rem}
+.cpu-bar{width:100%;height:14px;background:var(--night);border-radius:999px;overflow:hidden}
+.cpu-fill{height:100%;width:0;background:var(--c);border-radius:999px}
+.cpu-hint{margin:0;color:var(--sand-dim);font-size:.9rem;line-height:1.4}
 .top-actions{flex-wrap:wrap;align-items:center}
 
 /* ---------- arena ---------- */
@@ -295,6 +301,21 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
       <div class="seg" id="langSeg"></div>
     </div>
 
+    <div class="field"><span data-i18n="playersLabel">Jugadores</span>
+      <div class="seg" id="playersSeg">
+        <button type="button" data-v="2" aria-pressed="true"><span data-i18n="players2"></span><small data-i18n="players2Sub"></small></button>
+        <button type="button" data-v="1" aria-pressed="false"><span data-i18n="players1"></span><small data-i18n="players1Sub"></small></button>
+      </div>
+    </div>
+
+    <div class="field" id="cpuField" hidden><span data-i18n="cpuLabel">Velocidad de la computadora</span>
+      <div class="seg" id="cpuSeg">
+        <button type="button" data-v="9" aria-pressed="false"><span data-i18n="cpu1"></span><small data-i18n="cpu1Sub"></small></button>
+        <button type="button" data-v="6" aria-pressed="true"><span data-i18n="cpu2"></span><small data-i18n="cpu2Sub"></small></button>
+        <button type="button" data-v="4" aria-pressed="false"><span data-i18n="cpu3"></span><small data-i18n="cpu3Sub"></small></button>
+      </div>
+    </div>
+
     <div class="field"><span data-i18n="modeLabel">Modo de juego</span>
       <div class="seg" id="modeSeg">
         <button type="button" data-v="quiz" aria-pressed="true"><span data-i18n="modeQuiz"></span><small data-i18n="modeQuizSub"></small></button>
@@ -319,10 +340,10 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
       </div>
     </div>
 
-    <div class="field"><span data-i18n="namesLabel">Nombres de los equipos</span>
+    <div class="field"><span data-i18n="namesLabel" id="namesLabel">Nombres de los equipos</span>
       <div class="names">
         <label class="a"><input id="inA" maxlength="16" value="Media Luna"></label>
-        <label class="b"><input id="inB" maxlength="16" value="Estrella"></label>
+        <label class="b" id="labelB"><input id="inB" maxlength="16" value="Estrella"></label>
       </div>
     </div>
 
@@ -336,7 +357,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 <div class="overlay" id="winBox" hidden>
   <div class="card" role="dialog" aria-labelledby="winTeam">
     <p class="ar" lang="ar">مَا شَاءَ ٱللَّٰهُ</p>
-    <p data-i18n="winPre">¡MashaAllah! La victoria es para</p>
+    <p data-i18n="winPre" id="winPre">¡MashaAllah! La victoria es para</p>
     <h3 class="win-team" id="winTeam">Media Luna</h3>
     <div class="win-stats">
       <div><span id="wsNameA">Media Luna</span><b id="wsA">0</b><span data-i18n="correctAnswers"></span></div>
@@ -369,6 +390,10 @@ const UI = {
     start:"Bismillah, ¡a jugar!", winPre:"¡MashaAllah! La victoria es para", correctAnswers:"respuestas correctas",
     time:"Tiempo", rematch:"Revancha", changeSettings:"Cambiar ajustes",
     need: n => `${n} tirones para ganar`, teamA:"Media Luna", teamB:"Estrella",
+    playersLabel:"Jugadores", players2:"Dos equipos", players2Sub:"En la misma pantalla", players1:"Un jugador", players1Sub:"Contra la computadora",
+    cpuLabel:"Velocidad de la computadora", cpu1:"Lenta", cpu1Sub:"Un tirón cada 9 s", cpu2:"Normal", cpu2Sub:"Un tirón cada 6 s", cpu3:"Rápida", cpu3Sub:"Un tirón cada 4 s",
+    cpuName:"Computadora", cpuThinking:"La computadora está tirando…", cpuHint:"Responde rápido para ganarle.", nameLabelSolo:"Tu nombre",
+    cpuWinPre:"¡Casi! Esta vez gana",
     del:"Borrar", check:"Comprobar", teamLang:"Idioma del equipo", nameLeft:"Nombre del equipo izquierdo", nameRight:"Nombre del equipo derecho",
   },
   en:{
@@ -384,6 +409,10 @@ const UI = {
     start:"Bismillah, let's play!", winPre:"MashaAllah! The winner is", correctAnswers:"correct answers",
     time:"Time", rematch:"Rematch", changeSettings:"Change settings",
     need: n => `${n} pulls to win`, teamA:"Crescent", teamB:"Star",
+    playersLabel:"Players", players2:"Two teams", players2Sub:"On the same screen", players1:"One player", players1Sub:"Against the computer",
+    cpuLabel:"Computer speed", cpu1:"Slow", cpu1Sub:"One pull every 9 s", cpu2:"Normal", cpu2Sub:"One pull every 6 s", cpu3:"Fast", cpu3Sub:"One pull every 4 s",
+    cpuName:"Computer", cpuThinking:"The computer is pulling…", cpuHint:"Answer quickly to beat it.", nameLabelSolo:"Your name",
+    cpuWinPre:"So close! This time the winner is",
     del:"Clear", check:"Check", teamLang:"Team language", nameLeft:"Left team name", nameRight:"Right team name",
   },
   ar:{
@@ -399,6 +428,10 @@ const UI = {
     start:"بسم الله، هيا نلعب!", winPre:"ما شاء الله! الفوز لفريق", correctAnswers:"إجابات صحيحة",
     time:"الوقت", rematch:"مباراة أخرى", changeSettings:"تغيير الإعدادات",
     need: n => `${n} شدّات للفوز`, teamA:"الهلال", teamB:"النجمة",
+    playersLabel:"اللاعبون", players2:"فريقان", players2Sub:"على الشاشة نفسها", players1:"لاعب واحد", players1Sub:"ضد الحاسوب",
+    cpuLabel:"سرعة الحاسوب", cpu1:"بطيء", cpu1Sub:"شدّة كل 9 ثوانٍ", cpu2:"عادي", cpu2Sub:"شدّة كل 6 ثوانٍ", cpu3:"سريع", cpu3Sub:"شدّة كل 4 ثوانٍ",
+    cpuName:"الحاسوب", cpuThinking:"الحاسوب يشدّ الحبل…", cpuHint:"أجب بسرعة لتغلبه.", nameLabelSolo:"اسمك",
+    cpuWinPre:"اقتربت! هذه المرة الفوز لـ",
     del:"مسح", check:"تحقّق", teamLang:"لغة الفريق", nameLeft:"اسم الفريق الأيسر", nameRight:"اسم الفريق الأيمن",
   },
 };
@@ -695,12 +728,14 @@ const sWin = () => beep([523,659,784,1046,784,1046],.22,"triangle",.14);
 
 /* ================= Estado ================= */
 const saved = store.get("tdc-lang");
-const cfg = { lang: UI[saved] ? saved : "es", mode:"quiz", level:1, target:7, nameA:"Media Luna", nameB:"Estrella" };
+const cfg = { lang: UI[saved] ? saved : "es", mode:"quiz", level:1, target:7, nameA:"Media Luna", nameB:"Estrella", players:2, cpuSecs:6 };
+let cpuTimer = null;
 let pos = 0, playing = false, t0 = 0, tick = null, lastWinner = null;
 const teams = { A: null, B: null };
 
 function makeTeam(side){
-  return { side, lang: cfg.lang, correct:0, deck:shuffle([...QUIZ_ES.keys()]), di:0, q:null, input:"", locked:false };
+  return { side, lang: cfg.lang, correct:0, deck:shuffle([...QUIZ_ES.keys()]), di:0, q:null, input:"", locked:false,
+           cpu: side === "B" && cfg.players === 1 };
 }
 
 /* ---- generación de preguntas (independientes del idioma) ---- */
@@ -730,6 +765,7 @@ function render(team){
   panel.lang = L;
   zone.innerHTML = "";
   zone.style.display = "flex"; zone.style.flexDirection = "column"; zone.style.gap = "12px";
+  if (team.cpu) { renderCpu(team); return; }
   if (!q) return;
   if (q.type==="quiz"){
     const row = QUIZ[L][q.idx];
@@ -801,6 +837,43 @@ function check(team, ok, delay=0){
   }
 }
 
+/* ---- modo un jugador: la computadora tira del lado derecho ---- */
+function renderCpu(team){
+  const t = UI[team.lang], zone = $("zone"+team.side);
+  const box = document.createElement("div"); box.className = "cpu";
+  box.innerHTML = `<svg class="cpu-icon" viewBox="0 0 96 96" aria-hidden="true">
+      <rect x="18" y="26" width="60" height="48" rx="12" fill="var(--night-3)" stroke="var(--c)" stroke-width="3"/>
+      <circle cx="37" cy="48" r="6" fill="var(--gold)"/><circle cx="59" cy="48" r="6" fill="var(--gold)"/>
+      <rect x="36" y="61" width="24" height="4" rx="2" fill="var(--sand-dim)"/>
+      <line x1="48" y1="26" x2="48" y2="14" stroke="var(--c)" stroke-width="3"/><circle cx="48" cy="11" r="4" fill="var(--c)"/>
+    </svg>`;
+  const msg = document.createElement("p"); msg.className = "cpu-msg"; msg.textContent = t.cpuThinking;
+  const bar = document.createElement("div"); bar.className = "cpu-bar";
+  const fill = document.createElement("div"); fill.className = "cpu-fill"; fill.id = "cpuFill"; bar.append(fill);
+  const hint = document.createElement("p"); hint.className = "cpu-hint"; hint.textContent = t.cpuHint;
+  box.append(msg, bar, hint);
+  zone.append(box);
+}
+function stopCpu(){ clearInterval(cpuTimer); cpuTimer = null; }
+function startCpu(){
+  stopCpu();
+  if (cfg.players !== 1) return;
+  let began = Date.now(), dur = cfg.cpuSecs * 1000 * (0.8 + Math.random()*0.4);
+  cpuTimer = setInterval(() => {
+    if (!playing) { stopCpu(); return; }
+    const f = Math.min(1, (Date.now() - began) / dur);
+    const fill = $("cpuFill"); if (fill) fill.style.width = (f*100).toFixed(1) + "%";
+    if (f >= 1){
+      const team = teams.B;
+      team.correct++; $("scoreB").textContent = num(team.correct, team.lang);
+      const panel = $("panelB"); panel.classList.remove("flash-ok"); void panel.offsetWidth; panel.classList.add("flash-ok");
+      beep([520,620], .1);
+      pull("B");
+      began = Date.now(); dur = cfg.cpuSecs * 1000 * (0.8 + Math.random()*0.4);
+    }
+  }, 80);
+}
+
 /* ---- la cuerda ---- */
 const MAX_SHIFT = 110; // unidades SVG hasta la línea de victoria
 function drawRope(){
@@ -818,7 +891,7 @@ function pull(side){
 }
 
 function finish(side){
-  playing = false; clearInterval(tick); lastWinner = side;
+  playing = false; clearInterval(tick); stopCpu(); lastWinner = side;
   const loser = $(side==="A" ? "teamBGroup" : "teamAGroup");
   loser.querySelectorAll(".pose").forEach(g => {
     g.setAttribute("transform", `rotate(${side==="A" ? -16 : 16} ${g.dataset.pivot})`);
@@ -834,6 +907,7 @@ function fillWin(){
   $("wsNameA").textContent = cfg.nameA; $("wsNameB").textContent = cfg.nameB;
   $("wsA").textContent = num(teams.A.correct, L); $("wsB").textContent = num(teams.B.correct, L);
   $("winTime").textContent = UI[L].time + ": " + num($("timer").textContent, L);
+  $("winPre").textContent = (lastWinner === "B" && cfg.players === 1) ? UI[L].cpuWinPre : UI[L].winPre;
 }
 
 function resetKids(){ document.querySelectorAll(".pose").forEach(g => g.removeAttribute("transform")); }
@@ -854,7 +928,7 @@ function showNames(){
 
 function start(){
   cfg.nameA = $("inA").value.trim() || UI[cfg.lang].teamA;
-  cfg.nameB = $("inB").value.trim() || UI[cfg.lang].teamB;
+  cfg.nameB = cfg.players === 1 ? UI[cfg.lang].cpuName : ($("inB").value.trim() || UI[cfg.lang].teamB);
   showNames();
   pos = 0; lastWinner = null; resetKids();
   teams.A = makeTeam("A"); teams.B = makeTeam("B");
@@ -865,7 +939,8 @@ function start(){
   playing = true; t0 = Date.now(); clearInterval(tick);
   $("timer").textContent = num("00:00", cfg.lang);
   tick = setInterval(() => $("timer").textContent = num(fmt(Date.now()-t0), cfg.lang), 250);
-  nextQuestion(teams.A); nextQuestion(teams.B);
+  nextQuestion(teams.A);
+  if (teams.B.cpu) { render(teams.B); startCpu(); } else nextQuestion(teams.B);
 }
 
 /* ================= Idiomas ================= */
@@ -898,6 +973,8 @@ function setLang(l){
   if (DEFAULT_NAMES.includes($("inB").value.trim())) $("inB").value = t.teamB;
   if (DEFAULT_NAMES.includes(cfg.nameA)) cfg.nameA = t.teamA;
   if (DEFAULT_NAMES.includes(cfg.nameB)) cfg.nameB = t.teamB;
+  if (teams.B?.cpu) cfg.nameB = t.cpuName;
+  updatePlayersUI();
   showNames();
   $("needText").textContent = num(t.need(cfg.target), l);
   $("timer").textContent = num(playing ? fmt(Date.now()-t0) : $("timer").textContent.replace(/[٠-٩]/g, d => AR_DIGITS.indexOf(d)), l);
@@ -912,6 +989,7 @@ function renderTeamLangs(){
   ["A","B"].forEach(s => {
     const team = teams[s]; if (!team) return;
     const box = $("lang"+s);
+    box.hidden = !!team.cpu;
     box.setAttribute("aria-label", UI[team.lang].teamLang);
     langButtons(box, team.lang, l => {
       team.lang = l; render(team); renderTeamLangs(); drawRope();
@@ -931,13 +1009,23 @@ function segment(id, key, cast){
   });
 }
 segment("modeSeg","mode",String);
+segment("playersSeg","players",Number);
+segment("cpuSeg","cpuSecs",Number);
+function updatePlayersUI(){
+  const solo = cfg.players === 1;
+  $("cpuField").hidden = !solo;
+  $("labelB").hidden = solo;
+  document.querySelector(".card .hint").hidden = solo;
+  $("namesLabel").textContent = solo ? UI[cfg.lang].nameLabelSolo : UI[cfg.lang].namesLabel;
+}
+$("playersSeg").addEventListener("click", updatePlayersUI);
 segment("levelSeg","level",Number);
 segment("targetSeg","target",Number);
 
 $("startBtn").addEventListener("click", start);
 $("againBtn").addEventListener("click", start);
 $("setupBtn2").addEventListener("click", () => { $("winBox").hidden = true; $("setup").hidden = false; });
-$("menuBtn").addEventListener("click", () => { playing=false; clearInterval(tick); $("winBox").hidden = true; $("setup").hidden = false; });
+$("menuBtn").addEventListener("click", () => { playing=false; clearInterval(tick); stopCpu(); $("winBox").hidden = true; $("setup").hidden = false; });
 $("soundBtn").addEventListener("click", e => {
   soundOn = !soundOn; e.currentTarget.textContent = soundOn ? UI[cfg.lang].soundOn : UI[cfg.lang].soundOff;
   e.currentTarget.setAttribute("aria-pressed", String(soundOn));
