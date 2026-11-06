@@ -176,10 +176,18 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .meter{display:flex;justify-content:space-between;font-size:.85rem;color:var(--sand-dim);font-weight:700}
 
 #rope{transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
-.kid{transform-box:fill-box}
-.pullA .kidA,.pullB .kidB{animation:tug .4s}
-@keyframes tug{0%,100%{translate:0 0}45%{translate:var(--tx) 0}}
-.kidA{--tx:-7px}.kidB{--tx:7px}
+.kid{transform-box:fill-box;transform-origin:50% 100%}
+.pullA .kidA,.pullB .kidB{animation:tug .55s ease-out}
+.pullA .kidB,.pullB .kidA{animation:stumble .55s ease-out}
+@keyframes tug{0%,100%{translate:0 0;rotate:0deg}35%{translate:var(--tx) 0;rotate:var(--rot)}}
+@keyframes stumble{0%,100%{translate:0 0;rotate:0deg}35%{translate:var(--sx) 2px;rotate:var(--srot)}}
+.kidA{--tx:-16px;--rot:-5deg;--sx:9px;--srot:4deg}
+.kidB{--tx:16px;--rot:5deg;--sx:-9px;--srot:-4deg}
+.flag{transform-box:fill-box;transform-origin:50% 0}
+.pullA .flag,.pullB .flag{animation:flag .6s ease-out}
+@keyframes flag{0%,100%{rotate:0deg}30%{rotate:14deg}60%{rotate:-10deg}}
+.winA .kidA,.winB .kidB{animation:jump .55s ease-in-out 5}
+@keyframes jump{0%,100%{translate:0 0}50%{translate:0 -14px}}
 .lantern{animation:sway 4s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 0}
 .lantern:nth-of-type(2n){animation-duration:5s}
 @keyframes sway{0%,100%{rotate:-4deg}50%{rotate:4deg}}
@@ -206,6 +214,64 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .win-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .win-stats div{background:var(--night);border-radius:12px;padding:10px 14px;font-weight:800}
 .win-stats b{font-family:var(--font-display);font-size:1.5rem;display:block}
+
+/* ---------- bienvenida, herramientas y niños ---------- */
+.hero{display:flex;align-items:center;gap:16px}
+.hero .logo{width:76px;height:76px;border-radius:20px;box-shadow:0 6px 18px rgba(0,0,0,.35);flex:none}
+.hero h2{margin:0}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+.tools .ghost{padding:10px 14px;font-size:.95rem;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;color:var(--sand)}
+#setup .seg button{padding:12px 16px;font-size:1.02rem}
+.seg button .emo{display:block;font-size:1.6rem;line-height:1.1;margin-bottom:4px}
+#modeSeg button,#ageSeg button{background:color-mix(in srgb,var(--tint,var(--night-3)) 22%,var(--night-3))}
+#modeSeg button[data-v="quiz"]{--tint:var(--teamA)} #modeSeg button[data-v="math"]{--tint:var(--gold)}
+#modeSeg button[data-v="arabic"]{--tint:var(--teamB)} #modeSeg button[data-v="mix"]{--tint:#c36fb0}
+#ageSeg button[data-v="1"]{--tint:#7cc576} #ageSeg button[data-v="2"]{--tint:#3fa58a} #ageSeg button[data-v="3"]{--tint:#2f7f6a}
+#modeSeg .emo.ar-ico{font-family:var(--font-ar);color:var(--gold)}
+.start{transition:transform .15s}
+.start:active{transform:scale(.97)}
+.seg .start{background:var(--gold);color:#2b1d00;border:none;font-size:1.25rem}
+.q-top{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:1.6em}
+.speak{background:var(--night-3);border:none;border-radius:999px;padding:3px 10px;font-size:.95rem;flex:none}
+.speak:hover{background:var(--c)}
+.stars{margin:0;font-size:clamp(1.3rem,2.6vw,2rem);text-align:center;letter-spacing:.05em;line-height:1.3}
+.opt.right{animation:pop .4s}
+@keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.07)}100%{transform:scale(1)}}
+.score.bump{animation:pop .45s}
+.toast-pop{position:absolute;left:50%;top:42%;translate:-50% -50%;background:var(--gold);color:#2b1d00;font-weight:900;font-size:1.15rem;padding:10px 18px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 22px rgba(0,0,0,.4);animation:toastIn 1.8s ease forwards;pointer-events:none;z-index:3}
+@keyframes toastIn{0%{opacity:0;scale:.6}15%{opacity:1;scale:1.08}25%{scale:1}80%{opacity:1}100%{opacity:0;translate:-50% -90%}}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:25}
+.medal-pop{position:fixed;top:max(16px,env(safe-area-inset-top,0px));left:50%;translate:-50% 0;z-index:40;background:var(--night-2);border:2px solid var(--gold);border-radius:18px;padding:10px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.medal-pop.show{animation:medalIn .5s ease}
+@keyframes medalIn{0%{opacity:0;translate:-50% -30px}100%{opacity:1;translate:-50% 0}}
+.medal-pop .mi{font-size:2.2rem}
+.medal-pop .mt{margin:0;font-size:.8rem;color:var(--gold);font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.medal-pop .mn{margin:0;font-weight:900;font-size:1.05rem}
+.medal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.medal{background:var(--night);border-radius:14px;padding:12px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;border:2px solid transparent}
+.medal .mi{font-size:2rem;filter:grayscale(1);opacity:.4}
+.medal.earned{border-color:var(--gold)}
+.medal.earned .mi{filter:none;opacity:1}
+.medal .mn{font-weight:800;font-size:.85rem;line-height:1.2}
+.medal .bar{width:100%;height:8px;background:var(--night-3);border-radius:999px;overflow:hidden}
+.medal .bar i{display:block;height:100%;background:var(--gold);border-radius:999px}
+.medal .cnt{font-size:.75rem;color:var(--sand-dim);font-variant-numeric:tabular-nums}
+.tut-art{width:120px;height:120px;border-radius:50%;background:var(--night);display:flex;align-items:center;justify-content:center;font-size:3.6rem;align-self:center;overflow:hidden;border:3px solid var(--gold)}
+.tut-art img{width:100%;height:100%;object-fit:cover}
+.tut-dots{display:flex;gap:8px;justify-content:center}
+.tut-dots i{width:10px;height:10px;border-radius:50%;background:var(--night-3)}
+.tut-dots i.on{background:var(--gold)}
+#tutBox .card{text-align:center;align-items:stretch}
+.row-btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.trace-card{max-width:560px}
+.trace-info{display:flex;align-items:baseline;justify-content:center;gap:10px;flex-wrap:wrap}
+.trace-info .tl{font-family:var(--font-ar);font-size:2rem;color:var(--gold)}
+.trace-info .tn{font-weight:900;font-size:1.2rem}
+.trace-info .tc{color:var(--sand-dim);font-size:.85rem;font-variant-numeric:tabular-nums}
+.trace-wrap{display:flex;justify-content:center}
+#traceCanvas{background:var(--night);border-radius:18px;border:2px dashed color-mix(in srgb,var(--gold) 45%,transparent);touch-action:none;max-width:100%;cursor:crosshair}
+.trace-msg{margin:0;text-align:center;font-weight:900;min-height:1.4em}
+.trace-msg.good{color:var(--ok)} .trace-msg.try{color:var(--gold)}
 
 /* ---------- pantallas estrechas ---------- */
 @media (max-width:900px) and (orientation:portrait){
@@ -249,6 +315,10 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
   .langs.small button{padding:1px 5px;font-size:.66rem;min-width:1.6em}
   .qzone{gap:5px!important;flex:1;min-height:0}
   .cat-tag{display:none}
+  .q-top{min-height:0}
+  .speak{padding:1px 8px;font-size:.75rem}
+  .stars{font-size:clamp(.9rem,5vh,1.3rem)}
+  .toast-pop{font-size:.85rem;padding:6px 12px}
   .question{font-size:clamp(.78rem,3.7vh,1.05rem);min-height:0;line-height:1.2}
   .question.math{font-size:clamp(1.1rem,7.5vh,1.7rem)}
   .story{font-size:.66rem;min-height:0;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -379,7 +449,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
             <path d="M250 200 Q300 202 350 197" stroke="#c9a06a" stroke-width="4" fill="none"/>
             <path d="M250 200 Q300 202 350 197" stroke="#8a6438" stroke-width="4" fill="none" stroke-dasharray="3 6"/>
             <!-- pañuelo central -->
-            <path d="M296 200 L304 200 L308 229 L300 223 L292 229Z" fill="#e9b949"/>
+            <path class="flag" d="M296 200 L304 200 L308 229 L300 223 L292 229Z" fill="#e9b949"/>
             <g id="teamAGroup">
               <g class="kid kidA"><g class="pose" data-pivot="155 296"><image href="assets/equipo-a.webp" x="40" y="103.2" width="230" height="192.8"/></g></g>
             </g>
@@ -403,11 +473,19 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 <!-- Configuración -->
 <div class="overlay" id="setup">
   <div class="card" role="dialog" aria-labelledby="setupTitle">
-    <p class="ar" lang="ar">ٱلسَّلَامُ عَلَيْكُمْ</p>
-    <h2 id="setupTitle" data-i18n="title">Tira de la Cuerda</h2>
+    <div class="hero">
+      <img class="logo" src="assets/icon-192.png" alt="" width="76" height="76">
+      <div><p class="ar" lang="ar">ٱلسَّلَامُ عَلَيْكُمْ</p><h2 id="setupTitle" data-i18n="title">Tira de la Cuerda</h2></div>
+    </div>
     <p data-i18n="intro">Dos equipos, una pantalla.</p>
-    <div class="seg"><button class="ghost install install-wide" id="installBtnSetup" type="button" hidden>Instalar app</button>
-    <button class="ghost install-wide" id="shareBtnSetup" type="button" data-i18n="feedbackBtn">Compartir y sugerencias</button></div>
+    <div class="tools">
+      <button class="ghost install" id="installBtnSetup" type="button" hidden>Instalar app</button>
+      <button class="ghost" id="howBtn" type="button" data-i18n="howBtn">❓ ¿Cómo se juega?</button>
+      <button class="ghost" id="traceBtn" type="button" data-i18n="traceBtn">✍️ Escribir letras árabes</button>
+      <button class="ghost" id="medalsBtn" type="button" data-i18n="medalsBtn">🏅 Mis medallas</button>
+      <button class="ghost" id="shareBtnSetup" type="button" data-i18n="feedbackBtn">Compartir y sugerencias</button>
+      <a class="ghost" id="parentsLink" href="padres.html" target="_blank" rel="noopener" data-i18n="parentsBtn">👪 Para padres y profesores</a>
+    </div>
 
     <div class="field"><span data-i18n="language">Idioma</span>
       <div class="seg" id="langSeg"></div>
@@ -428,12 +506,20 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
       </div>
     </div>
 
+    <div class="field"><span data-i18n="ageLabel">Edad de los jugadores</span>
+      <div class="seg" id="ageSeg">
+        <button type="button" data-v="1" aria-pressed="false"><span class="emo">🌱</span><span data-i18n="age1"></span><small data-i18n="age1Sub"></small></button>
+        <button type="button" data-v="2" aria-pressed="true"><span class="emo">🌿</span><span data-i18n="age2"></span><small data-i18n="age2Sub"></small></button>
+        <button type="button" data-v="3" aria-pressed="false"><span class="emo">🌳</span><span data-i18n="age3"></span><small data-i18n="age3Sub"></small></button>
+      </div>
+    </div>
+
     <div class="field"><span data-i18n="modeLabel">Modo de juego</span>
       <div class="seg" id="modeSeg">
-        <button type="button" data-v="quiz" aria-pressed="true"><span data-i18n="modeQuiz"></span><small data-i18n="modeQuizSub"></small></button>
-        <button type="button" data-v="math" aria-pressed="false"><span data-i18n="modeMath"></span><small data-i18n="modeMathSub"></small></button>
-        <button type="button" data-v="arabic" aria-pressed="false"><span data-i18n="modeArabic"></span><small data-i18n="modeArabicSub"></small></button>
-        <button type="button" data-v="mix" aria-pressed="false"><span data-i18n="modeMix"></span><small data-i18n="modeMixSub"></small></button>
+        <button type="button" data-v="quiz" aria-pressed="true"><span class="emo">📖</span><span data-i18n="modeQuiz"></span><small data-i18n="modeQuizSub"></small></button>
+        <button type="button" data-v="math" aria-pressed="false"><span class="emo">➕</span><span data-i18n="modeMath"></span><small data-i18n="modeMathSub"></small></button>
+        <button type="button" data-v="arabic" aria-pressed="false"><span class="emo ar-ico" lang="ar">أ ب</span><span data-i18n="modeArabic"></span><small data-i18n="modeArabicSub"></small></button>
+        <button type="button" data-v="mix" aria-pressed="false"><span class="emo">🎲</span><span data-i18n="modeMix"></span><small data-i18n="modeMixSub"></small></button>
       </div>
     </div>
 
@@ -443,14 +529,6 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 
     <div class="field" id="topicField" hidden><span data-i18n="topicLabel">Qué aprender de árabe</span>
       <div class="chips" id="topicChips"></div>
-    </div>
-
-    <div class="field" id="levelField"><span data-i18n="levelLabel">Nivel de las cuentas</span>
-      <div class="seg" id="levelSeg">
-        <button type="button" data-v="1" aria-pressed="true"><span data-i18n="lvl1"></span><small data-i18n="lvl1Sub"></small></button>
-        <button type="button" data-v="2" aria-pressed="false"><span data-i18n="lvl2"></span><small data-i18n="lvl2Sub"></small></button>
-        <button type="button" data-v="3" aria-pressed="false"><span data-i18n="lvl3"></span><small data-i18n="lvl3Sub"></small></button>
-      </div>
     </div>
 
     <div class="field"><span data-i18n="targetLabel">Tirones para ganar</span>
@@ -473,6 +551,49 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
     <button class="start" id="startBtn" type="button" data-i18n="start">Bismillah, ¡a jugar!</button>
   </div>
 </div>
+
+<!-- Cómo se juega -->
+<div class="overlay" id="tutBox" hidden>
+  <div class="card" role="dialog" aria-labelledby="tutTitle">
+    <div class="tut-art" id="tutArt"></div>
+    <h2 id="tutTitle"></h2>
+    <p id="tutText"></p>
+    <div class="tut-dots" id="tutDots"><i></i><i></i><i></i></div>
+    <button class="start" id="tutNext" type="button"></button>
+    <button class="ghost" id="tutSkip" type="button" data-i18n="skip" style="align-self:center">Saltar</button>
+  </div>
+</div>
+
+<!-- Medallas -->
+<div class="overlay" id="medalsBox" hidden>
+  <div class="card" role="dialog" aria-labelledby="medalsTitle">
+    <h2 id="medalsTitle" data-i18n="medalsTitle">Mis medallas</h2>
+    <p data-i18n="medalsIntro"></p>
+    <div class="medal-grid" id="medalGrid"></div>
+    <button class="ghost" id="medalsClose" type="button" data-i18n="closePanel" style="align-self:center">Cerrar</button>
+  </div>
+</div>
+<div class="medal-pop" id="medalPop" hidden role="status"><span class="mi"></span><div><p class="mt"></p><p class="mn"></p></div></div>
+
+<!-- Taller de letras -->
+<div class="overlay" id="traceBox" hidden>
+  <div class="card trace-card" role="dialog" aria-labelledby="traceTitle">
+    <h2 id="traceTitle" data-i18n="traceTitle">Taller de letras</h2>
+    <p data-i18n="traceHint"></p>
+    <div class="trace-info"><span class="tl" id="traceLetter" lang="ar"></span><span class="tn" id="traceName"></span><span class="tc" id="traceCount"></span></div>
+    <div class="trace-wrap"><canvas id="traceCanvas" width="300" height="300"></canvas></div>
+    <p class="trace-msg" id="traceMsg" aria-live="polite"></p>
+    <div class="row-btns">
+      <button class="ghost" id="tracePrev" type="button" data-i18n="prev">‹ Anterior</button>
+      <button class="ghost" id="traceSpeak" type="button">🔊</button>
+      <button class="ghost" id="traceClear" type="button" data-i18n="clear">Borrar</button>
+      <button class="ghost" id="traceNext" type="button" data-i18n="nextLetter">Siguiente ›</button>
+    </div>
+    <button class="start" id="traceDone" type="button" data-i18n="done">¡Listo!</button>
+    <button class="ghost" id="traceClose" type="button" data-i18n="closePanel" style="align-self:center">Cerrar</button>
+  </div>
+</div>
+<canvas id="confetti" hidden></canvas>
 
 <!-- Compartir y sugerencias -->
 <div class="overlay" id="sharePanel" hidden>
@@ -551,6 +672,13 @@ const SHORT = { es:"ES", en:"EN", ar:"ع" };
 const UI = {
   es:{
     title:"Tira de la Cuerda", newGame:"Nueva partida", soundOn:"Sonido: sí", soundOff:"Sonido: no",
+    ageLabel:"Edad de los jugadores", age1:"Pequeños", age1Sub:"4–6 años · fácil, con estrellas", age2:"Medianos", age2Sub:"7–9 años · sumas hasta 20", age3:"Mayores", age3Sub:"10–12 años · todo, sumas y restas hasta 50",
+    readAloud:"Leer en voz alta", starsStory:"Cuenta las estrellas: ¿cuántas hay en total?",
+    streak3:"¡3 seguidas! ⭐", streak5:"¡5 seguidas! 🌟", streak10:"¡10 seguidas! 🏆 ¡Imparable!",
+    newMedal:"¡Nueva medalla!", medalsBtn:"🏅 Mis medallas", medalsTitle:"Mis medallas", medalsIntro:"Consigue una medalla con 10 respuestas correctas de cada tema. Se guardan en este dispositivo.", medalMath:"Sumas", medalTrace:"Escribir letras",
+    howBtn:"❓ ¿Cómo se juega?", tut1T:"Responde las preguntas", tut1:"Cada equipo tiene sus preguntas en su lado de la pantalla. Toca la respuesta correcta.", tut2T:"¡Tira de la cuerda!", tut2:"Cada acierto tira de la cuerda hacia tu equipo. Si fallas, no pasa nada: verás la respuesta correcta y aprenderás.", tut3T:"Llega a tu línea", tut3:"Gana el equipo que lleve el pañuelo dorado hasta su línea. ¡Y consigue medallas aprendiendo cada tema!", next:"Siguiente", letsPlay:"¡A jugar!", skip:"Saltar",
+    traceBtn:"✍️ Escribir letras árabes", traceTitle:"Taller de letras", traceHint:"Repasa la letra con el dedo siguiendo la sombra.", clear:"Borrar", done:"¡Listo!", prev:"‹ Anterior", nextLetter:"Siguiente ›", traceGood:"¡Muy bien! ⭐", traceTry:"Casi… ¡inténtalo otra vez!", traceEmpty:"Primero dibuja la letra con el dedo.",
+    parentsBtn:"👪 Para padres y profesores",
     feedbackBtn:"Compartir y sugerencias", shareTitle:"Comparte el juego", shareNative:"Compartir…", copy:"Copiar enlace", copied:"Enlace copiado",
     shareText:"Juega a Islamic Tug of War: un juego por equipos para aprender sobre el Islam, el árabe y las sumas.",
     qrHint:"Escanea el código con la cámara para abrir el juego.", fbTitle:"Quejas y sugerencias",
@@ -582,6 +710,13 @@ const UI = {
   },
   en:{
     title:"Tug of War", newGame:"New game", soundOn:"Sound: on", soundOff:"Sound: off",
+    ageLabel:"Players' age", age1:"Little ones", age1Sub:"Ages 4–6 · easy, with stars", age2:"Middle", age2Sub:"Ages 7–9 · sums up to 20", age3:"Older", age3Sub:"Ages 10–12 · everything, sums and subtractions up to 50",
+    readAloud:"Read aloud", starsStory:"Count the stars: how many are there in total?",
+    streak3:"3 in a row! ⭐", streak5:"5 in a row! 🌟", streak10:"10 in a row! 🏆 Unstoppable!",
+    newMedal:"New medal!", medalsBtn:"🏅 My medals", medalsTitle:"My medals", medalsIntro:"Earn a medal with 10 correct answers in each topic. They're saved on this device.", medalMath:"Sums", medalTrace:"Writing letters",
+    howBtn:"❓ How to play", tut1T:"Answer the questions", tut1:"Each team has its own questions on its side of the screen. Tap the right answer.", tut2T:"Pull the rope!", tut2:"Every right answer pulls the rope towards your team. If you get one wrong, that's okay: you'll see the right answer and learn.", tut3T:"Reach your line", tut3:"The team that brings the golden ribbon to its line wins. Earn medals as you learn each topic!", next:"Next", letsPlay:"Let's play!", skip:"Skip",
+    traceBtn:"✍️ Write Arabic letters", traceTitle:"Letter workshop", traceHint:"Trace the letter with your finger, following the shadow.", clear:"Clear", done:"Done!", prev:"‹ Previous", nextLetter:"Next ›", traceGood:"Well done! ⭐", traceTry:"Almost… try again!", traceEmpty:"First draw the letter with your finger.",
+    parentsBtn:"👪 For parents and teachers",
     feedbackBtn:"Share & feedback", shareTitle:"Share the game", shareNative:"Share…", copy:"Copy link", copied:"Link copied",
     shareText:"Play Islamic Tug of War: a team game to learn about Islam, Arabic and sums.",
     qrHint:"Scan the code with a camera to open the game.", fbTitle:"Complaints & suggestions",
@@ -613,6 +748,13 @@ const UI = {
   },
   ar:{
     title:"شدّ الحبل", newGame:"لعبة جديدة", soundOn:"الصوت: يعمل", soundOff:"الصوت: متوقف",
+    ageLabel:"عمر اللاعبين", age1:"الصغار", age1Sub:"4–6 سنوات · سهل مع النجوم", age2:"المتوسطون", age2Sub:"7–9 سنوات · الجمع حتى 20", age3:"الكبار", age3Sub:"10–12 سنة · كل شيء، الجمع والطرح حتى 50",
+    readAloud:"اقرأ بصوت عالٍ", starsStory:"عُدّ النجوم: كم عددها كلها؟",
+    streak3:"3 متتالية! ⭐", streak5:"5 متتالية! 🌟", streak10:"10 متتالية! 🏆 لا يُوقَف!",
+    newMedal:"وسام جديد!", medalsBtn:"🏅 أوسمتي", medalsTitle:"أوسمتي", medalsIntro:"احصل على وسام بعد 10 إجابات صحيحة في كل موضوع. تُحفظ على هذا الجهاز.", medalMath:"الجمع", medalTrace:"كتابة الحروف",
+    howBtn:"❓ كيف نلعب؟", tut1T:"أجب عن الأسئلة", tut1:"لكل فريق أسئلته في جهته من الشاشة. اضغط على الإجابة الصحيحة.", tut2T:"اشدد الحبل!", tut2:"كل إجابة صحيحة تشدّ الحبل نحو فريقك. إذا أخطأت فلا بأس: سترى الإجابة الصحيحة وتتعلّم.", tut3T:"صِل إلى خطّك", tut3:"يفوز الفريق الذي يوصل الشريط الذهبي إلى خطّه. واجمع الأوسمة وأنت تتعلّم كل موضوع!", next:"التالي", letsPlay:"هيا نلعب!", skip:"تخطَّ",
+    traceBtn:"✍️ اكتب الحروف العربية", traceTitle:"ورشة الحروف", traceHint:"مرّر إصبعك على الحرف متّبعًا الظلّ.", clear:"مسح", done:"انتهيت!", prev:"السابق", nextLetter:"التالي", traceGood:"أحسنت! ⭐", traceTry:"اقتربت… حاول مرة أخرى!", traceEmpty:"ارسم الحرف بإصبعك أولًا.",
+    parentsBtn:"👪 للآباء والمعلمين",
     feedbackBtn:"شارك واقترح", shareTitle:"شارك اللعبة", shareNative:"مشاركة…", copy:"نسخ الرابط", copied:"تم نسخ الرابط",
     shareText:"العب «شدّ الحبل»: لعبة جماعية لتعلّم الإسلام والعربية والحساب.",
     qrHint:"امسح الرمز بالكاميرا لفتح اللعبة.", fbTitle:"الشكاوى والاقتراحات",
@@ -938,6 +1080,9 @@ function sourceText(i, L){
   }).join(" · ");
 }
 
+/* ---- Dificultad de cada pregunta: 1 = pequeños (4–6), 2 = medianos (7–9), 3 = mayores (10–12) ---- */
+const DIFF = [1, 1, 2, 1, 1, 2, 2, 3, 3, 3, 2, 2, 2, 3, 3, 1, 2, 2, 3, 3, 3, 1, 1, 2, 2, 2, 2, 1, 2, 2, 3, 1, 1, 2, 1, 2, 2, 2, 3, 3, 1, 1, 3, 3, 3, 3, 2, 1, 1, 1, 2, 2, 2, 3, 3, 3, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 1, 2, 2, 2, 3, 3, 2, 1, 2, 3, 3, 3, 1, 3, 3, 1, 1, 2, 2];
+
 /* ---- Categorías de las preguntas islámicas (posición de cada pregunta en las listas) ---- */
 const CATS = {
   fe:       { es:"Pilares y fe", en:"Pillars & faith", ar:"الأركان والإيمان", q:[0,2,24,25,60,71,72,73,74] },
@@ -1037,47 +1182,89 @@ const store = {
 };
 
 /* ================= Sonido ================= */
-let soundOn = true, actx = null;
-function beep(freqs, dur=.12, type="triangle", gap=.09){
-  if (!soundOn) return;
+let soundOn = true, actx = null, master = null, fx = null;
+function audio(){
+  if (!soundOn) return null;
   try {
-    actx = actx || new (window.AudioContext||window.webkitAudioContext)();
-    freqs.forEach((f,i) => {
-      const o = actx.createOscillator(), g = actx.createGain(), t = actx.currentTime + i*gap;
-      o.type = type; o.frequency.value = f;
-      g.gain.setValueAtTime(.0001,t); g.gain.exponentialRampToValueAtTime(.25,t+.02); g.gain.exponentialRampToValueAtTime(.0001,t+dur);
-      o.connect(g).connect(actx.destination); o.start(t); o.stop(t+dur+.02);
-    });
-  } catch(e) {}
+    if (!actx){
+      actx = new (window.AudioContext||window.webkitAudioContext)();
+      master = actx.createGain(); master.gain.value = .55; master.connect(actx.destination);
+      // pequeño eco para que las campanitas suenen suaves
+      const d = actx.createDelay(); d.delayTime.value = .13;
+      const fb = actx.createGain(); fb.gain.value = .25;
+      const wet = actx.createGain(); wet.gain.value = .2;
+      d.connect(fb); fb.connect(d); d.connect(wet); wet.connect(master); fx = d;
+    }
+    if (actx.state === "suspended") actx.resume();
+    return actx;
+  } catch(e){ return null; }
 }
-const sOk = () => beep([660,880]);
-const sBad = () => beep([220,165],.18,"sawtooth",.1);
-const sWin = () => beep([523,659,784,1046,784,1046],.22,"triangle",.14);
+function chime(freq, t0 = 0, dur = .7, vol = .3){
+  const a = audio(); if (!a) return;
+  const t = a.currentTime + t0;
+  [[1, vol, "sine"], [2, vol*.22, "sine"], [3, vol*.07, "triangle"]].forEach(([m, v, type]) => {
+    const o = a.createOscillator(), g = a.createGain();
+    o.type = type; o.frequency.value = freq*m;
+    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(v, t+.008); g.gain.exponentialRampToValueAtTime(.0001, t + dur/m);
+    o.connect(g); g.connect(master); g.connect(fx); o.start(t); o.stop(t + dur + .05);
+  });
+}
+function whoosh(){
+  const a = audio(); if (!a) return;
+  const t = a.currentTime, len = .28, buf = a.createBuffer(1, Math.floor(a.sampleRate*len), a.sampleRate), ch = buf.getChannelData(0);
+  for (let i = 0; i < ch.length; i++) ch[i] = Math.random()*2 - 1;
+  const src = a.createBufferSource(), bp = a.createBiquadFilter(), g = a.createGain();
+  src.buffer = buf; bp.type = "bandpass"; bp.Q.value = 1.2;
+  bp.frequency.setValueAtTime(380, t); bp.frequency.exponentialRampToValueAtTime(1500, t + len);
+  g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.16, t + .06); g.gain.exponentialRampToValueAtTime(.0001, t + len);
+  src.connect(bp); bp.connect(g); g.connect(master); src.start(t);
+}
+function bonk(){
+  const a = audio(); if (!a) return;
+  const t = a.currentTime, o = a.createOscillator(), g = a.createGain(), lp = a.createBiquadFilter();
+  o.type = "sine"; o.frequency.setValueAtTime(330, t); o.frequency.exponentialRampToValueAtTime(175, t + .22);
+  lp.type = "lowpass"; lp.frequency.value = 900;
+  g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.22, t + .015); g.gain.exponentialRampToValueAtTime(.0001, t + .3);
+  o.connect(lp); lp.connect(g); g.connect(master); o.start(t); o.stop(t + .32);
+}
+const sOk = () => { chime(659.25); chime(987.77, .09); };
+const sBad = () => bonk();
+const sPull = () => whoosh();
+const sStar = () => [1318.5, 1568, 2093].forEach((f, i) => chime(f, i*.07, .5, .16));
+const sWin = () => {
+  [523.25, 587.33, 659.25, 783.99, 880, 1046.5].forEach((f, i) => chime(f, i*.11, .9, .26));
+  [523.25, 659.25, 783.99].forEach(f => chime(f, .8, 1.8, .16));
+};
 
 /* ================= Estado ================= */
 const saved = store.get("tdc-lang");
-const cfg = { lang: UI[saved] ? saved : "es", mode:"quiz", level:1, target:7, nameA:"Media Luna", nameB:"Estrella", players:2, cpuSecs:6,
+const cfg = { lang: UI[saved] ? saved : "es", mode:"quiz", age:2, target:7, nameA:"Media Luna", nameB:"Estrella", players:2, cpuSecs:6,
               cats: new Set(Object.keys(CATS)), topics: new Set(Object.keys(TOPICS)) };
 let cpuTimer = null;
 let pos = 0, playing = false, t0 = 0, tick = null, lastWinner = null;
 const teams = { A: null, B: null };
 
 function makeTeam(side){
-  return { side, lang: cfg.lang, correct:0, deck:quizDeck(), di:0, q:null, input:"", locked:false, recent:[],
+  return { side, lang: cfg.lang, correct:0, streak:0, deck:quizDeck(), di:0, q:null, input:"", locked:false, recent:[],
            cpu: side === "B" && cfg.players === 1 };
 }
 
 /* ---- generación de preguntas (independientes del idioma) ---- */
 function mathQuestion(){
   let a,b,op="+";
-  if (cfg.level===1){ a=rnd(1,9); b=rnd(1,10-a); }
-  else if (cfg.level===2){ a=rnd(2,15); b=rnd(1,20-a); }
+  const level = cfg.age===1 ? 0 : cfg.age===2 ? (Math.random() < .5 ? 1 : 2) : 3;
+  if (level===0){ a=rnd(1,4); b=rnd(1,5-a); }
+  else if (level===1){ a=rnd(1,9); b=rnd(1,10-a); }
+  else if (level===2){ a=rnd(2,15); b=rnd(1,20-a); }
   else { if (Math.random()<.5){ a=rnd(5,35); b=rnd(2,50-a);} else { op="−"; a=rnd(10,50); b=rnd(2,a-1);} }
-  return { type:"math", a, b, op, ni:rnd(0,NAMES.length-1), ii:rnd(0,ITEMS.length-1), answer: op==="+" ? a+b : a-b };
+  return { type:"math", a, b, op, stars: level===0, ni:rnd(0,NAMES.length-1), ii:rnd(0,ITEMS.length-1), answer: op==="+" ? a+b : a-b };
 }
 function quizDeck(){
-  const ids = [...QUIZ_ES.keys()].filter(i => cfg.cats.has(CAT_OF[i]));
-  return shuffle(ids.length ? ids : [...QUIZ_ES.keys()]);
+  const inCat = [...QUIZ_ES.keys()].filter(i => cfg.cats.has(CAT_OF[i]));
+  const byAge = inCat.filter(i => DIFF[i] <= cfg.age);
+  // si el tema elegido no tiene bastantes preguntas para esa edad, se usan todas las del tema
+  const ids = byAge.length >= 4 ? byAge : inCat.length ? inCat : [...QUIZ_ES.keys()];
+  return shuffle(ids);
 }
 function quizQuestion(team){
   if (team.di >= team.deck.length){ team.deck = quizDeck(); team.di = 0; }
@@ -1087,27 +1274,31 @@ function quizQuestion(team){
 function pickOthers(n, total, correct, ok = () => true){
   return shuffle([...Array(total).keys()].filter(i => i !== correct && ok(i))).slice(0, n);
 }
+function topicSize(topic){
+  const small = cfg.age === 1;   // pequeños: primeras 10 letras y números del 1 al 5
+  return topic==="letras" ? (small ? 10 : LETTERS.length) : topic==="numeros" ? (small ? 5 : NUMBERS.length) : topic==="saludos" ? PHRASES.length : WORDS[topic].length;
+}
 function arabicQuestion(team){
   const topics = [...cfg.topics];
   let topic, item, tries = 0;
   do {
     topic = topics[rnd(0, topics.length-1)];
-    const size = topic==="letras" ? LETTERS.length : topic==="numeros" ? NUMBERS.length : topic==="saludos" ? PHRASES.length : WORDS[topic].length;
+    const size = topicSize(topic);
     item = rnd(0, size-1);
   } while ((team.recent.includes(topic+item) || (team.lang==="ar" && topic==="saludos" && topics.length>1)) && ++tries < 20);
   team.recent = [topic+item, ...team.recent].slice(0, 6);
   if (topic === "letras"){
     const grp = LETTERS[item][3];
-    const others = pickOthers(3, LETTERS.length, item, i => !grp || LETTERS[i][3] !== grp);
+    const others = pickOthers(3, topicSize("letras"), item, i => !grp || LETTERS[i][3] !== grp);
     return { type:"arabic", kind:"letter", topic, items:[item, ...others], order: shuffle([0,1,2,3]) };
   }
   if (topic === "numeros"){
-    return { type:"arabic", kind:"number", topic, items:[item, ...pickOthers(3, NUMBERS.length, item)], order: shuffle([0,1,2,3]) };
+    return { type:"arabic", kind:"number", topic, items:[item, ...pickOthers(3, topicSize("numeros"), item)], order: shuffle([0,1,2,3]) };
   }
   if (topic === "saludos"){
     return { type:"arabic", kind:"phrase", topic, items:[item, ...pickOthers(3, PHRASES.length, item)], order: shuffle([0,1,2,3]) };
   }
-  const kind = Math.random() < .5 ? "pic" : "word";
+  const kind = cfg.age === 1 ? "word" : Math.random() < .5 ? "pic" : "word";   // pequeños: escuchan la palabra y eligen el dibujo
   return { type:"arabic", kind, topic, items:[item, ...pickOthers(3, WORDS[topic].length, item)], order: shuffle([0,1,2,3]) };
 }
 function nextQuestion(team){
@@ -1119,15 +1310,55 @@ function nextQuestion(team){
   render(team);
 }
 
-/* ---- voz en árabe (si el navegador tiene una voz árabe) ---- */
-let arVoice = null;
-function findVoice(){
-  try { arVoice = speechSynthesis.getVoices().find(v => /^ar/i.test(v.lang)) || null; } catch(e){ arVoice = null; }
+/* ---- voz: leer en voz alta en español, inglés y árabe ---- */
+let voices = [], arVoice = null;
+function loadVoices(){
+  try { voices = speechSynthesis.getVoices() || []; } catch(e){ voices = []; }
+  arVoice = voiceFor("ar");
 }
-try { findVoice(); speechSynthesis.addEventListener("voiceschanged", () => { findVoice(); ["A","B"].forEach(s => teams[s] && teams[s].q?.type==="arabic" && !teams[s].locked && render(teams[s])); }); } catch(e){}
-function speakAr(text){
-  if (!arVoice || !soundOn) return;
-  try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.voice = arVoice; u.lang = arVoice.lang; u.rate = .8; speechSynthesis.speak(u); } catch(e){}
+function voiceFor(l){ return voices.find(v => v.lang && v.lang.toLowerCase().startsWith(l)) || null; }
+try { loadVoices(); speechSynthesis.addEventListener("voiceschanged", () => { loadVoices(); ["A","B"].forEach(s => teams[s] && teams[s].q && !teams[s].locked && render(teams[s])); }); } catch(e){}
+function speakSeq(parts){
+  if (!soundOn || !("speechSynthesis" in window)) return;
+  try {
+    speechSynthesis.cancel();
+    parts.forEach(([text, l]) => {
+      if (!text) return;
+      const u = new SpeechSynthesisUtterance(text), v = voiceFor(l);
+      if (v) u.voice = v;
+      u.lang = v ? v.lang : ({ es:"es-ES", en:"en-US", ar:"ar-SA" })[l];
+      u.rate = l === "ar" ? .8 : .92;
+      speechSynthesis.speak(u);
+    });
+  } catch(e){}
+}
+function speakAr(text){ if (arVoice) speakSeq([[text, "ar"]]); }
+function readQuestion(team){
+  const q = team.q, L = team.lang, t = UI[L]; if (!q) return;
+  const parts = [];
+  if (q.type === "quiz"){
+    const row = QUIZ[L][q.idx];
+    parts.push([row[0], L]); q.order.forEach(k => parts.push([row[k+1], L]));
+  } else if (q.type === "math"){
+    parts.push([q.stars ? t.starsStory : storyText(q, L), L]);
+  } else {
+    parts.push([{ letter:t.qLetter, number:t.qNumber, pic:t.qPic, word:t.qWord, phrase:t.qPhrase }[q.kind], L]);
+    if (q.kind !== "pic") parts.push([arabicSpoken(q), "ar"]);
+    else q.order.forEach(k => parts.push([WORDS[q.topic][q.items[k]][1], "ar"]));
+  }
+  speakSeq(parts);
+}
+function topRow(zone, tagText, team){
+  const row = document.createElement("div"); row.className = "q-top";
+  const tag = document.createElement("p"); tag.className = "cat-tag"; tag.textContent = tagText;
+  row.append(tag);
+  if ("speechSynthesis" in window){
+    const b = document.createElement("button"); b.type = "button"; b.className = "speak"; b.textContent = "🔊";
+    b.title = b.ariaLabel = UI[team.lang].readAloud;
+    b.addEventListener("click", () => readQuestion(team));
+    row.append(b);
+  }
+  zone.append(row);
 }
 function arabicSpoken(q){
   const i = q.items[0];
@@ -1145,7 +1376,7 @@ function picEl(pic){
 }
 function renderArabic(team, zone){
   const q = team.q, L = team.lang, t = UI[L], showTr = L !== "ar";
-  const tag = document.createElement("p"); tag.className = "cat-tag"; tag.textContent = t.learnTag + " · " + TOPICS[q.topic][L]; zone.append(tag);
+  topRow(zone, t.learnTag + " · " + TOPICS[q.topic][L], team);
   const prompt = { letter:t.qLetter, number:t.qNumber, pic:t.qPic, word:t.qWord, phrase:t.qPhrase }[q.kind];
   const h = document.createElement("p"); h.className = "question"; h.style.minHeight = "auto"; h.textContent = prompt; zone.append(h);
   // tarjeta con lo que hay que reconocer
@@ -1212,7 +1443,7 @@ function render(team){
   if (q.type==="arabic"){ renderArabic(team, zone); return; }
   if (q.type==="quiz"){
     const row = QUIZ[L][q.idx];
-    const tag = document.createElement("p"); tag.className = "cat-tag"; tag.textContent = CATS[CAT_OF[q.idx]][L]; zone.append(tag);
+    topRow(zone, CATS[CAT_OF[q.idx]][L], team);
     const h = document.createElement("p"); h.className="question"; h.textContent = num(row[0], L); zone.append(h);
     const box = document.createElement("div"); box.className="options";
     q.order.forEach(k => {
@@ -1226,7 +1457,9 @@ function render(team){
     src.textContent = UI[L].source + ": " + num(sourceText(q.idx, L), L);
     zone.append(src);
   } else {
-    const s = document.createElement("p"); s.className="story"; s.textContent = num(storyText(q, L), L); zone.append(s);
+    topRow(zone, t.modeMath, team);
+    const s = document.createElement("p"); s.className="story"; s.textContent = num(q.stars ? t.starsStory : storyText(q, L), L); zone.append(s);
+    if (q.stars){ const st = document.createElement("p"); st.className = "stars"; st.dir = "ltr"; st.textContent = "⭐".repeat(q.a) + " + " + "⭐".repeat(q.b); zone.append(st); }
     const h = document.createElement("p"); h.className="question math";
     h.textContent = num(`${q.a} ${q.op} ${q.b} = ${L==="ar" ? "؟" : "?"}`, L); zone.append(h);
     const d = document.createElement("div"); d.className="display"; d.id="disp"+team.side; d.dir="ltr"; zone.append(d);
@@ -1242,6 +1475,7 @@ function render(team){
     zone.append(pad);
     updateDisplay(team);
   }
+  if (cfg.age === 1 && cfg.players === 1 && team.side === "A" && playing && !team.locked) setTimeout(() => team.q === q && readQuestion(team), 350);
 }
 
 function updateDisplay(team){
@@ -1273,13 +1507,18 @@ function check(team, ok, delay=0){
   panel.classList.remove("flash-ok","flash-bad"); void panel.offsetWidth;
   if (ok){
     panel.classList.add("flash-ok"); sOk();
-    team.correct++; $("score"+team.side).textContent = num(team.correct, team.lang);
+    team.correct++; bumpScore(team);
+    team.streak++;
+    if (team.streak === 3 || team.streak === 5 || team.streak === 10){
+      toast(team, UI[team.lang]["streak" + team.streak]); setTimeout(sStar, 250);
+    }
+    addProgress(progressKey(team.q));
     pull(team.side);
     if (!playing) return;
     team.locked = true;
     setTimeout(() => playing && nextQuestion(team), delay || 350);
   } else {
-    panel.classList.add("flash-bad"); sBad();
+    panel.classList.add("flash-bad"); sBad(); team.streak = 0;
     if (team.q.type==="math"){ team.input=""; updateDisplay(team); team.locked=false; }
     else setTimeout(() => playing && nextQuestion(team), delay);
   }
@@ -1313,9 +1552,8 @@ function startCpu(){
     const fill = $("cpuFill"); if (fill) fill.style.width = (f*100).toFixed(1) + "%";
     if (f >= 1){
       const team = teams.B;
-      team.correct++; $("scoreB").textContent = num(team.correct, team.lang);
+      team.correct++; bumpScore(team);
       const panel = $("panelB"); panel.classList.remove("flash-ok"); void panel.offsetWidth; panel.classList.add("flash-ok");
-      beep([520,620], .1);
       pull("B");
       began = Date.now(); dur = cfg.cpuSecs * 1000 * (0.8 + Math.random()*0.4);
     }
@@ -1329,7 +1567,16 @@ function drawRope(){
   $("pullsA").textContent = num(Math.max(0,-pos), teams.A?.lang || cfg.lang);
   $("pullsB").textContent = num(Math.max(0,pos), teams.B?.lang || cfg.lang);
 }
+function bumpScore(team){
+  const el = $("score"+team.side); el.textContent = num(team.correct, team.lang);
+  el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump");
+}
+function toast(team, text){
+  const el = document.createElement("div"); el.className = "toast-pop"; el.textContent = num(text, team.lang);
+  $("panel"+team.side).append(el); setTimeout(() => el.remove(), 1900);
+}
 function pull(side){
+  sPull();
   pos += side==="A" ? -1 : 1;
   drawRope();
   const scene = $("scene");
@@ -1345,7 +1592,9 @@ function finish(side){
     g.setAttribute("transform", `rotate(${side==="A" ? -16 : 16} ${g.dataset.pivot})`);
   });
   sWin();
-  setTimeout(() => { fillWin(); $("winBox").hidden = false; $("againBtn").focus(); }, 900);
+  $("scene").classList.add(side==="A" ? "winA" : "winB");
+  confetti();
+  setTimeout(() => { fillWin(); $("winBox").hidden = false; $("againBtn").focus(); }, 1100);
 }
 function fillWin(){
   if (!lastWinner) return;
@@ -1389,7 +1638,7 @@ function start(){
   cfg.nameA = $("inA").value.trim() || UI[cfg.lang].teamA;
   cfg.nameB = cfg.players === 1 ? UI[cfg.lang].cpuName : ($("inB").value.trim() || UI[cfg.lang].teamB);
   showNames();
-  pos = 0; lastWinner = null; resetKids();
+  pos = 0; lastWinner = null; resetKids(); $("scene").classList.remove("winA","winB");
   teams.A = makeTeam("A"); teams.B = makeTeam("B");
   drawRope(); renderTeamLangs();
   $("scoreA").textContent = num(0, teams.A.lang); $("scoreB").textContent = num(0, teams.B.lang);
@@ -1443,6 +1692,9 @@ function setLang(l){
   langButtons($("langTop"), l, setLang, true);
   ["A","B"].forEach(s => { if (teams[s]) { teams[s].lang = l; render(teams[s]); $("score"+s).textContent = num(teams[s].correct, l); } });
   renderTeamLangs(); drawRope(); fillWin();
+  if (!$("tutBox").hidden) showTut(tutStep);
+  if (!$("medalsBox").hidden) openMedals();
+  if (!$("traceBox").hidden) traceLetterInfo();
 }
 
 // Idioma propio de cada equipo
@@ -1493,7 +1745,6 @@ function renderChips(boxId, defs, set){
 function updateModeUI(){
   $("catField").hidden = !(cfg.mode === "quiz" || cfg.mode === "mix");
   $("topicField").hidden = !(cfg.mode === "arabic" || cfg.mode === "mix");
-  $("levelField").hidden = !(cfg.mode === "math" || cfg.mode === "mix");
   renderChips("catChips", CATS, cfg.cats);
   renderChips("topicChips", TOPICS, cfg.topics);
 }
@@ -1508,7 +1759,7 @@ function updatePlayersUI(){
   $("namesLabel").textContent = solo ? UI[cfg.lang].nameLabelSolo : UI[cfg.lang].namesLabel;
 }
 $("playersSeg").addEventListener("click", updatePlayersUI);
-segment("levelSeg","level",Number);
+segment("ageSeg","age",Number);
 segment("targetSeg","target",Number);
 
 $("startBtn").addEventListener("click", start);
@@ -1526,6 +1777,168 @@ teams.A = makeTeam("A"); teams.B = makeTeam("B");
 teams.A.q = quizQuestion(teams.A);
 teams.B.q = mathQuestion();
 pos = -2;
+/* ---- celebración: estrellas y lunas ---- */
+function confetti(){
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const c = $("confetti"), x = c.getContext("2d"), dpr = devicePixelRatio || 1;
+  c.width = innerWidth*dpr; c.height = innerHeight*dpr; c.hidden = false;
+  const cols = ["#e9b949", "#f4e7c9", "#2fa36b", "#5a74e0", "#f6e3a8"];
+  const P = Array.from({ length: 90 }, () => ({
+    x: Math.random()*c.width, y: -Math.random()*c.height*.6, vx: (Math.random()-.5)*2.2*dpr, vy: (2 + Math.random()*3)*dpr,
+    r: (6 + Math.random()*9)*dpr, a: Math.random()*6.28, va: (Math.random()-.5)*.2, col: cols[Math.random()*cols.length|0], moon: Math.random() < .35 }));
+  const t0 = performance.now();
+  (function frame(t){
+    x.clearRect(0, 0, c.width, c.height);
+    P.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.a += p.va;
+      x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.col; x.beginPath();
+      if (p.moon){ x.arc(0, 0, p.r, 0, Math.PI*2); x.arc(p.r*.45, -p.r*.2, p.r*.85, 0, Math.PI*2, true); x.fill("evenodd"); }
+      else { for (let i = 0; i < 10; i++){ const rr = i % 2 ? p.r*.45 : p.r, an = i*Math.PI/5 - Math.PI/2; x.lineTo(Math.cos(an)*rr, Math.sin(an)*rr); } x.closePath(); x.fill(); }
+      x.restore();
+    });
+    if (t - t0 < 3600) requestAnimationFrame(frame); else { x.clearRect(0, 0, c.width, c.height); c.hidden = true; }
+  })(t0);
+}
+
+/* ---- medallas (se guardan solo en este dispositivo) ---- */
+const PROG_KEY = "tdc-progress", MEDAL_AT = 10;
+const prog = (() => { try { return JSON.parse(store.get(PROG_KEY)) || {}; } catch(e){ return {}; } })();
+prog.c = prog.c || {}; prog.traced = prog.traced || [];
+const MEDALS = { "cat:fe":"🤲", "cat:salah":"🕌", "cat:ayuno":"🌙", "cat:coran":"📖", "cat:profetas":"⛵", "cat:historia":"🐪", "cat:hayy":"🕋", "cat:adab":"💚",
+  "topic:letras":"🔤", "topic:numeros":"🔢", "topic:animales":"🐱", "topic:comida":"🍎", "topic:colores":"🎨", "topic:familia":"👪", "topic:cosas":"⭐", "topic:saludos":"👋",
+  "math":"➕", "trace":"✍️" };
+function saveProg(){ store.set(PROG_KEY, JSON.stringify(prog)); }
+function progressKey(q){ return q.type === "quiz" ? "cat:" + CAT_OF[q.idx] : q.type === "arabic" ? "topic:" + q.topic : "math"; }
+function medalCount(key){ return key === "trace" ? prog.traced.length : (prog.c[key] || 0); }
+function medalName(key, L){
+  if (key === "math") return UI[L].medalMath;
+  if (key === "trace") return UI[L].medalTrace;
+  const [k, id] = key.split(":"); return (k === "cat" ? CATS : TOPICS)[id][L];
+}
+function addProgress(key){
+  prog.c[key] = (prog.c[key] || 0) + 1; saveProg();
+  if (prog.c[key] === MEDAL_AT) medalPopup(key);
+}
+function medalPopup(key){
+  const el = $("medalPop");
+  el.querySelector(".mi").textContent = MEDALS[key];
+  el.querySelector(".mt").textContent = UI[cfg.lang].newMedal;
+  el.querySelector(".mn").textContent = medalName(key, cfg.lang);
+  el.hidden = false; el.classList.remove("show"); void el.offsetWidth; el.classList.add("show");
+  setTimeout(sStar, 200);
+  clearTimeout(medalPopup.t); medalPopup.t = setTimeout(() => { el.hidden = true; }, 3000);
+}
+function openMedals(){
+  const L = cfg.lang, grid = $("medalGrid"); grid.innerHTML = "";
+  Object.keys(MEDALS).forEach(key => {
+    const n = medalCount(key), goal = key === "trace" ? MEDAL_AT : MEDAL_AT;
+    const card = document.createElement("div"); card.className = "medal" + (n >= goal ? " earned" : "");
+    card.innerHTML = `<span class="mi"></span><span class="mn"></span><span class="bar"><i></i></span><span class="cnt"></span>`;
+    card.querySelector(".mi").textContent = MEDALS[key];
+    card.querySelector(".mn").textContent = medalName(key, L);
+    card.querySelector(".bar i").style.width = Math.min(100, n/goal*100) + "%";
+    card.querySelector(".cnt").textContent = num(`${Math.min(n, goal)}/${goal}`, L);
+    grid.append(card);
+  });
+  $("medalsBox").hidden = false; $("medalsClose").focus();
+}
+$("medalsBtn").addEventListener("click", openMedals);
+$("medalsClose").addEventListener("click", () => { $("medalsBox").hidden = true; });
+
+/* ---- cómo se juega ---- */
+const TUT = [["🧠", "tut1T", "tut1"], ["img", "tut2T", "tut2"], ["🏆", "tut3T", "tut3"]];
+let tutStep = 0;
+function showTut(i){
+  tutStep = i; const t = UI[cfg.lang], [art, title, text] = TUT[i];
+  $("tutArt").innerHTML = art === "img" ? '<img src="assets/icon-192.png" alt="">' : "";
+  if (art !== "img") $("tutArt").textContent = art;
+  $("tutTitle").textContent = t[title]; $("tutText").textContent = t[text];
+  [...$("tutDots").children].forEach((d, k) => d.classList.toggle("on", k === i));
+  $("tutNext").textContent = i < TUT.length - 1 ? t.next : t.letsPlay;
+}
+function openTut(){ showTut(0); $("tutBox").hidden = false; $("tutNext").focus(); }
+function closeTut(){ $("tutBox").hidden = true; store.set("tdc-tut", "1"); }
+$("howBtn").addEventListener("click", openTut);
+$("tutNext").addEventListener("click", () => tutStep < TUT.length - 1 ? showTut(tutStep + 1) : closeTut());
+$("tutSkip").addEventListener("click", closeTut);
+
+/* ---- taller de letras: escribir con el dedo ---- */
+const tc = $("traceCanvas"), tx = tc.getContext("2d");
+let traceIdx = 0, strokes = [], drawing = false;
+const guideFont = px => `700 ${px}px Amiri, Cairo, "Noto Naskh Arabic", serif`;
+function traceLetterInfo(){
+  const L = cfg.lang, row = LETTERS[traceIdx];
+  $("traceLetter").textContent = row[0];
+  $("traceName").textContent = L === "ar" ? row[2] : `${(L === "en" && LETTER_EN[row[1]]) || row[1]} · ${row[2]}`;
+  $("traceCount").textContent = num(`★ ${prog.traced.length}/${LETTERS.length}`, L);
+}
+function drawGuide(){
+  const W = tc.width;
+  tx.clearRect(0, 0, W, W);
+  tx.font = guideFont(W*.62); tx.textAlign = "center"; tx.textBaseline = "middle";
+  tx.fillStyle = "rgba(244,231,201,.17)"; tx.fillText(LETTERS[traceIdx][0], W/2, W*.52);
+  tx.setLineDash([W*.014, W*.022]); tx.lineWidth = W*.006; tx.strokeStyle = "rgba(233,185,73,.6)";
+  tx.strokeText(LETTERS[traceIdx][0], W/2, W*.52); tx.setLineDash([]);
+  strokes = [];
+}
+function traceSize(){
+  const box = tc.parentElement.clientWidth || 300;
+  const size = Math.max(180, Math.min(box, Math.round(innerHeight*.48), 420)), dpr = devicePixelRatio || 1;
+  tc.style.width = tc.style.height = size + "px"; tc.width = tc.height = Math.round(size*dpr);
+  drawGuide();
+}
+function tracePoint(e){ const r = tc.getBoundingClientRect(); return [(e.clientX - r.left)/r.width, (e.clientY - r.top)/r.height]; }
+tc.addEventListener("pointerdown", e => { drawing = true; try { tc.setPointerCapture(e.pointerId); } catch(_){} strokes.push([tracePoint(e)]); $("traceMsg").textContent = ""; e.preventDefault(); });
+tc.addEventListener("pointermove", e => {
+  if (!drawing) return;
+  const st = strokes[strokes.length - 1], prev = st[st.length - 1], p = tracePoint(e), W = tc.width;
+  st.push(p);
+  tx.strokeStyle = "#e9b949"; tx.lineWidth = W*.06; tx.lineCap = tx.lineJoin = "round";
+  tx.beginPath(); tx.moveTo(prev[0]*W, prev[1]*W); tx.lineTo(p[0]*W, p[1]*W); tx.stroke();
+});
+["pointerup", "pointercancel", "pointerleave"].forEach(ev => tc.addEventListener(ev, () => { drawing = false; }));
+function traceScore(){
+  const N = 96, mk = () => { const c = document.createElement("canvas"); c.width = c.height = N; return c.getContext("2d"); };
+  const g = mk(), tol = mk(), d = mk();
+  [g, tol].forEach(ctx => { ctx.font = guideFont(N*.62); ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(LETTERS[traceIdx][0], N/2, N*.52); });
+  tol.lineWidth = N*.09; tol.lineJoin = "round"; tol.strokeText(LETTERS[traceIdx][0], N/2, N*.52);
+  d.lineWidth = N*.06; d.lineCap = d.lineJoin = "round";
+  strokes.forEach(st => { d.beginPath(); st.forEach(([x, y], i) => i ? d.lineTo(x*N, y*N) : d.moveTo(x*N, y*N)); if (st.length === 1) d.lineTo(st[0][0]*N + .5, st[0][1]*N); d.stroke(); });
+  const gd = g.getImageData(0, 0, N, N).data, td = tol.getImageData(0, 0, N, N).data, dd = d.getImageData(0, 0, N, N).data;
+  let guide = 0, covered = 0, drawn = 0, inside = 0;
+  for (let i = 3; i < dd.length; i += 4){
+    const gi = gd[i] > 100, ti = td[i] > 40, di = dd[i] > 100;
+    if (gi){ guide++; if (di) covered++; }
+    if (di){ drawn++; if (ti) inside++; }
+  }
+  return { coverage: guide ? covered/guide : 0, precision: drawn ? inside/drawn : 0, drawn };
+}
+function traceCheck(){
+  const t = UI[cfg.lang], m = $("traceMsg"), r = traceScore();
+  m.className = "trace-msg";
+  if (!r.drawn){ m.textContent = t.traceEmpty; m.classList.add("try"); return; }
+  if (r.coverage >= .5 && r.precision >= .55){
+    m.textContent = t.traceGood; m.classList.add("good"); sOk(); setTimeout(sStar, 200);
+    speakAr(LETTERS[traceIdx][2]);
+    if (!prog.traced.includes(traceIdx)){
+      prog.traced.push(traceIdx); saveProg();
+      if (prog.traced.length === MEDAL_AT) medalPopup("trace");
+    }
+    traceLetterInfo();
+    setTimeout(() => { if (!$("traceBox").hidden) traceGo(1); }, 1500);
+  } else { m.textContent = t.traceTry; m.classList.add("try"); sBad(); }
+}
+function traceGo(step){ traceIdx = (traceIdx + step + LETTERS.length) % LETTERS.length; $("traceMsg").textContent = ""; traceLetterInfo(); drawGuide(); }
+function openTrace(){ $("traceBox").hidden = false; traceLetterInfo(); requestAnimationFrame(traceSize); }
+$("traceBtn").addEventListener("click", openTrace);
+$("traceClose").addEventListener("click", () => { $("traceBox").hidden = true; });
+$("tracePrev").addEventListener("click", () => traceGo(-1));
+$("traceNext").addEventListener("click", () => traceGo(1));
+$("traceClear").addEventListener("click", () => { $("traceMsg").textContent = ""; drawGuide(); });
+$("traceDone").addEventListener("click", traceCheck);
+$("traceSpeak").addEventListener("click", () => speakSeq([[LETTERS[traceIdx][2], "ar"]]));
+addEventListener("resize", () => { if (!$("traceBox").hidden) traceSize(); });
+
 /* ---- compartir y sugerencias ---- */
 const GAME_URL = "https://liusdy91.github.io/L/";
 const FEEDBACK_URL = "https://docs.google.com/forms/d/e/1FAIpQLSff6p7y06Eqlah0nWlRvfBm0UhAk-MlJq_K6IxD_mySwFQ_KQ/viewform";   // enlace del Formulario de Google para quejas y sugerencias
@@ -1586,5 +1999,6 @@ installBtns.forEach(b => b.addEventListener("click", onInstall));
 $("installClose").addEventListener("click", () => { $("installBox").hidden = true; });
 
 setLang(cfg.lang);
+if (!store.get("tdc-tut")) openTut();
 })();
 </script>

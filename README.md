@@ -18,3 +18,5 @@ Abre `index.html` en un navegador (la carpeta `assets/` con las ilustraciones de
 **Fuentes**: cada pregunta islámica muestra su fuente (Corán o hadiz sahih). La lista completa, con enlaces, está en [FUENTES.md](FUENTES.md).
 
 **Instalar como app**: abre https://liusdy91.github.io/L/ y pulsa «Instalar app» (Android, Chrome o Edge), o en iPhone/iPad Safari → Compartir → «Añadir a pantalla de inicio». Funciona sin internet una vez instalada (`manifest.webmanifest` y `sw.js`). Si cambias imágenes o iconos, sube el número de `VERSION` en `sw.js`.
+
+**Para niños**: niveles por edad (4–6, 7–9, 10–12), botón 🔊 para leer en voz alta, «Taller de letras» para escribir las letras árabes con el dedo, rachas y medallas por tema (guardadas solo en el dispositivo), tutorial de «¿Cómo se juega?» y celebración al ganar. La dificultad de cada pregunta está en `DIFF`. Información para familias y docentes en [padres.html](padres.html).
