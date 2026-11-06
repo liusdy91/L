@@ -49,6 +49,7 @@
 }
 html,body{height:100%}
 body{
+  margin:0;
   background:var(--night);
   color:var(--sand);
   font-family:var(--font-body);
@@ -80,7 +81,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .ghost:hover{border-color:var(--gold);color:var(--gold)}
 
 /* ---------- tablero ---------- */
-.board{flex:1;min-height:0;display:grid;grid-template-columns:minmax(230px,1fr) minmax(0,1.7fr) minmax(230px,1fr);gap:12px}
+.board{flex:1;min-height:0;display:grid;grid-template-columns:minmax(220px,1fr) minmax(0,2fr) minmax(220px,1fr);grid-template-rows:minmax(0,1fr);gap:12px}
 .panel{background:var(--night-2);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0;border-top:6px solid var(--c);position:relative;overflow:hidden}
 .panel.a{--c:var(--teamA);--cd:var(--teamA-deep)}
 .panel.b{--c:var(--teamB);--cd:var(--teamB-deep)}
@@ -136,7 +137,8 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .langs button{background:transparent;border:none;border-radius:999px;padding:4px 10px;font-weight:800;font-size:.85rem;color:var(--sand-dim);min-width:2.4em}
 .langs button[lang="ar"]{font-family:var(--font-body);font-size:1rem;line-height:1}
 .langs button[aria-pressed="true"]{background:var(--gold);color:#2b1d00}
-.langs.small{align-self:flex-start}
+.langs.small{flex:none}
+.langs.small button{padding:3px 8px;font-size:.78rem;min-width:2em}
 .panel .langs button[aria-pressed="true"]{background:var(--c);color:#fff}
 .card .hint{font-size:.9rem}
 .cpu{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding-block:20px}
@@ -191,14 +193,14 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .win-stats b{font-family:var(--font-display);font-size:1.5rem;display:block}
 
 /* ---------- pantallas estrechas ---------- */
-@media (max-width:900px){
+@media (max-width:900px) and (orientation:portrait){
   .board{grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr}
   .arena{grid-column:1 / -1;order:-1}
   .scene{min-height:180px}
   html,body{height:auto}
   .app{height:auto}
 }
-@media (max-width:520px){
+@media (max-width:520px) and (orientation:portrait){
   .panel{padding:10px;gap:8px}
   .team-name{font-size:.95rem;padding:3px 10px}
   .question{font-size:1rem;min-height:5em}
@@ -210,6 +212,66 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
   .names{grid-template-columns:1fr}
   .card{padding:18px}
 }
+/* ---------- teléfono en horizontal: todo en una pantalla, sin desplazarse ---------- */
+@media (orientation:landscape) and (max-height:600px){
+  html,body{height:100%;overflow:hidden}
+  body{padding-top:max(4px, env(safe-area-inset-top, 0px));padding-bottom:max(4px, env(safe-area-inset-bottom, 0px))}
+  .app{height:100%;gap:4px}
+  .top{flex-wrap:nowrap;gap:6px}
+  .brand{gap:6px}
+  .brand h1{font-size:1rem;white-space:nowrap}
+  .brand .ar{font-size:.95rem}
+  .top-actions{flex-wrap:nowrap;gap:4px}
+  .top .ghost{padding:2px 10px;font-size:.75rem}
+  .top .langs button{padding:1px 7px;font-size:.72rem}
+  .board{gap:6px;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+  .panel{padding:6px 8px;gap:4px;border-radius:12px;border-top-width:4px;overflow:hidden}
+  .panel-head{gap:4px}
+  .team-name{font-size:.8rem;padding:2px 8px}
+  .score{font-size:1.1rem;min-width:1.4ch}
+  .langs.small{padding:2px}
+  .langs.small button{padding:1px 5px;font-size:.66rem;min-width:1.6em}
+  .qzone{gap:5px!important;flex:1;min-height:0}
+  .cat-tag{display:none}
+  .question{font-size:clamp(.78rem,3.7vh,1.05rem);min-height:0;line-height:1.2}
+  .question.math{font-size:clamp(1.1rem,7.5vh,1.7rem)}
+  .story{font-size:.66rem;min-height:0;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .options{grid-template-columns:1fr 1fr;gap:4px}
+  .opt{padding:5px 6px;font-size:clamp(.7rem,3.3vh,.95rem);border-radius:8px;line-height:1.15}
+  .opt.ar-opt{min-height:0;padding:3px 4px}
+  .opt .ar-word{font-size:clamp(.95rem,5vh,1.3rem)}
+  .opt .pic{font-size:clamp(1.2rem,7vh,1.8rem)}
+  .opt .tr{font-size:.62rem}
+  .ar-card{padding:3px 6px;gap:1px;border-radius:10px}
+  .ar-card .big{font-size:clamp(1.5rem,10vh,2.6rem);line-height:1.15}
+  .ar-card .tr{font-size:.66rem}
+  .listen{padding:1px 10px;font-size:.7rem}
+  .display{height:clamp(22px,7.5vh,40px);font-size:1.1rem;border-radius:8px}
+  .keypad{gap:4px}
+  .key{height:clamp(22px,8vh,44px);font-size:1rem;border-radius:8px}
+  .source{font-size:.6rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .arena{padding:4px 6px;gap:2px;border-radius:12px}
+  .stat{font-size:.58rem}
+  .stat b{font-size:1rem}
+  .timer{font-size:.85rem;padding:1px 10px}
+  .meter{display:none}
+  .cpu{padding-block:4px;gap:8px}
+  .cpu-icon{width:52px;height:52px}
+  .cpu-msg{font-size:.85rem}
+  .cpu-hint{font-size:.72rem}
+}
+
+/* ---------- aviso para girar el teléfono ---------- */
+.rotate{position:fixed;inset:0;z-index:30;background:var(--night);display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px))}
+.rotate svg{width:110px;height:110px;max-width:100%}
+.rotate h2{font-family:var(--font-display);margin:0;font-size:1.5rem;text-wrap:balance}
+.rotate p{margin:0;color:var(--sand-dim);max-width:30ch;line-height:1.45}
+.rotate .phone{animation:turn 2.4s ease-in-out infinite;transform-origin:55px 55px;transform-box:view-box}
+@keyframes turn{0%,25%{rotate:0deg}55%,90%{rotate:-90deg}100%{rotate:0deg}}
+@media (orientation:portrait) and (max-width:600px){
+  body.playing:not(.portrait-ok) .rotate{display:flex}
+}
+
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
 }
@@ -232,8 +294,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
   <main class="board" id="board" dir="ltr">
     <!-- Equipo A -->
     <section class="panel a" id="panelA" aria-label="Media Luna">
-      <div class="panel-head"><span class="team-name" id="nameA">Media Luna</span><span class="score" id="scoreA">0</span></div>
-      <div class="langs small" id="langA" role="group"></div>
+      <div class="panel-head"><span class="team-name" id="nameA">Media Luna</span><div class="langs small" id="langA" role="group"></div><span class="score" id="scoreA">0</span></div>
       <div class="qzone" id="zoneA"></div>
     </section>
 
@@ -245,7 +306,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
         <div class="stat right"><span id="statNameB">Estrella</span><b id="pullsB">0</b></div>
       </div>
       <div class="scene">
-        <svg viewBox="0 0 600 330" role="img" aria-label="Dos equipos de niñas con hiyab tirando de una cuerda frente a una mezquita de noche" id="scene">
+        <svg viewBox="40 84 520 246" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Dos equipos de niñas con hiyab tirando de una cuerda frente a una mezquita de noche" id="scene">
           <defs>
             <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#0a1b27"/><stop offset="1" stop-color="#1d4a5e"/>
@@ -266,8 +327,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
             <circle cx="300" cy="80" r="1"/><circle cx="85" cy="110" r="1.1"/><circle cx="520" cy="120" r="1"/>
           </g>
           <!-- luna creciente -->
-          <circle cx="500" cy="62" r="26" fill="#f6e3a8"/>
-          <circle cx="512" cy="54" r="24" fill="#0f2331"/>
+
           <!-- mezquita -->
           <g fill="#0c1d29" opacity=".95">
             <rect x="150" y="150" width="14" height="110"/><path d="M147 150 L157 122 L167 150Z"/><circle cx="157" cy="118" r="3" fill="#e9b949"/>
@@ -285,17 +345,17 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
           </g>
           <!-- faroles -->
           <g>
-            <g class="lantern" transform="translate(60 0)"><line x1="0" y1="0" x2="0" y2="40" stroke="#e9b949"/><circle cx="0" cy="56" r="20" fill="url(#glow)"/><path d="M-7 42 L7 42 L10 56 L5 68 L-5 68 L-10 56Z" fill="#e9b949"/><path d="M-4 47 L4 47 L6 56 L3 64 L-3 64 L-6 56Z" fill="#fff3c4"/></g>
-            <g class="lantern" transform="translate(245 0)"><line x1="0" y1="0" x2="0" y2="22" stroke="#e9b949"/><circle cx="0" cy="38" r="18" fill="url(#glow)"/><path d="M-6 24 L6 24 L9 37 L4 48 L-4 48 L-9 37Z" fill="#e9b949"/><path d="M-3 28 L3 28 L5 37 L2 44 L-2 44 L-5 37Z" fill="#fff3c4"/></g>
-            <g class="lantern" transform="translate(395 0)"><line x1="0" y1="0" x2="0" y2="30" stroke="#e9b949"/><circle cx="0" cy="46" r="18" fill="url(#glow)"/><path d="M-6 32 L6 32 L9 45 L4 56 L-4 56 L-9 45Z" fill="#e9b949"/><path d="M-3 36 L3 36 L5 45 L2 52 L-2 52 L-5 45Z" fill="#fff3c4"/></g>
+            <g class="lantern" transform="translate(150 58) scale(.75)"><line x1="0" y1="0" x2="0" y2="40" stroke="#e9b949"/><circle cx="0" cy="56" r="20" fill="url(#glow)"/><path d="M-7 42 L7 42 L10 56 L5 68 L-5 68 L-10 56Z" fill="#e9b949"/><path d="M-4 47 L4 47 L6 56 L3 64 L-3 64 L-6 56Z" fill="#fff3c4"/></g>
+            <g class="lantern" transform="translate(255 52) scale(.7)" hidden><line x1="0" y1="0" x2="0" y2="22" stroke="#e9b949"/><circle cx="0" cy="38" r="18" fill="url(#glow)"/><path d="M-6 24 L6 24 L9 37 L4 48 L-4 48 L-9 37Z" fill="#e9b949"/><path d="M-3 28 L3 28 L5 37 L2 44 L-2 44 L-5 37Z" fill="#fff3c4"/></g>
+            <g class="lantern" transform="translate(450 58) scale(.75)"><line x1="0" y1="0" x2="0" y2="30" stroke="#e9b949"/><circle cx="0" cy="46" r="18" fill="url(#glow)"/><path d="M-6 32 L6 32 L9 45 L4 56 L-4 56 L-9 45Z" fill="#e9b949"/><path d="M-3 36 L3 36 L5 45 L2 52 L-2 52 L-5 45Z" fill="#fff3c4"/></g>
           </g>
           <!-- suelo -->
           <rect x="0" y="292" width="600" height="38" fill="url(#tiles)"/>
           <rect x="0" y="288" width="600" height="5" fill="#8a5e2e"/>
           <!-- líneas de victoria y centro -->
           <line x1="300" y1="140" x2="300" y2="292" stroke="#f4e7c9" stroke-width="2" stroke-dasharray="6 6" opacity=".7"/>
-          <line id="winLineA" x1="190" y1="268" x2="190" y2="292" stroke="var(--teamA)" stroke-width="4"/>
-          <line id="winLineB" x1="410" y1="268" x2="410" y2="292" stroke="var(--teamB)" stroke-width="4"/>
+          <line id="winLineA" x1="220" y1="268" x2="220" y2="292" stroke="var(--teamA)" stroke-width="4"/>
+          <line id="winLineB" x1="380" y1="268" x2="380" y2="292" stroke="var(--teamB)" stroke-width="4"/>
 
           <!-- cuerda + equipos (se mueve en conjunto) -->
           <g id="rope">
@@ -317,8 +377,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 
     <!-- Equipo B -->
     <section class="panel b" id="panelB" aria-label="Estrella">
-      <div class="panel-head"><span class="team-name" id="nameB">Estrella</span><span class="score" id="scoreB">0</span></div>
-      <div class="langs small" id="langB" role="group"></div>
+      <div class="panel-head"><span class="team-name" id="nameB">Estrella</span><div class="langs small" id="langB" role="group"></div><span class="score" id="scoreB">0</span></div>
       <div class="qzone" id="zoneB"></div>
     </section>
   </main>
@@ -397,6 +456,16 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
   </div>
 </div>
 
+<!-- Gira el teléfono -->
+<div class="rotate" id="rotateHint" role="dialog" aria-labelledby="rotateTitle">
+  <svg viewBox="0 0 110 110" aria-hidden="true">
+    <g class="phone"><rect x="35" y="15" width="40" height="80" rx="8" fill="none" stroke="var(--gold)" stroke-width="5"/><circle cx="55" cy="85" r="3" fill="var(--gold)"/></g>
+  </svg>
+  <h2 id="rotateTitle" data-i18n="rotate">Gira el teléfono para jugar</h2>
+  <p data-i18n="rotateSub">Así caben en la pantalla las preguntas de los dos equipos y las niñas se ven grandes.</p>
+  <button class="ghost" id="portraitOk" type="button" data-i18n="playAnyway">Jugar así</button>
+</div>
+
 <!-- Cómo instalar -->
 <div class="overlay" id="installBox" hidden>
   <div class="card" role="dialog" aria-labelledby="installTitle">
@@ -436,6 +505,7 @@ const SHORT = { es:"ES", en:"EN", ar:"ع" };
 const UI = {
   es:{
     title:"Tira de la Cuerda", newGame:"Nueva partida", soundOn:"Sonido: sí", soundOff:"Sonido: no",
+    rotate:"Gira el teléfono para jugar", rotateSub:"Así caben en la pantalla las preguntas de los dos equipos y las niñas se ven grandes.", playAnyway:"Jugar así",
     install:"Instalar app", installTitle:"Instala el juego como app", installIntro:"Tendrás su icono en la pantalla de inicio y funcionará sin internet.",
     installIos:"En iPhone o iPad (Safari): pulsa el botón Compartir (el cuadrado con la flecha) y luego «Añadir a pantalla de inicio».",
     installAndroid:"En Android o en el ordenador (Chrome o Edge): abre el menú ⋮ y elige «Instalar app» o «Añadir a pantalla de inicio».", close:"Entendido",
@@ -462,6 +532,7 @@ const UI = {
   },
   en:{
     title:"Tug of War", newGame:"New game", soundOn:"Sound: on", soundOff:"Sound: off",
+    rotate:"Turn your phone sideways to play", rotateSub:"That way both teams' questions fit on the screen and the girls look big.", playAnyway:"Play like this",
     install:"Install app", installTitle:"Install the game as an app", installIntro:"You'll get its icon on your home screen and it will work without internet.",
     installIos:"On iPhone or iPad (Safari): tap the Share button (the square with the arrow), then «Add to Home Screen».",
     installAndroid:"On Android or a computer (Chrome or Edge): open the ⋮ menu and choose «Install app» or «Add to Home screen».", close:"Got it",
@@ -488,6 +559,7 @@ const UI = {
   },
   ar:{
     title:"شدّ الحبل", newGame:"لعبة جديدة", soundOn:"الصوت: يعمل", soundOff:"الصوت: متوقف",
+    rotate:"أدِر الهاتف للعب", rotateSub:"هكذا تظهر أسئلة الفريقين كاملة على الشاشة وتبدو البنات كبيرات.", playAnyway:"العب هكذا",
     install:"تثبيت التطبيق", installTitle:"ثبّت اللعبة كتطبيق", installIntro:"ستظهر أيقونتها على الشاشة الرئيسية وتعمل دون إنترنت.",
     installIos:"على iPhone أو iPad (Safari): اضغط زر المشاركة (المربع والسهم) ثم «إضافة إلى الشاشة الرئيسية».",
     installAndroid:"على Android أو الحاسوب (Chrome أو Edge): افتح القائمة ⋮ واختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».", close:"حسنًا",
@@ -1193,7 +1265,7 @@ function startCpu(){
 }
 
 /* ---- la cuerda ---- */
-const MAX_SHIFT = 110; // unidades SVG hasta la línea de victoria
+const MAX_SHIFT = 80; // unidades SVG hasta la línea de victoria
 function drawRope(){
   $("rope").style.transform = `translateX(${(pos/cfg.target)*MAX_SHIFT}px)`;
   $("pullsA").textContent = num(Math.max(0,-pos), teams.A?.lang || cfg.lang);
@@ -1244,7 +1316,18 @@ function showNames(){
   label($("meterA"), cfg.nameA, true); label($("meterB"), cfg.nameB, false);
 }
 
+function goLandscape(){
+  const phone = matchMedia("(pointer:coarse)").matches && Math.min(screen.width, screen.height) < 600;
+  if (!phone) return;
+  try {
+    const el = document.documentElement;
+    const fs = document.fullscreenElement ? Promise.resolve() : (el.requestFullscreen ? el.requestFullscreen({ navigationUI:"hide" }) : Promise.reject());
+    fs.then(() => screen.orientation && screen.orientation.lock ? screen.orientation.lock("landscape") : null).catch(() => {});
+  } catch(e){}
+}
 function start(){
+  goLandscape();
+  document.body.classList.add("playing");
   cfg.nameA = $("inA").value.trim() || UI[cfg.lang].teamA;
   cfg.nameB = cfg.players === 1 ? UI[cfg.lang].cpuName : ($("inB").value.trim() || UI[cfg.lang].teamB);
   showNames();
@@ -1373,7 +1456,8 @@ segment("targetSeg","target",Number);
 $("startBtn").addEventListener("click", start);
 $("againBtn").addEventListener("click", start);
 $("setupBtn2").addEventListener("click", () => { $("winBox").hidden = true; $("setup").hidden = false; });
-$("menuBtn").addEventListener("click", () => { playing=false; clearInterval(tick); stopCpu(); $("winBox").hidden = true; $("setup").hidden = false; });
+$("portraitOk").addEventListener("click", () => document.body.classList.add("portrait-ok"));
+$("menuBtn").addEventListener("click", () => { document.body.classList.remove("playing"); playing=false; clearInterval(tick); stopCpu(); $("winBox").hidden = true; $("setup").hidden = false; });
 $("soundBtn").addEventListener("click", e => {
   soundOn = !soundOn; e.currentTarget.textContent = soundOn ? UI[cfg.lang].soundOn : UI[cfg.lang].soundOff;
   e.currentTarget.setAttribute("aria-pressed", String(soundOn));
