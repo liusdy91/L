@@ -23,6 +23,7 @@
 <meta name="twitter:title" content="Islamic Tug of War">
 <meta name="twitter:image" content="https://liusdy91.github.io/L/assets/preview.jpg">
 <meta name="claude:viewport-fit-sides" content="cover">
+<script src="assets/vendor/qrcode.min.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Nunito:wght@500;700;800;900&family=Amiri:wght@700&family=Cairo:wght@600;700;800&display=swap">
@@ -77,6 +78,20 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .ghost{background:transparent;border:1.5px solid color-mix(in srgb,var(--sand) 30%,transparent);border-radius:999px;padding:6px 14px;font-weight:700;font-size:.9rem}
 .ghost.install{border-color:var(--gold);color:var(--gold)}
 .install-wide{padding:10px 16px;font-size:1rem;align-self:flex-start}
+.share-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+.share-grid a,.share-grid button{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--night-3);border:2px solid transparent;border-radius:12px;padding:10px;font-weight:800;color:var(--sand);text-decoration:none;font-size:.95rem}
+.share-grid a:hover,.share-grid button:hover{border-color:var(--gold)}
+.share-grid .dot{width:12px;height:12px;border-radius:50%;flex:none}
+.share-link{display:flex;gap:8px}
+.share-link input{flex:1;min-width:0;background:var(--night);border:2px solid var(--night-3);border-radius:10px;padding:8px 10px;color:var(--sand);font:inherit;font-size:.85rem}
+.qr-wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.qr{background:#fff;padding:8px;border-radius:10px;line-height:0}
+.qr img,.qr canvas{width:132px;height:132px}
+.panel-section{display:flex;flex-direction:column;gap:10px}
+.panel-section h3{margin:0;font-family:var(--font-display);font-size:1.25rem}
+.panel-section + .panel-section{border-top:1px solid color-mix(in srgb,var(--sand) 15%,transparent);padding-top:16px}
+.fb-btn{display:block;text-align:center;text-decoration:none}
+.toast{min-height:1.2em;margin:0;font-size:.85rem;color:var(--ok)}
 .install-steps{margin:0;padding-inline-start:1.2em;display:grid;gap:8px;line-height:1.5;color:var(--sand)}
 .ghost:hover{border-color:var(--gold);color:var(--gold)}
 
@@ -224,6 +239,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
   .top-actions{flex-wrap:nowrap;gap:4px}
   .top .ghost{padding:2px 10px;font-size:.75rem}
   .top .langs button{padding:1px 7px;font-size:.72rem}
+  .top #shareBtn,.top #installBtn{display:none!important}
   .board{gap:6px;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
   .panel{padding:6px 8px;gap:4px;border-radius:12px;border-top-width:4px;overflow:hidden}
   .panel-head{gap:4px}
@@ -285,6 +301,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
     </div>
     <div class="top-actions">
       <div class="langs" id="langTop" role="group" aria-label="Idioma"></div>
+      <button class="ghost" id="shareBtn" type="button" data-i18n="feedbackBtn">Compartir y sugerencias</button>
       <button class="ghost install" id="installBtn" type="button" hidden>Instalar app</button>
       <button class="ghost" id="soundBtn" type="button" aria-pressed="true">Sonido: sí</button>
       <button class="ghost" id="menuBtn" type="button" data-i18n="newGame">Nueva partida</button>
@@ -389,7 +406,8 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
     <p class="ar" lang="ar">ٱلسَّلَامُ عَلَيْكُمْ</p>
     <h2 id="setupTitle" data-i18n="title">Tira de la Cuerda</h2>
     <p data-i18n="intro">Dos equipos, una pantalla.</p>
-    <button class="ghost install install-wide" id="installBtnSetup" type="button" hidden>Instalar app</button>
+    <div class="seg"><button class="ghost install install-wide" id="installBtnSetup" type="button" hidden>Instalar app</button>
+    <button class="ghost install-wide" id="shareBtnSetup" type="button" data-i18n="feedbackBtn">Compartir y sugerencias</button></div>
 
     <div class="field"><span data-i18n="language">Idioma</span>
       <div class="seg" id="langSeg"></div>
@@ -456,6 +474,34 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
   </div>
 </div>
 
+<!-- Compartir y sugerencias -->
+<div class="overlay" id="sharePanel" hidden>
+  <div class="card" role="dialog" aria-labelledby="shareTitle">
+    <div class="panel-section">
+      <h3 id="shareTitle" data-i18n="shareTitle">Comparte el juego</h3>
+      <button class="start" id="nativeShare" type="button" data-i18n="shareNative" hidden>Compartir…</button>
+      <div class="share-grid">
+        <a id="shWhatsapp" target="_blank" rel="noopener"><span class="dot" style="background:#25d366"></span>WhatsApp</a>
+        <a id="shTelegram" target="_blank" rel="noopener"><span class="dot" style="background:#2aabee"></span>Telegram</a>
+        <a id="shFacebook" target="_blank" rel="noopener"><span class="dot" style="background:#1877f2"></span>Facebook</a>
+        <a id="shX" target="_blank" rel="noopener"><span class="dot" style="background:var(--sand)"></span>X</a>
+      </div>
+      <div class="share-link">
+        <input id="shareUrl" readonly aria-label="Enlace del juego">
+        <button class="ghost" id="copyLink" type="button" data-i18n="copy">Copiar enlace</button>
+      </div>
+      <p class="toast" id="copyToast" aria-live="polite"></p>
+      <div class="qr-wrap"><div class="qr" id="qr"></div><p data-i18n="qrHint">Escanea el código con la cámara para abrir el juego.</p></div>
+    </div>
+    <div class="panel-section" id="feedbackSection">
+      <h3 data-i18n="fbTitle">Quejas y sugerencias</h3>
+      <p data-i18n="fbText">¿Algo no funciona, encontraste un error en una pregunta o tienes una idea? Cuéntanoslo.</p>
+      <a class="start fb-btn" id="fbLink" target="_blank" rel="noopener" data-i18n="fbBtn">Enviar queja o sugerencia</a>
+    </div>
+    <button class="ghost" id="shareClose" type="button" data-i18n="closePanel" style="align-self:center">Cerrar</button>
+  </div>
+</div>
+
 <!-- Gira el teléfono -->
 <div class="rotate" id="rotateHint" role="dialog" aria-labelledby="rotateTitle">
   <svg viewBox="0 0 110 110" aria-hidden="true">
@@ -505,6 +551,10 @@ const SHORT = { es:"ES", en:"EN", ar:"ع" };
 const UI = {
   es:{
     title:"Tira de la Cuerda", newGame:"Nueva partida", soundOn:"Sonido: sí", soundOff:"Sonido: no",
+    feedbackBtn:"Compartir y sugerencias", shareTitle:"Comparte el juego", shareNative:"Compartir…", copy:"Copiar enlace", copied:"Enlace copiado",
+    shareText:"Juega a Islamic Tug of War: un juego por equipos para aprender sobre el Islam, el árabe y las sumas.",
+    qrHint:"Escanea el código con la cámara para abrir el juego.", fbTitle:"Quejas y sugerencias",
+    fbText:"¿Algo no funciona, encontraste un error en una pregunta o tienes una idea? Cuéntanoslo.", fbBtn:"Enviar queja o sugerencia", closePanel:"Cerrar",
     rotate:"Gira el teléfono para jugar", rotateSub:"Así caben en la pantalla las preguntas de los dos equipos y las niñas se ven grandes.", playAnyway:"Jugar así",
     install:"Instalar app", installTitle:"Instala el juego como app", installIntro:"Tendrás su icono en la pantalla de inicio y funcionará sin internet.",
     installIos:"En iPhone o iPad (Safari): pulsa el botón Compartir (el cuadrado con la flecha) y luego «Añadir a pantalla de inicio».",
@@ -532,6 +582,10 @@ const UI = {
   },
   en:{
     title:"Tug of War", newGame:"New game", soundOn:"Sound: on", soundOff:"Sound: off",
+    feedbackBtn:"Share & feedback", shareTitle:"Share the game", shareNative:"Share…", copy:"Copy link", copied:"Link copied",
+    shareText:"Play Islamic Tug of War: a team game to learn about Islam, Arabic and sums.",
+    qrHint:"Scan the code with a camera to open the game.", fbTitle:"Complaints & suggestions",
+    fbText:"Something not working, a mistake in a question, or an idea? Tell us.", fbBtn:"Send a complaint or suggestion", closePanel:"Close",
     rotate:"Turn your phone sideways to play", rotateSub:"That way both teams' questions fit on the screen and the girls look big.", playAnyway:"Play like this",
     install:"Install app", installTitle:"Install the game as an app", installIntro:"You'll get its icon on your home screen and it will work without internet.",
     installIos:"On iPhone or iPad (Safari): tap the Share button (the square with the arrow), then «Add to Home Screen».",
@@ -559,6 +613,10 @@ const UI = {
   },
   ar:{
     title:"شدّ الحبل", newGame:"لعبة جديدة", soundOn:"الصوت: يعمل", soundOff:"الصوت: متوقف",
+    feedbackBtn:"شارك واقترح", shareTitle:"شارك اللعبة", shareNative:"مشاركة…", copy:"نسخ الرابط", copied:"تم نسخ الرابط",
+    shareText:"العب «شدّ الحبل»: لعبة جماعية لتعلّم الإسلام والعربية والحساب.",
+    qrHint:"امسح الرمز بالكاميرا لفتح اللعبة.", fbTitle:"الشكاوى والاقتراحات",
+    fbText:"هل هناك مشكلة أو خطأ في سؤال أو لديك فكرة؟ أخبرنا.", fbBtn:"أرسل شكوى أو اقتراحًا", closePanel:"إغلاق",
     rotate:"أدِر الهاتف للعب", rotateSub:"هكذا تظهر أسئلة الفريقين كاملة على الشاشة وتبدو البنات كبيرات.", playAnyway:"العب هكذا",
     install:"تثبيت التطبيق", installTitle:"ثبّت اللعبة كتطبيق", installIntro:"ستظهر أيقونتها على الشاشة الرئيسية وتعمل دون إنترنت.",
     installIos:"على iPhone أو iPad (Safari): اضغط زر المشاركة (المربع والسهم) ثم «إضافة إلى الشاشة الرئيسية».",
@@ -1468,6 +1526,41 @@ teams.A = makeTeam("A"); teams.B = makeTeam("B");
 teams.A.q = quizQuestion(teams.A);
 teams.B.q = mathQuestion();
 pos = -2;
+/* ---- compartir y sugerencias ---- */
+const GAME_URL = "https://liusdy91.github.io/L/";
+const FEEDBACK_URL = "";   // enlace del Formulario de Google para quejas y sugerencias
+let qrDone = false;
+function fillShare(){
+  const text = UI[cfg.lang].shareText, u = encodeURIComponent(GAME_URL), t = encodeURIComponent(text);
+  $("shWhatsapp").href = `https://wa.me/?text=${encodeURIComponent(text + " " + GAME_URL)}`;
+  $("shTelegram").href = `https://t.me/share/url?url=${u}&text=${t}`;
+  $("shFacebook").href = `https://www.facebook.com/sharer/sharer.php?u=${u}`;
+  $("shX").href = `https://twitter.com/intent/tweet?text=${t}&url=${u}`;
+  $("shareUrl").value = GAME_URL;
+  $("feedbackSection").hidden = !FEEDBACK_URL;
+  if (FEEDBACK_URL) $("fbLink").href = FEEDBACK_URL;
+  $("nativeShare").hidden = !navigator.share;
+}
+function openShare(){
+  fillShare(); $("copyToast").textContent = "";
+  $("sharePanel").hidden = false; $("shareClose").focus();
+  if (!qrDone && window.QRCode){
+    try { new QRCode($("qr"), { text: GAME_URL, width: 264, height: 264, correctLevel: QRCode.CorrectLevel.M }); qrDone = true; } catch(e){}
+  }
+  $("qr").parentElement.hidden = !qrDone;
+}
+["shareBtn","shareBtnSetup"].forEach(id => $(id).addEventListener("click", openShare));
+$("shareClose").addEventListener("click", () => { $("sharePanel").hidden = true; });
+$("nativeShare").addEventListener("click", () => {
+  navigator.share({ title: "Islamic Tug of War", text: UI[cfg.lang].shareText, url: GAME_URL }).catch(() => {});
+});
+$("copyLink").addEventListener("click", () => {
+  const done = () => { $("copyToast").textContent = UI[cfg.lang].copied; };
+  const fallback = () => { const i = $("shareUrl"); i.focus(); i.select(); try { document.execCommand("copy"); done(); } catch(e){} };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(GAME_URL).then(done, fallback);
+  else fallback();
+});
+
 /* ---- app instalable (solo en la web pública, no dentro de Claude) ---- */
 const isPublicSite = /github\.io$/.test(location.hostname);
 const isInstalled = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
