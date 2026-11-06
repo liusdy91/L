@@ -100,6 +100,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .chips button{background:var(--night-3);border:2px solid transparent;border-radius:999px;padding:6px 12px;font-weight:800;font-size:.9rem}
 .chips button[aria-pressed="true"]{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 16%,var(--night-3))}
 .chips button.all{border-style:dashed;border-color:color-mix(in srgb,var(--sand) 30%,transparent)}
+.source{margin:0;font-size:.8rem;color:var(--sand-dim);line-height:1.35}
 .cat-tag{font-size:.75rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--c);margin:0}
 .opt:disabled{cursor:default}
 
@@ -414,7 +415,7 @@ const UI = {
     modeArabic:"Aprende árabe", modeArabicSub:"Letras, números y palabras",
     catLabel:"Temas de las preguntas", topicLabel:"Qué aprender de árabe", all:"Todos",
     qLetter:"¿Cómo se llama esta letra?", qNumber:"¿Qué número es?", qPic:"¿Cómo se dice en árabe?", qWord:"¿Qué significa esta palabra?", qPhrase:"¿Qué significa?",
-    listen:"Escuchar", learnTag:"Aprende árabe",
+    listen:"Escuchar", learnTag:"Aprende árabe", source:"Fuente",
     levelLabel:"Nivel de las cuentas", lvl1:"Fácil", lvl1Sub:"Sumas hasta 10", lvl2:"Medio", lvl2Sub:"Sumas hasta 20", lvl3:"Difícil", lvl3Sub:"Sumas y restas hasta 50",
     targetLabel:"Tirones para ganar", namesLabel:"Nombres de los equipos",
     teamLangHint:"Cada equipo puede cambiar su propio idioma durante la partida con los botones ES · EN · ع.",
@@ -437,7 +438,7 @@ const UI = {
     modeArabic:"Learn Arabic", modeArabicSub:"Letters, numbers and words",
     catLabel:"Question topics", topicLabel:"What to learn in Arabic", all:"All",
     qLetter:"What is this letter called?", qNumber:"Which number is this?", qPic:"How do you say it in Arabic?", qWord:"What does this word mean?", qPhrase:"What does it mean?",
-    listen:"Listen", learnTag:"Learn Arabic",
+    listen:"Listen", learnTag:"Learn Arabic", source:"Source",
     levelLabel:"Maths level", lvl1:"Easy", lvl1Sub:"Sums up to 10", lvl2:"Medium", lvl2Sub:"Sums up to 20", lvl3:"Hard", lvl3Sub:"Sums and subtractions up to 50",
     targetLabel:"Pulls to win", namesLabel:"Team names",
     teamLangHint:"Each team can switch its own language during the game with the ES · EN · ع buttons.",
@@ -460,7 +461,7 @@ const UI = {
     modeArabic:"تعلّم العربية", modeArabicSub:"حروف وأرقام وكلمات",
     catLabel:"مواضيع الأسئلة", topicLabel:"ماذا نتعلّم من العربية", all:"الكل",
     qLetter:"ما اسم هذا الحرف؟", qNumber:"ما هذا العدد؟", qPic:"ما اسم هذه الصورة؟", qWord:"ما معنى هذه الكلمة؟", qPhrase:"ما معناها؟",
-    listen:"استمع", learnTag:"تعلّم العربية",
+    listen:"استمع", learnTag:"تعلّم العربية", source:"المصدر",
     levelLabel:"مستوى الحساب", lvl1:"سهل", lvl1Sub:"الجمع حتى 10", lvl2:"متوسط", lvl2Sub:"الجمع حتى 20", lvl3:"صعب", lvl3Sub:"الجمع والطرح حتى 50",
     targetLabel:"عدد الشدّات للفوز", namesLabel:"أسماء الفريقين",
     teamLangHint:"يستطيع كل فريق تغيير لغته أثناء اللعب بأزرار ES · EN · ع.",
@@ -512,15 +513,15 @@ const QUIZ_ES = [
   ["¿Quién hace la llamada a la oración desde la mezquita?","El muecín","El califa","El mercader","El sultán"],
   ["¿Qué compañero fue el primer muecín del Islam?","Bilal","Abu Bakr","Umar","Jalid"],
   ["¿Qué profeta construyó el arca?","Nuh","Musa","Isa","Yusuf"],
-  ["¿Qué profeta fue tragado por una ballena?","Yunus","Ibrahim","Nuh","Dawud"],
+  ["¿Qué profeta fue tragado por un pez enorme?","Yunus","Ibrahim","Nuh","Dawud"],
   ["¿Qué profeta construyó la Kaaba junto a su hijo Ismail?","Ibrahim","Musa","Nuh","Adam"],
   ["¿Quién es la madre del profeta Isa?","Maryam","Asiya","Hawa","Jadiya"],
   ["¿Qué profeta se enfrentó al Faraón?","Musa","Yunus","Salih","Lut"],
   ["¿Qué profeta entendía el habla de las hormigas y los pájaros?","Sulayman","Yusuf","Hud","Yahya"],
   ["¿Qué profeta fue arrojado a un pozo por sus hermanos?","Yusuf","Ismail","Ayyub","Harun"],
   ["¿Quién era el padre del profeta Yusuf?","Yaqub","Ishaq","Ibrahim","Zakariya"],
-  ["¿Qué profeta es famoso por su paciencia en la enfermedad?","Ayyub","Sulayman","Dawud","Idris"],
-  ["¿Quién fue el primer ser humano y el primer profeta?","Adam","Nuh","Idris","Ibrahim"],
+  ["¿Qué profeta es famoso por su gran paciencia (sabr)?","Ayyub","Sulayman","Dawud","Idris"],
+  ["¿Quién fue el primer ser humano que Allah creó?","Adam","Nuh","Idris","Ibrahim"],
   ["¿Quién es el último profeta?","Muhammad ﷺ","Isa","Musa","Ibrahim"],
   ["¿Qué profeta recibió el Zabur (los Salmos)?","Dawud","Musa","Isa","Ibrahim"],
   ["¿A qué profeta se le reveló la Torá?","Musa","Dawud","Nuh","Yahya"],
@@ -564,7 +565,7 @@ const QUIZ_ES = [
   ["¿Qué decimos al ver algo bonito?","Mashallah","Inshallah","Bismillah","Astagfirullah"],
   ["¿Con qué mano comemos?","Con la derecha","Con la izquierda","Con las dos","Da igual"],
   ["¿Qué decimos para pedir perdón a Allah?","Astagfirullah","SubhanAllah","Mashallah","Bismillah"],
-  ["¿Con qué pie entramos a la mezquita?","Con el derecho","Con el izquierdo","Saltando","Da igual"],
+  ["Al entrar en la mezquita, ¿qué hacemos antes de sentarnos?","Rezar dos rakat","Dormir un poco","Comer algo","Nada"],
 ];
 
 const QUIZ_EN = [
@@ -600,15 +601,15 @@ const QUIZ_EN = [
   ["Who calls to prayer from the mosque?","The muezzin","The caliph","The merchant","The sultan"],
   ["Which companion was the first muezzin of Islam?","Bilal","Abu Bakr","Umar","Khalid"],
   ["Which prophet built the ark?","Nuh","Musa","Isa","Yusuf"],
-  ["Which prophet was swallowed by a whale?","Yunus","Ibrahim","Nuh","Dawud"],
+  ["Which prophet was swallowed by a huge fish?","Yunus","Ibrahim","Nuh","Dawud"],
   ["Which prophet built the Kaaba with his son Isma'il?","Ibrahim","Musa","Nuh","Adam"],
   ["Who is the mother of the prophet Isa?","Maryam","Asiya","Hawwa","Khadijah"],
   ["Which prophet stood up to Pharaoh?","Musa","Yunus","Salih","Lut"],
   ["Which prophet understood the speech of ants and birds?","Sulayman","Yusuf","Hud","Yahya"],
   ["Which prophet was thrown into a well by his brothers?","Yusuf","Isma'il","Ayyub","Harun"],
   ["Who was the father of the prophet Yusuf?","Ya'qub","Ishaq","Ibrahim","Zakariya"],
-  ["Which prophet is famous for his patience in illness?","Ayyub","Sulayman","Dawud","Idris"],
-  ["Who was the first human and the first prophet?","Adam","Nuh","Idris","Ibrahim"],
+  ["Which prophet is famous for his great patience (sabr)?","Ayyub","Sulayman","Dawud","Idris"],
+  ["Who was the first human being that Allah created?","Adam","Nuh","Idris","Ibrahim"],
   ["Who is the last prophet?","Muhammad ﷺ","Isa","Musa","Ibrahim"],
   ["Which prophet received the Zabur (Psalms)?","Dawud","Musa","Isa","Ibrahim"],
   ["To which prophet was the Torah revealed?","Musa","Dawud","Nuh","Yahya"],
@@ -652,7 +653,7 @@ const QUIZ_EN = [
   ["What do we say when we see something beautiful?","Masha'Allah","Insha'Allah","Bismillah","Astaghfirullah"],
   ["Which hand do we eat with?","The right hand","The left hand","Both hands","It doesn't matter"],
   ["What do we say to ask Allah for forgiveness?","Astaghfirullah","SubhanAllah","Masha'Allah","Bismillah"],
-  ["Which foot do we enter the mosque with?","The right foot","The left foot","Jumping in","It doesn't matter"],
+  ["When we enter the mosque, what do we do before sitting down?","Pray two rak'ahs","Take a nap","Eat something","Nothing"],
 ];
 
 const QUIZ_AR = [
@@ -695,8 +696,8 @@ const QUIZ_AR = [
   ["أي نبي فهم كلام النمل والطير؟","سليمان","يوسف","هود","يحيى"],
   ["أي نبي ألقاه إخوته في البئر؟","يوسف","إسماعيل","أيوب","هارون"],
   ["من هو والد النبي يوسف؟","يعقوب","إسحاق","إبراهيم","زكريا"],
-  ["أي نبي اشتهر بصبره على المرض؟","أيوب","سليمان","داود","إدريس"],
-  ["من هو أول إنسان وأول نبي؟","آدم","نوح","إدريس","إبراهيم"],
+  ["أي نبي اشتهر بصبره العظيم؟","أيوب","سليمان","داود","إدريس"],
+  ["من هو أول إنسان خلقه الله؟","آدم","نوح","إدريس","إبراهيم"],
   ["من هو خاتم الأنبياء؟","محمد ﷺ","عيسى","موسى","إبراهيم"],
   ["أي نبي أُنزل عليه الزبور؟","داود","موسى","عيسى","إبراهيم"],
   ["على أي نبي أُنزلت التوراة؟","موسى","داود","نوح","يحيى"],
@@ -740,9 +741,34 @@ const QUIZ_AR = [
   ["ماذا نقول عندما نرى شيئًا جميلًا؟","ما شاء الله","إن شاء الله","بسم الله","أستغفر الله"],
   ["بأي يد نأكل؟","باليد اليمنى","باليد اليسرى","باليدين معًا","لا فرق"],
   ["ماذا نقول لنطلب المغفرة من الله؟","أستغفر الله","سبحان الله","ما شاء الله","بسم الله"],
-  ["بأي قدم ندخل المسجد؟","بالقدم اليمنى","بالقدم اليسرى","قفزًا","لا فرق"],
+  ["عندما ندخل المسجد، ماذا نفعل قبل أن نجلس؟","نصلّي ركعتين","ننام قليلًا","نأكل شيئًا","لا شيء"],
 ];
 const QUIZ = { es:QUIZ_ES, en:QUIZ_EN, ar:QUIZ_AR };
+
+/* ---- Fuentes de cada pregunta (misma posición que en las listas) ----
+   Q = Corán (sura:aleya) · B = Sahih al-Bujari · M = Sahih Muslim · AD = Sunan Abi Dawud · T = Yami' at-Tirmidhi
+   (números de sunnah.com) · mushaf = orden del Mushaf · sira = biografía del Profeta ﷺ · ijma = consenso de los sabios */
+const SOURCES = ["B 8; M 16","B 349","B 8","Q 2:185","Q 12:2","mushaf","mushaf","mushaf","mushaf","mushaf; Q 108","sira","sira","Q 2:97","B 3","B 3; Q 96:1","Q 2:144","Q 17:78; ijma","ijma","ijma","ijma","ijma","Q 62:9","AD 1134","AD 1134","B 8","B 8","Q 2:187","Q 5:6","AD 499","AD 499","AD 499","Q 11:37","Q 37:142","Q 2:127","Q 19:34","Q 20:24","Q 27:16-19","Q 12:15","Q 12:6; 12:38","Q 38:44","Q 2:30-31","Q 33:40","Q 4:163","Q 5:44","ijma","sira","B 3364","B 5376","B 6224","Q 4:86","Q 18:23-24","Q 1:2","B 757","Q 97:1","Q 2:185","Q 17:1; B 1189","B 1189","Q 9:36","umar","M 1218","B 2736; M 2677","Q 112:1","Q 2:255","Q 19","M 597","Q 17:1","AD 2356","B 1923","AD 2356","B 1907","B 2009","M 8","Q 112:1","Q 6:1","M 2996","sira","sira","Q 3:123","Q 3:96","T 889","Q 2:197","Q 18:39","B 5376","B 6307","B 444"];
+if (SOURCES.length !== QUIZ_ES.length) console.error("Faltan fuentes");
+const SRC_NAMES = {
+  Q:  { es:"Corán", en:"Quran", ar:"القرآن" },
+  B:  { es:"Sahih al-Bujari", en:"Sahih al-Bukhari", ar:"صحيح البخاري" },
+  M:  { es:"Sahih Muslim", en:"Sahih Muslim", ar:"صحيح مسلم" },
+  AD: { es:"Sunan Abi Dawud", en:"Sunan Abi Dawud", ar:"سنن أبي داود" },
+  T:  { es:"Yami' at-Tirmidhi", en:"Jami' at-Tirmidhi", ar:"جامع الترمذي" },
+  mushaf: { es:"Orden del Mushaf", en:"Order of the Mushaf", ar:"ترتيب المصحف" },
+  sira:   { es:"Sira (biografía del Profeta ﷺ)", en:"Seerah (biography of the Prophet ﷺ)", ar:"السيرة النبوية" },
+  ijma:   { es:"Consenso de los sabios", en:"Scholarly consensus", ar:"إجماع العلماء" },
+  umar:   { es:"Calendario de la Hégira, fijado en tiempos de Umar", en:"Hijri calendar, set in the time of Umar", ar:"التقويم الهجري في عهد عمر" },
+};
+function sourceText(i, L){
+  return SOURCES[i].split("; ").map(part => {
+    const [k, ref] = part.split(" ");
+    if (!ref && /^\d/.test(k)) return `\u2066${k}\u2069`;            // "12:38" sigue a la referencia anterior
+    const name = SRC_NAMES[k] ? SRC_NAMES[k][L] : k;
+    return ref ? `${name} \u2066${ref}\u2069` : name;   // la referencia siempre de izquierda a derecha
+  }).join(" · ");
+}
 
 /* ---- Categorías de las preguntas islámicas (posición de cada pregunta en las listas) ---- */
 const CATS = {
@@ -1028,6 +1054,9 @@ function render(team){
       box.append(b);
     });
     zone.append(box);
+    const src = document.createElement("p"); src.className = "source";
+    src.textContent = UI[L].source + ": " + num(sourceText(q.idx, L), L);
+    zone.append(src);
   } else {
     const s = document.createElement("p"); s.className="story"; s.textContent = num(storyText(q, L), L); zone.append(s);
     const h = document.createElement("p"); h.className="question math";
