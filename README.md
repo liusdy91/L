@@ -6,6 +6,7 @@ Cada respuesta correcta tira de la cuerda hacia su lado; gana quien lleve el pa�
 - **Preguntas islámicas**: pilares, oraciones, profetas, Corán, fiestas y expresiones (opción múltiple).
 - **Sumas con dátiles**: cuentas con pequeñas historias y teclado numérico (3 niveles).
 - **Mixto**: alterna ambos tipos.
+- **Un jugador**: juegas solo contra la computadora, que tira de la cuerda cada 9, 6 o 4 segundos según la velocidad elegida.
 
 **Idiomas**: español, inglés y árabe (con escritura de derecha a izquierda y números arábigos orientales). El idioma general se elige en la pantalla de inicio o en la cabecera, y cada equipo puede cambiar el suyo durante la partida con los botones ES · EN · ع.
 
