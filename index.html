@@ -75,6 +75,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .top-actions{display:flex;gap:8px}
 .ghost{background:transparent;border:1.5px solid color-mix(in srgb,var(--sand) 30%,transparent);border-radius:999px;padding:6px 14px;font-weight:700;font-size:.9rem}
 .ghost.install{border-color:var(--gold);color:var(--gold)}
+.install-wide{padding:10px 16px;font-size:1rem;align-self:flex-start}
 .install-steps{margin:0;padding-inline-start:1.2em;display:grid;gap:8px;line-height:1.5;color:var(--sand)}
 .ghost:hover{border-color:var(--gold);color:var(--gold)}
 
@@ -329,6 +330,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
     <p class="ar" lang="ar">ٱلسَّلَامُ عَلَيْكُمْ</p>
     <h2 id="setupTitle" data-i18n="title">Tira de la Cuerda</h2>
     <p data-i18n="intro">Dos equipos, una pantalla.</p>
+    <button class="ghost install install-wide" id="installBtnSetup" type="button" hidden>Instalar app</button>
 
     <div class="field"><span data-i18n="language">Idioma</span>
       <div class="seg" id="langSeg"></div>
@@ -1282,7 +1284,7 @@ function setLang(l){
   document.querySelectorAll("[data-i18n]").forEach(el => { const v = t[el.dataset.i18n]; if (typeof v === "string") el.textContent = num(v, l); });
   document.querySelectorAll("[data-num]").forEach(el => el.textContent = num(el.dataset.num, l));
   $("soundBtn").textContent = soundOn ? t.soundOn : t.soundOff;
-  $("installBtn").textContent = t.install;
+  $("installBtn").textContent = t.install; $("installBtnSetup").textContent = "📲 " + t.install;
   $("langTop").setAttribute("aria-label", t.language);
   $("inA").setAttribute("aria-label", t.nameLeft); $("inB").setAttribute("aria-label", t.nameRight);
   // Nombres por defecto: se traducen solo si nadie los ha cambiado
@@ -1389,10 +1391,12 @@ let installPrompt = null;
 if (isPublicSite && "serviceWorker" in navigator){
   navigator.serviceWorker.register("sw.js").catch(() => {});
 }
-if (isPublicSite && !isInstalled) $("installBtn").hidden = false;
-window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); installPrompt = e; if (!isInstalled) $("installBtn").hidden = false; });
-window.addEventListener("appinstalled", () => { $("installBtn").hidden = true; installPrompt = null; });
-$("installBtn").addEventListener("click", async () => {
+const installBtns = ["installBtn", "installBtnSetup"].map($);
+const showInstall = on => installBtns.forEach(b => b.hidden = !on);
+if (isPublicSite && !isInstalled) showInstall(true);
+window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); installPrompt = e; if (!isInstalled) showInstall(true); });
+window.addEventListener("appinstalled", () => { showInstall(false); installPrompt = null; });
+const onInstall = async () => {
   if (installPrompt){
     installPrompt.prompt();
     try { await installPrompt.userChoice; } catch(e){}
@@ -1400,7 +1404,8 @@ $("installBtn").addEventListener("click", async () => {
   } else {
     $("installBox").hidden = false; $("installClose").focus();
   }
-});
+};
+installBtns.forEach(b => b.addEventListener("click", onInstall));
 $("installClose").addEventListener("click", () => { $("installBox").hidden = true; });
 
 setLang(cfg.lang);
