@@ -5,8 +5,9 @@ Cada respuesta correcta tira de la cuerda hacia su lado; gana quien lleve el pa�
 
 - **Preguntas islámicas**: pilares, oraciones, profetas, Corán, fiestas y expresiones (opción múltiple).
 - **Sumas con dátiles**: cuentas con pequeñas historias y teclado numérico (3 niveles).
-- **Aprende árabe**: letras, números, animales, comida, colores, familia, cosas y saludos, con dibujos y pronunciación. Si el navegador tiene voz en árabe, aparece el botón 🔊 Escuchar.
-- **Mixto**: alterna preguntas islámicas, árabe y sumas.
+- **Mixto**: alterna preguntas islámicas y sumas.
+
+**Aprende árabe** (sección aparte, sin competir): camino de lecciones con metodología estructurada — 1) el alfabeto en 8 lecciones por familias de letras, 2) las vocales cortas (se abre al terminar el alfabeto), 3) números del 1 al 10, 4) primeras palabras, 5) saludos. Cada lección: Aprende → Practica (reintentos sin castigo) → Escribe (trazar letras) → Comprueba (5 preguntas; 3 aciertos abren la siguiente). Datos en `LEARN` y `EX`; el progreso se guarda en el dispositivo.
 
 **Temas de las preguntas islámicas**: Pilares y fe, Salah, Ramadán y ayuno, Corán, Profetas, Historia del Islam, Hayy y lugares santos, Modales y duas. En la pantalla de inicio se eligen uno, varios o todos.
 - **Un jugador**: juegas solo contra la computadora, que tira de la cuerda cada 9, 6 o 4 segundos según la velocidad elegida.
