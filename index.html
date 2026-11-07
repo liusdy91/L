@@ -273,6 +273,27 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .trace-msg{margin:0;text-align:center;font-weight:900;min-height:1.4em}
 .trace-msg.good{color:var(--ok)} .trace-msg.try{color:var(--gold)}
 
+/* ---------- práctica y repaso ---------- */
+body.practice .arena,body.practice #panelB{display:none!important}
+body.practice .board{grid-template-columns:minmax(0,720px)!important;grid-template-rows:minmax(0,1fr)!important;justify-content:center}
+.pq-bar{display:flex;align-items:center;gap:10px;font-weight:800;font-size:.9rem;color:var(--sand-dim)}
+.pq-bar .bar{flex:1;height:8px;background:var(--night);border-radius:999px;overflow:hidden}
+.pq-bar .bar i{display:block;height:100%;background:var(--gold);border-radius:999px;transition:width .3s}
+.next-btn{background:var(--gold);color:#2b1d00;border:none;border-radius:12px;padding:10px 16px;font-weight:900;font-size:1rem;align-self:flex-end;animation:pop .4s}
+.answer-was{margin:0;font-weight:800;color:var(--ok)}
+.review{display:flex;flex-direction:column;gap:8px;max-height:min(40vh,320px);overflow:auto;padding-inline-end:4px}
+.review h3{margin:0;font-family:var(--font-display);font-size:1.1rem;color:var(--gold)}
+.review ol{margin:0;padding-inline-start:1.3em;display:grid;gap:8px}
+.review li{line-height:1.35}
+.review .rq{font-weight:800}
+.review .ra{color:var(--ok);font-weight:800}
+.review .rs{font-size:.78rem;color:var(--sand-dim)}
+.sum-score{font-family:var(--font-display);font-size:clamp(2.6rem,8vw,3.6rem);margin:0;color:var(--gold);line-height:1}
+.sum-stars{font-size:1.8rem;letter-spacing:.1em;margin:0}
+.card .sum-score{color:var(--gold)}
+.card .sum-stars{color:var(--sand)}
+#sumBox .seg button,#winBox .seg button{flex:1 1 200px;text-align:center}
+
 /* ---------- pantallas estrechas ---------- */
 @media (max-width:900px) and (orientation:portrait){
   .board{grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr}
@@ -319,6 +340,9 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
   .speak{padding:1px 8px;font-size:.75rem}
   .stars{font-size:clamp(.9rem,5vh,1.3rem)}
   .toast-pop{font-size:.85rem;padding:6px 12px}
+  .next-btn{padding:4px 12px;font-size:.85rem}
+  .answer-was{font-size:.75rem}
+  .pq-bar{font-size:.72rem}
   .question{font-size:clamp(.78rem,3.7vh,1.05rem);min-height:0;line-height:1.2}
   .question.math{font-size:clamp(1.1rem,7.5vh,1.7rem)}
   .story{font-size:.66rem;min-height:0;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -355,7 +379,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .rotate .phone{animation:turn 2.4s ease-in-out infinite;transform-origin:55px 55px;transform-box:view-box}
 @keyframes turn{0%,25%{rotate:0deg}55%,90%{rotate:-90deg}100%{rotate:0deg}}
 @media (orientation:portrait) and (max-width:600px){
-  body.playing:not(.portrait-ok) .rotate{display:flex}
+  body.playing:not(.portrait-ok):not(.practice) .rotate{display:flex}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -495,6 +519,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
       <div class="seg" id="playersSeg">
         <button type="button" data-v="2" aria-pressed="true"><span data-i18n="players2"></span><small data-i18n="players2Sub"></small></button>
         <button type="button" data-v="1" aria-pressed="false"><span data-i18n="players1"></span><small data-i18n="players1Sub"></small></button>
+        <button type="button" data-v="0" aria-pressed="false"><span data-i18n="practice"></span><small data-i18n="practiceSub"></small></button>
       </div>
     </div>
 
@@ -531,7 +556,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
       <div class="chips" id="topicChips"></div>
     </div>
 
-    <div class="field"><span data-i18n="targetLabel">Tirones para ganar</span>
+    <div class="field" id="targetField"><span data-i18n="targetLabel">Tirones para ganar</span>
       <div class="seg" id="targetSeg">
         <button type="button" data-v="5" aria-pressed="false" data-num="5">5</button>
         <button type="button" data-v="7" aria-pressed="true" data-num="7">7</button>
@@ -549,6 +574,21 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
     <p class="hint" data-i18n="teamLangHint">Cada equipo puede cambiar su idioma durante la partida.</p>
 
     <button class="start" id="startBtn" type="button" data-i18n="start">Bismillah, ¡a jugar!</button>
+  </div>
+</div>
+
+<!-- Fin de la práctica -->
+<div class="overlay" id="sumBox" hidden>
+  <div class="card" role="dialog" aria-labelledby="sumTitle" style="text-align:center">
+    <h2 id="sumTitle" data-i18n="sumTitle">¡Has terminado!</h2>
+    <p class="sum-score" id="sumScore" dir="ltr">0/10</p>
+    <p class="sum-stars" id="sumStars" aria-hidden="true"></p>
+    <p id="sumMsg"></p>
+    <div class="review" id="sumReview" style="text-align:start"></div>
+    <div class="seg" style="justify-content:center">
+      <button class="start" id="sumAgain" type="button" data-i18n="playAgain" style="flex:1">Volver a jugar</button>
+      <button class="ghost" id="sumSetup" type="button" data-i18n="changeSettings">Cambiar ajustes</button>
+    </div>
   </div>
 </div>
 
@@ -657,6 +697,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
       <div><span id="wsNameB">Estrella</span><b id="wsB">0</b><span data-i18n="correctAnswers"></span></div>
     </div>
     <p id="winTime">00:00</p>
+    <div class="review" id="winReview"></div>
     <div class="seg">
       <button class="start" id="againBtn" type="button" style="flex:1" data-i18n="rematch">Revancha</button>
       <button class="ghost" id="setupBtn2" type="button" data-i18n="changeSettings">Cambiar ajustes</button>
@@ -672,6 +713,8 @@ const SHORT = { es:"ES", en:"EN", ar:"ع" };
 const UI = {
   es:{
     title:"Tira de la Cuerda", newGame:"Nueva partida", soundOn:"Sonido: sí", soundOff:"Sonido: no",
+    practice:"📝 Práctica", practiceSub:"Solo, a tu ritmo · 10 preguntas", qCounter:(a, b) => `Pregunta ${a} de ${b}`, nextQ:"Siguiente ›", correctWas:"Respuesta correcta",
+    review:"Para repasar", reviewNone:"¡Sin fallos! MashaAllah.", sumTitle:"¡Has terminado!", sum9:"¡MashaAllah, excelente!", sum6:"¡Muy bien! Sigue así.", sum0:"¡Buen intento! Repasa las respuestas y vuelve a jugar.", playAgain:"Volver a jugar",
     ageLabel:"Edad de los jugadores", age1:"Pequeños", age1Sub:"4–6 años · fácil, con estrellas", age2:"Medianos", age2Sub:"7–9 años · sumas hasta 20", age3:"Mayores", age3Sub:"10–12 años · todo, sumas y restas hasta 50",
     readAloud:"Leer en voz alta", starsStory:"Cuenta las estrellas: ¿cuántas hay en total?",
     streak3:"¡3 seguidas! ⭐", streak5:"¡5 seguidas! 🌟", streak10:"¡10 seguidas! 🏆 ¡Imparable!",
@@ -710,6 +753,8 @@ const UI = {
   },
   en:{
     title:"Tug of War", newGame:"New game", soundOn:"Sound: on", soundOff:"Sound: off",
+    practice:"📝 Practice", practiceSub:"On your own, at your pace · 10 questions", qCounter:(a, b) => `Question ${a} of ${b}`, nextQ:"Next ›", correctWas:"Right answer",
+    review:"To review", reviewNone:"No mistakes! MashaAllah.", sumTitle:"You've finished!", sum9:"MashaAllah, excellent!", sum6:"Very good! Keep it up.", sum0:"Good try! Review the answers and play again.", playAgain:"Play again",
     ageLabel:"Players' age", age1:"Little ones", age1Sub:"Ages 4–6 · easy, with stars", age2:"Middle", age2Sub:"Ages 7–9 · sums up to 20", age3:"Older", age3Sub:"Ages 10–12 · everything, sums and subtractions up to 50",
     readAloud:"Read aloud", starsStory:"Count the stars: how many are there in total?",
     streak3:"3 in a row! ⭐", streak5:"5 in a row! 🌟", streak10:"10 in a row! 🏆 Unstoppable!",
@@ -748,6 +793,8 @@ const UI = {
   },
   ar:{
     title:"شدّ الحبل", newGame:"لعبة جديدة", soundOn:"الصوت: يعمل", soundOff:"الصوت: متوقف",
+    practice:"📝 تدريب", practiceSub:"وحدك وعلى مهلك · 10 أسئلة", qCounter:(a, b) => `السؤال ${a} من ${b}`, nextQ:"التالي", correctWas:"الإجابة الصحيحة",
+    review:"للمراجعة", reviewNone:"لا أخطاء! ما شاء الله.", sumTitle:"انتهيت!", sum9:"ما شاء الله، ممتاز!", sum6:"أحسنت! واصل هكذا.", sum0:"محاولة جيدة! راجع الإجابات والعب مرة أخرى.", playAgain:"العب مرة أخرى",
     ageLabel:"عمر اللاعبين", age1:"الصغار", age1Sub:"4–6 سنوات · سهل مع النجوم", age2:"المتوسطون", age2Sub:"7–9 سنوات · الجمع حتى 20", age3:"الكبار", age3Sub:"10–12 سنة · كل شيء، الجمع والطرح حتى 50",
     readAloud:"اقرأ بصوت عالٍ", starsStory:"عُدّ النجوم: كم عددها كلها؟",
     streak3:"3 متتالية! ⭐", streak5:"5 متتالية! 🌟", streak10:"10 متتالية! 🏆 لا يُوقَف!",
@@ -1245,7 +1292,7 @@ let pos = 0, playing = false, t0 = 0, tick = null, lastWinner = null;
 const teams = { A: null, B: null };
 
 function makeTeam(side){
-  return { side, lang: cfg.lang, correct:0, streak:0, deck:quizDeck(), di:0, q:null, input:"", locked:false, recent:[],
+  return { side, lang: cfg.lang, correct:0, streak:0, answered:0, missed:[], deck:quizDeck(), di:0, q:null, input:"", locked:false, recent:[],
            cpu: side === "B" && cfg.players === 1 };
 }
 
@@ -1440,6 +1487,12 @@ function render(team){
   zone.style.display = "flex"; zone.style.flexDirection = "column"; zone.style.gap = "12px";
   if (team.cpu) { renderCpu(team); return; }
   if (!q) return;
+  if (cfg.players === 0 && team.side === "A"){
+    const bar = document.createElement("div"); bar.className = "pq-bar";
+    const lbl = document.createElement("span"); lbl.textContent = num(t.qCounter(Math.min(team.answered + 1, PRACTICE_N), PRACTICE_N), L);
+    const b = document.createElement("span"); b.className = "bar"; const i = document.createElement("i"); i.style.width = (team.answered / PRACTICE_N * 100) + "%"; b.append(i);
+    bar.append(lbl, b); zone.append(bar);
+  }
   if (q.type==="arabic"){ renderArabic(team, zone); return; }
   if (q.type==="quiz"){
     const row = QUIZ[L][q.idx];
@@ -1499,7 +1552,7 @@ function answerQuiz(team, btn, k){
   [...$("zone"+team.side).querySelectorAll(".opt")].forEach(b => { b.disabled = true; if (b.dataset.k==="0") b.classList.add("right"); });
   if (!ok) btn.classList.add("wrong");
   if (team.q.type === "arabic") speakAr(arabicSpoken(team.q));
-  check(team, ok, ok ? (team.q.type === "arabic" ? 900 : 550) : 1600);
+  check(team, ok, ok ? (team.q.type === "arabic" ? 900 : 550) : 0);
 }
 
 function check(team, ok, delay=0){
@@ -1513,15 +1566,87 @@ function check(team, ok, delay=0){
       toast(team, UI[team.lang]["streak" + team.streak]); setTimeout(sStar, 250);
     }
     addProgress(progressKey(team.q));
+    if (cfg.players === 0){ team.answered++; team.locked = true; showNext(team); return; }
     pull(team.side);
     if (!playing) return;
     team.locked = true;
     setTimeout(() => playing && nextQuestion(team), delay || 350);
   } else {
     panel.classList.add("flash-bad"); sBad(); team.streak = 0;
+    recordMiss(team);
+    if (cfg.players === 0){
+      team.answered++; team.locked = true;
+      if (team.q.type === "math") showMathAnswer(team);
+      showNext(team); return;
+    }
     if (team.q.type==="math"){ team.input=""; updateDisplay(team); team.locked=false; }
-    else setTimeout(() => playing && nextQuestion(team), delay);
+    else showNext(team, 6000);
   }
+}
+
+/* ---- tras responder: botón «Siguiente» para leer con calma la respuesta correcta ---- */
+const PRACTICE_N = 10;
+function showNext(team, autoMs){
+  const zone = $("zone"+team.side), q = team.q;
+  const b = document.createElement("button"); b.type = "button"; b.className = "next-btn"; b.textContent = UI[team.lang].nextQ;
+  const go = () => { if (team.q !== q || !playing) return; advance(team); };
+  b.addEventListener("click", go);
+  zone.append(b); b.focus({ preventScroll:true });
+  if (autoMs) setTimeout(go, autoMs);
+}
+function advance(team){
+  if (cfg.players === 0 && team.answered >= PRACTICE_N) return practiceSummary();
+  nextQuestion(team);
+}
+function showMathAnswer(team){
+  const d = $("disp"+team.side); if (!d) return;
+  const p = document.createElement("p"); p.className = "answer-was";
+  p.textContent = num(`${UI[team.lang].correctWas}: ${team.q.a} ${team.q.op} ${team.q.b} = ${team.q.answer}`, team.lang);
+  d.after(p);
+}
+function recordMiss(team){
+  if (team.cpu || team.q.missed) return;
+  team.q.missed = true; team.missed.push(team.q);
+}
+function reviewItem(q, L){
+  const t = UI[L];
+  if (q.type === "quiz"){ const row = QUIZ[L][q.idx]; return { q: row[0], a: row[1], s: t.source + ": " + sourceText(q.idx, L) }; }
+  if (q.type === "math") return { q: q.stars ? t.starsStory : storyText(q, L), a: `${q.a} ${q.op} ${q.b} = ${q.answer}` };
+  const i = q.items[0];
+  if (q.kind === "letter") return { q: `${t.qLetter} ${LETTERS[i][0]}`, a: L === "ar" ? LETTERS[i][2] : `${(L === "en" && LETTER_EN[LETTERS[i][1]]) || LETTERS[i][1]} (${LETTERS[i][2]})` };
+  if (q.kind === "number") return { q: `${t.qNumber} ${NUMBERS[i][0]}`, a: String(i + 1) };
+  if (q.kind === "phrase") return { q: `${t.qPhrase} ${PHRASES[i][0]}`, a: L === "ar" ? PHRASES[i][0] : PHRASES[i][L === "en" ? 3 : 2] };
+  const w = WORDS[q.topic][i], local = L === "en" ? w[4] : L === "ar" ? w[1] : w[3], pic = w[0].startsWith("#") ? "" : w[0] + " ";
+  return { q: q.kind === "pic" ? `${t.qPic} ${pic}${local}` : `${t.qWord} ${w[1]}`, a: q.kind === "pic" ? `${w[1]} (${w[2]})` : `${pic}${local}` };
+}
+function renderReview(box, list, L){
+  const t = UI[L]; box.innerHTML = "";
+  const h = document.createElement("h3"); h.textContent = t.review; box.append(h);
+  if (!list.length){ const p = document.createElement("p"); p.textContent = t.reviewNone; box.append(p); return; }
+  const ol = document.createElement("ol");
+  list.slice(0, 8).forEach(q => {
+    const r = reviewItem(q, L), li = document.createElement("li");
+    const a = document.createElement("div"); a.className = "rq"; a.textContent = num(r.q, L);
+    const b = document.createElement("div"); b.className = "ra"; b.textContent = "✓ " + num(r.a, L);
+    li.append(a, b);
+    if (r.s){ const c = document.createElement("div"); c.className = "rs"; c.textContent = num(r.s, L); li.append(c); }
+    ol.append(li);
+  });
+  box.append(ol);
+}
+function practiceSummary(){
+  playing = false; clearInterval(tick);
+  fillSummary();
+  $("sumBox").hidden = false; $("sumAgain").focus();
+  if (teams.A.correct >= 6){ sWin(); confetti(); } else sStar();
+}
+function fillSummary(){
+  const L = cfg.lang, t = UI[L], n = teams.A.correct;
+  $("sumScore").textContent = num(`${n}/${PRACTICE_N}`, L);
+  const stars = Math.round(n / PRACTICE_N * 5);
+  $("sumStars").textContent = "⭐".repeat(stars) + "☆".repeat(5 - stars);
+  $("sumMsg").textContent = n >= 9 ? t.sum9 : n >= 6 ? t.sum6 : t.sum0;
+  renderReview($("sumReview"), teams.A.missed, L);
 }
 
 /* ---- modo un jugador: la computadora tira del lado derecho ---- */
@@ -1605,6 +1730,7 @@ function fillWin(){
   $("wsA").textContent = num(teams.A.correct, L); $("wsB").textContent = num(teams.B.correct, L);
   $("winTime").textContent = UI[L].time + ": " + num($("timer").textContent, L);
   $("winPre").textContent = (lastWinner === "B" && cfg.players === 1) ? UI[L].cpuWinPre : UI[L].winPre;
+  renderReview($("winReview"), [...teams.A.missed, ...teams.B.missed], L);
 }
 
 function resetKids(){ document.querySelectorAll(".pose").forEach(g => g.removeAttribute("transform")); }
@@ -1633,10 +1759,13 @@ function goLandscape(){
   } catch(e){}
 }
 function start(){
-  goLandscape();
+  const practice = cfg.players === 0;
+  if (!practice) goLandscape();
   document.body.classList.add("playing");
+  document.body.classList.toggle("practice", practice);
+  $("sumBox").hidden = true;
   cfg.nameA = $("inA").value.trim() || UI[cfg.lang].teamA;
-  cfg.nameB = cfg.players === 1 ? UI[cfg.lang].cpuName : ($("inB").value.trim() || UI[cfg.lang].teamB);
+  cfg.nameB = cfg.players !== 2 ? UI[cfg.lang].cpuName : ($("inB").value.trim() || UI[cfg.lang].teamB);
   showNames();
   pos = 0; lastWinner = null; resetKids(); $("scene").classList.remove("winA","winB");
   teams.A = makeTeam("A"); teams.B = makeTeam("B");
@@ -1648,6 +1777,7 @@ function start(){
   $("timer").textContent = num("00:00", cfg.lang);
   tick = setInterval(() => $("timer").textContent = num(fmt(Date.now()-t0), cfg.lang), 250);
   nextQuestion(teams.A);
+  if (practice) return;
   if (teams.B.cpu) { render(teams.B); startCpu(); } else nextQuestion(teams.B);
 }
 
@@ -1693,6 +1823,7 @@ function setLang(l){
   ["A","B"].forEach(s => { if (teams[s]) { teams[s].lang = l; render(teams[s]); $("score"+s).textContent = num(teams[s].correct, l); } });
   renderTeamLangs(); drawRope(); fillWin();
   if (!$("tutBox").hidden) showTut(tutStep);
+  if (!$("sumBox").hidden) fillSummary();
   if (!$("medalsBox").hidden) openMedals();
   if (!$("traceBox").hidden) traceLetterInfo();
 }
@@ -1752,11 +1883,12 @@ $("modeSeg").addEventListener("click", updateModeUI);
 segment("playersSeg","players",Number);
 segment("cpuSeg","cpuSecs",Number);
 function updatePlayersUI(){
-  const solo = cfg.players === 1;
-  $("cpuField").hidden = !solo;
-  $("labelB").hidden = solo;
-  document.querySelector(".card .hint").hidden = solo;
-  $("namesLabel").textContent = solo ? UI[cfg.lang].nameLabelSolo : UI[cfg.lang].namesLabel;
+  const alone = cfg.players !== 2;
+  $("cpuField").hidden = cfg.players !== 1;
+  $("targetField").hidden = cfg.players === 0;
+  $("labelB").hidden = alone;
+  document.querySelector(".card .hint").hidden = alone;
+  $("namesLabel").textContent = alone ? UI[cfg.lang].nameLabelSolo : UI[cfg.lang].namesLabel;
 }
 $("playersSeg").addEventListener("click", updatePlayersUI);
 segment("ageSeg","age",Number);
@@ -1764,9 +1896,11 @@ segment("targetSeg","target",Number);
 
 $("startBtn").addEventListener("click", start);
 $("againBtn").addEventListener("click", start);
+$("sumAgain").addEventListener("click", start);
+$("sumSetup").addEventListener("click", () => { $("sumBox").hidden = true; document.body.classList.remove("playing", "practice"); $("setup").hidden = false; });
 $("setupBtn2").addEventListener("click", () => { $("winBox").hidden = true; $("setup").hidden = false; });
 $("portraitOk").addEventListener("click", () => document.body.classList.add("portrait-ok"));
-$("menuBtn").addEventListener("click", () => { document.body.classList.remove("playing"); playing=false; clearInterval(tick); stopCpu(); $("winBox").hidden = true; $("setup").hidden = false; });
+$("menuBtn").addEventListener("click", () => { document.body.classList.remove("playing", "practice"); $("sumBox").hidden = true; playing=false; clearInterval(tick); stopCpu(); $("winBox").hidden = true; $("setup").hidden = false; });
 $("soundBtn").addEventListener("click", e => {
   soundOn = !soundOn; e.currentTarget.textContent = soundOn ? UI[cfg.lang].soundOn : UI[cfg.lang].soundOff;
   e.currentTarget.setAttribute("aria-pressed", String(soundOn));
