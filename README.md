@@ -23,3 +23,5 @@ Abre `index.html` en un navegador (la carpeta `assets/` con las ilustraciones de
 **Para niños**: niveles por edad (4–6, 7–9, 10–12), botón 🔊 para leer en voz alta, «Taller de letras» para escribir las letras árabes con el dedo, rachas y medallas por tema (guardadas solo en el dispositivo), tutorial de «¿Cómo se juega?» y celebración al ganar. La dificultad de cada pregunta está en `DIFF`. Información para familias y docentes en [padres.html](padres.html).
 
 **Práctica**: modo de una sola persona con 10 preguntas, contador, botón «Siguiente» y resumen final con estrellas y las preguntas falladas (respuesta correcta y fuente). En la tira de la cuerda, al fallar se puede leer la respuesta correcta antes de seguir, y al ganar aparece «Para repasar».
+
+**Deletrea palabras** (dentro de «Aprende árabe»): se ve un dibujo, se escucha la palabra y se forma letra a letra tocando fichas; al terminar se ve la palabra con sus letras unidas. Tres niveles (fácil con pistas, normal, difícil con todo el alfabeto), rondas de 8 palabras y medalla. Palabras en `SPELL`.
