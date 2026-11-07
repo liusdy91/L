@@ -319,6 +319,35 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .learn-result{text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
 .learn-result .sum-stars{font-size:2.2rem}
 
+/* ---------- deletrea palabras ---------- */
+.spell-card{background:linear-gradient(135deg,color-mix(in srgb,var(--teamB) 35%,var(--night)),var(--night));border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px;border:2px solid color-mix(in srgb,var(--gold) 40%,transparent)}
+.spell-card h3{margin:0;font-family:var(--font-display);font-size:1.25rem}
+.spell-card p{margin:0}
+.sp{display:flex;flex-direction:column;gap:14px;align-items:center}
+.sp-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
+.sp-pic{font-size:clamp(4rem,14vw,6rem);line-height:1;filter:drop-shadow(0 6px 14px rgba(0,0,0,.35))}
+.sp-pic .swatch{width:1em;height:1em}
+.sp-info{display:flex;flex-direction:column;gap:6px;align-items:center}
+.sp-info .tn{font-weight:900;font-size:1.15rem}
+.sp-info .tr{color:var(--sand-dim);font-weight:700}
+.sp-slots{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.sp-slot{width:clamp(54px,12vw,72px);height:clamp(64px,14vw,84px);border-radius:14px;border:3px dashed color-mix(in srgb,var(--sand) 35%,transparent);display:flex;align-items:center;justify-content:center;font-family:"Amiri","Cairo",serif;font-size:clamp(2rem,7vw,2.8rem);color:var(--gold);background:var(--night)}
+.sp-slot.ghost{color:color-mix(in srgb,var(--sand) 22%,transparent)}
+.sp-slot.next{border-color:var(--gold);border-style:solid}
+.sp-slot.filled{border-style:solid;border-color:var(--ok);color:var(--sand)}
+.sp-word{min-height:1.3em;font-family:"Amiri","Cairo",serif;font-size:clamp(2.6rem,9vw,3.8rem);color:var(--gold);line-height:1.2}
+.sp-word.show{animation:pop .5s}
+.sp-tiles{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;width:100%;max-width:620px}
+.sp-tile{width:58px;height:58px;border-radius:12px;border:none;background:var(--sand);color:#1b2b36;font-family:"Amiri","Cairo",serif;font-size:2rem;line-height:1;box-shadow:0 4px 0 #b9ad93;transition:transform .1s}
+.sp-tile:active{transform:translateY(3px);box-shadow:0 1px 0 #b9ad93}
+.sp-tile.used{visibility:hidden}
+.sp-tile.shake{animation:shake .4s;background:#f2b8ae}
+.sp-tile.hint{animation:pulse 1.2s ease-in-out infinite;background:var(--gold)}
+.sp-fly{position:fixed;z-index:60;pointer-events:none;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--sand);color:#1b2b36;font-family:"Amiri","Cairo",serif;font-size:2rem;transition:transform .42s cubic-bezier(.3,1.3,.5,1)}
+.sp-levels{display:flex;gap:8px;flex-wrap:wrap}
+.sp-levels button{background:var(--night-3);border:2px solid transparent;border-radius:999px;padding:6px 14px;font-weight:800}
+.sp-levels button[aria-pressed="true"]{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 16%,var(--night-3))}
+
 /* ---------- práctica y repaso ---------- */
 body.practice .arena,body.practice #panelB{display:none!important}
 body.practice .board{grid-template-columns:minmax(0,720px)!important;grid-template-rows:minmax(0,1fr)!important;justify-content:center}
@@ -770,6 +799,10 @@ const SHORT = { es:"ES", en:"EN", ar:"ع" };
 const UI = {
   es:{
     title:"Tira de la Cuerda", newGame:"Nueva partida", soundOn:"Sonido: sí", soundOff:"Sonido: no",
+    spellTitle:"🧩 Deletrea palabras", spellDesc:"Mira el dibujo, escucha la palabra y fórmala letra a letra. Al terminar verás cómo se unen las letras.",
+    spellPlay:"¡Jugar!", spellEasy:"Fácil · con pistas", spellNormal:"Normal", spellHard:"Difícil · todas las letras",
+    spellPrompt:"Forma la palabra tocando las letras", spellWrong:"Esa no es… ¡prueba otra! 🙂", spellGood:"¡Muy bien! ✨", nextWord:"Siguiente palabra ›",
+    spellEnd:"¡Has formado todas las palabras!", spellErrors:n => n ? `Fallos: ${n}` : "¡Sin fallos! MashaAllah", medalSpell:"Deletrear",
     learnBtn:"📚 Aprende árabe", learnTitle:"Aprende árabe", learnIntro:"Paso a paso y sin prisa. Cada lección tiene cuatro pasos: aprende, practica, escribe y comprueba. Con 3 aciertos de 5 se abre la siguiente lección.",
     back:"‹ Volver", lessonN:n => `Lección ${n}`, stepLearn:"1 · Aprende", stepPractice:"2 · Practica", stepWrite:"3 · Escribe", stepCheck:"4 · Comprueba",
     toPractice:"¡A practicar!", toWrite:"¡A escribir!", toCheck:"¡A comprobar!", skipStep:"Saltar este paso", listen:"🔊 Escuchar",
@@ -818,6 +851,10 @@ const UI = {
   },
   en:{
     title:"Tug of War", newGame:"New game", soundOn:"Sound: on", soundOff:"Sound: off",
+    spellTitle:"🧩 Spell words", spellDesc:"Look at the picture, listen to the word and build it letter by letter. At the end you'll see how the letters join.",
+    spellPlay:"Play!", spellEasy:"Easy · with hints", spellNormal:"Normal", spellHard:"Hard · every letter",
+    spellPrompt:"Build the word by tapping the letters", spellWrong:"Not that one… try another! 🙂", spellGood:"Well done! ✨", nextWord:"Next word ›",
+    spellEnd:"You've built all the words!", spellErrors:n => n ? `Mistakes: ${n}` : "No mistakes! MashaAllah", medalSpell:"Spelling",
     learnBtn:"📚 Learn Arabic", learnTitle:"Learn Arabic", learnIntro:"Step by step, no rush. Each lesson has four steps: learn, practise, write and check. Get 3 out of 5 right to open the next lesson.",
     back:"‹ Back", lessonN:n => `Lesson ${n}`, stepLearn:"1 · Learn", stepPractice:"2 · Practise", stepWrite:"3 · Write", stepCheck:"4 · Check",
     toPractice:"Let's practise!", toWrite:"Let's write!", toCheck:"Let's check!", skipStep:"Skip this step", listen:"🔊 Listen",
@@ -866,6 +903,10 @@ const UI = {
   },
   ar:{
     title:"شدّ الحبل", newGame:"لعبة جديدة", soundOn:"الصوت: يعمل", soundOff:"الصوت: متوقف",
+    spellTitle:"🧩 تهجئة الكلمات", spellDesc:"انظر إلى الصورة واستمع إلى الكلمة ثم كوّنها حرفًا حرفًا. في النهاية سترى كيف تتّصل الحروف.",
+    spellPlay:"العب!", spellEasy:"سهل · مع تلميحات", spellNormal:"عادي", spellHard:"صعب · كل الحروف",
+    spellPrompt:"كوّن الكلمة بالضغط على الحروف", spellWrong:"ليس هذا… جرّب حرفًا آخر! 🙂", spellGood:"أحسنت! ✨", nextWord:"الكلمة التالية",
+    spellEnd:"كوّنت كل الكلمات!", spellErrors:n => n ? `الأخطاء: ${n}` : "لا أخطاء! ما شاء الله", medalSpell:"التهجئة",
     learnBtn:"📚 تعلّم العربية", learnTitle:"تعلّم العربية", learnIntro:"خطوة بخطوة ودون عجلة. لكل درس أربع خطوات: تعلّم، تدرّب، اكتب، وتحقّق. أجب عن 3 من 5 لفتح الدرس التالي.",
     back:"رجوع", lessonN:n => `الدرس ${n}`, stepLearn:"1 · تعلّم", stepPractice:"2 · تدرّب", stepWrite:"3 · اكتب", stepCheck:"4 · تحقّق",
     toPractice:"هيا نتدرّب!", toWrite:"هيا نكتب!", toCheck:"هيا نتحقّق!", skipStep:"تخطَّ هذه الخطوة", listen:"🔊 استمع",
@@ -1298,6 +1339,15 @@ const LEARN = [
     d:{ es:"Frases para saludar, dar las gracias y despedirse.", en:"Phrases to greet, say thank you and say goodbye.", ar:"عبارات للتحية والشكر والوداع." },
     lessons:[ { id:"s1", kind:"phrases", items:[0,1,2,3] }, { id:"s2", kind:"phrases", items:[4,5,6,7] } ] },
 ];
+
+/* ---- Deletrea palabras: [dibujo, palabra, pronunciación, español, inglés]; solo letras del alfabeto básico ---- */
+const SPELL = [
+  ["🏠","بيت","bayt","casa","house"], ["🌙","قمر","qamar","luna","moon"], ["☀️","شمس","shams","sol","sun"], ["🚪","باب","bāb","puerta","door"],
+  ["🐘","فيل","fīl","elefante","elephant"], ["✋","يد","yad","mano","hand"], ["👁️","عين","ʿayn","ojo","eye"], ["🐪","جمل","jamal","camello","camel"],
+  ["🐶","كلب","kalb","perro","dog"], ["✏️","قلم","qalam","lápiz","pencil"], ["🐻","دب","dubb","oso","bear"], ["🍞","خبز","khubz","pan","bread"],
+  ["🍇","عنب","ʿinab","uvas","grapes"], ["🥛","حليب","ḥalīb","leche","milk"], ["🕌","مسجد","masjid","mezquita","mosque"], ["📖","كتاب","kitāb","libro","book"],
+];
+if (SPELL.some(w => [...w[1]].some(ch => !LETTERS.some(l => l[0] === ch)))) console.error("Una palabra de «Deletrea» usa una letra fuera del alfabeto básico");
 
 /* ================= Sumas con historia ================= */
 // Nombres: [es/en, ar, femenino?]
@@ -1939,7 +1989,7 @@ function setLang(l){
   renderTeamLangs(); drawRope(); fillWin();
   if (!$("tutBox").hidden) showTut(tutStep);
   if (!$("sumBox").hidden) fillSummary();
-  if (!$("learnBox").hidden){ if (LS) renderLesson(); else renderPath(); }
+  if (!$("learnBox").hidden){ if (LS) renderLesson(); else if (SP && SP.cur) renderSpell(); else renderPath(); }
   if (!$("medalsBox").hidden) openMedals();
   if (!$("traceBox").hidden) traceLetterInfo();
 }
@@ -2055,17 +2105,19 @@ const PROG_KEY = "tdc-progress", MEDAL_AT = 10;
 const prog = (() => { try { return JSON.parse(store.get(PROG_KEY)) || {}; } catch(e){ return {}; } })();
 prog.c = prog.c || {}; prog.traced = prog.traced || [];
 const MEDALS = { "cat:fe":"🤲", "cat:salah":"🕌", "cat:ayuno":"🌙", "cat:coran":"📖", "cat:profetas":"⛵", "cat:historia":"🐪", "cat:hayy":"🕋", "cat:adab":"💚",
-  "math":"➕", "trace":"✍️", ...Object.fromEntries(LEARN.map(u => ["unit:" + u.id, u.icon === "َ ِ ُ" ? "🅰️" : u.icon])) };
+  "math":"➕", "trace":"✍️", "spell":"🧩", ...Object.fromEntries(LEARN.map(u => ["unit:" + u.id, u.icon === "َ ِ ُ" ? "🅰️" : u.icon])) };
 function saveProg(){ store.set(PROG_KEY, JSON.stringify(prog)); }
 function progressKey(q){ return q.type === "quiz" ? "cat:" + CAT_OF[q.idx] : q.type === "arabic" ? "topic:" + q.topic : "math"; }
 function medalCount(key){
   if (key.startsWith("unit:")) return LEARN.find(u => "unit:" + u.id === key).lessons.filter(l => learnProg.done[l.id]).length;
+  if (key === "spell") return (prog.spelled || []).length;
   return key === "trace" ? prog.traced.length : (prog.c[key] || 0);
 }
 function medalGoal(key){ return key.startsWith("unit:") ? LEARN.find(u => "unit:" + u.id === key).lessons.length : MEDAL_AT; }
 function medalName(key, L){
   if (key === "math") return UI[L].medalMath;
   if (key === "trace") return UI[L].medalTrace;
+  if (key === "spell") return UI[L].medalSpell;
   const [k, id] = key.split(":");
   if (k === "unit") return LEARN.find(u => u.id === id).t[L];
   return (k === "cat" ? CATS : TOPICS)[id][L];
@@ -2239,10 +2291,11 @@ function saveLearn(){ store.set(LEARN_KEY, JSON.stringify(learnProg)); }
 
 /* ---- vista: camino de lecciones ---- */
 function renderPath(){
-  LS = null;
+  LS = null; SP = null;
   const L = cfg.lang, t = UI[L], body = $("learnBody"); body.innerHTML = "";
   $("learnBack").hidden = true;
   const intro = document.createElement("p"); intro.textContent = num(t.learnIntro, L); body.append(intro);
+  body.append(spellCard());
   const wrap = document.createElement("div"); wrap.className = "units";
   LEARN.forEach(u => {
     const box = document.createElement("section"); box.className = "unit";
@@ -2482,9 +2535,149 @@ function renderResult(box){
   const back = document.createElement("button"); back.type = "button"; back.className = "ghost"; back.textContent = t.backToPath; back.addEventListener("click", renderPath); row.append(back);
   r.append(row); box.append(r);
 }
+/* ================= Deletrea palabras ================= */
+let SP = null, spellLevel = 1;   // 0 fácil, 1 normal, 2 difícil
+const SPELL_ROUND = 8;
+function spellCard(){
+  const t = UI[cfg.lang], card = document.createElement("section"); card.className = "spell-card";
+  const h = document.createElement("h3"); h.textContent = t.spellTitle;
+  const d = document.createElement("p"); d.textContent = t.spellDesc;
+  const lv = document.createElement("div"); lv.className = "sp-levels";
+  [t.spellEasy, t.spellNormal, t.spellHard].forEach((name, i) => {
+    const b = document.createElement("button"); b.type = "button"; b.textContent = name; b.setAttribute("aria-pressed", String(i === spellLevel));
+    b.addEventListener("click", () => { spellLevel = i; lv.querySelectorAll("button").forEach((x, k) => x.setAttribute("aria-pressed", String(k === i))); });
+    lv.append(b);
+  });
+  const go = document.createElement("button"); go.type = "button"; go.className = "next-btn"; go.style.alignSelf = "flex-start"; go.textContent = t.spellPlay;
+  go.addEventListener("click", startSpell);
+  card.append(h, d, lv, go);
+  return card;
+}
+function startSpell(){
+  SP = { words: shuffle([...SPELL.keys()]).slice(0, SPELL_ROUND), idx: 0, errors: 0 };
+  $("learnBack").hidden = false;
+  newSpellWord();
+}
+function newSpellWord(){
+  const w = SPELL[SP.words[SP.idx]], letters = [...w[1]];
+  // fichas: las letras de la palabra y, según el nivel, otras letras para elegir
+  let tiles;
+  if (spellLevel === 2) tiles = LETTERS.map(l => l[0]);
+  else {
+    const extraN = spellLevel === 0 ? 2 : 5;
+    const extras = shuffle(LETTERS.map(l => l[0]).filter(ch => !letters.includes(ch))).slice(0, extraN);
+    tiles = shuffle([...letters, ...extras]);
+  }
+  SP.cur = { w, letters, tiles, pos: 0, miss: 0, done: false };
+  renderSpell();
+  setTimeout(() => speakAr(w[1]), 300);
+}
+function renderSpell(){
+  const L = cfg.lang, t = UI[L], body = $("learnBody"), c = SP.cur, w = c.w; body.innerHTML = "";
+  const title = document.createElement("h3"); title.style.margin = "0"; title.style.fontFamily = "var(--font-display)"; title.textContent = t.spellTitle;
+  const bar = document.createElement("div"); bar.className = "pq-bar";
+  const lbl = document.createElement("span"); lbl.textContent = num(`${SP.idx + 1}/${SP.words.length}`, L);
+  const b = document.createElement("span"); b.className = "bar"; const bi = document.createElement("i"); bi.style.width = (SP.idx / SP.words.length * 100) + "%"; b.append(bi);
+  bar.append(lbl, b);
+  body.append(title, bar);
+  const box = document.createElement("div"); box.className = "sp"; body.append(box);
+  // dibujo + escuchar
+  const top = document.createElement("div"); top.className = "sp-top";
+  const pic = document.createElement("div"); pic.className = "sp-pic"; pic.append(picEl(w[0]));
+  const info = document.createElement("div"); info.className = "sp-info";
+  if (L !== "ar"){ const m = document.createElement("div"); m.className = "tn"; m.textContent = L === "en" ? w[4] : w[3]; info.append(m); }
+  if ("speechSynthesis" in window) info.append(listenBtn(w[1]));
+  if (c.done && L !== "ar"){ const tr = document.createElement("div"); tr.className = "tr"; tr.textContent = w[2]; info.append(tr); }
+  top.append(pic, info); box.append(top);
+  const pr = document.createElement("p"); pr.className = "lx-prompt"; pr.textContent = c.done ? t.spellGood : t.spellPrompt; box.append(pr);
+  // huecos (de derecha a izquierda)
+  const slots = document.createElement("div"); slots.className = "sp-slots"; slots.dir = "rtl"; slots.id = "spSlots";
+  c.letters.forEach((ch, i) => {
+    const sl = document.createElement("div"); sl.className = "sp-slot"; sl.lang = "ar";
+    if (i < c.pos){ sl.classList.add("filled"); sl.textContent = ch; }
+    else { if (i === c.pos && !c.done) sl.classList.add("next"); if (spellLevel === 0){ sl.classList.add("ghost"); sl.textContent = ch; } }
+    slots.append(sl);
+  });
+  box.append(slots);
+  const word = document.createElement("div"); word.className = "sp-word" + (c.done ? " show" : ""); word.lang = "ar"; word.textContent = c.done ? w[1] : ""; box.append(word);
+  const msg = document.createElement("p"); msg.className = "lx-msg"; msg.id = "spMsg"; msg.setAttribute("aria-live", "polite"); box.append(msg);
+  if (c.done){
+    const nb = document.createElement("button"); nb.type = "button"; nb.className = "next-btn"; nb.style.alignSelf = "center";
+    nb.textContent = SP.idx + 1 < SP.words.length ? t.nextWord : t.spellPlay;
+    nb.addEventListener("click", () => { if (SP.idx + 1 < SP.words.length){ SP.idx++; newSpellWord(); } else spellEnd(); });
+    box.append(nb); nb.focus({ preventScroll:true });
+    return;
+  }
+  // fichas
+  const tiles = document.createElement("div"); tiles.className = "sp-tiles"; tiles.dir = "rtl";
+  c.used = c.used || new Set();
+  c.tiles.forEach((ch, k) => {
+    const tb = document.createElement("button"); tb.type = "button"; tb.className = "sp-tile"; tb.lang = "ar"; tb.textContent = ch; tb.dataset.k = k;
+    if (c.used.has(k)) tb.classList.add("used");
+    tb.addEventListener("click", () => spellTap(tb, ch, k));
+    tiles.append(tb);
+  });
+  box.append(tiles);
+}
+function spellTap(tb, ch, k){
+  const c = SP.cur, t = UI[cfg.lang];
+  if (c.done || c.busy) return;
+  if (ch !== c.letters[c.pos]){
+    SP.errors++; c.miss++; bonk();
+    tb.classList.remove("shake"); void tb.offsetWidth; tb.classList.add("shake");
+    $("spMsg").className = "lx-msg try"; $("spMsg").textContent = t.spellWrong;
+    // pista: tras varios fallos se ilumina la ficha correcta
+    if (c.miss >= (spellLevel === 2 ? 3 : 2)){
+      const want = c.letters[c.pos];
+      [...document.querySelectorAll(".sp-tile")].find(x => x.textContent === want && !x.classList.contains("used"))?.classList.add("hint");
+    }
+    return;
+  }
+  // la ficha vuela hasta su hueco
+  c.busy = true; c.miss = 0;
+  const slot = $("spSlots").children[c.pos];
+  const from = tb.getBoundingClientRect(), to = slot.getBoundingClientRect();
+  if (spellLevel !== 2) { c.used.add(k); tb.classList.add("used"); }
+  const done = () => {
+    c.pos++; c.busy = false; chime(784, 0, .35, .18);
+    if (c.pos >= c.letters.length){
+      c.done = true; sOk(); setTimeout(sStar, 200); speakAr(c.w[1]);
+      prog.spelled = prog.spelled || [];
+      if (!prog.spelled.includes(c.w[1])){ prog.spelled.push(c.w[1]); saveProg(); if (prog.spelled.length === MEDAL_AT) medalPopup("spell"); }
+    }
+    renderSpell();
+  };
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return done();
+  const fly = document.createElement("div"); fly.className = "sp-fly"; fly.lang = "ar"; fly.textContent = ch;
+  Object.assign(fly.style, { left: from.left + "px", top: from.top + "px", width: from.width + "px", height: from.height + "px" });
+  document.body.append(fly);
+  requestAnimationFrame(() => {
+    const sx = to.width / from.width, sy = to.height / from.height;
+    fly.style.transformOrigin = "0 0";
+    fly.style.transform = `translate(${to.left - from.left}px, ${to.top - from.top}px) scale(${sx}, ${sy})`;
+  });
+  setTimeout(() => { fly.remove(); done(); }, 440);
+}
+function spellEnd(){
+  const L = cfg.lang, t = UI[L], body = $("learnBody"); body.innerHTML = "";
+  const r = document.createElement("div"); r.className = "learn-result";
+  const h = document.createElement("h3"); h.style.margin = "0"; h.style.fontFamily = "var(--font-display)"; h.style.fontSize = "1.5rem"; h.textContent = t.spellEnd;
+  const words = document.createElement("p"); words.className = "sp-word"; words.lang = "ar"; words.style.fontSize = "2rem";
+  words.textContent = SP.words.map(i => SPELL[i][1]).join(" · ");
+  const st = document.createElement("p"); st.className = "sum-stars"; const stars = SP.errors === 0 ? 3 : SP.errors <= 4 ? 2 : 1;
+  st.textContent = "★".repeat(stars) + "☆".repeat(3 - stars); st.style.color = "var(--gold)";
+  const er = document.createElement("p"); er.textContent = num(t.spellErrors(SP.errors), L);
+  const row = document.createElement("div"); row.className = "row-btns";
+  const again = document.createElement("button"); again.type = "button"; again.className = "next-btn"; again.textContent = t.spellPlay; again.addEventListener("click", startSpell);
+  const back = document.createElement("button"); back.type = "button"; back.className = "ghost"; back.textContent = t.backToPath; back.addEventListener("click", renderPath);
+  row.append(again, back);
+  r.append(h, words, st, er, row); body.append(r);
+  sWin(); confetti();
+}
+
 function openLearn(){ $("learnBox").hidden = false; renderPath(); $("learnClose").focus(); }
 $("learnBtn").addEventListener("click", openLearn);
-$("learnClose").addEventListener("click", () => { window.speechSynthesis?.cancel?.(); $("learnBox").hidden = true; LS = null; });
+$("learnClose").addEventListener("click", () => { window.speechSynthesis?.cancel?.(); $("learnBox").hidden = true; LS = null; SP = null; });
 $("learnBack").addEventListener("click", () => { window.speechSynthesis?.cancel?.(); renderPath(); });
 
 /* ---- compartir y sugerencias ---- */
