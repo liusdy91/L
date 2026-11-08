@@ -464,19 +464,25 @@ SCENES = [
 ]
 
 # ---------------------------------------------------------------- marca y textos
-def logo(c, x, y, s, a=1.0, dark=NAVY):
-    """Icono «Casa Antigua»: casa con tejado de teja y puerta en arco."""
-    c.save(); c.push_group(); c.translate(x, y); c.scale(s, s)
-    c.new_path(); c.move_to(-60, -10); c.line_to(0, -62); c.line_to(60, -10); c.close_path(); fill(c, TERRA)
-    for i in range(3): line(c, -40 + i * 10, -18 - i * 12, 40 - i * 10, -18 - i * 12, 3, CREAM, 0.6)
-    rrect(c, -46, -12, 92, 70, 4); fill(c, SAND)
-    c.new_path(); c.move_to(-16, 58); c.line_to(-16, 24); c.arc(0, 24, 16, math.pi, 2 * math.pi); c.line_to(16, 58); c.close_path(); fill(c, dark)
-    rrect(c, -38, 6, 16, 18, 3); fill(c, dark); rrect(c, 22, 6, 16, 18, 3); fill(c, dark)
-    c.pop_group_to_source(); c.paint_with_alpha(a); c.restore()
+import os
+LOGO = cairo.ImageSurface.create_from_png(os.path.join(os.path.dirname(os.path.abspath(__file__)), "logo_casa_antigua.png"))
+GOLD = hx("C9A060")
+
+def logo_img(c, x, y, size, a=1.0, round_=True):
+    """Dibuja el logo real de Casa Antigua centrado en (x, y)."""
+    c.save()
+    if round_:
+        c.new_path(); c.arc(x, y, size / 2, 0, 2 * math.pi); c.clip()
+    sc = size / LOGO.get_width()
+    c.translate(x - size / 2, y - size / 2); c.scale(sc, sc)
+    c.set_source_surface(LOGO, 0, 0); c.get_source().set_filter(cairo.FILTER_BEST)
+    c.paint_with_alpha(a); c.restore()
 
 def watermark(c):
-    logo(c, 115, 128, 0.75, 0.9)
-    font(c, 46, True); c.move_to(170, 145); c.set_source_rgba(*NAVY, 0.85); c.show_text("Casa Antigua")
+    circle(c, 112, 128, 72, GOLD, 0.95)
+    circle(c, 112, 128, 67, (0, 0, 0))
+    logo_img(c, 112, 128, 134, 1.0)
+    font(c, 46, True); c.move_to(200, 145); c.set_source_rgba(*NAVY, 0.9); c.show_text("Casa Antigua")
 
 def header(c, t):
     a = ease(t / 0.8)
@@ -523,17 +529,16 @@ def subtitle(c, t):
 
 def end_card(c, t):
     k = ease(t / 0.8)
-    c.set_source_rgb(*NAVY); c.paint()
+    c.set_source_rgb(0, 0, 0); c.paint()
     for i in range(12):
         a = i * math.pi / 6 + t * 0.2
-        line(c, W / 2, 820, W / 2 + math.cos(a) * 900, 820 + math.sin(a) * 900, 60, CREAM, 0.03)
-    with pop(c, W / 2, 820, t / 0.7):
-        circle(c, W / 2, 820, 230, CREAM)
-        logo(c, W / 2, 830, 2.6, 1.0)
-    text_c(c, "Casa Antigua", W / 2, 1200 + (1 - k) * 40, 110, CREAM, k)
+        line(c, W / 2, 800, W / 2 + math.cos(a) * 900, 800 + math.sin(a) * 900, 60, GOLD, 0.05)
+    with pop(c, W / 2, 800, t / 0.7):
+        logo_img(c, W / 2, 800, 820, 1.0, round_=False)
+    text_c(c, "Casa Antigua", W / 2, 1320 + (1 - k) * 40, 100, GOLD, k)
     k2 = ease((t - 0.8) / 0.6)
-    rrect(c, W / 2 - 260, 1300, 520, 110, 55); fill(c, TERRA, k2)
-    text_c(c, "Suscríbete", W / 2, 1374, 54, CREAM, k2)
+    rrect(c, W / 2 - 260, 1410, 520, 110, 55); fill(c, GOLD, k2)
+    text_c(c, "Suscríbete", W / 2, 1484, 54, (0, 0, 0), k2)
 
 # ---------------------------------------------------------------- render
 def frame(c, t):
