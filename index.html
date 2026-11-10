@@ -319,6 +319,21 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .learn-result{text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
 .learn-result .sum-stars{font-size:2.2rem}
 
+/* ---------- curso de árabe (método de Medina) ---------- */
+.g-kicker{margin:0;font-weight:900;color:var(--gold);letter-spacing:.04em}
+.lx-show .sent{font-family:"Amiri","Cairo",serif;font-size:clamp(2rem,6.5vw,3rem);line-height:1.5;color:var(--gold);text-align:center}
+.lx-show .rule{margin:0;text-align:start;max-width:52ch;line-height:1.9;color:var(--sand);font-size:1.02rem}
+.lx-show .rule .arw{font-family:"Amiri","Cairo",serif;font-size:1.3em;color:var(--gold);white-space:nowrap}
+.lx-show .rule-ex{font-family:"Amiri","Cairo",serif;font-size:1.8rem;color:var(--gold);text-align:center}
+.lx-show .hint{color:var(--sand-dim);font-weight:800;text-align:center}
+.g-line{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;min-height:62px;padding:8px;border-radius:14px;border:2px dashed color-mix(in srgb,var(--sand) 30%,transparent);width:100%}
+.g-word{font-family:"Amiri","Cairo",serif;font-size:1.7rem;line-height:1.3;padding:4px 14px;border-radius:12px;background:var(--sand);color:#1b2b36;border:none;box-shadow:0 3px 0 #b9ad93}
+.g-line .g-word{background:color-mix(in srgb,var(--ok) 25%,var(--night));color:var(--sand);box-shadow:none}
+.g-words{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.g-word.used{visibility:hidden}
+.g-word.shake{animation:shake .4s;background:#f2b8ae}
+.g-word.hint{animation:pulse 1.2s ease-in-out infinite;background:var(--gold)}
+
 /* ---------- deletrea palabras ---------- */
 .spell-card{background:linear-gradient(135deg,color-mix(in srgb,var(--teamB) 35%,var(--night)),var(--night));border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px;border:2px solid color-mix(in srgb,var(--gold) 40%,transparent)}
 .spell-card h3{margin:0;font-family:var(--font-display);font-size:1.25rem}
@@ -799,6 +814,7 @@ const SHORT = { es:"ES", en:"EN", ar:"ع" };
 const UI = {
   es:{
     title:"Tira de la Cuerda", newGame:"Nueva partida", soundOn:"Sonido: sí", soundOff:"Sonido: no",
+    gVocab:"📝 Vocabulario", gRule:"📏 La regla", gEx:"💬 Frase modelo", gFill:"Completa la frase", gOrder:"Ordena las palabras para formar la frase", gMean:"¿Qué significa esta frase?",
     spellTitle:"🧩 Deletrea palabras", spellDesc:"Mira el dibujo, escucha la palabra y fórmala letra a letra. Al terminar verás cómo se unen las letras.",
     spellPlay:"¡Jugar!", spellEasy:"Fácil · con pistas", spellNormal:"Normal", spellHard:"Difícil · todas las letras",
     spellPrompt:"Forma la palabra tocando las letras", spellWrong:"Esa no es… ¡prueba otra! 🙂", spellGood:"¡Muy bien! ✨", nextWord:"Siguiente palabra ›",
@@ -851,6 +867,7 @@ const UI = {
   },
   en:{
     title:"Tug of War", newGame:"New game", soundOn:"Sound: on", soundOff:"Sound: off",
+    gVocab:"📝 Vocabulary", gRule:"📏 The rule", gEx:"💬 Model sentence", gFill:"Complete the sentence", gOrder:"Put the words in order to make the sentence", gMean:"What does this sentence mean?",
     spellTitle:"🧩 Spell words", spellDesc:"Look at the picture, listen to the word and build it letter by letter. At the end you'll see how the letters join.",
     spellPlay:"Play!", spellEasy:"Easy · with hints", spellNormal:"Normal", spellHard:"Hard · every letter",
     spellPrompt:"Build the word by tapping the letters", spellWrong:"Not that one… try another! 🙂", spellGood:"Well done! ✨", nextWord:"Next word ›",
@@ -903,6 +920,7 @@ const UI = {
   },
   ar:{
     title:"شدّ الحبل", newGame:"لعبة جديدة", soundOn:"الصوت: يعمل", soundOff:"الصوت: متوقف",
+    gVocab:"📝 المفردات", gRule:"📏 القاعدة", gEx:"💬 جملة نموذجية", gFill:"أكمل الجملة", gOrder:"رتّب الكلمات لتكوّن الجملة", gMean:"ما معنى هذه الجملة؟",
     spellTitle:"🧩 تهجئة الكلمات", spellDesc:"انظر إلى الصورة واستمع إلى الكلمة ثم كوّنها حرفًا حرفًا. في النهاية سترى كيف تتّصل الحروف.",
     spellPlay:"العب!", spellEasy:"سهل · مع تلميحات", spellNormal:"عادي", spellHard:"صعب · كل الحروف",
     spellPrompt:"كوّن الكلمة بالضغط على الحروف", spellWrong:"ليس هذا… جرّب حرفًا آخر! 🙂", spellGood:"أحسنت! ✨", nextWord:"الكلمة التالية",
@@ -1335,9 +1353,101 @@ const LEARN = [
     d:{ es:"Familia, animales, comida, colores y cosas de casa.", en:"Family, animals, food, colours and things at home.", ar:"العائلة والحيوانات والطعام والألوان والأشياء." },
     lessons:[ { id:"w1", kind:"words", topic:"familia" }, { id:"w2", kind:"words", topic:"animales" }, { id:"w3", kind:"words", topic:"comida" },
               { id:"w4", kind:"words", topic:"colores" }, { id:"w5", kind:"words", topic:"cosas" } ] },
+  { id:"medina", icon:"📗", t:{ es:"Curso de árabe (método de Medina)", en:"Arabic course (Madinah method)", ar:"دروس اللغة العربية (على منهج المدينة)" },
+    d:{ es:"Frases y gramática paso a paso, con el método de los libros de Medina: vocabulario, regla, frases modelo y ejercicios. Recomendado después del alfabeto y las vocales.",
+        en:"Sentences and grammar step by step, following the Madinah books' method: vocabulary, rule, model sentences and exercises. Best after the alphabet and vowels.",
+        ar:"جمل وقواعد خطوة بخطوة على طريقة كتب المدينة: مفردات وقاعدة وجمل نموذجية وتمارين. يُنصح به بعد الحروف والحركات." },
+    lessons:[1,2,3,4,5,6,7,8].map(n => ({ id:"m" + n, kind:"grammar", g:n - 1 })) },
   { id:"phrases", icon:"👋", t:{ es:"Saludos y expresiones", en:"Greetings and phrases", ar:"التحيات والعبارات" },
     d:{ es:"Frases para saludar, dar las gracias y despedirse.", en:"Phrases to greet, say thank you and say goodbye.", ar:"عبارات للتحية والشكر والوداع." },
     lessons:[ { id:"s1", kind:"phrases", items:[0,1,2,3] }, { id:"s2", kind:"phrases", items:[4,5,6,7] } ] },
+];
+
+/* ---- Curso de árabe al estilo de los libros de Medina (contenido original) ----
+   vocab: [árabe, dibujo, pronunciación, español, inglés]
+   ex:    [frase, pronunciación, español, inglés]
+   fill:  [frase con ___, respuesta, [distractores], pista español, pista inglés] */
+const GRAMMAR = [
+  { label:"هٰذَا", rule:{
+      es:"«هٰذَا» (hādhā) significa «esto es / este es». Para preguntar «¿Qué es esto?» decimos «مَا هٰذَا؟». La terminación «ـٌ» (-un) equivale a «un/una»: بَيْتٌ = una casa.",
+      en:"«هٰذَا» (hādhā) means \"this is\". To ask \"What is this?\" we say «مَا هٰذَا؟». The ending «ـٌ» (-un) means \"a/an\": بَيْتٌ = a house.",
+      ar:"نَسْتَعْمِلُ «هٰذَا» لِلْإِشَارَةِ إِلَى الْمُذَكَّرِ الْقَرِيبِ، وَنَسْأَلُ عَنِ الْأَشْيَاءِ بِـ«مَا»: مَا هٰذَا؟" }, ruleEx:"مَا هٰذَا؟ هٰذَا بَيْتٌ",
+    vocab:[["بَيْتٌ","🏠","baytun","una casa","a house"],["مَسْجِدٌ","🕌","masjidun","una mezquita","a mosque"],["كِتَابٌ","📖","kitābun","un libro","a book"],
+           ["قَلَمٌ","✏️","qalamun","un lápiz","a pencil"],["بَابٌ","🚪","bābun","una puerta","a door"],["كُرْسِيٌّ","🪑","kursiyyun","una silla","a chair"]],
+    ex:[["هٰذَا بَيْتٌ","hādhā baytun","Esto es una casa.","This is a house."],["هٰذَا مَسْجِدٌ","hādhā masjidun","Esto es una mezquita.","This is a mosque."],
+        ["مَا هٰذَا؟","mā hādhā?","¿Qué es esto?","What is this?"],["هٰذَا كِتَابٌ","hādhā kitābun","Esto es un libro.","This is a book."],
+        ["هٰذَا كُرْسِيٌّ","hādhā kursiyyun","Esto es una silla.","This is a chair."]],
+    fill:[["هٰذَا ___","بَيْتٌ",["قَلَمٌ","بَابٌ"],"🏠","🏠"],["___ هٰذَا؟","مَا",["مَنْ","أَيْنَ"],"¿Qué es esto?","What is this?"],["هٰذَا ___","قَلَمٌ",["كِتَابٌ","كُرْسِيٌّ"],"✏️","✏️"]] },
+  { label:"أَ…؟", rule:{
+      es:"Para preguntar «¿Es…?» ponemos «أَ» delante de la frase: أَهٰذَا بَيْتٌ؟ (¿Es esto una casa?). Respondemos «نَعَمْ» (sí) o «لَا» (no).",
+      en:"To ask \"Is it…?\" we put «أَ» at the start: أَهٰذَا بَيْتٌ؟ (Is this a house?). We answer «نَعَمْ» (yes) or «لَا» (no).",
+      ar:"نَضَعُ «أَ» فِي أَوَّلِ الْجُمْلَةِ لِلسُّؤَالِ، وَالْجَوَابُ: نَعَمْ أَوْ لَا." }, ruleEx:"أَهٰذَا بَيْتٌ؟ نَعَمْ، هٰذَا بَيْتٌ",
+    vocab:[["مِفْتَاحٌ","🔑","miftāḥun","una llave","a key"],["سَرِيرٌ","🛏️","sarīrun","una cama","a bed"],["نَعَمْ","✅","naʿam","sí","yes"],["لَا","❌","lā","no","no"]],
+    ex:[["أَهٰذَا بَيْتٌ؟","a-hādhā baytun?","¿Es esto una casa?","Is this a house?"],["نَعَمْ، هٰذَا بَيْتٌ","naʿam, hādhā baytun","Sí, esto es una casa.","Yes, this is a house."],
+        ["أَهٰذَا مِفْتَاحٌ؟","a-hādhā miftāḥun?","¿Es esto una llave?","Is this a key?"],["لَا، هٰذَا قَلَمٌ","lā, hādhā qalamun","No, esto es un lápiz.","No, this is a pencil."],
+        ["أَهٰذَا سَرِيرٌ؟","a-hādhā sarīrun?","¿Es esto una cama?","Is this a bed?"]],
+    fill:[["أَهٰذَا قَلَمٌ؟ ___، هٰذَا قَلَمٌ","نَعَمْ",["لَا"],"Sí","Yes"],["أَهٰذَا بَابٌ؟ ___، هٰذَا سَرِيرٌ","لَا",["نَعَمْ"],"No","No"],["___ بَيْتٌ؟","أَهٰذَا",["هٰذَا"],"¿Es esto una casa?","Is this a house?"]] },
+  { label:"مَنْ", rule:{
+      es:"Para preguntar por personas usamos «مَنْ» (¿quién?): مَنْ هٰذَا؟ (¿Quién es este?). Para cosas usamos «مَا» (¿qué?).",
+      en:"To ask about people we use «مَنْ» (who?): مَنْ هٰذَا؟ (Who is this?). For things we use «مَا» (what?).",
+      ar:"نَسْأَلُ عَنِ الْإِنْسَانِ بِـ«مَنْ»، وَعَنْ غَيْرِهِ بِـ«مَا»." }, ruleEx:"مَنْ هٰذَا؟ هٰذَا طَالِبٌ",
+    vocab:[["طَالِبٌ","🧑‍🎓","ṭālibun","un estudiante","a student"],["مُدَرِّسٌ","👨‍🏫","mudarrisun","un profesor","a teacher"],["وَلَدٌ","👦","waladun","un niño","a boy"],
+           ["رَجُلٌ","👨","rajulun","un hombre","a man"],["طَبِيبٌ","👨‍⚕️","ṭabībun","un médico","a doctor"]],
+    ex:[["مَنْ هٰذَا؟","man hādhā?","¿Quién es este?","Who is this?"],["هٰذَا طَالِبٌ","hādhā ṭālibun","Este es un estudiante.","This is a student."],
+        ["هٰذَا مُدَرِّسٌ","hādhā mudarrisun","Este es un profesor.","This is a teacher."],["هٰذَا وَلَدٌ","hādhā waladun","Este es un niño.","This is a boy."],
+        ["أَهٰذَا طَبِيبٌ؟","a-hādhā ṭabībun?","¿Es este un médico?","Is this a doctor?"]],
+    fill:[["___ هٰذَا؟ هٰذَا طَالِبٌ","مَنْ",["مَا","أَيْنَ"],"¿Quién es este?","Who is this?"],["___ هٰذَا؟ هٰذَا كِتَابٌ","مَا",["مَنْ","أَيْنَ"],"¿Qué es esto?","What is this?"],["هٰذَا ___","طَبِيبٌ",["وَلَدٌ","مُدَرِّسٌ"],"👨‍⚕️","👨‍⚕️"]] },
+  { label:"الـ", rule:{
+      es:"«الـ» (al-) es el artículo «el/la». Con «الـ» la palabra pierde la «ـٌ» y termina en «ـُ»: بَيْتٌ (una casa) → الْبَيْتُ (la casa). Así decimos: الْبَيْتُ كَبِيرٌ (La casa es grande).",
+      en:"«الـ» (al-) is the article \"the\". With «الـ» the word loses «ـٌ» and ends in «ـُ»: بَيْتٌ (a house) → الْبَيْتُ (the house). So we say: الْبَيْتُ كَبِيرٌ (The house is big).",
+      ar:"إِذَا دَخَلَتْ «الـ» عَلَى الِاسْمِ حُذِفَ التَّنْوِينُ: بَيْتٌ ← الْبَيْتُ." }, ruleEx:"بَيْتٌ ← الْبَيْتُ ‏· الْبَيْتُ كَبِيرٌ",
+    vocab:[["كَبِيرٌ","🐘","kabīrun","grande","big"],["صَغِيرٌ","🐭","ṣaghīrun","pequeño","small"],["جَدِيدٌ","✨","jadīdun","nuevo","new"],
+           ["قَدِيمٌ","🏚️","qadīmun","viejo","old"],["مَفْتُوحٌ","🔓","maftūḥun","abierto","open"],["نَظِيفٌ","🧼","naẓīfun","limpio","clean"]],
+    ex:[["الْبَيْتُ كَبِيرٌ","al-baytu kabīrun","La casa es grande.","The house is big."],["الْقَلَمُ جَدِيدٌ","al-qalamu jadīdun","El lápiz es nuevo.","The pencil is new."],
+        ["الْكِتَابُ صَغِيرٌ","al-kitābu ṣaghīrun","El libro es pequeño.","The book is small."],["الْبَابُ مَفْتُوحٌ","al-bābu maftūḥun","La puerta está abierta.","The door is open."],
+        ["الْمَسْجِدُ نَظِيفٌ","al-masjidu naẓīfun","La mezquita está limpia.","The mosque is clean."]],
+    fill:[["___ كَبِيرٌ","الْبَيْتُ",["بَيْتٌ","الْبَيْتِ"],"La casa es grande.","The house is big."],["الْقَلَمُ ___","جَدِيدٌ",["الْجَدِيدُ","جَدِيدٍ"],"El lápiz es nuevo.","The pencil is new."],["___ مَفْتُوحٌ","الْبَابُ",["بَابٌ","الْبَابِ"],"La puerta está abierta.","The door is open."]] },
+  { label:"فِي", rule:{
+      es:"«فِي» = en / dentro de · «عَلَى» = sobre / encima de. Después de ellas la palabra termina en «ـِ» (-i): فِي الْبَيْتِ (en la casa). Para preguntar «¿dónde?» decimos «أَيْنَ؟».",
+      en:"«فِي» = in · «عَلَى» = on. After them the word ends in «ـِ» (-i): فِي الْبَيْتِ (in the house). To ask \"where?\" we say «أَيْنَ؟».",
+      ar:"«فِي» وَ«عَلَى» حَرْفَا جَرٍّ، وَالِاسْمُ بَعْدَهُمَا مَجْرُورٌ: فِي الْبَيْتِ. وَنَسْأَلُ عَنِ الْمَكَانِ بِـ«أَيْنَ»." }, ruleEx:"أَيْنَ الْكِتَابُ؟ الْكِتَابُ عَلَى الْمَكْتَبِ",
+    vocab:[["فِي","📥","fī","en, dentro de","in"],["عَلَى","⬆️","ʿalā","sobre, encima de","on"],["أَيْنَ؟","❓","ayna?","¿dónde?","where?"],
+           ["مَكْتَبٌ","🗄️","maktabun","un escritorio","a desk"],["حَقِيبَةٌ","🎒","ḥaqībatun","una mochila","a bag"],["فَصْلٌ","🏫","faṣlun","una clase (aula)","a classroom"]],
+    ex:[["أَيْنَ الْكِتَابُ؟","ayna al-kitābu?","¿Dónde está el libro?","Where is the book?"],["الْكِتَابُ عَلَى الْمَكْتَبِ","al-kitābu ʿalā al-maktabi","El libro está sobre el escritorio.","The book is on the desk."],
+        ["الْقَلَمُ فِي الْحَقِيبَةِ","al-qalamu fī al-ḥaqībati","El lápiz está en la mochila.","The pencil is in the bag."],["الْوَلَدُ فِي الْبَيْتِ","al-waladu fī al-bayti","El niño está en la casa.","The boy is in the house."],
+        ["الْمُدَرِّسُ فِي الْفَصْلِ","al-mudarrisu fī al-faṣli","El profesor está en la clase.","The teacher is in the classroom."]],
+    fill:[["الْكِتَابُ ___ الْمَكْتَبِ","عَلَى",["فِي","أَيْنَ"],"sobre","on"],["الْقَلَمُ ___ الْحَقِيبَةِ","فِي",["عَلَى","مَنْ"],"en / dentro de","in"],
+          ["الْوَلَدُ فِي ___","الْبَيْتِ",["الْبَيْتُ","بَيْتٌ"],"en la casa","in the house"],["___ الْكِتَابُ؟","أَيْنَ",["مَا","مَنْ"],"¿Dónde?","Where?"]] },
+  { label:"هٰذِهِ", rule:{
+      es:"Para palabras femeninas usamos «هٰذِهِ» (hādhihi) en lugar de «هٰذَا». Muchas palabras femeninas terminan en «ة» (tā’ marbūṭa): سَيَّارَةٌ، حَقِيبَةٌ.",
+      en:"For feminine words we use «هٰذِهِ» (hādhihi) instead of «هٰذَا». Many feminine words end in «ة» (tā’ marbūṭa): سَيَّارَةٌ، حَقِيبَةٌ.",
+      ar:"نَسْتَعْمِلُ «هٰذِهِ» لِلْمُؤَنَّثِ، وَكَثِيرٌ مِنَ الْأَسْمَاءِ الْمُؤَنَّثَةِ تَنْتَهِي بِالتَّاءِ الْمَرْبُوطَةِ (ة)." }, ruleEx:"هٰذَا وَلَدٌ ‏· هٰذِهِ بِنْتٌ",
+    vocab:[["سَيَّارَةٌ","🚗","sayyāratun","un coche","a car"],["بِنْتٌ","👧","bintun","una niña","a girl"],["مُدَرِّسَةٌ","👩‍🏫","mudarrisatun","una profesora","a (female) teacher"],
+           ["طَالِبَةٌ","👩‍🎓","ṭālibatun","una estudiante","a (female) student"],["نَافِذَةٌ","🪟","nāfidhatun","una ventana","a window"],["سَاعَةٌ","⌚","sāʿatun","un reloj","a watch"]],
+    ex:[["هٰذِهِ سَيَّارَةٌ","hādhihi sayyāratun","Esto es un coche.","This is a car."],["هٰذِهِ بِنْتٌ","hādhihi bintun","Esta es una niña.","This is a girl."],
+        ["مَنْ هٰذِهِ؟","man hādhihi?","¿Quién es esta?","Who is this (she)?"],["هٰذِهِ مُدَرِّسَةٌ","hādhihi mudarrisatun","Esta es una profesora.","This is a teacher."],
+        ["هٰذِهِ نَافِذَةٌ","hādhihi nāfidhatun","Esto es una ventana.","This is a window."]],
+    fill:[["___ سَيَّارَةٌ","هٰذِهِ",["هٰذَا"],"🚗","🚗"],["___ بَيْتٌ","هٰذَا",["هٰذِهِ"],"🏠","🏠"],["___ بِنْتٌ","هٰذِهِ",["هٰذَا"],"👧","👧"],["___ وَلَدٌ","هٰذَا",["هٰذِهِ"],"👦","👦"]] },
+  { label:"كِتَابُ…", rule:{
+      es:"Para decir «el libro de Muhammad» juntamos las dos palabras: كِتَابُ مُحَمَّدٍ. La primera palabra no lleva «الـ» ni «ـٌ»; la segunda termina en «ـِ» o «ـٍ».",
+      en:"To say \"Muhammad's book\" we put the two words together: كِتَابُ مُحَمَّدٍ. The first word has no «الـ» and no «ـٌ»; the second ends in «ـِ» or «ـٍ».",
+      ar:"الْمُضَافُ لَا تَدْخُلُهُ «الـ» وَلَا التَّنْوِينُ، وَالْمُضَافُ إِلَيْهِ مَجْرُورٌ: كِتَابُ مُحَمَّدٍ." }, ruleEx:"كِتَابُ مُحَمَّدٍ ‏· بَابُ الْمَسْجِدِ",
+    vocab:[["مُحَمَّدٌ","👦","Muḥammadun","Muhammad (nombre)","Muhammad (name)"],["عَلِيٌّ","👦","ʿAliyyun","Ali (nombre)","Ali (name)"],["اِسْمٌ","🏷️","ismun","un nombre","a name"]],
+    ex:[["كِتَابُ مُحَمَّدٍ","kitābu Muḥammadin","El libro de Muhammad","Muhammad's book"],["قَلَمُ عَلِيٍّ","qalamu ʿAliyyin","El lápiz de Ali","Ali's pencil"],
+        ["بَيْتُ الْمُدَرِّسِ","baytu al-mudarrisi","La casa del profesor","The teacher's house"],["بَابُ الْمَسْجِدِ","bābu al-masjidi","La puerta de la mezquita","The mosque's door"],
+        ["هٰذَا كِتَابُ مُحَمَّدٍ","hādhā kitābu Muḥammadin","Este es el libro de Muhammad.","This is Muhammad's book."]],
+    fill:[["كِتَابُ ___","مُحَمَّدٍ",["مُحَمَّدٌ","مُحَمَّدًا"],"el libro de Muhammad","Muhammad's book"],["___ الْمَسْجِدِ","بَابُ",["الْبَابُ","بَابٌ"],"la puerta de la mezquita","the mosque's door"],
+          ["بَيْتُ ___","الْمُدَرِّسِ",["الْمُدَرِّسُ","مُدَرِّسٌ"],"la casa del profesor","the teacher's house"]] },
+  { label:"أَنَا", rule:{
+      es:"Pronombres: أَنَا = yo · أَنْتَ = tú (chico) · أَنْتِ = tú (chica) · هُوَ = él · هِيَ = ella. Ejemplo: أَنَا طَالِبٌ (Yo soy estudiante).",
+      en:"Pronouns: أَنَا = I · أَنْتَ = you (boy) · أَنْتِ = you (girl) · هُوَ = he · هِيَ = she. Example: أَنَا طَالِبٌ (I am a student).",
+      ar:"الضَّمَائِرُ: أَنَا، أَنْتَ، أَنْتِ، هُوَ، هِيَ." }, ruleEx:"أَنَا طَالِبٌ ‏· هِيَ طَالِبَةٌ",
+    vocab:[["أَنَا","🙋","anā","yo","I"],["أَنْتَ","👉","anta","tú (chico)","you (boy)"],["أَنْتِ","👉","anti","tú (chica)","you (girl)"],["هُوَ","👦","huwa","él","he"],["هِيَ","👧","hiya","ella","she"]],
+    ex:[["أَنَا طَالِبٌ","anā ṭālibun","Yo soy estudiante.","I am a student."],["أَنْتَ مُدَرِّسٌ","anta mudarrisun","Tú eres profesor.","You are a teacher."],
+        ["هُوَ طَبِيبٌ","huwa ṭabībun","Él es médico.","He is a doctor."],["هِيَ بِنْتٌ","hiya bintun","Ella es una niña.","She is a girl."],
+        ["مَنْ أَنْتَ؟","man anta?","¿Quién eres tú?","Who are you?"]],
+    fill:[["___ طَالِبٌ","أَنَا",["هِيَ"],"Yo soy estudiante.","I am a student."],["___ بِنْتٌ","هِيَ",["هُوَ"],"Ella es una niña.","She is a girl."],
+          ["___ طَبِيبٌ","هُوَ",["هِيَ"],"Él es médico.","He is a doctor."],["___ مُدَرِّسٌ","أَنْتَ",["أَنْتِ"],"Tú (chico) eres profesor.","You (boy) are a teacher."]] },
 ];
 
 /* ---- Deletrea palabras: [dibujo, palabra, pronunciación, español, inglés]; solo letras del alfabeto básico ---- */
@@ -2264,6 +2374,13 @@ learnProg.done = learnProg.done || {};
 let LS = null;   // estado de la lección abierta
 
 function lessonItems(lesson){
+  if (lesson.kind === "grammar"){
+    // tarjetas: vocabulario → regla → frases modelo
+    const g = GRAMMAR[lesson.g];
+    return [ ...g.vocab.map((v, i) => ({ kind:"gvocab", i, big:v[0], pic:v[1], tr:v[2], speak:v[0], mean:{ es:v[3], en:v[4], ar:v[0] } })),
+             { kind:"grule", rule:g.rule, ex:g.ruleEx },
+             ...g.ex.map((e, i) => ({ kind:"gex", i, big:e[0], tr:e[1], speak:e[0], mean:{ es:e[2], en:e[3], ar:e[0] } })) ];
+  }
   if (lesson.kind === "letters") return lesson.items.map(i => ({ kind:"letter", i, big:LETTERS[i][0], speak:LETTERS[i][2],
     name:{ es:LETTERS[i][1], en:LETTER_EN[LETTERS[i][1]] || LETTERS[i][1], ar:LETTERS[i][2] }, ex:EX[i] }));
   if (lesson.kind === "vowel"){
@@ -2276,6 +2393,7 @@ function lessonItems(lesson){
   return lesson.items.map(i => ({ kind:"phrase", i, big:PHRASES[i][0], tr:PHRASES[i][1], speak:PHRASES[i][0], mean:{ es:PHRASES[i][2], en:PHRASES[i][3], ar:PHRASES[i][0] } }));
 }
 function lessonLabel(lesson){
+  if (lesson.kind === "grammar") return GRAMMAR[lesson.g].label;
   if (lesson.kind === "letters") return lesson.items.map(i => LETTERS[i][0]).join(" ");
   if (lesson.kind === "vowel") return lesson.v === "mix" ? "بَ بِ بُ" : "ب" + HARAKA[lesson.v];
   if (lesson.kind === "numbers") return num(`${lesson.items[0]+1}–${lesson.items[lesson.items.length-1]+1}`, "ar");
@@ -2348,8 +2466,8 @@ function renderLesson(){
   title.textContent = `${LS.u.t[L]} · ${num(t.lessonN(LS.k + 1), L)}`;
   body.append(title, stepsBar());
   const box = document.createElement("div"); box.className = "lx"; body.append(box);
-  if (LS.step === "learn") return renderLearnCard(box);
-  if (LS.step === "practice" || LS.step === "check") return renderExercise(box);
+  if (LS.step === "learn") return LS.lesson.kind === "grammar" ? renderGrammarCard(box) : renderLearnCard(box);
+  if (LS.step === "practice" || LS.step === "check") return LS.lesson.kind === "grammar" ? renderGrammarEx(box) : renderExercise(box);
   if (LS.step === "done") return renderResult(box);
 }
 function showBox(parent){ const d = document.createElement("div"); d.className = "lx-show"; parent.append(d); return d; }
@@ -2424,12 +2542,14 @@ function exTypes(it){
   return ["phraseMean", "meanPhrase", ...(voice ? ["listen"] : [])];
 }
 function startPractice(){
+  if (LS.lesson.kind === "grammar"){ LS.step = "practice"; LS.exs = grammarExercises(false); LS.idx = 0; return renderLesson(); }
   // dos ejercicios por elemento, mezclados
   const exs = [];
   LS.items.forEach(it => { const ty = shuffle(exTypes(it)).slice(0, 2); ty.forEach(x => exs.push(makeEx(it, x))); });
   LS.step = "practice"; LS.exs = shuffle(exs); LS.idx = 0; renderLesson();
 }
 function startCheck(){
+  if (LS.lesson.kind === "grammar"){ LS.step = "check"; LS.idx = 0; LS.score = 0; LS.exs = grammarExercises(true); return renderLesson(); }
   // 5 preguntas de la lección (con alguna de lecciones anteriores de la unidad para repasar)
   const prev = LS.k > 0 ? lessonItems(LS.u.lessons[LS.k - 1]) : [];
   const picks = shuffle(LS.items).slice(0, Math.min(4, LS.items.length));
@@ -2443,6 +2563,149 @@ function afterPractice(){
   if (LS.lesson.kind === "letters"){ LS.step = "write"; renderLesson(); openTrace(LS.lesson.items, () => { if (LS) startCheck(); }); return; }
   startCheck();
 }
+/* ---- lecciones de gramática (método de Medina) ---- */
+function navRow(box){
+  const L = cfg.lang, t = UI[L], nav = document.createElement("div"); nav.className = "lx-nav";
+  const prev = document.createElement("button"); prev.type = "button"; prev.className = "ghost"; prev.textContent = t.prev; prev.disabled = LS.idx === 0;
+  prev.addEventListener("click", () => { LS.idx--; renderLesson(); });
+  const cnt = document.createElement("span"); cnt.className = "cnt"; cnt.textContent = num(`${LS.idx + 1}/${LS.items.length}`, L);
+  const last = LS.idx === LS.items.length - 1;
+  const next = document.createElement("button"); next.type = "button"; next.className = last ? "next-btn" : "ghost";
+  next.textContent = last ? t.toPractice : t.nextLetter;
+  next.addEventListener("click", () => { if (last) startPractice(); else { LS.idx++; renderLesson(); } });
+  nav.append(prev, cnt, next); box.append(nav);
+}
+function renderGrammarCard(box){
+  const L = cfg.lang, t = UI[L], it = LS.items[LS.idx], show = showBox(box);
+  const k = document.createElement("p"); k.className = "g-kicker";
+  k.textContent = it.kind === "gvocab" ? t.gVocab : it.kind === "grule" ? t.gRule : t.gEx;
+  show.append(k);
+  if (it.kind === "grule"){
+    const r = document.createElement("p"); r.className = "rule"; r.dir = L === "ar" ? "rtl" : "ltr";
+    // las palabras árabes dentro del texto se aíslan y se muestran más grandes
+    it.rule[L].split(/([\u0600-\u06FF\u0670\u064B-\u065F][\u0600-\u06FF\u0670\u064B-\u065F\s؟،]*[\u0600-\u06FF\u0670\u064B-\u065F؟])/).forEach((part, k) => {
+      if (k % 2){ const w = document.createElement("bdi"); w.className = "arw"; w.lang = "ar"; w.textContent = part; r.append(w); }
+      else r.append(document.createTextNode(part));
+    });
+    show.append(r);
+    const e = document.createElement("div"); e.className = "rule-ex"; e.lang = "ar"; e.dir = "rtl"; e.textContent = it.ex; show.append(e);
+    if ("speechSynthesis" in window) show.append(listenBtn(it.ex.replace(/[←·‏]/g, " ")));
+  } else {
+    if (it.kind === "gvocab" && it.pic){ const pc = document.createElement("div"); pc.className = "pic"; pc.textContent = it.pic; show.append(pc); }
+    const big = document.createElement("div"); big.className = it.kind === "gex" ? "sent" : "big"; big.lang = "ar"; big.dir = "rtl"; big.textContent = it.big; show.append(big);
+    if (L !== "ar"){ show.append(line("tr", it.tr)); show.append(line("tn", it.mean[L])); }
+    if ("speechSynthesis" in window) show.append(listenBtn(it.speak));
+    setTimeout(() => speakAr(it.speak), 250);
+  }
+  navRow(box);
+}
+function grammarExercises(check){
+  const g = GRAMMAR[LS.lesson.g], ar = cfg.lang === "ar";
+  const withPic = g.vocab.map((v, i) => i).filter(i => g.vocab[i][1]);
+  const mk = (type, i) => ({ g:true, type, i });
+  const fills = g.fill.map((f, i) => mk("gfill", i));
+  const vocab = shuffle(withPic).slice(0, 2).map(i => mk("gvocab", i));
+  const exIdx = shuffle(g.ex.map((e, i) => i));
+  const means = exIdx.slice(0, 2).map(i => mk(ar ? "gorder" : "gmean", i));
+  const orders = exIdx.slice(2, 4).filter(i => g.ex[i][0].split(" ").length > 1).map(i => mk("gorder", i));
+  const all = [...fills, ...vocab, ...means, ...orders];
+  if (!check) return shuffle(all);
+  // comprobación: una de cada tipo y el resto al azar, 5 en total
+  const pick = [fills[0], vocab[0], means[0], orders[0] || fills[1], fills[fills.length - 1]].filter(Boolean);
+  return shuffle(pick).slice(0, 5);
+}
+function renderGrammarEx(box){
+  const L = cfg.lang, t = UI[L], g = GRAMMAR[LS.lesson.g], ex = LS.exs[LS.idx];
+  const bar = document.createElement("div"); bar.className = "pq-bar";
+  const lbl = document.createElement("span"); lbl.textContent = num(`${LS.idx + 1}/${LS.exs.length}`, L);
+  const b = document.createElement("span"); b.className = "bar"; const bi = document.createElement("i"); bi.style.width = (LS.idx / LS.exs.length * 100) + "%"; b.append(bi);
+  bar.append(lbl, b); box.append(bar);
+  const pr = document.createElement("p"); pr.className = "lx-prompt"; box.append(pr);
+  const show = showBox(box);
+  const msg = document.createElement("p"); msg.className = "lx-msg"; msg.setAttribute("aria-live", "polite");
+  let firstTry = true;
+  const good = speak => { msg.className = "lx-msg good"; msg.textContent = t.great; sOk(); if (speak) speakAr(speak); if (LS.step === "check" && firstTry) LS.score++; setTimeout(nextExercise, 1200); };
+  const bad = (markRight, speak) => {
+    firstTry = false; bonk();
+    if (LS.step === "practice"){ msg.className = "lx-msg try"; msg.textContent = t.tryAgain; return false; }
+    msg.className = "lx-msg try"; msg.textContent = t.wasRight; if (markRight) markRight(); if (speak) speakAr(speak); setTimeout(nextExercise, 2000); return true;
+  };
+
+  if (ex.type === "gorder"){
+    const e = g.ex[ex.i], words = e[0].split(" ");
+    pr.textContent = t.gOrder;
+    if (L !== "ar") show.append(line("tn", e[L === "en" ? 3 : 2]));
+    if ("speechSynthesis" in window) show.append(listenBtn(e[0]));
+    const lineEl = document.createElement("div"); lineEl.className = "g-line"; lineEl.dir = "rtl"; show.append(lineEl);
+    const tiles = document.createElement("div"); tiles.className = "g-words"; tiles.dir = "rtl";
+    let pos = 0, miss = 0, finished = false;
+    let order = shuffle(words.map((w, k) => k)); if (words.length > 1 && order.every((k, j) => k === j)) order = order.reverse();
+    order.forEach(k => {
+      const w = words[k], tb = document.createElement("button"); tb.type = "button"; tb.className = "g-word"; tb.lang = "ar"; tb.textContent = w;
+      tb.addEventListener("click", () => {
+        if (finished) return;
+        if (w === words[pos]){
+          tb.classList.add("used"); const placed = document.createElement("span"); placed.className = "g-word"; placed.lang = "ar"; placed.textContent = w; lineEl.append(placed);
+          pos++; chime(784, 0, .3, .15);
+          if (pos === words.length){ finished = true; good(e[0]); }
+        } else {
+          tb.classList.remove("shake"); void tb.offsetWidth; tb.classList.add("shake"); miss++;
+          if (LS.step === "check" && firstTry){ firstTry = false; }
+          msg.className = "lx-msg try"; msg.textContent = t.tryAgain; bonk();
+          if (miss >= 2) [...tiles.children].find(x => x.textContent === words[pos] && !x.classList.contains("used"))?.classList.add("hint");
+        }
+      });
+      tiles.append(tb);
+    });
+    box.append(tiles, msg);
+    return;
+  }
+
+  let answer, opts, showText = "", hint = "";
+  if (ex.type === "gfill"){
+    const f = g.fill[ex.i]; pr.textContent = t.gFill;
+    showText = f[0]; hint = L === "en" ? f[4] : L === "ar" ? (/\p{Extended_Pictographic}/u.test(f[3]) ? f[3] : "") : f[3];
+    answer = f[1]; opts = shuffle([f[1], ...f[2]]).map(x => ({ label:x, ar:true, ok:x === f[1] }));
+  } else if (ex.type === "gvocab"){
+    const v = g.vocab[ex.i]; pr.textContent = t.exWord;
+    const pc = document.createElement("div"); pc.className = "pic"; pc.textContent = v[1]; show.append(pc);
+    if (L !== "ar") show.append(line("tn", v[L === "en" ? 4 : 3]));
+    const others = shuffle(g.vocab.filter((x, k) => k !== ex.i)).slice(0, 3);
+    answer = v[0]; opts = shuffle([v, ...others]).map(x => ({ label:x[0], ar:true, ok:x === v, sub: L !== "ar" ? x[2] : "" }));
+  } else {
+    const e = g.ex[ex.i]; pr.textContent = t.gMean;
+    showText = e[0]; answer = e[0];
+    const col = L === "en" ? 3 : 2;
+    const others = shuffle(g.ex.filter((x, k) => k !== ex.i)).slice(0, 3);
+    opts = shuffle([e, ...others]).map(x => ({ label:x[col], ar:false, ok:x === e }));
+  }
+  if (showText){
+    const st = document.createElement("div"); st.className = "sent"; st.lang = "ar"; st.dir = "rtl"; st.textContent = showText; show.append(st);
+    if (ex.type === "gmean" && "speechSynthesis" in window) show.append(listenBtn(showText));
+  }
+  if (hint) show.append(line("hint", hint));
+  const grid = document.createElement("div"); grid.className = "lx-opts";
+  opts.forEach(o => {
+    const bt = document.createElement("button"); bt.type = "button"; bt.className = "opt";
+    const m = document.createElement("span"); m.textContent = o.label; if (o.ar){ m.className = "ar-big"; m.lang = "ar"; }
+    bt.append(m); if (o.sub){ const sb = document.createElement("span"); sb.className = "tr"; sb.textContent = o.sub; bt.append(sb); }
+    if (o.ok) bt.dataset.ok = "1";
+    bt.addEventListener("click", () => {
+      if (o.ok){
+        bt.classList.add("right"); grid.querySelectorAll(".opt").forEach(x => x.disabled = true);
+        const full = ex.type === "gfill" ? showText.replace("___", answer) : answer;
+        good(full);
+      } else {
+        bt.classList.add("wrong"); bt.disabled = true;
+        bad(() => grid.querySelectorAll(".opt").forEach(x => { x.disabled = true; if (x.dataset.ok) x.classList.add("right"); }),
+            ex.type === "gfill" ? showText.replace("___", answer) : answer);
+      }
+    });
+    grid.append(bt);
+  });
+  box.append(grid, msg);
+}
+
 function optContent(btn, x, type){
   const L = cfg.lang, showTr = L !== "ar";
   const main = document.createElement("span"), sub = document.createElement("span"); sub.className = "tr";

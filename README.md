@@ -25,3 +25,5 @@ Abre `index.html` en un navegador (la carpeta `assets/` con las ilustraciones de
 **Práctica**: modo de una sola persona con 10 preguntas, contador, botón «Siguiente» y resumen final con estrellas y las preguntas falladas (respuesta correcta y fuente). En la tira de la cuerda, al fallar se puede leer la respuesta correcta antes de seguir, y al ganar aparece «Para repasar».
 
 **Deletrea palabras** (dentro de «Aprende árabe»): se ve un dibujo, se escucha la palabra y se forma letra a letra tocando fichas; al terminar se ve la palabra con sus letras unidas. Tres niveles (fácil con pistas, normal, difícil con todo el alfabeto), rondas de 8 palabras y medalla. Palabras en `SPELL`.
+
+**Curso de árabe (método de Medina)** (dentro de «Aprende árabe»): 8 lecciones de gramática con la metodología de los libros de Medina —هٰذَا y مَا، أَ…؟ con نَعَمْ/لَا، مَنْ، الـ، فِي/عَلَى y أَيْنَ، هٰذِهِ y el femenino، la iḍāfa y los pronombres—. Cada lección: vocabulario, regla, frases modelo vocalizadas con audio y ejercicios (completar, significado, ordenar palabras, vocabulario). Contenido original en `GRAMMAR`; conviene que lo revise un profesor de árabe.
