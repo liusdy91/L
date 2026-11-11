@@ -1704,7 +1704,14 @@ function speakSeq(parts, force){
 /* ---- audios grabados en árabe (assets/audio/ar): suenan en cualquier dispositivo ---- */
 let AUDIO = null, curClip = null;
 const normAr = t => String(t).replace(/[‏]/g, "").replace(/\s+/g, " ").trim();
-try { fetch("assets/audio/ar/index.json").then(r => r.ok ? r.json() : null).then(j => { AUDIO = j; if (!$("learnBox").hidden && !LS && !SP) renderPath(); }).catch(() => {}); } catch(e){}
+// el índice se pide siempre fresco (sin copias guardadas), para que coincida con los audios publicados
+function loadAudioIndex(){
+  try {
+    return fetch("assets/audio/ar/index.json?t=" + Date.now(), { cache:"no-store" })
+      .then(r => r.ok ? r.json() : null).then(j => { if (j) AUDIO = j; return j; }).catch(() => null);
+  } catch(e){ return Promise.resolve(null); }
+}
+loadAudioIndex().then(j => { if (j && !$("learnBox").hidden && !LS && !SP) renderPath(); });
 function audioFor(text){
   if (!AUDIO) return null;
   const k = normAr(text);
@@ -1713,28 +1720,35 @@ function audioFor(text){
   if (parts.length > 1 && parts.every(x => AUDIO[x])) return parts.map(x => AUDIO[x]);
   return null;
 }
-function playClips(files){
+function playClips(files, text, retried){
   try { window.speechSynthesis?.cancel?.(); } catch(e){}
   if (curClip){ curClip.pause(); curClip = null; }
-  let i = 0;
+  let i = 0, failed = false;
+  const fail = () => {
+    if (failed) return; failed = true;
+    // si un audio no carga (índice antiguo), se vuelve a pedir el índice y se reintenta; si no, voz del dispositivo
+    if (!retried && text) loadAudioIndex().then(() => { const f = audioFor(text); if (f) playClips(f, text, true); else speakSeq([[text, "ar"]], true); });
+    else if (text) speakSeq([[text, "ar"]], true);
+  };
   const next = () => {
     if (i >= files.length) return;
     const a = new Audio("assets/audio/ar/" + files[i++]); curClip = a;
     a.onended = () => setTimeout(next, 500);
-    a.play().catch(() => {});
+    a.onerror = fail;
+    a.play().catch(err => { if (err && err.name !== "NotAllowedError" && err.name !== "AbortError") fail(); });
   };
   next();
 }
 function speakAr(text){
   const f = audioFor(text);
-  if (f){ if (soundOn) playClips(f); return; }
+  if (f){ if (soundOn) playClips(f, text); return; }
   if (arVoice) speakSeq([[text, "ar"]]);
 }
 // ¿Sabemos que falta la voz árabe? (solo si el navegador ya dio su lista de voces)
 function arVoiceMissing(){ if (AUDIO) return false; loadVoices(); return "speechSynthesis" in window && voices.length > 0 && !arVoice; }
 // Pulsar «Escuchar»: si falta la voz árabe, se explica cómo instalarla
 function listenAr(text){
-  const f = audioFor(text); if (f) return playClips(f);
+  const f = audioFor(text); if (f) return playClips(f, text);
   if (!("speechSynthesis" in window) || arVoiceMissing()) return openVoiceHelp();
   speakSeq([[text, "ar"]], true);
 }
