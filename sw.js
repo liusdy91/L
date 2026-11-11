@@ -1,6 +1,6 @@
 // Service worker: lets the game install as an app and work without internet.
 // Bump VERSION whenever the game files change so devices pick up the new version.
-const VERSION = "tug-of-war-v13";
+const VERSION = "tug-of-war-v14";
 const APP_FILES = [
   "./",
   "./index.html",
@@ -48,6 +48,16 @@ self.addEventListener("fetch", event => {
       fetch(req)
         .then(res => { const copy = res.clone(); caches.open(VERSION).then(c => c.put("./index.html", copy)); return res; })
         .catch(() => caches.match("./index.html"))
+    );
+    return;
+  }
+
+  // The audio index must always match the published clips: network first, saved copy only offline.
+  if (url.pathname.endsWith("/assets/audio/ar/index.json")) {
+    event.respondWith(
+      fetch(req, { cache:"no-store" })
+        .then(res => { const copy = res.clone(); caches.open(VERSION).then(c => c.put("./assets/audio/ar/index.json", copy)); return res; })
+        .catch(() => caches.match("./assets/audio/ar/index.json"))
     );
     return;
   }
