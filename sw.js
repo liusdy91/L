@@ -1,6 +1,6 @@
 // Service worker: lets the game install as an app and work without internet.
 // Bump VERSION whenever the game files change so devices pick up the new version.
-const VERSION = "tug-of-war-v15";
+const VERSION = "tug-of-war-v16";
 const APP_FILES = [
   "./",
   "./index.html",
