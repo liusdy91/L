@@ -1701,11 +1701,40 @@ function speakSeq(parts, force){
     });
   } catch(e){}
 }
-function speakAr(text){ if (arVoice) speakSeq([[text, "ar"]]); }
+/* ---- audios grabados en árabe (assets/audio/ar): suenan en cualquier dispositivo ---- */
+let AUDIO = null, curClip = null;
+const normAr = t => String(t).replace(/[‏]/g, "").replace(/\s+/g, " ").trim();
+try { fetch("assets/audio/ar/index.json").then(r => r.ok ? r.json() : null).then(j => { AUDIO = j; if (!$("learnBox").hidden && !LS && !SP) renderPath(); }).catch(() => {}); } catch(e){}
+function audioFor(text){
+  if (!AUDIO) return null;
+  const k = normAr(text);
+  if (AUDIO[k]) return [AUDIO[k]];
+  const parts = k.split(/\.\s+/).map(normAr).filter(Boolean);
+  if (parts.length > 1 && parts.every(x => AUDIO[x])) return parts.map(x => AUDIO[x]);
+  return null;
+}
+function playClips(files){
+  try { window.speechSynthesis?.cancel?.(); } catch(e){}
+  if (curClip){ curClip.pause(); curClip = null; }
+  let i = 0;
+  const next = () => {
+    if (i >= files.length) return;
+    const a = new Audio("assets/audio/ar/" + files[i++]); curClip = a;
+    a.onended = () => setTimeout(next, 180);
+    a.play().catch(() => {});
+  };
+  next();
+}
+function speakAr(text){
+  const f = audioFor(text);
+  if (f){ if (soundOn) playClips(f); return; }
+  if (arVoice) speakSeq([[text, "ar"]]);
+}
 // ¿Sabemos que falta la voz árabe? (solo si el navegador ya dio su lista de voces)
-function arVoiceMissing(){ loadVoices(); return "speechSynthesis" in window && voices.length > 0 && !arVoice; }
+function arVoiceMissing(){ if (AUDIO) return false; loadVoices(); return "speechSynthesis" in window && voices.length > 0 && !arVoice; }
 // Pulsar «Escuchar»: si falta la voz árabe, se explica cómo instalarla
 function listenAr(text){
+  const f = audioFor(text); if (f) return playClips(f);
   if (!("speechSynthesis" in window) || arVoiceMissing()) return openVoiceHelp();
   speakSeq([[text, "ar"]], true);
 }
@@ -3010,7 +3039,7 @@ $("vhTest").addEventListener("click", () => {
   const t = UI[cfg.lang];
   if (arVoiceMissing()){ $("vhMsg").textContent = t.vhStill; $("vhMsg").style.color = "var(--gold)"; return; }
   $("vhMsg").textContent = t.vhOk; $("vhMsg").style.color = "var(--ok)";
-  speakSeq([["السَّلَامُ عَلَيْكُمْ", "ar"]], true);
+  listenAr("السَّلَامُ عَلَيْكُمْ");
 });
 
 /* ---- compartir y sugerencias ---- */
@@ -3072,6 +3101,23 @@ const onInstall = async () => {
 installBtns.forEach(b => b.addEventListener("click", onInstall));
 $("installClose").addEventListener("click", () => { $("installBox").hidden = true; });
 
+// Textos árabes que el juego pronuncia (sirve para generar las grabaciones)
+window.tdcArTexts = () => {
+  const out = new Set(["السَّلَامُ عَلَيْكُمْ"]);
+  LETTERS.forEach(l => out.add(l[2]));
+  EX.forEach(e => out.add(e[1]));
+  SYLL.forEach(([i]) => Object.values(HARAKA).forEach(h => out.add(LETTERS[i][0] + h)));
+  NUMBERS.forEach(n => out.add(n[0]));
+  Object.values(WORDS).forEach(ws => ws.forEach(w => out.add(w[1])));
+  PHRASES.forEach(ph => out.add(ph[0]));
+  SPELL.forEach(w => out.add(w[1]));
+  GRAMMAR.forEach(g => {
+    g.vocab.forEach(v => out.add(v[0])); g.ex.forEach(e => out.add(e[0]));
+    out.add(g.ruleEx.replace(/[←·‏]/g, " "));
+    g.fill.forEach(f => out.add(f[0].replace("___", f[1])));
+  });
+  return [...out].map(normAr);
+};
 setLang(cfg.lang);
 if (!store.get("tdc-tut")) openTut();
 })();

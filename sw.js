@@ -1,6 +1,6 @@
 // Service worker: lets the game install as an app and work without internet.
 // Bump VERSION whenever the game files change so devices pick up the new version.
-const VERSION = "tug-of-war-v11";
+const VERSION = "tug-of-war-v12";
 const APP_FILES = [
   "./",
   "./index.html",
@@ -16,7 +16,15 @@ const APP_FILES = [
 ];
 
 self.addEventListener("install", event => {
-  event.waitUntil(caches.open(VERSION).then(cache => cache.addAll(APP_FILES)).then(() => self.skipWaiting()));
+  event.waitUntil(caches.open(VERSION).then(async cache => {
+    await cache.addAll(APP_FILES);
+    // audios árabes grabados: se guardan todos para que suenen sin internet
+    try {
+      const idx = await fetch("./assets/audio/ar/index.json").then(r => r.json());
+      await cache.put("./assets/audio/ar/index.json", new Response(JSON.stringify(idx), { headers: { "content-type": "application/json" } }));
+      await cache.addAll([...new Set(Object.values(idx))].map(f => "./assets/audio/ar/" + f));
+    } catch(e){}
+  }).then(() => self.skipWaiting()));
 });
 
 self.addEventListener("activate", event => {
