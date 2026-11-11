@@ -1,7 +1,8 @@
 """Regrabar las sílabas con vocal CORTA (بَ بِ بُ…).
 La voz lee una sílaba suelta como el nombre de la letra, así que se sintetiza con la vocal larga
 (بَا، بِي، بُو) a velocidad normal y se recorta: se conserva la consonante completa y solo los
-primeros ~0,13 s de la vocal, con un final suave. Uso: syll.py modelo.onnx carpeta_audios"""
+primeros ~0,14 s de la vocal, con un final suave. Se añade 0,35 s de silencio al principio:
+muchos móviles tardan en «despertar» el sonido y si no se pierden las sílabas tan cortas. Uso: syll.py modelo.onnx carpeta_audios"""
 import sys, json, wave, os, subprocess, hashlib, array
 from piper import PiperVoice, SynthesisConfig
 
@@ -29,9 +30,9 @@ for text in list(index):
     start = next(i for i, e in enumerate(env) if e > peak * 0.06) * win          # comienzo de la consonante
     onset = next(i for i, e in enumerate(env) if e > peak * 0.75) * win          # comienzo de la vocal (75 % del máximo)
     begin = max(0, start - 0.03); end = onset + VOWEL_KEEP
-    name = hashlib.sha1(("corta|" + text).encode("utf-8")).hexdigest()[:12] + ".mp3"
+    name = hashlib.sha1(("corta2|" + text).encode("utf-8")).hexdigest()[:12] + ".mp3"
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", tmp, "-af",
-                    f"atrim={begin:.3f}:{end:.3f},asetpts=PTS-STARTPTS,afade=t=out:st={end - begin - FADE:.3f}:d={FADE},apad=pad_dur=0.12",
+                    f"atrim={begin:.3f}:{end:.3f},asetpts=PTS-STARTPTS,afade=t=out:st={end - begin - FADE:.3f}:d={FADE},adelay=350:all=1,apad=pad_dur=0.15",
                     "-ac", "1", "-ar", "22050", "-b:a", "48k", os.path.join(out, name)], check=True)
     old = index[text]
     if old != name and os.path.exists(os.path.join(out, old)): os.remove(os.path.join(out, old))
