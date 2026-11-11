@@ -1720,7 +1720,7 @@ function playClips(files){
   const next = () => {
     if (i >= files.length) return;
     const a = new Audio("assets/audio/ar/" + files[i++]); curClip = a;
-    a.onended = () => setTimeout(next, 180);
+    a.onended = () => setTimeout(next, 500);
     a.play().catch(() => {});
   };
   next();
