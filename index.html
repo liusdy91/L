@@ -319,6 +319,12 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .learn-result{text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
 .learn-result .sum-stars{font-size:2.2rem}
 
+/* ---------- ayuda para la voz árabe ---------- */
+.voice-warn{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:color-mix(in srgb,var(--bad) 22%,var(--night));border:2px solid color-mix(in srgb,var(--bad) 55%,transparent);border-radius:14px;padding:10px 14px;font-weight:800}
+.vh-steps{margin:0;padding-inline-start:1.2em;display:grid;gap:10px;line-height:1.5;color:var(--sand)}
+.vh-steps b{color:var(--gold)}
+.vh-msg{margin:0;font-weight:900;text-align:center;min-height:1.3em}
+
 /* ---------- curso de árabe (método de Medina) ---------- */
 .g-kicker{margin:0;font-weight:900;color:var(--gold);letter-spacing:.04em}
 .lx-show .sent{font-family:"Amiri","Cairo",serif;font-size:clamp(2rem,6.5vw,3rem);line-height:1.5;color:var(--gold);text-align:center}
@@ -774,6 +780,26 @@ body.practice .board{grid-template-columns:minmax(0,720px)!important;grid-templa
   <button class="ghost" id="portraitOk" type="button" data-i18n="playAnyway">Jugar así</button>
 </div>
 
+<!-- Ayuda: instalar la voz árabe -->
+<div class="overlay" id="voiceHelp" hidden>
+  <div class="card" role="dialog" aria-labelledby="vhTitle">
+    <h2 id="vhTitle" data-i18n="vhTitle">Tu dispositivo no tiene voz en árabe</h2>
+    <p data-i18n="vhIntro"></p>
+    <ul class="vh-steps">
+      <li><b data-i18n="vhAndroidT"></b> <span data-i18n="vhAndroid"></span></li>
+      <li><b data-i18n="vhSamsungT"></b> <span data-i18n="vhSamsung"></span></li>
+      <li><b data-i18n="vhIosT"></b> <span data-i18n="vhIos"></span></li>
+      <li><b data-i18n="vhPcT"></b> <span data-i18n="vhPc"></span></li>
+    </ul>
+    <p data-i18n="vhAfter"></p>
+    <p class="vh-msg" id="vhMsg" aria-live="polite"></p>
+    <div class="row-btns">
+      <button class="start" id="vhTest" type="button" data-i18n="vhTest">Probar de nuevo</button>
+      <button class="ghost" id="vhClose" type="button" data-i18n="closePanel">Cerrar</button>
+    </div>
+  </div>
+</div>
+
 <!-- Cómo instalar -->
 <div class="overlay" id="installBox" hidden>
   <div class="card" role="dialog" aria-labelledby="installTitle">
@@ -814,6 +840,13 @@ const SHORT = { es:"ES", en:"EN", ar:"ع" };
 const UI = {
   es:{
     title:"Tira de la Cuerda", newGame:"Nueva partida", soundOn:"Sonido: sí", soundOff:"Sonido: no",
+    vhTitle:"🔇 Tu dispositivo no tiene voz en árabe", vhIntro:"El juego usa la voz del propio teléfono u ordenador. Instala la voz árabe (es gratis) siguiendo los pasos de tu dispositivo:",
+    vhAndroidT:"Android:", vhAndroid:"Ajustes → busca «Texto a voz» → Motor preferido: «Servicios de voz de Google» → ⚙️ → «Instalar datos de voz» → «Árabe» → descargar.",
+    vhSamsungT:"Samsung:", vhSamsung:"Ajustes → Administración general → Idioma → Texto a voz → elige «Servicios de voz de Google» y luego instala «Árabe» como en Android.",
+    vhIosT:"iPhone / iPad:", vhIos:"Ajustes → Accesibilidad → Contenido leído → Voces → «Árabe» → descarga una voz.",
+    vhPcT:"Ordenador:", vhPc:"Windows: Configuración → Hora e idioma → Voz → Agregar voces → «Árabe». Mac: Ajustes del Sistema → Accesibilidad → Contenido leído → Voz del sistema → Gestionar voces → «Árabe».",
+    vhAfter:"Después cierra el juego por completo y vuelve a abrirlo.", vhTest:"🔊 Probar de nuevo", vhStill:"Todavía no se encuentra la voz árabe en este dispositivo.", vhOk:"¡Ya funciona! ✅",
+    vhWarn:"🔇 Este dispositivo no tiene voz en árabe: no se oirán las palabras.", vhHow:"Cómo activarla",
     gVocab:"📝 Vocabulario", gRule:"📏 La regla", gEx:"💬 Frase modelo", gFill:"Completa la frase", gOrder:"Ordena las palabras para formar la frase", gMean:"¿Qué significa esta frase?",
     spellTitle:"🧩 Deletrea palabras", spellDesc:"Mira el dibujo, escucha la palabra y fórmala letra a letra. Al terminar verás cómo se unen las letras.",
     spellPlay:"¡Jugar!", spellEasy:"Fácil · con pistas", spellNormal:"Normal", spellHard:"Difícil · todas las letras",
@@ -867,6 +900,13 @@ const UI = {
   },
   en:{
     title:"Tug of War", newGame:"New game", soundOn:"Sound: on", soundOff:"Sound: off",
+    vhTitle:"🔇 Your device has no Arabic voice", vhIntro:"The game uses your phone's or computer's own voice. Install the Arabic voice (it's free) following the steps for your device:",
+    vhAndroidT:"Android:", vhAndroid:"Settings → search \"Text-to-speech\" → Preferred engine: \"Speech Services by Google\" → ⚙️ → \"Install voice data\" → \"Arabic\" → download.",
+    vhSamsungT:"Samsung:", vhSamsung:"Settings → General management → Language → Text-to-speech → choose \"Speech Services by Google\", then install \"Arabic\" as on Android.",
+    vhIosT:"iPhone / iPad:", vhIos:"Settings → Accessibility → Spoken Content → Voices → \"Arabic\" → download a voice.",
+    vhPcT:"Computer:", vhPc:"Windows: Settings → Time & language → Speech → Add voices → \"Arabic\". Mac: System Settings → Accessibility → Spoken Content → System voice → Manage voices → \"Arabic\".",
+    vhAfter:"Then close the game completely and open it again.", vhTest:"🔊 Try again", vhStill:"No Arabic voice found on this device yet.", vhOk:"It works now! ✅",
+    vhWarn:"🔇 This device has no Arabic voice, so words won't be heard.", vhHow:"How to turn it on",
     gVocab:"📝 Vocabulary", gRule:"📏 The rule", gEx:"💬 Model sentence", gFill:"Complete the sentence", gOrder:"Put the words in order to make the sentence", gMean:"What does this sentence mean?",
     spellTitle:"🧩 Spell words", spellDesc:"Look at the picture, listen to the word and build it letter by letter. At the end you'll see how the letters join.",
     spellPlay:"Play!", spellEasy:"Easy · with hints", spellNormal:"Normal", spellHard:"Hard · every letter",
@@ -920,6 +960,13 @@ const UI = {
   },
   ar:{
     title:"شدّ الحبل", newGame:"لعبة جديدة", soundOn:"الصوت: يعمل", soundOff:"الصوت: متوقف",
+    vhTitle:"🔇 لا يوجد صوت عربي في جهازك", vhIntro:"تستعمل اللعبة صوت الهاتف أو الحاسوب نفسه. ثبّت الصوت العربي (مجانًا) باتّباع خطوات جهازك:",
+    vhAndroidT:"أندرويد:", vhAndroid:"الإعدادات ← ابحث عن «تحويل النص إلى كلام» ← المحرك المفضّل: «خدمات الكلام من Google» ← ⚙️ ← «تثبيت بيانات الصوت» ← «العربية» ← تنزيل.",
+    vhSamsungT:"سامسونج:", vhSamsung:"الإعدادات ← الإدارة العامة ← اللغة ← تحويل النص إلى كلام ← اختر «خدمات الكلام من Google» ثم ثبّت «العربية» كما في أندرويد.",
+    vhIosT:"آيفون / آيباد:", vhIos:"الإعدادات ← تسهيلات الاستخدام ← المحتوى المنطوق ← الأصوات ← «العربية» ← نزّل صوتًا.",
+    vhPcT:"الحاسوب:", vhPc:"ويندوز: الإعدادات ← الوقت واللغة ← الكلام ← إضافة أصوات ← «العربية». ماك: إعدادات النظام ← تسهيلات الاستخدام ← المحتوى المنطوق ← صوت النظام ← إدارة الأصوات ← «العربية».",
+    vhAfter:"ثم أغلق اللعبة تمامًا وافتحها من جديد.", vhTest:"🔊 جرّب مرة أخرى", vhStill:"لم يُعثر بعد على صوت عربي في هذا الجهاز.", vhOk:"يعمل الآن! ✅",
+    vhWarn:"🔇 لا يوجد صوت عربي في هذا الجهاز، فلن تُسمع الكلمات.", vhHow:"كيف أفعّله",
     gVocab:"📝 المفردات", gRule:"📏 القاعدة", gEx:"💬 جملة نموذجية", gFill:"أكمل الجملة", gOrder:"رتّب الكلمات لتكوّن الجملة", gMean:"ما معنى هذه الجملة؟",
     spellTitle:"🧩 تهجئة الكلمات", spellDesc:"انظر إلى الصورة واستمع إلى الكلمة ثم كوّنها حرفًا حرفًا. في النهاية سترى كيف تتّصل الحروف.",
     spellPlay:"العب!", spellEasy:"سهل · مع تلميحات", spellNormal:"عادي", spellHard:"صعب · كل الحروف",
@@ -1640,8 +1687,8 @@ function loadVoices(){
 }
 function voiceFor(l){ return voices.find(v => v.lang && v.lang.toLowerCase().startsWith(l)) || null; }
 try { loadVoices(); speechSynthesis.addEventListener("voiceschanged", () => { loadVoices(); ["A","B"].forEach(s => teams[s] && teams[s].q && !teams[s].locked && render(teams[s])); }); } catch(e){}
-function speakSeq(parts){
-  if (!soundOn || !("speechSynthesis" in window)) return;
+function speakSeq(parts, force){
+  if ((!soundOn && !force) || !("speechSynthesis" in window)) return;
   try {
     speechSynthesis.cancel();
     parts.forEach(([text, l]) => {
@@ -1655,6 +1702,14 @@ function speakSeq(parts){
   } catch(e){}
 }
 function speakAr(text){ if (arVoice) speakSeq([[text, "ar"]]); }
+// ¿Sabemos que falta la voz árabe? (solo si el navegador ya dio su lista de voces)
+function arVoiceMissing(){ loadVoices(); return "speechSynthesis" in window && voices.length > 0 && !arVoice; }
+// Pulsar «Escuchar»: si falta la voz árabe, se explica cómo instalarla
+function listenAr(text){
+  if (!("speechSynthesis" in window) || arVoiceMissing()) return openVoiceHelp();
+  speakSeq([[text, "ar"]], true);
+}
+function openVoiceHelp(){ $("vhMsg").textContent = ""; $("voiceHelp").hidden = false; $("vhTest").focus(); }
 function readQuestion(team){
   const q = team.q, L = team.lang, t = UI[L]; if (!q) return;
   const parts = [];
@@ -2364,7 +2419,7 @@ $("tracePrev").addEventListener("click", () => traceGo(-1));
 $("traceNext").addEventListener("click", () => traceGo(1));
 $("traceClear").addEventListener("click", () => { $("traceMsg").textContent = ""; drawGuide(); });
 $("traceDone").addEventListener("click", traceCheck);
-$("traceSpeak").addEventListener("click", () => speakSeq([[LETTERS[traceIdx][2], "ar"]]));
+$("traceSpeak").addEventListener("click", () => listenAr(LETTERS[traceIdx][2]));
 addEventListener("resize", () => { if (!$("traceBox").hidden) traceSize(); });
 
 /* ================= Aprende árabe: camino de lecciones (sin competir) ================= */
@@ -2413,6 +2468,12 @@ function renderPath(){
   const L = cfg.lang, t = UI[L], body = $("learnBody"); body.innerHTML = "";
   $("learnBack").hidden = true;
   const intro = document.createElement("p"); intro.textContent = num(t.learnIntro, L); body.append(intro);
+  if (arVoiceMissing()){
+    const w = document.createElement("div"); w.className = "voice-warn";
+    const tx = document.createElement("span"); tx.textContent = t.vhWarn;
+    const bt = document.createElement("button"); bt.type = "button"; bt.className = "ghost"; bt.textContent = t.vhHow; bt.addEventListener("click", openVoiceHelp);
+    w.append(tx, bt); body.append(w);
+  }
   body.append(spellCard());
   const wrap = document.createElement("div"); wrap.className = "units";
   LEARN.forEach(u => {
@@ -2473,7 +2534,7 @@ function renderLesson(){
 function showBox(parent){ const d = document.createElement("div"); d.className = "lx-show"; parent.append(d); return d; }
 function listenBtn(text){
   const b = document.createElement("button"); b.type = "button"; b.className = "big-listen"; b.textContent = UI[cfg.lang].listen;
-  b.addEventListener("click", () => speakSeq([[text, "ar"]])); return b;
+  b.addEventListener("click", () => listenAr(text)); return b;
 }
 function bigEl(text){ const d = document.createElement("div"); d.className = "big"; d.lang = "ar"; d.textContent = text; return d; }
 function line(cls, text){ const d = document.createElement("div"); d.className = cls; d.textContent = text; return d; }
@@ -2942,6 +3003,15 @@ function openLearn(){ $("learnBox").hidden = false; renderPath(); $("learnClose"
 $("learnBtn").addEventListener("click", openLearn);
 $("learnClose").addEventListener("click", () => { window.speechSynthesis?.cancel?.(); $("learnBox").hidden = true; LS = null; SP = null; });
 $("learnBack").addEventListener("click", () => { window.speechSynthesis?.cancel?.(); renderPath(); });
+
+/* ---- ayuda de la voz árabe ---- */
+$("vhClose").addEventListener("click", () => { $("voiceHelp").hidden = true; if (!$("learnBox").hidden && !LS && !SP) renderPath(); });
+$("vhTest").addEventListener("click", () => {
+  const t = UI[cfg.lang];
+  if (arVoiceMissing()){ $("vhMsg").textContent = t.vhStill; $("vhMsg").style.color = "var(--gold)"; return; }
+  $("vhMsg").textContent = t.vhOk; $("vhMsg").style.color = "var(--ok)";
+  speakSeq([["السَّلَامُ عَلَيْكُمْ", "ar"]], true);
+});
 
 /* ---- compartir y sugerencias ---- */
 const GAME_URL = "https://liusdy91.github.io/L/";
