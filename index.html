@@ -156,6 +156,25 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .langs.small button{padding:3px 8px;font-size:.78rem;min-width:2em}
 .panel .langs button[aria-pressed="true"]{background:var(--c);color:#fff}
 .card .hint{font-size:.9rem}
+.net-box{display:flex;flex-direction:column;gap:10px;margin-top:12px;align-items:flex-start}
+.net-lbl,.net-hint,.net-status,.net-note{margin:0;line-height:1.45}
+.net-hint,.net-note{color:var(--sand-dim);font-size:.9rem}
+.net-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.net-code{font-size:2.6rem;font-weight:900;letter-spacing:.25em;color:var(--gold);background:var(--night);border-radius:14px;padding:6px 6px 6px 18px;font-family:ui-monospace,monospace}
+.net-qr{background:#fff;padding:6px;border-radius:10px;line-height:0}
+.net-qr:empty{display:none}
+.net-qr img,.net-qr canvas{width:112px;height:112px}
+.net-in{display:flex;flex-direction:column;gap:6px;font-weight:700}
+.net-in input{font-size:1.8rem;font-weight:900;letter-spacing:.25em;text-transform:uppercase;width:9ch;text-align:center;font-family:ui-monospace,monospace}
+.net-status{margin-top:10px;font-weight:800}
+.net-status:empty{display:none}
+.net-status.bad{color:#ff9b8f}
+#netLeave{margin-top:10px}
+#onlineField .net-note a{color:var(--gold)}
+body.net-guest #setup .field:not(.keep), body.net-guest #setup .hint, body.net-guest #startBtn{display:none}
+.remote-icon{font-size:4rem;line-height:1;animation:remotePulse 1.6s ease-in-out infinite}
+@keyframes remotePulse{50%{transform:scale(1.08);opacity:.75}}
+@media (prefers-reduced-motion: reduce){.remote-icon{animation:none}}
 .cpu{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding-block:20px}
 .cpu-icon{width:96px;height:96px;max-width:100%}
 .cpu-msg{margin:0;font-weight:800;font-size:1.1rem}
@@ -607,16 +626,41 @@ body.practice .board{grid-template-columns:minmax(0,720px)!important;grid-templa
       <a class="ghost" id="parentsLink" href="padres.html" target="_blank" rel="noopener" data-i18n="parentsBtn">👪 Para padres y profesores</a>
     </div>
 
-    <div class="field"><span data-i18n="language">Idioma</span>
+    <div class="field keep"><span data-i18n="language">Idioma</span>
       <div class="seg" id="langSeg"></div>
     </div>
 
-    <div class="field"><span data-i18n="playersLabel">Jugadores</span>
+    <div class="field keep"><span data-i18n="playersLabel">Jugadores</span>
       <div class="seg" id="playersSeg">
         <button type="button" data-v="2" aria-pressed="true"><span data-i18n="players2"></span><small data-i18n="players2Sub"></small></button>
         <button type="button" data-v="1" aria-pressed="false"><span data-i18n="players1"></span><small data-i18n="players1Sub"></small></button>
         <button type="button" data-v="0" aria-pressed="false"><span data-i18n="practice"></span><small data-i18n="practiceSub"></small></button>
+        <button type="button" data-v="3" aria-pressed="false"><span data-i18n="playersOnline"></span><small data-i18n="playersOnlineSub"></small></button>
       </div>
+    </div>
+
+    <div class="field keep" id="onlineField" hidden><span data-i18n="netTitle">Partida online</span>
+      <div class="seg" id="netSeg">
+        <button type="button" data-v="host" aria-pressed="true"><span data-i18n="netCreate"></span><small data-i18n="netCreateSub"></small></button>
+        <button type="button" data-v="join" aria-pressed="false"><span data-i18n="netJoin"></span><small data-i18n="netJoinSub"></small></button>
+      </div>
+      <div class="net-box" id="netHost">
+        <p class="net-lbl" data-i18n="netYourCode"></p>
+        <div class="net-row">
+          <div class="net-code" id="netCode" dir="ltr">····</div>
+          <div class="net-qr" id="netQr" aria-hidden="true"></div>
+        </div>
+        <button class="ghost" id="netCopy" type="button" data-i18n="netCopy"></button>
+        <p class="net-hint" data-i18n="netShareHint"></p>
+      </div>
+      <div class="net-box" id="netJoinBox" hidden>
+        <label class="net-in"><span data-i18n="netCodeLabel"></span>
+          <input id="netInput" maxlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" dir="ltr"></label>
+        <button class="ghost" id="netConnect" type="button" data-i18n="netConnect"></button>
+      </div>
+      <p class="net-note" id="netNote" hidden><span data-i18n="netOnlyPublic"></span> <a id="netPublicLink" target="_blank" rel="noopener"></a></p>
+      <p class="net-status" id="netStatus" role="status" aria-live="polite"></p>
+      <button class="ghost" id="netLeave" type="button" data-i18n="netLeave" hidden></button>
     </div>
 
     <div class="field" id="cpuField" hidden><span data-i18n="cpuLabel">Velocidad de la computadora</span>
@@ -659,7 +703,7 @@ body.practice .board{grid-template-columns:minmax(0,720px)!important;grid-templa
       </div>
     </div>
 
-    <div class="field"><span data-i18n="namesLabel" id="namesLabel">Nombres de los equipos</span>
+    <div class="field keep"><span data-i18n="namesLabel" id="namesLabel">Nombres de los equipos</span>
       <div class="names">
         <label class="a"><input id="inA" maxlength="16" value="Media Luna"></label>
         <label class="b" id="labelB"><input id="inB" maxlength="16" value="Estrella"></label>
@@ -895,6 +939,17 @@ const UI = {
     playersLabel:"Jugadores", players2:"Dos equipos", players2Sub:"En la misma pantalla", players1:"Un jugador", players1Sub:"Contra la computadora",
     cpuLabel:"Velocidad de la computadora", cpu1:"Lenta", cpu1Sub:"Un tirón cada 9 s", cpu2:"Normal", cpu2Sub:"Un tirón cada 6 s", cpu3:"Rápida", cpu3Sub:"Un tirón cada 4 s",
     cpuName:"Computadora", cpuThinking:"La computadora está tirando…", cpuHint:"Responde rápido para ganarle.", nameLabelSolo:"Tu nombre",
+    playersOnline:"🌐 Online", playersOnlineSub:"Cada uno en su dispositivo", netTitle:"Partida online",
+    netCreate:"Crear sala", netCreateSub:"Yo invito a mi amigo", netJoin:"Unirme", netJoinSub:"Tengo un código",
+    netYourCode:"Código de tu sala:", netCopy:"🔗 Copiar enlace de invitación", netCopied:"✅ Enlace copiado",
+    netShareHint:"Tu amigo abre el juego, elige 🌐 Online → Unirme y escribe este código (o abre el enlace o escanea el código QR).",
+    netCodeLabel:"Código de la sala", netConnect:"Conectar", netConnecting:"Conectando…", netWaiting:"⏳ Esperando a tu amigo…",
+    netJoined:n => `✅ ${n} se unió. ¡Pulsa «a jugar»!`, netGuestOk:n => `✅ Conectado con ${n}. Espera a que empiece la partida.`,
+    netLost:"⚠️ Se perdió la conexión con tu amigo.", netError:"⚠️ No se pudo conectar. Revisa tu internet e inténtalo otra vez.",
+    netNoRoom:"⚠️ No hay ninguna sala con ese código. Revísalo.", netCodeBad:"Escribe las 4 letras del código.", netFull:"⚠️ Esa sala ya tiene dos jugadores.",
+    netNeedFriend:"Primero espera a que tu amigo se una.", netLeftMenu:n => `${n} volvió al menú.`, netLeave:"Salir de la sala",
+    netRemoteMsg:n => `${n} está respondiendo en su dispositivo…`, netRemoteHint:"🌐 Partida online · ¡responde rápido para tirar de la cuerda!",
+    netWaitHost:n => `Esperando a que ${n} empiece otra partida…`, netOnlyPublic:"La partida online solo funciona en el enlace público del juego:",
     cpuWinPre:"¡Casi! Esta vez gana",
     del:"Borrar", check:"Comprobar", teamLang:"Idioma del equipo", nameLeft:"Nombre del equipo izquierdo", nameRight:"Nombre del equipo derecho",
   },
@@ -955,6 +1010,17 @@ const UI = {
     playersLabel:"Players", players2:"Two teams", players2Sub:"On the same screen", players1:"One player", players1Sub:"Against the computer",
     cpuLabel:"Computer speed", cpu1:"Slow", cpu1Sub:"One pull every 9 s", cpu2:"Normal", cpu2Sub:"One pull every 6 s", cpu3:"Fast", cpu3Sub:"One pull every 4 s",
     cpuName:"Computer", cpuThinking:"The computer is pulling…", cpuHint:"Answer quickly to beat it.", nameLabelSolo:"Your name",
+    playersOnline:"🌐 Online", playersOnlineSub:"Each on their own device", netTitle:"Online game",
+    netCreate:"Create room", netCreateSub:"I invite my friend", netJoin:"Join", netJoinSub:"I have a code",
+    netYourCode:"Your room code:", netCopy:"🔗 Copy invite link", netCopied:"✅ Link copied",
+    netShareHint:"Your friend opens the game, picks 🌐 Online → Join and types this code (or opens the link or scans the QR code).",
+    netCodeLabel:"Room code", netConnect:"Connect", netConnecting:"Connecting…", netWaiting:"⏳ Waiting for your friend…",
+    netJoined:n => `✅ ${n} joined. Press play!`, netGuestOk:n => `✅ Connected with ${n}. Wait for the game to start.`,
+    netLost:"⚠️ The connection with your friend was lost.", netError:"⚠️ Could not connect. Check your internet and try again.",
+    netNoRoom:"⚠️ There is no room with that code. Check it.", netCodeBad:"Type the 4 letters of the code.", netFull:"⚠️ That room already has two players.",
+    netNeedFriend:"First wait for your friend to join.", netLeftMenu:n => `${n} went back to the menu.`, netLeave:"Leave room",
+    netRemoteMsg:n => `${n} is answering on their device…`, netRemoteHint:"🌐 Online game · answer quickly to pull the rope!",
+    netWaitHost:n => `Waiting for ${n} to start another game…`, netOnlyPublic:"Online play only works on the game's public link:",
     cpuWinPre:"So close! This time the winner is",
     del:"Clear", check:"Check", teamLang:"Team language", nameLeft:"Left team name", nameRight:"Right team name",
   },
@@ -1015,6 +1081,17 @@ const UI = {
     playersLabel:"اللاعبون", players2:"فريقان", players2Sub:"على الشاشة نفسها", players1:"لاعب واحد", players1Sub:"ضد الحاسوب",
     cpuLabel:"سرعة الحاسوب", cpu1:"بطيء", cpu1Sub:"شدّة كل 9 ثوانٍ", cpu2:"عادي", cpu2Sub:"شدّة كل 6 ثوانٍ", cpu3:"سريع", cpu3Sub:"شدّة كل 4 ثوانٍ",
     cpuName:"الحاسوب", cpuThinking:"الحاسوب يشدّ الحبل…", cpuHint:"أجب بسرعة لتغلبه.", nameLabelSolo:"اسمك",
+    playersOnline:"🌐 عبر الإنترنت", playersOnlineSub:"كلٌّ على جهازه", netTitle:"لعبة عبر الإنترنت",
+    netCreate:"إنشاء غرفة", netCreateSub:"أدعو صديقي", netJoin:"انضمام", netJoinSub:"عندي رمز",
+    netYourCode:"رمز غرفتك:", netCopy:"🔗 نسخ رابط الدعوة", netCopied:"✅ تم نسخ الرابط",
+    netShareHint:"يفتح صديقك اللعبة، ويختار 🌐 عبر الإنترنت ← انضمام، ويكتب هذا الرمز (أو يفتح الرابط أو يمسح رمز QR).",
+    netCodeLabel:"رمز الغرفة", netConnect:"اتصال", netConnecting:"جارٍ الاتصال…", netWaiting:"⏳ في انتظار صديقك…",
+    netJoined:n => `✅ انضمّ ${n}. اضغط «ابدأ»!`, netGuestOk:n => `✅ متصل مع ${n}. انتظر بدء اللعبة.`,
+    netLost:"⚠️ انقطع الاتصال مع صديقك.", netError:"⚠️ تعذّر الاتصال. تحقّق من الإنترنت وحاول مرة أخرى.",
+    netNoRoom:"⚠️ لا توجد غرفة بهذا الرمز. تحقّق منه.", netCodeBad:"اكتب أحرف الرمز الأربعة.", netFull:"⚠️ في هذه الغرفة لاعبان بالفعل.",
+    netNeedFriend:"انتظر أولًا أن ينضمّ صديقك.", netLeftMenu:n => `عاد ${n} إلى القائمة.`, netLeave:"مغادرة الغرفة",
+    netRemoteMsg:n => `${n} يجيب على جهازه…`, netRemoteHint:"🌐 لعبة عبر الإنترنت · أجب بسرعة لتشدّ الحبل!",
+    netWaitHost:n => `في انتظار أن يبدأ ${n} لعبة أخرى…`, netOnlyPublic:"اللعب عبر الإنترنت يعمل فقط على الرابط العام للعبة:",
     cpuWinPre:"اقتربت! هذه المرة الفوز لـ",
     del:"مسح", check:"تحقّق", teamLang:"لغة الفريق", nameLeft:"اسم الفريق الأيسر", nameRight:"اسم الفريق الأيمن",
   },
@@ -1610,12 +1687,15 @@ const saved = store.get("tdc-lang");
 const cfg = { lang: UI[saved] ? saved : "es", mode:"quiz", age:2, target:7, nameA:"Media Luna", nameB:"Estrella", players:2, cpuSecs:6,
               cats: new Set(Object.keys(CATS)), topics: new Set(Object.keys(TOPICS)) };
 let cpuTimer = null;
+const NET = { role:null, peer:null, conn:null, code:"", mode:"host", ready:false, remoteName:"", status:null, timer:null };
+const NET_CHARS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+const netLocal = () => NET.role === "guest" ? "B" : "A";
 let pos = 0, playing = false, t0 = 0, tick = null, lastWinner = null;
 const teams = { A: null, B: null };
 
 function makeTeam(side){
   return { side, lang: cfg.lang, correct:0, streak:0, answered:0, missed:[], deck:quizDeck(), di:0, q:null, input:"", locked:false, recent:[],
-           cpu: side === "B" && cfg.players === 1 };
+           cpu: side === "B" && cfg.players === 1, remote: cfg.players === 3 && side !== netLocal() };
 }
 
 /* ---- generación de preguntas (independientes del idioma) ---- */
@@ -1859,6 +1939,7 @@ function render(team){
   zone.innerHTML = "";
   zone.style.display = "flex"; zone.style.flexDirection = "column"; zone.style.gap = "12px";
   if (team.cpu) { renderCpu(team); return; }
+  if (team.remote) { renderRemote(team); return; }
   if (!q) return;
   if (cfg.players === 0 && team.side === "A"){
     const bar = document.createElement("div"); bar.className = "pq-bar";
@@ -1940,7 +2021,8 @@ function check(team, ok, delay=0){
     }
     addProgress(progressKey(team.q));
     if (cfg.players === 0){ team.answered++; team.locked = true; showNext(team); return; }
-    pull(team.side);
+    if (cfg.players === 3 && NET.role === "guest") netSend({ t:"pull" }); // el anfitrión mueve la cuerda
+    else pull(team.side);
     if (!playing) return;
     team.locked = true;
     setTimeout(() => playing && nextQuestion(team), delay || 350);
@@ -2074,13 +2156,16 @@ function toast(team, text){
   $("panel"+team.side).append(el); setTimeout(() => el.remove(), 1900);
 }
 function pull(side){
-  sPull();
   pos += side==="A" ? -1 : 1;
-  drawRope();
+  pullFx(side);
+  if (cfg.players === 3 && NET.role === "host") netSend({ t:"state", pos, side, a:teams.A.correct, b:teams.B.correct });
+  if (Math.abs(pos) >= cfg.target) finish(side);
+}
+function pullFx(side){
+  sPull(); drawRope();
   const scene = $("scene");
   scene.classList.remove("pullA","pullB"); void scene.getBoundingClientRect();
   scene.classList.add(side==="A" ? "pullA" : "pullB");
-  if (Math.abs(pos) >= cfg.target) finish(side);
 }
 
 function finish(side){
@@ -2131,7 +2216,13 @@ function goLandscape(){
     fs.then(() => screen.orientation && screen.orientation.lock ? screen.orientation.lock("landscape") : null).catch(() => {});
   } catch(e){}
 }
-function start(){
+function start(fromNet){
+  const net = cfg.players === 3;
+  if (net){
+    if (!NET.ready){ netStatus("netNeedFriend", true); return; }
+    if (NET.role === "guest" && !fromNet){ netSend({ t:"again" }); netStatus("netWaitHost"); return; }
+    if (NET.role === "host") netSend({ t:"start", cfg:{ mode:cfg.mode, age:cfg.age, target:cfg.target, cats:[...cfg.cats], topics:[...cfg.topics] } });
+  }
   const practice = cfg.players === 0;
   if (!practice) goLandscape();
   document.body.classList.add("playing");
@@ -2139,6 +2230,7 @@ function start(){
   $("sumBox").hidden = true;
   cfg.nameA = $("inA").value.trim() || UI[cfg.lang].teamA;
   cfg.nameB = cfg.players !== 2 ? UI[cfg.lang].cpuName : ($("inB").value.trim() || UI[cfg.lang].teamB);
+  if (net){ const me = netMyName(), them = NET.remoteName || UI[cfg.lang].teamB; [cfg.nameA, cfg.nameB] = NET.role === "guest" ? [them, me] : [me, them]; }
   showNames();
   pos = 0; lastWinner = null; resetKids(); $("scene").classList.remove("winA","winB");
   teams.A = makeTeam("A"); teams.B = makeTeam("B");
@@ -2149,6 +2241,7 @@ function start(){
   playing = true; t0 = Date.now(); clearInterval(tick);
   $("timer").textContent = num("00:00", cfg.lang);
   tick = setInterval(() => $("timer").textContent = num(fmt(Date.now()-t0), cfg.lang), 250);
+  if (net){ const me = netLocal(); nextQuestion(teams[me]); render(teams[me === "A" ? "B" : "A"]); return; }
   nextQuestion(teams.A);
   if (practice) return;
   if (teams.B.cpu) { render(teams.B); startCpu(); } else nextQuestion(teams.B);
@@ -2186,6 +2279,7 @@ function setLang(l){
   if (DEFAULT_NAMES.includes(cfg.nameA)) cfg.nameA = t.teamA;
   if (DEFAULT_NAMES.includes(cfg.nameB)) cfg.nameB = t.teamB;
   if (teams.B?.cpu) cfg.nameB = t.cpuName;
+  updateNetUI();
   updatePlayersUI();
   updateModeUI();
   showNames();
@@ -2207,7 +2301,7 @@ function renderTeamLangs(){
   ["A","B"].forEach(s => {
     const team = teams[s]; if (!team) return;
     const box = $("lang"+s);
-    box.hidden = !!team.cpu;
+    box.hidden = !!(team.cpu || team.remote);
     box.setAttribute("aria-label", UI[team.lang].teamLang);
     langButtons(box, team.lang, l => {
       team.lang = l; render(team); renderTeamLangs(); drawRope();
@@ -2263,18 +2357,22 @@ function updatePlayersUI(){
   $("labelB").hidden = alone;
   document.querySelector(".card .hint").hidden = alone;
   $("namesLabel").textContent = alone ? UI[cfg.lang].nameLabelSolo : UI[cfg.lang].namesLabel;
+  if (cfg.players === 3){ if (!NET.role && NET.mode === "host" && netAllowed()) netHost(); }
+  else if (NET.role) netClose();
+  updateNetUI();
 }
 $("playersSeg").addEventListener("click", updatePlayersUI);
 segment("ageSeg","age",Number);
 segment("targetSeg","target",Number);
 
-$("startBtn").addEventListener("click", start);
-$("againBtn").addEventListener("click", start);
-$("sumAgain").addEventListener("click", start);
+$("startBtn").addEventListener("click", () => start());
+$("againBtn").addEventListener("click", () => start());
+$("sumAgain").addEventListener("click", () => start());
 $("sumSetup").addEventListener("click", () => { $("sumBox").hidden = true; document.body.classList.remove("playing", "practice"); $("setup").hidden = false; });
 $("setupBtn2").addEventListener("click", () => { $("winBox").hidden = true; $("setup").hidden = false; });
 $("portraitOk").addEventListener("click", () => document.body.classList.add("portrait-ok"));
-$("menuBtn").addEventListener("click", () => { document.body.classList.remove("playing", "practice"); $("sumBox").hidden = true; playing=false; clearInterval(tick); stopCpu(); $("winBox").hidden = true; $("setup").hidden = false; });
+function goSetup(){ document.body.classList.remove("playing", "practice"); $("sumBox").hidden = true; playing=false; clearInterval(tick); stopCpu(); $("winBox").hidden = true; $("setup").hidden = false; }
+$("menuBtn").addEventListener("click", () => { if (cfg.players === 3 && playing) netSend({ t:"menu" }); goSetup(); });
 $("soundBtn").addEventListener("click", e => {
   soundOn = !soundOn; e.currentTarget.textContent = soundOn ? UI[cfg.lang].soundOn : UI[cfg.lang].soundOff;
   e.currentTarget.setAttribute("aria-pressed", String(soundOn));
@@ -3114,6 +3212,197 @@ const onInstall = async () => {
 };
 installBtns.forEach(b => b.addEventListener("click", onInstall));
 $("installClose").addEventListener("click", () => { $("installBox").hidden = true; });
+
+/* ================= Partida online: dos dispositivos, cada uno en su casa =================
+   Conexión directa entre los dos navegadores (WebRTC, con la librería libre PeerJS).
+   El anfitrión es el equipo de la izquierda y lleva la cuerda; el invitado le avisa de cada acierto. */
+function netAllowed(){ return isPublicSite || /^(localhost|127\.0\.0\.1)$/.test(location.hostname); }
+function loadPeer(){
+  if (window.Peer) return Promise.resolve();
+  return new Promise((ok, ko) => { const s = document.createElement("script"); s.src = "assets/vendor/peerjs.min.js"; s.onload = ok; s.onerror = ko; document.head.append(s); });
+}
+function peerOpts(){
+  // ?peerhost=localhost&peerport=9000 sirve para probar con un servidor propio; si no, el servidor público gratuito de PeerJS
+  const q = new URLSearchParams(location.search), h = q.get("peerhost");
+  return h ? { host:h, port:Number(q.get("peerport") || 9000), path:"/", secure:false, debug:0 } : { debug:0 };
+}
+function netMyName(){
+  const v = $("inA").value.trim(), fallback = NET.role === "guest" ? UI[cfg.lang].teamB : UI[cfg.lang].teamA;
+  return !v || (NET.role === "guest" && DEFAULT_NAMES.includes(v)) ? fallback : v;
+}
+function netStatus(key, bad){ NET.status = key ? [key, !!bad] : null; paintNetStatus(); }
+function paintNetStatus(){
+  const el = $("netStatus"), st = NET.status;
+  const v = st ? UI[cfg.lang][st[0]] : "";
+  el.textContent = typeof v === "function" ? v(NET.remoteName || UI[cfg.lang].teamB) : (v || "");
+  el.classList.toggle("bad", !!(st && st[1]));
+}
+function netInviteLink(){ return (isPublicSite ? GAME_URL : location.origin + location.pathname + location.search) + "#join-" + NET.code; }
+function netSend(m){ try { if (NET.conn && NET.conn.open) NET.conn.send(m); } catch(e){} }
+function netClose(){
+  const c = NET.conn, p = NET.peer;
+  Object.assign(NET, { role:null, peer:null, conn:null, code:"", ready:false, remoteName:"" });
+  try { c && c.close(); } catch(e){}
+  try { p && p.destroy(); } catch(e){}
+  clearTimeout(NET.timer); clearInterval(NET.beat); $("netQr").innerHTML = "";
+  document.body.classList.remove("net-guest");
+}
+function netHost(tries = 0){
+  netClose(); NET.role = "host"; NET.mode = "host"; netStatus("netConnecting"); updateNetUI();
+  loadPeer().then(() => {
+    if (NET.role !== "host") return;
+    const code = Array.from({ length:4 }, () => NET_CHARS[Math.random() * NET_CHARS.length | 0]).join("");
+    const peer = new Peer("itow-" + code, peerOpts()); NET.peer = peer;
+    peer.on("open", () => {
+      if (NET.peer !== peer) return;
+      NET.code = code; netStatus("netWaiting"); updateNetUI();
+      $("netQr").innerHTML = "";
+      try { if (window.QRCode) new QRCode($("netQr"), { text: netInviteLink(), width:224, height:224, correctLevel: QRCode.CorrectLevel.M }); } catch(e){}
+    });
+    peer.on("connection", c => {
+      if (NET.peer !== peer) return;
+      if (NET.conn && NET.conn.open){ c.on("open", () => { c.send({ t:"full" }); setTimeout(() => c.close(), 400); }); return; }
+      netBind(c);
+    });
+    peer.on("disconnected", () => { try { if (NET.peer === peer && !peer.destroyed) peer.reconnect(); } catch(e){} });
+    peer.on("error", e => {
+      if (NET.peer !== peer) return;
+      if (e.type === "unavailable-id" && tries < 4) return netHost(tries + 1);
+      if (NET.ready) return; // la partida sigue: la conexión entre los dos ya está hecha
+      netStatus("netError", true);
+    });
+  }).catch(() => netStatus("netError", true));
+}
+function netJoin(raw){
+  const code = (raw || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 4);
+  if (code.length !== 4){ netStatus("netCodeBad", true); return; }
+  netClose(); NET.role = "guest"; NET.mode = "join"; netStatus("netConnecting"); updateNetUI();
+  loadPeer().then(() => {
+    if (NET.role !== "guest") return;
+    const peer = new Peer(peerOpts()); NET.peer = peer;
+    NET.timer = setTimeout(() => { if (NET.peer === peer && !NET.ready){ netClose(); netStatus("netError", true); updateNetUI(); } }, 20000);
+    peer.on("open", () => { if (NET.peer === peer) netBind(peer.connect("itow-" + code, { reliable:true })); });
+    peer.on("error", e => {
+      if (NET.peer !== peer || NET.ready) return;
+      netClose(); netStatus(e.type === "peer-unavailable" ? "netNoRoom" : "netError", true); updateNetUI();
+    });
+  }).catch(() => netStatus("netError", true));
+}
+function netBind(c){
+  NET.conn = c;
+  c.on("open", () => {
+    if (NET.conn !== c) return; clearTimeout(NET.timer); NET.ready = true; NET.last = Date.now();
+    c.send({ t:"hello", name: netMyName() }); updateNetUI();
+    // latido: si el otro dispositivo deja de responder (cerró el juego, sin internet), se avisa
+    clearInterval(NET.beat);
+    NET.beat = setInterval(() => {
+      if (NET.conn !== c){ clearInterval(NET.beat); return; }
+      netSend({ t:"ping" });
+      if (Date.now() - NET.last > 12000){ clearInterval(NET.beat); netLost(); }
+    }, 3000);
+  });
+  c.on("data", m => { if (NET.conn === c && m && typeof m === "object"){ NET.last = Date.now(); netData(m); } });
+  const lost = () => { if (NET.conn === c) netLost(); };
+  c.on("close", lost); c.on("error", lost);
+}
+function netLost(){
+  const wasHost = NET.role === "host";
+  if (document.body.classList.contains("playing")) goSetup();
+  const c = NET.conn; clearInterval(NET.beat);
+  if (wasHost){ try { c && c.close(); } catch(e){} NET.conn = null; NET.ready = false; NET.remoteName = ""; } // la sala sigue abierta para que vuelva a entrar
+  else netClose();
+  netStatus("netLost", true); updateNetUI();
+}
+function netData(m){
+  const t = m.t;
+  if (t === "hello"){
+    NET.remoteName = String(m.name || "").slice(0, 16) || UI[cfg.lang].teamB;
+    netStatus(NET.role === "host" ? "netJoined" : "netGuestOk"); updateNetUI(); sStar();
+  } else if (t === "full"){
+    netClose(); netStatus("netFull", true); updateNetUI();
+  } else if (t === "start" && NET.role === "guest"){
+    const c = m.cfg || {};
+    if (["quiz","math","arabic","mix"].includes(c.mode)) cfg.mode = c.mode;
+    if ([1,2,3].includes(c.age)) cfg.age = c.age;
+    if ([5,7,10].includes(c.target)) cfg.target = c.target;
+    if (Array.isArray(c.cats)){ const v = c.cats.filter(k => k in CATS); if (v.length) cfg.cats = new Set(v); }
+    if (Array.isArray(c.topics)){ const v = c.topics.filter(k => k in TOPICS); if (v.length) cfg.topics = new Set(v); }
+    netStatus("netGuestOk");
+    start(true);
+  } else if (t === "pull" && NET.role === "host"){
+    if (!playing) return;
+    const team = teams.B; team.correct++; bumpScore(team);
+    const panel = $("panelB"); panel.classList.remove("flash-ok"); void panel.offsetWidth; panel.classList.add("flash-ok");
+    pull("B");
+  } else if (t === "state" && NET.role === "guest"){
+    if (!playing) return;
+    pos = Number(m.pos) || 0;
+    if (teams.A.correct !== m.a){
+      teams.A.correct = Number(m.a) || 0; bumpScore(teams.A);
+      const panel = $("panelA"); panel.classList.remove("flash-ok"); void panel.offsetWidth; panel.classList.add("flash-ok");
+    }
+    pullFx(m.side === "A" ? "A" : "B");
+    if (Math.abs(pos) >= cfg.target) finish(m.side === "A" ? "A" : "B");
+  } else if (t === "again" && NET.role === "host"){
+    if (!playing && !$("winBox").hidden) start();
+  } else if (t === "menu"){
+    if (document.body.classList.contains("playing")) goSetup();
+    netStatus("netLeftMenu"); updateNetUI();
+  }
+}
+function renderRemote(team){
+  const t = UI[team.lang], zone = $("zone"+team.side), name = team.side === "A" ? cfg.nameA : cfg.nameB;
+  const box = document.createElement("div"); box.className = "cpu remote";
+  const ic = document.createElement("div"); ic.className = "remote-icon"; ic.textContent = "🌐"; ic.setAttribute("aria-hidden", "true");
+  const msg = document.createElement("p"); msg.className = "cpu-msg"; msg.textContent = t.netRemoteMsg(name);
+  const hint = document.createElement("p"); hint.className = "cpu-hint"; hint.textContent = t.netRemoteHint;
+  box.append(ic, msg, hint); zone.append(box);
+}
+function updateNetUI(){
+  const on = cfg.players === 3, ok = netAllowed();
+  $("onlineField").hidden = !on;
+  document.body.classList.toggle("net-guest", on && NET.role === "guest" && NET.ready);
+  if (!on) return;
+  $("netSeg").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === NET.mode)));
+  $("netNote").hidden = ok;
+  $("netPublicLink").href = GAME_URL; $("netPublicLink").textContent = GAME_URL.replace(/^https:\/\//, "");
+  $("netHost").hidden = !ok || NET.mode !== "host";
+  $("netJoinBox").hidden = !ok || NET.mode !== "join" || (NET.role === "guest" && NET.ready);
+  $("netCode").textContent = NET.role === "host" && NET.code ? NET.code : "····";
+  $("netCopy").disabled = !(NET.role === "host" && NET.code);
+  $("netLeave").hidden = !(NET.role === "guest" && NET.ready);
+  paintNetStatus();
+}
+$("netSeg").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b || b.dataset.v === NET.mode) return;
+  NET.mode = b.dataset.v;
+  if (NET.mode === "host"){ if (netAllowed()) netHost(); }
+  else { netClose(); netStatus(null); setTimeout(() => $("netInput").focus(), 0); }
+  updateNetUI();
+});
+$("netConnect").addEventListener("click", () => netJoin($("netInput").value));
+$("netInput").addEventListener("keydown", e => { if (e.key === "Enter") netJoin($("netInput").value); });
+$("netInput").addEventListener("input", e => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 4); });
+$("netLeave").addEventListener("click", () => { netClose(); NET.mode = "join"; netStatus(null); updateNetUI(); });
+$("netCopy").addEventListener("click", () => {
+  const link = netInviteLink(), done = () => { $("netCopy").textContent = UI[cfg.lang].netCopied; setTimeout(() => $("netCopy").textContent = UI[cfg.lang].netCopy, 2000); };
+  if (navigator.share && matchMedia("(pointer:coarse)").matches) navigator.share({ title:"Islamic Tug of War", text: UI[cfg.lang].netYourCode + " " + NET.code, url: link }).catch(() => {});
+  else if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(link).then(done, () => {});
+});
+window.addEventListener("beforeunload", () => netClose());
+$("inA").addEventListener("change", () => { if (cfg.players === 3 && NET.ready) netSend({ t:"hello", name: netMyName() }); });
+// solo para las pruebas automáticas con un servidor propio
+if (new URLSearchParams(location.search).has("peerhost")) window.__tdc = { teams, cfg, check, get pos(){ return pos; }, get playing(){ return playing; }, get lastWinner(){ return lastWinner; } };
+// enlace de invitación: …#join-ABCD abre directamente la sala del amigo
+(() => {
+  const m = location.hash.match(/^#join-([A-Za-z0-9]{4})$/); if (!m) return;
+  history.replaceState(null, "", location.pathname + location.search);
+  NET.mode = "join"; cfg.players = 3;
+  $("playersSeg").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === "3")));
+  updatePlayersUI();
+  $("netInput").value = m[1].toUpperCase();
+  if (netAllowed()) netJoin(m[1]);
+})();
 
 // Textos árabes que el juego pronuncia (sirve para generar las grabaciones)
 window.tdcArTexts = () => {
