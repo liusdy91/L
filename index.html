@@ -65,7 +65,7 @@ body{
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation}
-button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,[tabindex]:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 
 .app{height:100%;display:flex;flex-direction:column;gap:10px;max-width:1500px;margin:0 auto}
 
@@ -165,7 +165,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 .net-qr:empty{display:none}
 .net-qr img,.net-qr canvas{width:112px;height:112px}
 .net-in{display:flex;flex-direction:column;gap:6px;font-weight:700}
-.net-in input{font-size:1.8rem;font-weight:900;letter-spacing:.25em;text-transform:uppercase;width:9ch;text-align:center;font-family:ui-monospace,monospace}
+.net-in input{font-size:1.8rem;font-weight:900;letter-spacing:.25em;text-transform:uppercase;width:12ch;max-width:100%;text-align:center;font-family:ui-monospace,monospace}
 .net-status{margin-top:10px;font-weight:800}
 .net-status:empty{display:none}
 .net-status.bad{color:#ff9b8f}
@@ -344,7 +344,7 @@ body.net-guest #setup .field:not(.keep), body.net-guest #setup .hint, body.net-g
 .vh-steps b{color:var(--gold)}
 .vh-msg{margin:0;font-weight:900;text-align:center;min-height:1.3em}
 
-/* ---------- curso de árabe (método de Medina) ---------- */
+/* ---------- curso de árabe (inspirado en el método de Medina) ---------- */
 .g-kicker{margin:0;font-weight:900;color:var(--gold);letter-spacing:.04em}
 .lx-show .sent{font-family:"Amiri","Cairo",serif;font-size:clamp(2rem,6.5vw,3rem);line-height:1.5;color:var(--gold);text-align:center}
 .lx-show .rule{margin:0;text-align:start;max-width:52ch;line-height:1.9;color:var(--sand);font-size:1.02rem}
@@ -647,7 +647,7 @@ body.practice .board{grid-template-columns:minmax(0,720px)!important;grid-templa
       <div class="net-box" id="netHost">
         <p class="net-lbl" data-i18n="netYourCode"></p>
         <div class="net-row">
-          <div class="net-code" id="netCode" dir="ltr">····</div>
+          <div class="net-code" id="netCode" dir="ltr">······</div>
           <div class="net-qr" id="netQr" aria-hidden="true"></div>
         </div>
         <button class="ghost" id="netCopy" type="button" data-i18n="netCopy"></button>
@@ -655,7 +655,7 @@ body.practice .board{grid-template-columns:minmax(0,720px)!important;grid-templa
       </div>
       <div class="net-box" id="netJoinBox" hidden>
         <label class="net-in"><span data-i18n="netCodeLabel"></span>
-          <input id="netInput" maxlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" dir="ltr"></label>
+          <input id="netInput" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" dir="ltr"></label>
         <button class="ghost" id="netConnect" type="button" data-i18n="netConnect"></button>
       </div>
       <p class="net-note" id="netNote" hidden><span data-i18n="netOnlyPublic"></span> <a id="netPublicLink" target="_blank" rel="noopener"></a></p>
@@ -946,7 +946,7 @@ const UI = {
     netCodeLabel:"Código de la sala", netConnect:"Conectar", netConnecting:"Conectando…", netWaiting:"⏳ Esperando a tu amigo…",
     netJoined:n => `✅ ${n} se unió. ¡Pulsa «a jugar»!`, netGuestOk:n => `✅ Conectado con ${n}. Espera a que empiece la partida.`,
     netLost:"⚠️ Se perdió la conexión con tu amigo.", netError:"⚠️ No se pudo conectar. Revisa tu internet e inténtalo otra vez.",
-    netNoRoom:"⚠️ No hay ninguna sala con ese código. Revísalo.", netCodeBad:"Escribe las 4 letras del código.", netFull:"⚠️ Esa sala ya tiene dos jugadores.",
+    netNoRoom:"⚠️ No hay ninguna sala con ese código. Revísalo.", netCodeBad:"Escribe los 6 caracteres del código.", netFull:"⚠️ Esa sala ya tiene dos jugadores.",
     netNeedFriend:"Primero espera a que tu amigo se una.", netLeftMenu:n => `${n} volvió al menú.`, netLeave:"Salir de la sala",
     netRemoteMsg:n => `${n} está respondiendo en su dispositivo…`, netRemoteHint:"🌐 Partida online · ¡responde rápido para tirar de la cuerda!",
     netWaitHost:n => `Esperando a que ${n} empiece otra partida…`, netOnlyPublic:"La partida online solo funciona en el enlace público del juego:",
@@ -1017,7 +1017,7 @@ const UI = {
     netCodeLabel:"Room code", netConnect:"Connect", netConnecting:"Connecting…", netWaiting:"⏳ Waiting for your friend…",
     netJoined:n => `✅ ${n} joined. Press play!`, netGuestOk:n => `✅ Connected with ${n}. Wait for the game to start.`,
     netLost:"⚠️ The connection with your friend was lost.", netError:"⚠️ Could not connect. Check your internet and try again.",
-    netNoRoom:"⚠️ There is no room with that code. Check it.", netCodeBad:"Type the 4 letters of the code.", netFull:"⚠️ That room already has two players.",
+    netNoRoom:"⚠️ There is no room with that code. Check it.", netCodeBad:"Type the 6 characters of the code.", netFull:"⚠️ That room already has two players.",
     netNeedFriend:"First wait for your friend to join.", netLeftMenu:n => `${n} went back to the menu.`, netLeave:"Leave room",
     netRemoteMsg:n => `${n} is answering on their device…`, netRemoteHint:"🌐 Online game · answer quickly to pull the rope!",
     netWaitHost:n => `Waiting for ${n} to start another game…`, netOnlyPublic:"Online play only works on the game's public link:",
@@ -1088,7 +1088,7 @@ const UI = {
     netCodeLabel:"رمز الغرفة", netConnect:"اتصال", netConnecting:"جارٍ الاتصال…", netWaiting:"⏳ في انتظار صديقك…",
     netJoined:n => `✅ انضمّ ${n}. اضغط «ابدأ»!`, netGuestOk:n => `✅ متصل مع ${n}. انتظر بدء اللعبة.`,
     netLost:"⚠️ انقطع الاتصال مع صديقك.", netError:"⚠️ تعذّر الاتصال. تحقّق من الإنترنت وحاول مرة أخرى.",
-    netNoRoom:"⚠️ لا توجد غرفة بهذا الرمز. تحقّق منه.", netCodeBad:"اكتب أحرف الرمز الأربعة.", netFull:"⚠️ في هذه الغرفة لاعبان بالفعل.",
+    netNoRoom:"⚠️ لا توجد غرفة بهذا الرمز. تحقّق منه.", netCodeBad:"اكتب رموز الكود الستة.", netFull:"⚠️ في هذه الغرفة لاعبان بالفعل.",
     netNeedFriend:"انتظر أولًا أن ينضمّ صديقك.", netLeftMenu:n => `عاد ${n} إلى القائمة.`, netLeave:"مغادرة الغرفة",
     netRemoteMsg:n => `${n} يجيب على جهازه…`, netRemoteHint:"🌐 لعبة عبر الإنترنت · أجب بسرعة لتشدّ الحبل!",
     netWaitHost:n => `في انتظار أن يبدأ ${n} لعبة أخرى…`, netOnlyPublic:"اللعب عبر الإنترنت يعمل فقط على الرابط العام للعبة:",
@@ -1477,10 +1477,10 @@ const LEARN = [
     d:{ es:"Familia, animales, comida, colores y cosas de casa.", en:"Family, animals, food, colours and things at home.", ar:"العائلة والحيوانات والطعام والألوان والأشياء." },
     lessons:[ { id:"w1", kind:"words", topic:"familia" }, { id:"w2", kind:"words", topic:"animales" }, { id:"w3", kind:"words", topic:"comida" },
               { id:"w4", kind:"words", topic:"colores" }, { id:"w5", kind:"words", topic:"cosas" } ] },
-  { id:"medina", icon:"📗", t:{ es:"Curso de árabe (método de Medina)", en:"Arabic course (Madinah method)", ar:"دروس اللغة العربية (على منهج المدينة)" },
-    d:{ es:"Frases y gramática paso a paso, con el método de los libros de Medina: vocabulario, regla, frases modelo y ejercicios. Recomendado después del alfabeto y las vocales.",
-        en:"Sentences and grammar step by step, following the Madinah books' method: vocabulary, rule, model sentences and exercises. Best after the alphabet and vowels.",
-        ar:"جمل وقواعد خطوة بخطوة على طريقة كتب المدينة: مفردات وقاعدة وجمل نموذجية وتمارين. يُنصح به بعد الحروف والحركات." },
+  { id:"medina", icon:"📗", t:{ es:"Curso de árabe (inspirado en el método de Medina)", en:"Arabic course (inspired by the Madinah method)", ar:"دروس اللغة العربية (مستوحاة من منهج المدينة)" },
+    d:{ es:"Frases y gramática paso a paso, con contenido propio inspirado en el método de los libros de Medina (no es el texto del libro): vocabulario, regla, frases modelo y ejercicios. Recomendado después del alfabeto y las vocales.",
+        en:"Sentences and grammar step by step, with our own content inspired by the Madinah books' method (not the book's text): vocabulary, rule, model sentences and exercises. Best after the alphabet and vowels.",
+        ar:"جمل وقواعد خطوة بخطوة بمحتوى خاص مستوحى من طريقة كتب المدينة (ليس نص الكتاب): مفردات وقاعدة وجمل نموذجية وتمارين. يُنصح به بعد الحروف والحركات." },
     lessons:[1,2,3,4,5,6,7,8].map(n => ({ id:"m" + n, kind:"grammar", g:n - 1 })) },
   { id:"phrases", icon:"👋", t:{ es:"Saludos y expresiones", en:"Greetings and phrases", ar:"التحيات والعبارات" },
     d:{ es:"Frases para saludar, dar las gracias y despedirse.", en:"Phrases to greet, say thank you and say goodbye.", ar:"عبارات للتحية والشكر والوداع." },
@@ -1689,6 +1689,7 @@ const cfg = { lang: UI[saved] ? saved : "es", mode:"quiz", age:2, target:7, name
 let cpuTimer = null;
 const NET = { role:null, peer:null, conn:null, code:"", mode:"host", ready:false, remoteName:"", status:null, timer:null };
 const NET_CHARS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+const NET_LEN = 6; // 31^6 ≈ 887 millones de códigos posibles
 const netLocal = () => NET.role === "guest" ? "B" : "A";
 let pos = 0, playing = false, t0 = 0, tick = null, lastWinner = null;
 const teams = { A: null, B: null };
@@ -2765,7 +2766,7 @@ function afterPractice(){
   if (LS.lesson.kind === "letters"){ LS.step = "write"; renderLesson(); openTrace(LS.lesson.items, () => { if (LS) startCheck(); }); return; }
   startCheck();
 }
-/* ---- lecciones de gramática (método de Medina) ---- */
+/* ---- lecciones de gramática (inspiradas en el método de Medina) ---- */
 function navRow(box){
   const L = cfg.lang, t = UI[L], nav = document.createElement("div"); nav.className = "lx-nav";
   const prev = document.createElement("button"); prev.type = "button"; prev.className = "ghost"; prev.textContent = t.prev; prev.disabled = LS.idx === 0;
@@ -3216,6 +3217,12 @@ $("installClose").addEventListener("click", () => { $("installBox").hidden = tru
 /* ================= Partida online: dos dispositivos, cada uno en su casa =================
    Conexión directa entre los dos navegadores (WebRTC, con la librería libre PeerJS).
    El anfitrión es el equipo de la izquierda y lleva la cuerda; el invitado le avisa de cada acierto. */
+// código de sala: aleatoriedad criptográfica (no Math.random), sin sesgo de módulo
+function netCode(){
+  const out = [], buf = new Uint8Array(1), lim = 256 - 256 % NET_CHARS.length;
+  while (out.length < NET_LEN){ crypto.getRandomValues(buf); if (buf[0] < lim) out.push(NET_CHARS[buf[0] % NET_CHARS.length]); }
+  return out.join("");
+}
 function netAllowed(){ return isPublicSite || /^(localhost|127\.0\.0\.1)$/.test(location.hostname); }
 function loadPeer(){
   if (window.Peer) return Promise.resolve();
@@ -3251,7 +3258,7 @@ function netHost(tries = 0){
   netClose(); NET.role = "host"; NET.mode = "host"; netStatus("netConnecting"); updateNetUI();
   loadPeer().then(() => {
     if (NET.role !== "host") return;
-    const code = Array.from({ length:4 }, () => NET_CHARS[Math.random() * NET_CHARS.length | 0]).join("");
+    const code = netCode();
     const peer = new Peer("itow-" + code, peerOpts()); NET.peer = peer;
     peer.on("open", () => {
       if (NET.peer !== peer) return;
@@ -3274,8 +3281,8 @@ function netHost(tries = 0){
   }).catch(() => netStatus("netError", true));
 }
 function netJoin(raw){
-  const code = (raw || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 4);
-  if (code.length !== 4){ netStatus("netCodeBad", true); return; }
+  const code = (raw || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, NET_LEN);
+  if (code.length !== NET_LEN){ netStatus("netCodeBad", true); return; }
   netClose(); NET.role = "guest"; NET.mode = "join"; netStatus("netConnecting"); updateNetUI();
   loadPeer().then(() => {
     if (NET.role !== "guest") return;
@@ -3368,7 +3375,7 @@ function updateNetUI(){
   $("netPublicLink").href = GAME_URL; $("netPublicLink").textContent = GAME_URL.replace(/^https:\/\//, "");
   $("netHost").hidden = !ok || NET.mode !== "host";
   $("netJoinBox").hidden = !ok || NET.mode !== "join" || (NET.role === "guest" && NET.ready);
-  $("netCode").textContent = NET.role === "host" && NET.code ? NET.code : "····";
+  $("netCode").textContent = NET.role === "host" && NET.code ? NET.code : "······";
   $("netCopy").disabled = !(NET.role === "host" && NET.code);
   $("netLeave").hidden = !(NET.role === "guest" && NET.ready);
   paintNetStatus();
@@ -3382,7 +3389,7 @@ $("netSeg").addEventListener("click", e => {
 });
 $("netConnect").addEventListener("click", () => netJoin($("netInput").value));
 $("netInput").addEventListener("keydown", e => { if (e.key === "Enter") netJoin($("netInput").value); });
-$("netInput").addEventListener("input", e => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 4); });
+$("netInput").addEventListener("input", e => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, NET_LEN); });
 $("netLeave").addEventListener("click", () => { netClose(); NET.mode = "join"; netStatus(null); updateNetUI(); });
 $("netCopy").addEventListener("click", () => {
   const link = netInviteLink(), done = () => { $("netCopy").textContent = UI[cfg.lang].netCopied; setTimeout(() => $("netCopy").textContent = UI[cfg.lang].netCopy, 2000); };
@@ -3392,10 +3399,11 @@ $("netCopy").addEventListener("click", () => {
 window.addEventListener("beforeunload", () => netClose());
 $("inA").addEventListener("change", () => { if (cfg.players === 3 && NET.ready) netSend({ t:"hello", name: netMyName() }); });
 // solo para las pruebas automáticas con un servidor propio
-if (new URLSearchParams(location.search).has("peerhost")) window.__tdc = { teams, cfg, check, get pos(){ return pos; }, get playing(){ return playing; }, get lastWinner(){ return lastWinner; } };
+const TEST_Q = new URLSearchParams(location.search);
+if (TEST_Q.has("peerhost") || TEST_Q.has("test")) window.__tdc = { teams, cfg, check, data:{ QUIZ_ES, QUIZ_EN, QUIZ_AR, SOURCES, DIFF, CAT_OF }, netCode, get pos(){ return pos; }, get playing(){ return playing; }, get lastWinner(){ return lastWinner; } };
 // enlace de invitación: …#join-ABCD abre directamente la sala del amigo
 (() => {
-  const m = location.hash.match(/^#join-([A-Za-z0-9]{4})$/); if (!m) return;
+  const m = location.hash.match(/^#join-([A-Za-z0-9]{6})$/); if (!m) return;
   history.replaceState(null, "", location.pathname + location.search);
   NET.mode = "join"; cfg.players = 3;
   $("playersSeg").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === "3")));
