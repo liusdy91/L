@@ -3,7 +3,7 @@
   "private": true,
   "description": "Pruebas automáticas del juego (el juego en sí no necesita instalar nada).",
   "scripts": {
-    "test": "node tests/smoke.js"
+    "test": "node tools/validate-content.js && node tests/smoke.js"
   },
   "devDependencies": {
     "peer": "1.0.2",

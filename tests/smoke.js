@@ -141,6 +141,25 @@ const skip = msg => Object.assign(new Error(msg), { skip:true });
     await p.context().close();
   });
 
+  await test("Materias: 5 áreas, módulos con estado y la práctica abre con las categorías del módulo", async () => {
+    const p = await page();
+    await p.click("#subjBtn"); await p.waitForSelector(".subj-area");
+    assert.strictEqual(await p.$$eval(".subj-area", x => x.length), 5);
+    await p.click('.subj-area[data-area="islam"]'); await p.waitForTimeout(200);
+    assert.strictEqual(await p.$$eval("#subjBody .unit", x => x.length), 6);
+    await p.click('#subjBody .unit[data-module="fiqh"] .next-btn'); await p.waitForTimeout(500);
+    assert.ok(await T(p, () => __tdc.playing), "no empezó la práctica");
+    assert.deepStrictEqual(await T(p, () => [__tdc.cfg.players, __tdc.cfg.mode, [...__tdc.cfg.cats].sort()]), [0, "quiz", ["ayuno", "hayy", "salah"]]);
+    await p.click("#menuBtn"); await p.click("#subjBtn"); await p.click('.subj-area[data-area="arabic"]'); await p.waitForTimeout(200);
+    await p.click('#subjBody .unit[data-module="literacy"] .next-btn'); await p.waitForTimeout(300);
+    assert.ok(await p.isVisible("#learnBox"), "no abre Aprende árabe");
+    await p.click("#learnClose"); await p.click('#langSeg button[lang="ar"]'); await p.click("#subjBtn"); await p.waitForTimeout(200);
+    assert.strictEqual(await p.textContent("#subjTitle"), "المواد");
+    assert.ok(!(await T(p, () => document.documentElement.scrollWidth > innerWidth + 1)));
+    assert.deepStrictEqual(p.errs, []);
+    await p.context().close();
+  });
+
   await test("códigos de sala online: 6 caracteres, sin repetirse en 2000 intentos", async () => {
     const p = await page();
     const codes = await T(p, () => Array.from({ length:2000 }, () => __tdc.netCode()));

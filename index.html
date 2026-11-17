@@ -294,6 +294,18 @@ body.net-guest #setup .field:not(.keep), body.net-guest #setup .hint, body.net-g
 
 /* ---------- aprende árabe ---------- */
 .learn-card{max-width:780px}
+.subj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:12px}
+.subj-area{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:start;background:var(--night);border:2px solid transparent;border-radius:16px;padding:16px;cursor:pointer;color:inherit;font:inherit}
+.subj-area:hover{border-color:color-mix(in srgb,var(--gold) 50%,transparent)}
+.subj-area .si{font-size:2rem;line-height:1;font-family:var(--font-ar,serif)}
+.subj-area b{font-family:var(--font-display);font-size:1.15rem}
+.subj-area small,.subj-note{color:var(--sand-dim);font-size:.85rem;line-height:1.45}
+.subj-note{margin:0}
+.subj-units{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.subj-units li{display:flex;gap:8px;align-items:baseline;font-size:.92rem;line-height:1.4}
+.subj-units .st{flex:none;font-size:.72rem;font-weight:800;border-radius:999px;padding:2px 8px;background:var(--night-3);color:var(--sand-dim)}
+.subj-units .st.ok{background:color-mix(in srgb,var(--teamA) 30%,transparent);color:var(--sand)}
+.subj-units button{margin-inline-start:auto;flex:none}
 .learn-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .learn-top h2{margin:0;order:3;flex:1 0 100%;min-width:0;font-size:clamp(1.5rem,4vw,2.1rem)}
 .units{display:flex;flex-direction:column;gap:14px}
@@ -620,6 +632,7 @@ body.practice .board{grid-template-columns:minmax(0,720px)!important;grid-templa
     <div class="tools">
       <button class="ghost install" id="installBtnSetup" type="button" hidden>Instalar app</button>
       <button class="ghost" id="howBtn" type="button" data-i18n="howBtn">❓ ¿Cómo se juega?</button>
+      <button class="ghost" id="subjBtn" type="button" data-i18n="subjBtn">🗂️ Materias</button>
       <button class="ghost" id="learnBtn" type="button" data-i18n="learnBtn">📚 Aprende árabe</button>
       <button class="ghost" id="medalsBtn" type="button" data-i18n="medalsBtn">🏅 Mis medallas</button>
       <button class="ghost" id="shareBtnSetup" type="button" data-i18n="feedbackBtn">Compartir y sugerencias</button>
@@ -753,6 +766,18 @@ body.practice .board{grid-template-columns:minmax(0,720px)!important;grid-templa
   </div>
 </div>
 <div class="medal-pop" id="medalPop" hidden role="status"><span class="mi"></span><div><p class="mt"></p><p class="mn"></p></div></div>
+
+<!-- Materias -->
+<div class="overlay" id="subjBox" hidden>
+  <div class="card learn-card" role="dialog" aria-labelledby="subjTitle">
+    <div class="learn-top">
+      <button class="ghost" id="subjBack" type="button" data-i18n="back">‹ Volver</button>
+      <h2 id="subjTitle" data-i18n="subjTitle">Materias</h2>
+      <button class="ghost" id="subjClose" type="button" data-i18n="closePanel">Cerrar</button>
+    </div>
+    <div id="subjBody"></div>
+  </div>
+</div>
 
 <!-- Aprende árabe -->
 <div class="overlay" id="learnBox" hidden>
@@ -939,6 +964,11 @@ const UI = {
     playersLabel:"Jugadores", players2:"Dos equipos", players2Sub:"En la misma pantalla", players1:"Un jugador", players1Sub:"Contra la computadora",
     cpuLabel:"Velocidad de la computadora", cpu1:"Lenta", cpu1Sub:"Un tirón cada 9 s", cpu2:"Normal", cpu2Sub:"Un tirón cada 6 s", cpu3:"Rápida", cpu3Sub:"Un tirón cada 4 s",
     cpuName:"Computadora", cpuThinking:"La computadora está tirando…", cpuHint:"Responde rápido para ganarle.", nameLabelSolo:"Tu nombre",
+    subjBtn:"🗂️ Materias", subjTitle:"Materias", subjIntro:"Cinco áreas para aprender a tu ritmo. Lo que está «disponible» ya se puede practicar; lo demás se está preparando.",
+    subjCount:(m, a) => `${m} módulos · ${a} con actividades`, subjOk:"Disponible", subjSoon:"En preparación",
+    subjQuiz:"▶ Practicar con preguntas", subjMath:"▶ Practicar sumas y restas", subjOpen:"▶ Abrir", subjPlay:"▶ Jugar",
+    subjReligious:"Contenido religioso solo con fuentes de la biblioteca Shamela y únicamente lo sahih, según Ahlus-Sunnah wal-Jamā'ah. Cada lección nueva se publica cuando está revisada.",
+    subjLoadErr:"No se pudieron cargar las materias. Comprueba tu conexión y vuelve a intentarlo.",
     playersOnline:"🌐 Online", playersOnlineSub:"Cada uno en su dispositivo", netTitle:"Partida online",
     netCreate:"Crear sala", netCreateSub:"Yo invito a mi amigo", netJoin:"Unirme", netJoinSub:"Tengo un código",
     netYourCode:"Código de tu sala:", netCopy:"🔗 Copiar enlace de invitación", netCopied:"✅ Enlace copiado",
@@ -1010,6 +1040,11 @@ const UI = {
     playersLabel:"Players", players2:"Two teams", players2Sub:"On the same screen", players1:"One player", players1Sub:"Against the computer",
     cpuLabel:"Computer speed", cpu1:"Slow", cpu1Sub:"One pull every 9 s", cpu2:"Normal", cpu2Sub:"One pull every 6 s", cpu3:"Fast", cpu3Sub:"One pull every 4 s",
     cpuName:"Computer", cpuThinking:"The computer is pulling…", cpuHint:"Answer quickly to beat it.", nameLabelSolo:"Your name",
+    subjBtn:"🗂️ Subjects", subjTitle:"Subjects", subjIntro:"Five areas to learn at your own pace. What is \u201cavailable\u201d can already be practised; the rest is being prepared.",
+    subjCount:(m, a) => `${m} modules · ${a} with activities`, subjOk:"Available", subjSoon:"Coming soon",
+    subjQuiz:"▶ Practise with questions", subjMath:"▶ Practise adding and subtracting", subjOpen:"▶ Open", subjPlay:"▶ Play",
+    subjReligious:"Religious content comes only from the Shamela library and only what is sahih, following Ahlus-Sunnah wal-Jamā'ah. Each new lesson is published once it has been reviewed.",
+    subjLoadErr:"The subjects could not be loaded. Check your connection and try again.",
     playersOnline:"🌐 Online", playersOnlineSub:"Each on their own device", netTitle:"Online game",
     netCreate:"Create room", netCreateSub:"I invite my friend", netJoin:"Join", netJoinSub:"I have a code",
     netYourCode:"Your room code:", netCopy:"🔗 Copy invite link", netCopied:"✅ Link copied",
@@ -1081,6 +1116,11 @@ const UI = {
     playersLabel:"اللاعبون", players2:"فريقان", players2Sub:"على الشاشة نفسها", players1:"لاعب واحد", players1Sub:"ضد الحاسوب",
     cpuLabel:"سرعة الحاسوب", cpu1:"بطيء", cpu1Sub:"شدّة كل 9 ثوانٍ", cpu2:"عادي", cpu2Sub:"شدّة كل 6 ثوانٍ", cpu3:"سريع", cpu3Sub:"شدّة كل 4 ثوانٍ",
     cpuName:"الحاسوب", cpuThinking:"الحاسوب يشدّ الحبل…", cpuHint:"أجب بسرعة لتغلبه.", nameLabelSolo:"اسمك",
+    subjBtn:"🗂️ المواد", subjTitle:"المواد", subjIntro:"خمسة مجالات للتعلّم على مهلك. ما كان «متاحًا» يمكن التدرّب عليه الآن، والباقي قيد الإعداد.",
+    subjCount:(m, a) => `${m} وحدات · ${a} فيها أنشطة`, subjOk:"متاح", subjSoon:"قيد الإعداد",
+    subjQuiz:"▶ تدرّب بالأسئلة", subjMath:"▶ تدرّب على الجمع والطرح", subjOpen:"▶ افتح", subjPlay:"▶ العب",
+    subjReligious:"المحتوى الشرعي من المكتبة الشاملة فقط، ومما صحّ وحده، على منهج أهل السنة والجماعة. يُنشر كل درس جديد بعد مراجعته.",
+    subjLoadErr:"تعذّر تحميل المواد. تحقّق من الاتصال وحاول مرة أخرى.",
     playersOnline:"🌐 عبر الإنترنت", playersOnlineSub:"كلٌّ على جهازه", netTitle:"لعبة عبر الإنترنت",
     netCreate:"إنشاء غرفة", netCreateSub:"أدعو صديقي", netJoin:"انضمام", netJoinSub:"عندي رمز",
     netYourCode:"رمز غرفتك:", netCopy:"🔗 نسخ رابط الدعوة", netCopied:"✅ تم نسخ الرابط",
@@ -2292,6 +2332,7 @@ function setLang(l){
   renderTeamLangs(); drawRope(); fillWin();
   if (!$("tutBox").hidden) showTut(tutStep);
   if (!$("sumBox").hidden) fillSummary();
+  if (!$("subjBox").hidden) renderSubj();
   if (!$("learnBox").hidden){ if (LS) renderLesson(); else if (SP && SP.cur) renderSpell(); else renderPath(); }
   if (!$("medalsBox").hidden) openMedals();
   if (!$("traceBox").hidden) traceLetterInfo();
@@ -3140,6 +3181,90 @@ function spellEnd(){
   r.append(h, words, st, er, row); body.append(r);
   sWin(); confetti();
 }
+
+/* ================= Materias: el mapa curricular (content/curriculum.json) ================= */
+let CURR = null, subjArea = null;
+function loadCurriculum(){
+  if (CURR) return Promise.resolve(CURR);
+  return fetch("content/curriculum.json").then(r => { if (!r.ok) throw 0; return r.json(); }).then(j => (CURR = j));
+}
+function openSubj(){
+  $("subjBox").hidden = false; subjArea = null; $("subjClose").focus();
+  $("subjBody").textContent = "…";
+  loadCurriculum().then(renderSubj).catch(() => { const p = document.createElement("p"); p.className = "subj-note"; p.textContent = UI[cfg.lang].subjLoadErr; $("subjBody").replaceChildren(p); });
+}
+const subjCount = a => {
+  const avail = a.modules.reduce((n, m) => n + (m.activity ? 1 : 0) + m.units.filter(u => u.status === "available" && !m.activity).length, 0);
+  return [a.modules.length, avail];
+};
+function renderSubj(){
+  if (!CURR) return;
+  const L = cfg.lang, t = UI[L], body = $("subjBody"); body.innerHTML = "";
+  $("subjBack").hidden = !subjArea;
+  $("subjTitle").textContent = subjArea ? subjArea.t[L] : t.subjTitle;
+  if (!subjArea){
+    const intro = document.createElement("p"); intro.className = "subj-note"; intro.textContent = t.subjIntro; body.append(intro);
+    const grid = document.createElement("div"); grid.className = "subj-grid";
+    CURR.areas.forEach(a => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "subj-area"; b.dataset.area = a.id;
+      const i = document.createElement("span"); i.className = "si"; i.textContent = a.icon; i.setAttribute("aria-hidden", "true");
+      const n = document.createElement("b"); n.textContent = a.t[L];
+      const c = document.createElement("small"); const [m, av] = subjCount(a); c.textContent = num(t.subjCount(m, av), L);
+      b.append(i, n, c); b.addEventListener("click", () => { subjArea = a; renderSubj(); body.scrollTop = 0; });
+      grid.append(b);
+    });
+    body.append(grid);
+    return;
+  }
+  if (subjArea.religious){ const n = document.createElement("p"); n.className = "subj-note"; n.textContent = t.subjReligious; body.append(n); }
+  const wrap = document.createElement("div"); wrap.className = "units";
+  subjArea.modules.forEach(m => {
+    const box = document.createElement("section"); box.className = "unit"; box.dataset.module = m.id;
+    const head = document.createElement("div"); head.className = "unit-head";
+    const ic = document.createElement("span"); ic.className = "ui"; ic.textContent = m.icon; ic.setAttribute("aria-hidden", "true");
+    const h = document.createElement("h3"); h.textContent = m.t[L];
+    head.append(ic, h); box.append(head);
+    const ul = document.createElement("ul"); ul.className = "subj-units";
+    m.units.forEach(u => {
+      const li = document.createElement("li");
+      const st = document.createElement("span"); st.className = "st" + (u.status === "available" ? " ok" : ""); st.textContent = u.status === "available" ? t.subjOk : t.subjSoon;
+      const tx = document.createElement("span"); tx.textContent = u.t[L];
+      li.append(st, tx);
+      if (u.activity) li.append(subjButton(u.activity, t));
+      ul.append(li);
+    });
+    box.append(ul);
+    if (m.activity){ const row = document.createElement("div"); row.className = "row-btns"; row.append(subjButton(m.activity, t, true)); box.append(row); }
+    wrap.append(box);
+  });
+  body.append(wrap);
+}
+function subjButton(act, t, big){
+  const b = document.createElement("button"); b.type = "button"; b.className = big ? "next-btn" : "ghost";
+  b.textContent = act.type === "quiz" ? t.subjQuiz : act.type === "math" ? t.subjMath : act.type === "game" ? t.subjPlay : t.subjOpen;
+  b.addEventListener("click", () => runActivity(act));
+  return b;
+}
+function pressSeg(id, v){ $(id).querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === String(v)))); }
+function runActivity(act){
+  $("subjBox").hidden = true;
+  if (act.type === "learn") return openLearn();
+  if (act.type === "spell"){ openLearn(); return startSpell(); }
+  if (act.type === "trace") return openTrace();
+  if (act.type === "game"){
+    cfg.mode = act.mode || "quiz"; pressSeg("modeSeg", cfg.mode); updateModeUI();
+    $("startBtn").scrollIntoView({ block:"center" }); $("startBtn").focus(); return;
+  }
+  // práctica tranquila, sin competir: preguntas de esas categorías o sumas/restas
+  cfg.players = 0; pressSeg("playersSeg", 0); updatePlayersUI();
+  cfg.mode = act.type === "math" ? "math" : "quiz"; pressSeg("modeSeg", cfg.mode);
+  if (act.cats) cfg.cats = new Set(act.cats);
+  updateModeUI();
+  start();
+}
+$("subjBtn").addEventListener("click", openSubj);
+$("subjClose").addEventListener("click", () => { $("subjBox").hidden = true; });
+$("subjBack").addEventListener("click", () => { subjArea = null; renderSubj(); });
 
 function openLearn(){ $("learnBox").hidden = false; renderPath(); $("learnClose").focus(); }
 $("learnBtn").addEventListener("click", openLearn);
