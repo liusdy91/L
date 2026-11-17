@@ -1,0 +1,1150 @@
+{
+ "version": 1,
+ "note": "Mapa curricular aprobado por la propietaria (17-nov-2026). Estado: 'available' = ya hay actividad; sin estado = en preparación. El contenido religioso solo se publica con fuentes de Shamela (sahih, Ahlus-Sunnah wal-Jama'ah) y estado 'published'. Ver content/README.md.",
+ "areas": [
+  {
+   "id": "islam",
+   "icon": "🕌",
+   "t": {
+    "es": "Ciencias islámicas",
+    "en": "Islamic studies",
+    "ar": "العلوم الإسلامية"
+   },
+   "religious": true,
+   "modules": [
+    {
+     "id": "aqidah",
+     "icon": "🤲",
+     "t": {
+      "es": "Aqidah y Tawhid",
+      "en": "Aqidah and Tawhid",
+      "ar": "العقيدة والتوحيد"
+     },
+     "units": [
+      {
+       "id": "a1-1",
+       "t": {
+        "es": "Islam, Iman e Ihsan",
+        "en": "Islam, Iman and Ihsan",
+        "ar": "الإسلام والإيمان والإحسان"
+       }
+      },
+      {
+       "id": "a1-2",
+       "t": {
+        "es": "Los cinco pilares del Islam y los seis pilares del Iman",
+        "en": "The five pillars of Islam and six pillars of Iman",
+        "ar": "أركان الإسلام الخمسة وأركان الإيمان الستة"
+       }
+      },
+      {
+       "id": "a1-3",
+       "t": {
+        "es": "Tawhid: ar-Rububiyyah, al-Uluhiyyah y al-Asma wa as-Sifat",
+        "en": "Tawhid: ar-Rububiyyah, al-Uluhiyyah and al-Asma wa as-Sifat",
+        "ar": "التوحيد: الربوبية والألوهية والأسماء والصفات"
+       }
+      },
+      {
+       "id": "a1-4",
+       "t": {
+        "es": "Conocer a Allah por Sus nombres y atributos",
+        "en": "Knowing Allah through His names and attributes",
+        "ar": "معرفة الله بأسمائه وصفاته"
+       }
+      },
+      {
+       "id": "a1-5",
+       "t": {
+        "es": "Ángeles, libros, mensajeros, Último Día y Qadar",
+        "en": "Angels, books, messengers, the Last Day and Qadar",
+        "ar": "الملائكة والكتب والرسل واليوم الآخر والقدر"
+       }
+      },
+      {
+       "id": "a1-6",
+       "t": {
+        "es": "Sinceridad, adoración, du'a, confianza en Allah y gratitud",
+        "en": "Sincerity, worship, du'a, trust in Allah and gratitude",
+        "ar": "الإخلاص والعبادة والدعاء والتوكل والشكر"
+       }
+      }
+     ],
+     "activity": {
+      "type": "quiz",
+      "cats": [
+       "fe"
+      ]
+     }
+    },
+    {
+     "id": "fiqh",
+     "icon": "💧",
+     "t": {
+      "es": "Fiqh y actos de adoración",
+      "en": "Fiqh and acts of worship",
+      "ar": "الفقه والعبادات"
+     },
+     "units": [
+      {
+       "id": "a2-1",
+       "t": {
+        "es": "Taharah: limpieza e impureza",
+        "en": "Taharah: purity and impurity",
+        "ar": "الطهارة والنجاسة"
+       }
+      },
+      {
+       "id": "a2-2",
+       "t": {
+        "es": "Wudu",
+        "en": "Wudu",
+        "ar": "الوضوء"
+       }
+      },
+      {
+       "id": "a2-3",
+       "t": {
+        "es": "Ghusl y tayammum",
+        "en": "Ghusl and tayammum",
+        "ar": "الغسل والتيمم"
+       }
+      },
+      {
+       "id": "a2-4",
+       "t": {
+        "es": "Salah",
+        "en": "Salah",
+        "ar": "الصلاة"
+       }
+      },
+      {
+       "id": "a2-5",
+       "t": {
+        "es": "Ramadán y ayuno",
+        "en": "Ramadan and fasting",
+        "ar": "رمضان والصيام"
+       }
+      },
+      {
+       "id": "a2-6",
+       "t": {
+        "es": "Zakat",
+        "en": "Zakat",
+        "ar": "الزكاة"
+       }
+      },
+      {
+       "id": "a2-7",
+       "t": {
+        "es": "Hajj y Umrah",
+        "en": "Hajj and Umrah",
+        "ar": "الحج والعمرة"
+       }
+      },
+      {
+       "id": "a2-8",
+       "t": {
+        "es": "Fiqh de la vida cotidiana",
+        "en": "Everyday fiqh",
+        "ar": "فقه الحياة اليومية"
+       }
+      }
+     ],
+     "activity": {
+      "type": "quiz",
+      "cats": [
+       "salah",
+       "ayuno",
+       "hayy"
+      ]
+     }
+    },
+    {
+     "id": "seerah",
+     "icon": "🐪",
+     "t": {
+      "es": "Seerah",
+      "en": "Seerah",
+      "ar": "السيرة النبوية"
+     },
+     "units": [
+      {
+       "id": "a3-1",
+       "t": {
+        "es": "Arabia antes de la misión profética",
+        "en": "Arabia before the prophethood",
+        "ar": "الجزيرة العربية قبل البعثة"
+       }
+      },
+      {
+       "id": "a3-2",
+       "t": {
+        "es": "Nacimiento y juventud del Profeta ﷺ",
+        "en": "Birth and youth of the Prophet ﷺ",
+        "ar": "مولد النبي ﷺ وشبابه"
+       }
+      },
+      {
+       "id": "a3-3",
+       "t": {
+        "es": "La primera revelación",
+        "en": "The first revelation",
+        "ar": "بدء الوحي"
+       }
+      },
+      {
+       "id": "a3-4",
+       "t": {
+        "es": "La invitación en Makkah",
+        "en": "The call in Makkah",
+        "ar": "الدعوة في مكة"
+       }
+      },
+      {
+       "id": "a3-5",
+       "t": {
+        "es": "Al-Isra wal-Mi'raj",
+        "en": "Al-Isra wal-Mi'raj",
+        "ar": "الإسراء والمعراج"
+       }
+      },
+      {
+       "id": "a3-6",
+       "t": {
+        "es": "La Hijrah y la llegada a Madinah",
+        "en": "The Hijrah and arrival in Madinah",
+        "ar": "الهجرة والوصول إلى المدينة"
+       }
+      },
+      {
+       "id": "a3-7",
+       "t": {
+        "es": "La comunidad de Madinah y sus acontecimientos",
+        "en": "The Madinah community and its events",
+        "ar": "مجتمع المدينة وأحداثه"
+       }
+      },
+      {
+       "id": "a3-8",
+       "t": {
+        "es": "El carácter del Profeta ﷺ",
+        "en": "The character of the Prophet ﷺ",
+        "ar": "أخلاق النبي ﷺ"
+       }
+      }
+     ],
+     "activity": {
+      "type": "quiz",
+      "cats": [
+       "historia"
+      ]
+     }
+    },
+    {
+     "id": "hadith",
+     "icon": "📜",
+     "t": {
+      "es": "Hadiz y Sunnah",
+      "en": "Hadith and Sunnah",
+      "ar": "الحديث والسنة"
+     },
+     "units": [
+      {
+       "id": "a4-1",
+       "t": {
+        "es": "Qué es el Corán, el hadiz y la Sunnah",
+        "en": "What the Quran, hadith and Sunnah are",
+        "ar": "القرآن والحديث والسنة"
+       }
+      },
+      {
+       "id": "a4-2",
+       "t": {
+        "es": "Isnad y matn, narradores y colecciones",
+        "en": "Isnad and matn, narrators and collections",
+        "ar": "الإسناد والمتن والرواة والكتب"
+       }
+      },
+      {
+       "id": "a4-3",
+       "t": {
+        "es": "Sahih, hasan y da'if",
+        "en": "Sahih, hasan and da'if",
+        "ar": "الصحيح والحسن والضعيف"
+       }
+      },
+      {
+       "id": "a4-4",
+       "t": {
+        "es": "Hadices escogidos: intención, conocimiento, buenos modales, familia y adoración",
+        "en": "Selected hadiths: intention, knowledge, manners, family and worship",
+        "ar": "أحاديث مختارة: النية والعلم والأخلاق والأسرة والعبادة"
+       }
+      }
+     ]
+    },
+    {
+     "id": "prophets",
+     "icon": "⛵",
+     "t": {
+      "es": "Historias de los profetas",
+      "en": "Stories of the prophets",
+      "ar": "قصص الأنبياء"
+     },
+     "units": [
+      {
+       "id": "a5-1",
+       "t": {
+        "es": "Adam y Nuh",
+        "en": "Adam and Nuh",
+        "ar": "آدم ونوح"
+       }
+      },
+      {
+       "id": "a5-2",
+       "t": {
+        "es": "Ibrahim, Ismail e Ishaq",
+        "en": "Ibrahim, Ismail and Ishaq",
+        "ar": "إبراهيم وإسماعيل وإسحاق"
+       }
+      },
+      {
+       "id": "a5-3",
+       "t": {
+        "es": "Ya'qub y Yusuf",
+        "en": "Ya'qub and Yusuf",
+        "ar": "يعقوب ويوسف"
+       }
+      },
+      {
+       "id": "a5-4",
+       "t": {
+        "es": "Musa y Harun",
+        "en": "Musa and Harun",
+        "ar": "موسى وهارون"
+       }
+      },
+      {
+       "id": "a5-5",
+       "t": {
+        "es": "Dawud y Sulayman",
+        "en": "Dawud and Sulayman",
+        "ar": "داود وسليمان"
+       }
+      },
+      {
+       "id": "a5-6",
+       "t": {
+        "es": "Ayyub y Yunus",
+        "en": "Ayyub and Yunus",
+        "ar": "أيوب ويونس"
+       }
+      },
+      {
+       "id": "a5-7",
+       "t": {
+        "es": "Zakariyya, Yahya e Isa",
+        "en": "Zakariyya, Yahya and Isa",
+        "ar": "زكريا ويحيى وعيسى"
+       }
+      }
+     ],
+     "activity": {
+      "type": "quiz",
+      "cats": [
+       "profetas"
+      ]
+     }
+    },
+    {
+     "id": "duas",
+     "icon": "🌙",
+     "t": {
+      "es": "Du'as y adhkar",
+      "en": "Du'as and adhkar",
+      "ar": "الأدعية والأذكار"
+     },
+     "units": [
+      {
+       "id": "a6-1",
+       "t": {
+        "es": "Súplicas del Corán",
+        "en": "Supplications from the Quran",
+        "ar": "أدعية من القرآن"
+       }
+      },
+      {
+       "id": "a6-2",
+       "t": {
+        "es": "Du'as del día a día",
+        "en": "Everyday du'as",
+        "ar": "أدعية اليوم والليلة"
+       }
+      },
+      {
+       "id": "a6-3",
+       "t": {
+        "es": "Adhkar de la mañana y de la tarde",
+        "en": "Morning and evening adhkar",
+        "ar": "أذكار الصباح والمساء"
+       }
+      },
+      {
+       "id": "a6-4",
+       "t": {
+        "es": "Adhkar después de la oración y antes de dormir",
+        "en": "Adhkar after prayer and before sleep",
+        "ar": "أذكار بعد الصلاة وقبل النوم"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "arabic",
+   "icon": "ض",
+   "t": {
+    "es": "Academia de árabe",
+    "en": "Arabic academy",
+    "ar": "أكاديمية اللغة العربية"
+   },
+   "modules": [
+    {
+     "id": "literacy",
+     "icon": "ا",
+     "t": {
+      "es": "Alfabetización",
+      "en": "Reading and writing",
+      "ar": "القراءة والكتابة"
+     },
+     "units": [
+      {
+       "id": "b1-1",
+       "t": {
+        "es": "Las 28 letras, de derecha a izquierda",
+        "en": "The 28 letters, right to left",
+        "ar": "الحروف الثمانية والعشرون من اليمين إلى اليسار"
+       },
+       "status": "available"
+      },
+      {
+       "id": "b1-2",
+       "t": {
+        "es": "Vocales cortas: fatha, kasra y damma",
+        "en": "Short vowels: fatha, kasra and damma",
+        "ar": "الحركات القصيرة: الفتحة والكسرة والضمة"
+       },
+       "status": "available"
+      },
+      {
+       "id": "b1-3",
+       "t": {
+        "es": "Sukun, shaddah, tanwin y madd",
+        "en": "Sukun, shaddah, tanwin and madd",
+        "ar": "السكون والشدة والتنوين والمد"
+       }
+      },
+      {
+       "id": "b1-4",
+       "t": {
+        "es": "Formas de las letras y letras que no se unen",
+        "en": "Letter forms and non-joining letters",
+        "ar": "أشكال الحروف والحروف التي لا تتصل بما بعدها"
+       }
+      },
+      {
+       "id": "b1-5",
+       "t": {
+        "es": "Makharij: dónde nace cada sonido",
+        "en": "Makharij: where each sound comes from",
+        "ar": "مخارج الحروف"
+       }
+      },
+      {
+       "id": "b1-6",
+       "t": {
+        "es": "Leer sílabas, palabras y textos",
+        "en": "Reading syllables, words and texts",
+        "ar": "قراءة المقاطع والكلمات والنصوص"
+       }
+      }
+     ],
+     "activity": {
+      "type": "learn"
+     }
+    },
+    {
+     "id": "vocab",
+     "icon": "🍎",
+     "t": {
+      "es": "Vocabulario",
+      "en": "Vocabulary",
+      "ar": "المفردات"
+     },
+     "units": [
+      {
+       "id": "b2-1",
+       "t": {
+        "es": "Saludos y expresiones",
+        "en": "Greetings and expressions",
+        "ar": "التحيات والعبارات"
+       },
+       "status": "available"
+      },
+      {
+       "id": "b2-2",
+       "t": {
+        "es": "Familia, casa y escuela",
+        "en": "Family, home and school",
+        "ar": "الأسرة والبيت والمدرسة"
+       },
+       "status": "available"
+      },
+      {
+       "id": "b2-3",
+       "t": {
+        "es": "Colores, formas y números",
+        "en": "Colours, shapes and numbers",
+        "ar": "الألوان والأشكال والأعداد"
+       },
+       "status": "available"
+      },
+      {
+       "id": "b2-4",
+       "t": {
+        "es": "Comida, animales y naturaleza",
+        "en": "Food, animals and nature",
+        "ar": "الطعام والحيوانات والطبيعة"
+       },
+       "status": "available"
+      },
+      {
+       "id": "b2-5",
+       "t": {
+        "es": "Días, meses, tiempo y clima",
+        "en": "Days, months, time and weather",
+        "ar": "الأيام والشهور والوقت والطقس"
+       }
+      },
+      {
+       "id": "b2-6",
+       "t": {
+        "es": "Cuerpo, lugares y transporte",
+        "en": "Body, places and transport",
+        "ar": "الجسم والأماكن والمواصلات"
+       }
+      },
+      {
+       "id": "b2-7",
+       "t": {
+        "es": "Verbos frecuentes y vocabulario islámico",
+        "en": "Common verbs and Islamic vocabulary",
+        "ar": "أفعال شائعة ومفردات إسلامية"
+       }
+      }
+     ],
+     "activity": {
+      "type": "learn"
+     }
+    },
+    {
+     "id": "course",
+     "icon": "📗",
+     "t": {
+      "es": "Curso de árabe (inspirado en el método de Medina)",
+      "en": "Arabic course (inspired by the Madinah method)",
+      "ar": "دروس العربية (مستوحاة من منهج المدينة)"
+     },
+     "units": [
+      {
+       "id": "b3-1",
+       "t": {
+        "es": "Tomo 1: demostrativos, artículo, preposiciones, iḍāfa y pronombres",
+        "en": "Book 1: demonstratives, article, prepositions, iḍāfa and pronouns",
+        "ar": "الجزء الأول: أسماء الإشارة وأل وحروف الجر والإضافة والضمائر"
+       },
+       "status": "available"
+      },
+      {
+       "id": "b3-2",
+       "t": {
+        "es": "Tomo 2",
+        "en": "Book 2",
+        "ar": "الجزء الثاني"
+       }
+      },
+      {
+       "id": "b3-3",
+       "t": {
+        "es": "Tomo 3",
+        "en": "Book 3",
+        "ar": "الجزء الثالث"
+       }
+      }
+     ],
+     "activity": {
+      "type": "learn"
+     }
+    },
+    {
+     "id": "games",
+     "icon": "🧩",
+     "t": {
+      "es": "Juegos de árabe",
+      "en": "Arabic games",
+      "ar": "ألعاب عربية"
+     },
+     "units": [
+      {
+       "id": "b4-1",
+       "t": {
+        "es": "Deletreo",
+        "en": "Spelling",
+        "ar": "التهجئة"
+       },
+       "status": "available",
+       "activity": {
+        "type": "spell"
+       }
+      },
+      {
+       "id": "b4-2",
+       "t": {
+        "es": "Taller de letras: trazar con el dedo",
+        "en": "Letter workshop: trace with your finger",
+        "ar": "ورشة الحروف: الكتابة بالإصبع"
+       },
+       "status": "available",
+       "activity": {
+        "type": "trace"
+       }
+      },
+      {
+       "id": "b4-3",
+       "t": {
+        "es": "Tira de la cuerda con palabras árabes",
+        "en": "Tug of war with Arabic words",
+        "ar": "شدّ الحبل بكلمات عربية"
+       },
+       "status": "available",
+       "activity": {
+        "type": "game",
+        "mode": "mix"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quran",
+   "icon": "📖",
+   "t": {
+    "es": "Corán",
+    "en": "Quran",
+    "ar": "القرآن الكريم"
+   },
+   "religious": true,
+   "modules": [
+    {
+     "id": "q-adab",
+     "icon": "🤍",
+     "t": {
+      "es": "Adab con el Corán",
+      "en": "Manners with the Quran",
+      "ar": "آداب القرآن"
+     },
+     "units": [
+      {
+       "id": "c1-1",
+       "t": {
+        "es": "Intención y respeto",
+        "en": "Intention and respect",
+        "ar": "النية والاحترام"
+       }
+      }
+     ],
+     "activity": {
+      "type": "quiz",
+      "cats": [
+       "coran"
+      ]
+     }
+    },
+    {
+     "id": "q-read",
+     "icon": "🔤",
+     "t": {
+      "es": "Preparación de la lectura",
+      "en": "Getting ready to read",
+      "ar": "التهيئة للقراءة"
+     },
+     "units": [
+      {
+       "id": "c2-1",
+       "t": {
+        "es": "Letras, vocales y unión",
+        "en": "Letters, vowels and joining",
+        "ar": "الحروف والحركات والوصل"
+       }
+      }
+     ]
+    },
+    {
+     "id": "tajwid",
+     "icon": "🎙️",
+     "t": {
+      "es": "Tajwid",
+      "en": "Tajwid",
+      "ar": "التجويد"
+     },
+     "units": [
+      {
+       "id": "c3-1",
+       "t": {
+        "es": "Makharij y sifat",
+        "en": "Makharij and sifat",
+        "ar": "المخارج والصفات"
+       }
+      },
+      {
+       "id": "c3-2",
+       "t": {
+        "es": "Nun sakinah y tanwin",
+        "en": "Nun sakinah and tanwin",
+        "ar": "أحكام النون الساكنة والتنوين"
+       }
+      },
+      {
+       "id": "c3-3",
+       "t": {
+        "es": "Mim sakinah, ghunnah y madd",
+        "en": "Mim sakinah, ghunnah and madd",
+        "ar": "أحكام الميم الساكنة والغنة والمد"
+       }
+      },
+      {
+       "id": "c3-4",
+       "t": {
+        "es": "Qalqalah, waqf e ibtida",
+        "en": "Qalqalah, waqf and ibtida",
+        "ar": "القلقلة والوقف والابتداء"
+       }
+      }
+     ]
+    },
+    {
+     "id": "hifdh",
+     "icon": "🧠",
+     "t": {
+      "es": "Memorización",
+      "en": "Memorisation",
+      "ar": "الحفظ"
+     },
+     "units": [
+      {
+       "id": "c4-1",
+       "t": {
+        "es": "Suras cortas por nivel",
+        "en": "Short surahs by level",
+        "ar": "سور قصيرة حسب المستوى"
+       }
+      },
+      {
+       "id": "c4-2",
+       "t": {
+        "es": "Plan de hifdh y repaso",
+        "en": "Hifdh plan and revision",
+        "ar": "خطة الحفظ والمراجعة"
+       }
+      }
+     ]
+    },
+    {
+     "id": "q-meaning",
+     "icon": "💡",
+     "t": {
+      "es": "Comprensión",
+      "en": "Understanding",
+      "ar": "الفهم"
+     },
+     "units": [
+      {
+       "id": "c5-1",
+       "t": {
+        "es": "Vocabulario y temas de las suras",
+        "en": "Vocabulary and themes of the surahs",
+        "ar": "مفردات السور وموضوعاتها"
+       }
+      }
+     ]
+    },
+    {
+     "id": "q-listen",
+     "icon": "🎧",
+     "t": {
+      "es": "Escucha y repetición",
+      "en": "Listening and repeating",
+      "ar": "الاستماع والترديد"
+     },
+     "units": [
+      {
+       "id": "c6-1",
+       "t": {
+        "es": "Recitaciones de fuentes fiables",
+        "en": "Recitations from reliable sources",
+        "ar": "تلاوات من مصادر موثوقة"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "general",
+   "icon": "🔢",
+   "t": {
+    "es": "Conocimientos generales",
+    "en": "General knowledge",
+    "ar": "المعارف العامة"
+   },
+   "modules": [
+    {
+     "id": "math",
+     "icon": "➕",
+     "t": {
+      "es": "Matemáticas",
+      "en": "Maths",
+      "ar": "الرياضيات"
+     },
+     "units": [
+      {
+       "id": "d1-1",
+       "t": {
+        "es": "Contar y comparar",
+        "en": "Counting and comparing",
+        "ar": "العدّ والمقارنة"
+       },
+       "status": "available"
+      },
+      {
+       "id": "d1-2",
+       "t": {
+        "es": "Sumas y restas",
+        "en": "Addition and subtraction",
+        "ar": "الجمع والطرح"
+       },
+       "status": "available"
+      },
+      {
+       "id": "d1-3",
+       "t": {
+        "es": "Multiplicación y división",
+        "en": "Multiplication and division",
+        "ar": "الضرب والقسمة"
+       }
+      },
+      {
+       "id": "d1-4",
+       "t": {
+        "es": "Fracciones, decimales y porcentajes",
+        "en": "Fractions, decimals and percentages",
+        "ar": "الكسور والأعداد العشرية والنسب المئوية"
+       }
+      },
+      {
+       "id": "d1-5",
+       "t": {
+        "es": "Medidas, tiempo y dinero",
+        "en": "Measures, time and money",
+        "ar": "القياس والوقت والنقود"
+       }
+      },
+      {
+       "id": "d1-6",
+       "t": {
+        "es": "Geometría",
+        "en": "Geometry",
+        "ar": "الهندسة"
+       }
+      },
+      {
+       "id": "d1-7",
+       "t": {
+        "es": "Problemas y gráficos",
+        "en": "Problems and charts",
+        "ar": "المسائل والرسوم البيانية"
+       }
+      }
+     ],
+     "activity": {
+      "type": "math"
+     }
+    },
+    {
+     "id": "science",
+     "icon": "🔬",
+     "t": {
+      "es": "Ciencias",
+      "en": "Science",
+      "ar": "العلوم"
+     },
+     "units": [
+      {
+       "id": "d2-1",
+       "t": {
+        "es": "Observar y clasificar",
+        "en": "Observing and classifying",
+        "ar": "الملاحظة والتصنيف"
+       }
+      },
+      {
+       "id": "d2-2",
+       "t": {
+        "es": "El cuerpo humano y la higiene",
+        "en": "The human body and hygiene",
+        "ar": "جسم الإنسان والنظافة"
+       }
+      },
+      {
+       "id": "d2-3",
+       "t": {
+        "es": "Animales y plantas",
+        "en": "Animals and plants",
+        "ar": "الحيوانات والنباتات"
+       }
+      },
+      {
+       "id": "d2-4",
+       "t": {
+        "es": "El agua y los estados de la materia",
+        "en": "Water and states of matter",
+        "ar": "الماء وحالات المادة"
+       }
+      },
+      {
+       "id": "d2-5",
+       "t": {
+        "es": "La Tierra, el clima y el cielo",
+        "en": "The Earth, weather and the sky",
+        "ar": "الأرض والمناخ والسماء"
+       }
+      }
+     ]
+    },
+    {
+     "id": "geo",
+     "icon": "🗺️",
+     "t": {
+      "es": "Geografía",
+      "en": "Geography",
+      "ar": "الجغرافيا"
+     },
+     "units": [
+      {
+       "id": "d3-1",
+       "t": {
+        "es": "Continentes, océanos y puntos cardinales",
+        "en": "Continents, oceans and directions",
+        "ar": "القارات والمحيطات والجهات"
+       }
+      },
+      {
+       "id": "d3-2",
+       "t": {
+        "es": "Países y capitales",
+        "en": "Countries and capitals",
+        "ar": "الدول والعواصم"
+       }
+      },
+      {
+       "id": "d3-3",
+       "t": {
+        "es": "La Península Arábiga",
+        "en": "The Arabian Peninsula",
+        "ar": "شبه الجزيرة العربية"
+       }
+      },
+      {
+       "id": "d3-4",
+       "t": {
+        "es": "Leer mapas",
+        "en": "Reading maps",
+        "ar": "قراءة الخرائط"
+       }
+      }
+     ]
+    },
+    {
+     "id": "logic",
+     "icon": "🧩",
+     "t": {
+      "es": "Lógica y pensamiento",
+      "en": "Logic and thinking",
+      "ar": "المنطق والتفكير"
+     },
+     "units": [
+      {
+       "id": "d4-1",
+       "t": {
+        "es": "Clasificar y encontrar diferencias",
+        "en": "Sorting and spotting differences",
+        "ar": "التصنيف وإيجاد الفروق"
+       }
+      },
+      {
+       "id": "d4-2",
+       "t": {
+        "es": "Patrones y secuencias",
+        "en": "Patterns and sequences",
+        "ar": "الأنماط والتسلسلات"
+       }
+      },
+      {
+       "id": "d4-3",
+       "t": {
+        "es": "Causa y efecto",
+        "en": "Cause and effect",
+        "ar": "السبب والنتيجة"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "adab",
+   "icon": "💚",
+   "t": {
+    "es": "Adab y vida cotidiana",
+    "en": "Adab and daily life",
+    "ar": "الآداب والحياة اليومية"
+   },
+   "religious": true,
+   "modules": [
+    {
+     "id": "e-allah",
+     "icon": "🤲",
+     "t": {
+      "es": "Relación con Allah",
+      "en": "Relationship with Allah",
+      "ar": "العلاقة مع الله"
+     },
+     "units": [
+      {
+       "id": "e1-1",
+       "t": {
+        "es": "Sinceridad, gratitud, tawakkul y du'a",
+        "en": "Sincerity, gratitude, tawakkul and du'a",
+        "ar": "الإخلاص والشكر والتوكل والدعاء"
+       }
+      }
+     ]
+    },
+    {
+     "id": "e-family",
+     "icon": "👨‍👩‍👧",
+     "t": {
+      "es": "Familia",
+      "en": "Family",
+      "ar": "الأسرة"
+     },
+     "units": [
+      {
+       "id": "e2-1",
+       "t": {
+        "es": "Respeto, bondad y ayuda en casa",
+        "en": "Respect, kindness and helping at home",
+        "ar": "البر والإحسان والمساعدة في البيت"
+       }
+      }
+     ]
+    },
+    {
+     "id": "e-community",
+     "icon": "🤝",
+     "t": {
+      "es": "Comunidad",
+      "en": "Community",
+      "ar": "المجتمع"
+     },
+     "units": [
+      {
+       "id": "e3-1",
+       "t": {
+        "es": "Honestidad, promesas, vecinos y generosidad",
+        "en": "Honesty, promises, neighbours and generosity",
+        "ar": "الصدق والوفاء بالوعد والجار والكرم"
+       }
+      }
+     ]
+    },
+    {
+     "id": "e-speech",
+     "icon": "💬",
+     "t": {
+      "es": "Palabras y comportamiento",
+      "en": "Speech and behaviour",
+      "ar": "الكلام والسلوك"
+     },
+     "units": [
+      {
+       "id": "e4-1",
+       "t": {
+        "es": "Hablar con bondad, no mentir, pedir perdón y controlar el enfado",
+        "en": "Speaking kindly, not lying, apologising and controlling anger",
+        "ar": "الكلام الطيب وترك الكذب والاعتذار وكظم الغيظ"
+       }
+      }
+     ],
+     "activity": {
+      "type": "quiz",
+      "cats": [
+       "adab"
+      ]
+     }
+    },
+    {
+     "id": "e-hygiene",
+     "icon": "🧼",
+     "t": {
+      "es": "Higiene y orden",
+      "en": "Hygiene and order",
+      "ar": "النظافة والترتيب"
+     },
+     "units": [
+      {
+       "id": "e5-1",
+       "t": {
+        "es": "Limpieza, orden y puntualidad",
+        "en": "Cleanliness, order and punctuality",
+        "ar": "النظافة والترتيب والمحافظة على الوقت"
+       }
+      }
+     ]
+    },
+    {
+     "id": "e-life",
+     "icon": "🧭",
+     "t": {
+      "es": "Situaciones de la vida",
+      "en": "Life situations",
+      "ar": "مواقف من الحياة"
+     },
+     "units": [
+      {
+       "id": "e6-1",
+       "t": {
+        "es": "Decidir bien: escenarios y reflexión",
+        "en": "Choosing well: scenarios and reflection",
+        "ar": "حسن الاختيار: مواقف وتأمل"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
