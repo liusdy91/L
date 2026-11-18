@@ -320,6 +320,23 @@ body.net-guest #setup .field:not(.keep), body.net-guest #setup .hint, body.net-g
 .subj-units .st{flex:none;font-size:.72rem;font-weight:800;border-radius:999px;padding:2px 8px;background:var(--night-3);color:var(--sand-dim)}
 .subj-units .st.ok{background:color-mix(in srgb,var(--teamA) 30%,transparent);color:var(--sand)}
 .subj-units button{margin-inline-start:auto;flex:none}
+.subj-units .st.rev{background:color-mix(in srgb,var(--gold) 30%,transparent);color:var(--sand)}
+.lx-doc{display:flex;flex-direction:column;gap:14px;line-height:1.6}
+.lx-doc h3{margin:0;font-family:var(--font-display);font-size:1.4rem}
+.lx-doc h4{margin:6px 0 0;font-size:1rem;color:var(--gold)}
+.lx-doc p,.lx-doc ol,.lx-doc ul{margin:0}
+.lx-doc ol,.lx-doc ul{padding-inline-start:1.3em;display:flex;flex-direction:column;gap:4px}
+.lx-banner{background:color-mix(in srgb,var(--gold) 22%,transparent);border-radius:12px;padding:10px 14px;font-weight:700}
+.ev-card{background:var(--night);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.ev-card .ev-ar{font-family:var(--font-ar,serif);font-size:1.35rem;line-height:2;direction:rtl;text-align:right}
+.ev-card .ev-tr{color:var(--sand)}
+.ev-card .ev-src{font-size:.82rem;color:var(--sand-dim)}
+.ev-card a{color:var(--gold)}
+.lx-q{font-weight:800;font-size:1.15rem}
+.lx-opts{display:flex;flex-direction:column;gap:8px}
+.lx-opts button{text-align:start;background:var(--night-3);border:2px solid transparent;border-radius:12px;padding:12px 14px;font:inherit;font-weight:700;color:inherit}
+.lx-opts button.ok{border-color:var(--teamA)} .lx-opts button.bad{border-color:#e06a5c}
+.lx-why{background:var(--night);border-radius:12px;padding:12px 14px}
 .learn-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .learn-top h2{margin:0;order:3;flex:1 0 100%;min-width:0;font-size:clamp(1.5rem,4vw,2.1rem)}
 .units{display:flex;flex-direction:column;gap:14px}
@@ -1013,6 +1030,10 @@ const UI = {
     profMax:"Como máximo 8 perfiles en este dispositivo.", profNameEmpty:"Escribe un apodo.", profNameUsed:"Ya hay un perfil con ese apodo.",
     profFirst:"Tu progreso de antes pasa a este perfil.",
     reviewBtn:n => `🔁 Repaso (${n})`,
+    lxStart:"▶ Lección", lxReviewTag:"En revisión", lxBanner:"Borrador en revisión: los niños todavía no lo ven.", lxGoals:"Vas a aprender", lxSteps:"Paso a paso",
+    lxEvidence:"Las pruebas", lxSeeShamela:"Ver en Shamela", lxPractice:"▶ Hacer los ejercicios", lxOf:(a, b) => `Ejercicio ${a} de ${b}`,
+    lxRight:"✓ ¡Correcto!", lxWrong:"✗ La respuesta correcta es:", lxWhy:"Por qué:", lxNext:"Siguiente ›", lxEnd:(a, b) => `Has acertado ${a} de ${b}`,
+    lxPass:"¡Lección completada! Repásala cuando quieras.", lxRetry:"Vuelve a leer la lección y repite los ejercicios.", lxBack:"‹ Volver a la materia", lxAges:(a, b) => `${a}–${b} años`,
     subjBtn:"🗂️ Materias", subjTitle:"Materias", subjIntro:"Cinco áreas para aprender a tu ritmo. Lo que está «disponible» ya se puede practicar; lo demás se está preparando.",
     subjCount:(m, a) => `${m} módulos · ${a} con actividades`, subjOk:"Disponible", subjSoon:"En preparación",
     subjQuiz:"▶ Practicar con preguntas", subjMath:"▶ Practicar sumas y restas", subjOpen:"▶ Abrir", subjPlay:"▶ Jugar",
@@ -1099,6 +1120,10 @@ const UI = {
     profMax:"At most 8 profiles on this device.", profNameEmpty:"Type a nickname.", profNameUsed:"There is already a profile with that nickname.",
     profFirst:"Your earlier progress moves to this profile.",
     reviewBtn:n => `🔁 Review (${n})`,
+    lxStart:"▶ Lesson", lxReviewTag:"In review", lxBanner:"Draft in review: children cannot see it yet.", lxGoals:"You will learn", lxSteps:"Step by step",
+    lxEvidence:"The evidence", lxSeeShamela:"See it on Shamela", lxPractice:"▶ Do the exercises", lxOf:(a, b) => `Exercise ${a} of ${b}`,
+    lxRight:"✓ Correct!", lxWrong:"✗ The right answer is:", lxWhy:"Why:", lxNext:"Next ›", lxEnd:(a, b) => `You got ${a} out of ${b}`,
+    lxPass:"Lesson complete! Review it whenever you like.", lxRetry:"Read the lesson again and repeat the exercises.", lxBack:"‹ Back to the subject", lxAges:(a, b) => `Ages ${a}–${b}`,
     subjBtn:"🗂️ Subjects", subjTitle:"Subjects", subjIntro:"Five areas to learn at your own pace. What is \u201cavailable\u201d can already be practised; the rest is being prepared.",
     subjCount:(m, a) => `${m} modules · ${a} with activities`, subjOk:"Available", subjSoon:"Coming soon",
     subjQuiz:"▶ Practise with questions", subjMath:"▶ Practise adding and subtracting", subjOpen:"▶ Open", subjPlay:"▶ Play",
@@ -1185,6 +1210,10 @@ const UI = {
     profMax:"ثمانية ملفات على الأكثر في هذا الجهاز.", profNameEmpty:"اكتب لقبًا.", profNameUsed:"يوجد ملف بهذا اللقب.",
     profFirst:"ينتقل تقدّمك السابق إلى هذا الملف.",
     reviewBtn:n => `🔁 مراجعة (${n})`,
+    lxStart:"▶ الدرس", lxReviewTag:"قيد المراجعة", lxBanner:"مسودة قيد المراجعة: لا يراها الأطفال بعد.", lxGoals:"ستتعلّم", lxSteps:"خطوة بخطوة",
+    lxEvidence:"الأدلة", lxSeeShamela:"اعرضه في الشاملة", lxPractice:"▶ حلّ التمارين", lxOf:(a, b) => `التمرين ${a} من ${b}`,
+    lxRight:"✓ أحسنت!", lxWrong:"✗ الإجابة الصحيحة:", lxWhy:"الدليل:", lxNext:"التالي", lxEnd:(a, b) => `أجبت ${a} من ${b} إجابة صحيحة`,
+    lxPass:"أتممت الدرس! راجعه متى شئت.", lxRetry:"اقرأ الدرس مرة أخرى ثم أعد التمارين.", lxBack:"رجوع إلى المادة", lxAges:(a, b) => `${a}–${b} سنوات`,
     subjBtn:"🗂️ المواد", subjTitle:"المواد", subjIntro:"خمسة مجالات للتعلّم على مهلك. ما كان «متاحًا» يمكن التدرّب عليه الآن، والباقي قيد الإعداد.",
     subjCount:(m, a) => `${m} وحدات · ${a} فيها أنشطة`, subjOk:"متاح", subjSoon:"قيد الإعداد",
     subjQuiz:"▶ تدرّب بالأسئلة", subjMath:"▶ تدرّب على الجمع والطرح", subjOpen:"▶ افتح", subjPlay:"▶ العب",
@@ -2418,7 +2447,7 @@ function setLang(l){
   renderTeamLangs(); drawRope(); fillWin();
   if (!$("tutBox").hidden) showTut(tutStep);
   if (!$("sumBox").hidden) fillSummary();
-  if (!$("subjBox").hidden) renderSubj();
+  if (!$("subjBox").hidden){ if (LX) renderLessonDoc(); else renderSubj(); }
   if (typeof updateProfileBtn === "function" && $("profBtn")) updateProfileBtn();
   if (!$("profBox").hidden) renderProfiles();
   if (!$("learnBox").hidden){ if (LS) renderLesson(); else if (SP && SP.cur) renderSpell(); else renderPath(); }
@@ -3418,12 +3447,86 @@ $("reviewBtn").addEventListener("click", () => { cfg.review = true; pressSeg("pl
 
 /* ================= Materias: el mapa curricular (content/curriculum.json) ================= */
 let CURR = null, subjArea = null;
+// lecciones: solo se ven las publicadas; las demás, únicamente con …?revision=1 (o #revision) para quien las revisa
+const LESSONS = {}, REVIEW_MODE = /[?&]revision=1/.test(location.search) || location.hash === "#revision";
+const lessonVisible = L => L.review.status === "published" || REVIEW_MODE;
+let LX = null;
 function loadCurriculum(){
   if (CURR) return Promise.resolve(CURR);
-  return fetch("content/curriculum.json").then(r => { if (!r.ok) throw 0; return r.json(); }).then(j => (CURR = j));
+  return fetch("content/curriculum.json").then(r => { if (!r.ok) throw 0; return r.json(); }).then(j => {
+    const units = j.areas.flatMap(a => a.modules.flatMap(m => m.units));
+    const jobs = units.flatMap(u => (u.lessons || []).map(id => fetch(`content/lessons/${u.id}/${id}.json`).then(r => r.ok ? r.json() : null).then(L => { if (L) LESSONS[id] = L; }).catch(() => {})));
+    return Promise.all(jobs).then(() => (CURR = j));
+  });
+}
+function openLessonDoc(id){ LX = { L: LESSONS[id], step:"read" }; renderLessonDoc(); $("subjBody").scrollTop = 0; $("subjBox").scrollTop = 0; }
+function el(tag, cls, text){ const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+function renderLessonDoc(){
+  const lang = cfg.lang, t = UI[lang], L = LX.L, body = $("subjBody"); body.innerHTML = "";
+  $("subjBack").hidden = false; $("subjTitle").textContent = L.title[lang];
+  const doc = el("div", "lx-doc");
+  if (L.review.status !== "published") doc.append(el("p", "lx-banner", t.lxBanner));
+  if (LX.step === "read"){
+    if (L.ages) doc.append(el("p", "subj-note", num(t.lxAges(L.ages[0], L.ages[1]), lang)));
+    doc.append(el("h4", null, t.lxGoals));
+    const ul = el("ul"); L.objectives[lang].forEach(o => ul.append(el("li", null, o))); doc.append(ul);
+    L.explanation[lang].split("\n\n").forEach(par => doc.append(el("p", null, par)));
+    if (L.examples && L.examples.length){
+      doc.append(el("h4", null, t.lxSteps));
+      const ol = el("ul"); L.examples.forEach(x => ol.append(el("li", null, x[lang]))); ol.style.listStyle = "none"; ol.style.paddingInlineStart = "0"; doc.append(ol);
+    }
+    doc.append(el("h4", null, t.lxEvidence));
+    L.evidence.forEach(e => doc.append(evidenceCard(e, lang, t)));
+    if (L.note) doc.append(el("p", "subj-note", L.note[lang]));
+    const go = el("button", "next-btn", t.lxPractice); go.type = "button"; go.addEventListener("click", () => { LX = { L, step:"quiz", i:0, right:0, order: L.activities.map(() => null) }; renderLessonDoc(); });
+    doc.append(go);
+  } else if (LX.step === "quiz"){
+    const q = L.activities[LX.i];
+    doc.append(el("p", "subj-note", num(t.lxOf(LX.i + 1, L.activities.length), lang)));
+    doc.append(el("p", "lx-q", q.q[lang]));
+    const opts = el("div", "lx-opts"), order = LX.order[LX.i] || (LX.order[LX.i] = shuffle(q.options.map((_, k) => k)));
+    order.forEach(k => {
+      const b = el("button", null, q.options[k][lang]); b.type = "button";
+      b.addEventListener("click", () => {
+        if (LX.answered) return; LX.answered = true;
+        const ok = k === q.answer; if (ok){ LX.right++; sOk(); } else sBad();
+        recordAnswer("l:" + L.id + ":" + LX.i, ok);
+        [...opts.children].forEach((x, j) => { x.disabled = true; if (order[j] === q.answer) x.classList.add("ok"); else if (x === b) x.classList.add("bad"); });
+        const why = el("div", "lx-why");
+        why.append(el("p", null, ok ? t.lxRight : t.lxWrong + " " + q.options[q.answer][lang]));
+        why.append(el("p", null, t.lxWhy + " " + q.why[lang]));
+        const refs = q.evidence.map(id => L.evidence.find(e => e.id === id)).filter(Boolean).map(e => e.source.book + " — " + e.source.ref).join(" · ");
+        why.append(el("p", "ev-src", refs));
+        const nx = el("button", "next-btn", t.lxNext); nx.type = "button";
+        nx.addEventListener("click", () => { LX.answered = false; LX.i++; if (LX.i >= L.activities.length) LX.step = "end"; renderLessonDoc(); });
+        why.append(nx); doc.append(why); nx.focus();
+      });
+      opts.append(b);
+    });
+    doc.append(opts);
+  } else {
+    const n = L.activities.length, pass = LX.right >= Math.ceil(n * 0.7);
+    doc.append(el("p", "lx-q", num(t.lxEnd(LX.right, n), lang)));
+    doc.append(el("p", null, pass ? t.lxPass : t.lxRetry));
+    if (pass){ learnProg.done[L.id] = Math.max(learnProg.done[L.id] || 0, LX.right === n ? 3 : 2); saveLearn(); sWin(); confetti(); }
+    const again = el("button", "ghost", t.lxStart); again.type = "button"; again.addEventListener("click", () => openLessonDoc(L.id));
+    doc.append(again);
+  }
+  body.append(doc);
+}
+function evidenceCard(e, lang, t){
+  const c = el("div", "ev-card");
+  const ar = el("p", "ev-ar", e.text); ar.lang = "ar"; c.append(ar);
+  if (lang !== "ar" && e.translation && e.translation[lang]) c.append(el("p", "ev-tr", e.translation[lang]));
+  const src = el("p", "ev-src");
+  const what = e.quran ? `${e.source.book}` : `${e.hadith.collection}, ${e.hadith.number} — ${e.hadith.grade} (${e.hadith.graded_by})`;
+  src.append(document.createTextNode(what + " · "));
+  const a = el("a", null, t.lxSeeShamela); a.href = e.source.shamela; a.target = "_blank"; a.rel = "noopener";
+  src.append(a); c.append(src);
+  return c;
 }
 function openSubj(){
-  $("subjBox").hidden = false; subjArea = null; $("subjClose").focus();
+  $("subjBox").hidden = false; subjArea = null; LX = null; $("subjClose").focus();
   $("subjBody").textContent = "…";
   loadCurriculum().then(renderSubj).catch(() => { const p = document.createElement("p"); p.className = "subj-note"; p.textContent = UI[cfg.lang].subjLoadErr; $("subjBody").replaceChildren(p); });
 }
@@ -3463,7 +3566,13 @@ function renderSubj(){
       const li = document.createElement("li");
       const st = document.createElement("span"); st.className = "st" + (u.status === "available" ? " ok" : ""); st.textContent = u.status === "available" ? t.subjOk : t.subjSoon;
       const tx = document.createElement("span"); tx.textContent = u.t[L];
+      const lessons = (u.lessons || []).filter(id => LESSONS[id] && lessonVisible(LESSONS[id]));
+      if (lessons.length){
+        const pub = lessons.some(id => LESSONS[id].review.status === "published");
+        st.className = "st " + (pub ? "ok" : "rev"); st.textContent = pub ? t.subjOk : t.lxReviewTag;
+      }
       li.append(st, tx);
+      lessons.forEach(id => { const b = document.createElement("button"); b.type = "button"; b.className = "ghost"; b.textContent = t.lxStart; b.addEventListener("click", () => openLessonDoc(id)); li.append(b); });
       if (u.activity) li.append(subjButton(u.activity, t));
       ul.append(li);
     });
@@ -3498,7 +3607,7 @@ function runActivity(act){
 }
 $("subjBtn").addEventListener("click", openSubj);
 $("subjClose").addEventListener("click", () => { $("subjBox").hidden = true; });
-$("subjBack").addEventListener("click", () => { subjArea = null; renderSubj(); });
+$("subjBack").addEventListener("click", () => { if (LX){ LX = null; renderSubj(); return; } subjArea = null; renderSubj(); });
 
 function openLearn(){ $("learnBox").hidden = false; renderPath(); $("learnClose").focus(); }
 $("learnBtn").addEventListener("click", openLearn);

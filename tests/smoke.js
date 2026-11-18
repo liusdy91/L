@@ -160,6 +160,31 @@ const skip = msg => Object.assign(new Error(msg), { skip:true });
     await p.context().close();
   });
 
+  await test("lecciones: un borrador no se ve sin ?revision=1; con él se lee, se practica y se completa", async () => {
+    const p = await page();
+    await p.click("#subjBtn"); await p.click('.subj-area[data-area="islam"]'); await p.waitForTimeout(300);
+    assert.strictEqual(await p.$$eval('#subjBody .unit[data-module="fiqh"] .subj-units button', x => x.length), 0, "el borrador se ve para los niños");
+    await p.context().close();
+    const r = await page(undefined, URL + "&revision=1");
+    await r.click("#subjBtn"); await r.click('.subj-area[data-area="islam"]'); await r.waitForTimeout(300);
+    await r.click('#subjBody .unit[data-module="fiqh"] .subj-units button'); await r.waitForTimeout(200);
+    assert.ok(await r.isVisible(".lx-banner"), "falta el aviso de borrador");
+    assert.ok(await r.$$eval(".ev-card a", a => a.every(x => x.href.startsWith("https://shamela.ws/"))), "pruebas sin enlace a Shamela");
+    await r.click(".lx-doc .next-btn");
+    const lesson = JSON.parse(fs.readFileSync(path.join(ROOT, "content/lessons/a2-2/a2-2-01.json"), "utf8"));
+    const n = lesson.activities.length;
+    for (let i = 0; i < n; i++){
+      // pulsa la opción correcta (las opciones salen desordenadas; se busca por su texto)
+      const label = lesson.activities[i].options[lesson.activities[i].answer].es;
+      await r.click(`.lx-opts button:has-text("${label}")`); await r.waitForTimeout(80);
+      await r.click(".lx-why .next-btn"); await r.waitForTimeout(80);
+    }
+    assert.match(await r.textContent(".lx-doc .lx-q"), new RegExp(`${n} de ${n}`));
+    assert.ok(await r.evaluate(() => JSON.parse(localStorage.getItem("tdc-learn")).done["a2-2-01"] === 3), "no se guardó la lección");
+    assert.deepStrictEqual(r.errs, []);
+    await r.context().close();
+  });
+
   await test("perfiles en el dispositivo: progreso separado, repaso de fallos y migración del progreso anterior", async () => {
     const ctx = await browser.newContext({ viewport:{ width:1280, height:800 } });
     await ctx.addInitScript(() => { if (!localStorage.getItem("seeded")){ localStorage.setItem("seeded", "1"); localStorage.setItem("tdc-tut", "1");

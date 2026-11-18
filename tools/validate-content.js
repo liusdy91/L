@@ -24,7 +24,8 @@ cur.areas.forEach(a => {
     m.units.forEach(u => {
       uniq(u.id, `unidad de ${m.id}`); tri(u.t, `unidad ${u.id}`); act(u.activity, `unidad ${u.id}`);
       if (u.status && u.status !== "available") err(`unidad ${u.id}: estado desconocido «${u.status}»`);
-      units.set(u.id, { religious: !!a.religious });
+      units.set(u.id, { religious: !!a.religious, lessons: u.lessons || [] });
+      (u.lessons || []).forEach(l => { if (!fs.existsSync(path.join(ROOT, "content/lessons", u.id, l + ".json"))) err(`unidad ${u.id}: falta el archivo de la lección ${l}`); });
     });
   });
 });
@@ -37,6 +38,8 @@ files.forEach(f => {
   try { L = JSON.parse(fs.readFileSync(path.join(LDIR, f), "utf8")); } catch (e) { return err(`${where}: JSON no válido`); }
   uniq(L.id, where);
   const u = units.get(L.unit); if (!u) return err(`${where}: unidad «${L.unit}» no existe en el mapa`);
+  if (!u.lessons.includes(L.id)) err(`${where}: no está enlazada en curriculum.json (unidad ${L.unit}, "lessons")`);
+  tri(L.title, `${where} título`);
   ["objectives", "explanation"].forEach(k => { if (!L[k]) err(`${where}: falta ${k}`); });
   tri(L.explanation, `${where} explicación`);
   if (!L.review || !STATUS.includes(L.review.status)) err(`${where}: review.status no válido`);
