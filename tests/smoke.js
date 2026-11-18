@@ -160,6 +160,48 @@ const skip = msg => Object.assign(new Error(msg), { skip:true });
     await p.context().close();
   });
 
+  await test("perfiles en el dispositivo: progreso separado, repaso de fallos y migración del progreso anterior", async () => {
+    const ctx = await browser.newContext({ viewport:{ width:1280, height:800 } });
+    await ctx.addInitScript(() => { if (!localStorage.getItem("seeded")){ localStorage.setItem("seeded", "1"); localStorage.setItem("tdc-tut", "1");
+      localStorage.setItem("tdc-progress", JSON.stringify({ c:{ "cat:fe":3 }, traced:[] })); } });
+    const p = await ctx.newPage(); p.errs = []; p.on("pageerror", e => p.errs.push(e.message));
+    await p.goto(URL); await p.waitForTimeout(600);
+    const mk = async (name, age) => {
+      await p.click("#profNew"); await p.fill("#profAlias", name); await p.click(`#profAge button[data-v="${age}"]`); await p.click("#profSave"); await p.waitForTimeout(150);
+    };
+    await p.click("#profBtn"); await mk("Aisha", 1);
+    assert.strictEqual(await T(p, () => JSON.parse(localStorage.getItem("tdc-progress@" + __tdc.profiles.active)).c["cat:fe"]), 3, "no migró el progreso anterior");
+    assert.strictEqual(await T(p, () => __tdc.cfg.age), 1);
+    await mk("Maryam", 3);
+    assert.strictEqual(await p.$$eval(".prof-card", x => x.length), 2);
+    await p.click("#profClose");
+    assert.strictEqual(await p.inputValue("#inA"), "Maryam");
+    // Maryam falla una pregunta → aparece el repaso
+    await p.click('#playersSeg button[data-v="0"]'); await p.click("#startBtn"); await p.waitForTimeout(300);
+    await T(p, () => __tdc.check(__tdc.teams.A, false)); await p.click("#menuBtn"); await p.waitForTimeout(200);
+    assert.ok(await p.isVisible("#reviewBtn"), "no aparece el botón de repaso");
+    assert.match(await p.textContent("#reviewBtn"), /1/);
+    await p.click("#reviewBtn"); await p.waitForTimeout(300);
+    assert.ok(await T(p, () => __tdc.cfg.review && __tdc.playing), "no empezó el repaso");
+    await T(p, () => { const t = __tdc.teams.A; t.locked = false; __tdc.check(t, true); }); await p.click("#zoneA .next-btn"); await p.waitForTimeout(300);
+    assert.ok(await p.isVisible("#sumBox"), "el repaso no termina");
+    assert.strictEqual((await p.textContent("#sumScore")).trim(), "1/1");
+    // Aisha no tiene ese fallo
+    await p.click("#sumSetup"); await p.click("#profBtn"); await p.click('.prof-card:not(.on) .next-btn'); await p.click("#profClose");
+    assert.strictEqual(await p.inputValue("#inA"), "Aisha");
+    assert.strictEqual(await T(p, () => Object.keys(__tdc.mastery).length), 0, "el progreso no está separado");
+    // borrar Maryam borra sus datos
+    await p.click("#profBtn");
+    const mid = await T(p, () => __tdc.profiles.list.find(x => x.name === "Maryam").id);
+    await p.click(`.prof-card[data-id="${mid}"] .row-btns button:last-child`); await p.click(`.prof-card[data-id="${mid}"] .row-btns button:first-child`);
+    assert.strictEqual(await p.$$eval(".prof-card", x => x.length), 1);
+    assert.ok(await T(p, id => !localStorage.getItem("tdc-mastery@" + id) && !localStorage.getItem("tdc-progress@" + id), mid), "quedaron datos del perfil borrado");
+    await p.reload(); await p.waitForTimeout(500);
+    assert.strictEqual(await p.inputValue("#inA"), "Aisha", "no recuerda el perfil activo");
+    assert.deepStrictEqual(p.errs, []);
+    await ctx.close();
+  });
+
   await test("códigos de sala online: 6 caracteres, sin repetirse en 2000 intentos", async () => {
     const p = await page();
     const codes = await T(p, () => Array.from({ length:2000 }, () => __tdc.netCode()));
