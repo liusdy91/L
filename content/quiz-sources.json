@@ -1,0 +1,989 @@
+{
+ "note": "Pruebas de las 85 preguntas de Tira de la Cuerda, copiadas tal cual de Shamela. Solo se juegan las preguntas con status «verified».",
+ "questions": [
+  {
+   "i": 0,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 19,
+     "url": "https://shamela.ws/book/1681/19",
+     "text": "بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لَا إِلَهَ إِلَّا اللهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللهِ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَالْحَجِّ، وَصَوْمِ رَمَضَانَ"
+    }
+   ]
+  },
+  {
+   "i": 1,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 5198,
+     "url": "https://shamela.ws/book/1681/5198",
+     "text": "هِيَ خَمْسٌ وَهْيَ خَمْسُونَ"
+    }
+   ]
+  },
+  {
+   "i": 2,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 19,
+     "url": "https://shamela.ws/book/1681/19",
+     "text": "بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لَا إِلَهَ إِلَّا اللهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللهِ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَالْحَجِّ، وَصَوْمِ رَمَضَانَ"
+    }
+   ]
+  },
+  {
+   "i": 3,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 3203,
+     "url": "https://shamela.ws/book/23604/3203",
+     "text": "شَهْرُ رَمَضانَ الَّذِي أُنْزِلَ فِيهِ الْقُرْآنُ"
+    }
+   ]
+  },
+  {
+   "i": 4,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 3261,
+     "url": "https://shamela.ws/book/23604/3261",
+     "text": "وَآمَنُوا بِما نُزِّلَ عَلى مُحَمَّدٍ"
+    }
+   ]
+  },
+  {
+   "i": 5,
+   "status": "no-evidence",
+   "why": "No se encontró en los libros autorizados un texto que diga que el Corán tiene 114 suras.",
+   "evidence": []
+  },
+  {
+   "i": 6,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 15,
+     "url": "https://shamela.ws/book/23604/15",
+     "text": "يقال لها الفاتحة أي فاتحة الكتاب خطا وبها تفتتح القراءة في الصلوات"
+    }
+   ]
+  },
+  {
+   "i": 7,
+   "status": "no-evidence",
+   "why": "Ibn Kathir no dice explícitamente que an-Nās es la última sura (solo la comenta al final).",
+   "evidence": []
+  },
+  {
+   "i": 8,
+   "status": "no-evidence",
+   "why": "No se encontró un texto que diga que al-Baqara es la sura más larga.",
+   "evidence": []
+  },
+  {
+   "i": 9,
+   "status": "no-evidence",
+   "why": "No se encontró un texto que diga que al-Kawthar es la sura más corta.",
+   "evidence": []
+  },
+  {
+   "i": 10,
+   "status": "no-evidence",
+   "why": "No se encontró aún un texto que diga que nació en La Meca.",
+   "evidence": []
+  },
+  {
+   "i": 11,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 5827,
+     "url": "https://shamela.ws/book/1681/5827",
+     "text": "ثُمَّ أُمِرَ بِالْهِجْرَةِ، فَهَاجَرَ إِلَى الْمَدِينَةِ"
+    }
+   ]
+  },
+  {
+   "i": 12,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 226,
+     "url": "https://shamela.ws/book/23604/226",
+     "text": "قُلْ مَنْ كانَ عَدُوًّا لِجِبْرِيلَ فَإِنَّهُ (نَزَّلَهُ) عَلى قَلْبِكَ بِإِذْنِ اللهِ"
+    }
+   ]
+  },
+  {
+   "i": 13,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 12,
+     "url": "https://shamela.ws/book/1681/12",
+     "text": "وَكَانَ يَخْلُو بِغَارِ حِرَاءٍ، فَيَتَحَنَّثُ فِيهِ وَهُوَ التَّعَبُّدُ اللَّيَالِيَ ذَوَاتِ الْعَدَدِ قَبْلَ أَنْ يَنْزِعَ إِلَى أَهْلِهِ، وَيَتَزَوَّدُ لِذَلِكَ، ثُمَّ يَرْجِعُ إِلَى خَدِيجَةَ فَيَتَزَوَّدُ لِمِثْلِهَا، حَتَّى جَاءَهُ الْحَقُّ وَهُوَ فِي غَارِ حِرَاءٍ"
+    }
+   ]
+  },
+  {
+   "i": 14,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 7373,
+     "url": "https://shamela.ws/book/1681/7373",
+     "text": "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ"
+    }
+   ]
+  },
+  {
+   "i": 15,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 327,
+     "url": "https://shamela.ws/book/23604/327",
+     "text": "فَوَلِّ وَجْهَكَ شَطْرَ الْمَسْجِدِ الْحَرامِ"
+    }
+   ]
+  },
+  {
+   "i": 16,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 2106,
+     "url": "https://shamela.ws/book/23604/2106",
+     "text": "وَقُرْآنَ الْفَجْرِ"
+    }
+   ]
+  },
+  {
+   "i": 17,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 933,
+     "url": "https://shamela.ws/book/1681/933",
+     "text": "لَا تَغْلِبَنَّكُمُ الْأَعْرَابُ عَلَى اسْمِ صَلَاتِكُمُ الْمَغْرِبِ"
+    }
+   ]
+  },
+  {
+   "i": 18,
+   "status": "no-evidence",
+   "why": "No se encontró aún un hadiz sahih que diga que el Fajr tiene 2 rakʿāt.",
+   "evidence": []
+  },
+  {
+   "i": 19,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 1781,
+     "url": "https://shamela.ws/book/1681/1781",
+     "text": "رَأَيْتُ النَّبِيَّ ﷺ إِذَا أَعْجَلَهُ السَّيْرُ يُؤَخِّرُ الْمَغْرِبَ فَيُصَلِّيهَا ثَلَاثًا"
+    }
+   ]
+  },
+  {
+   "i": 20,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 1778,
+     "url": "https://shamela.ws/book/1681/1778",
+     "text": "صَلَّيْتُ الظُّهْرَ مَعَ النَّبِيِّ ﷺ بِالْمَدِينَةِ أَرْبَعًا"
+    }
+   ]
+  },
+  {
+   "i": 21,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 3594,
+     "url": "https://shamela.ws/book/23604/3594",
+     "text": "إِذا نُودِيَ لِلصَّلاةِ مِنْ يَوْمِ الْجُمُعَةِ"
+    }
+   ]
+  },
+  {
+   "i": 22,
+   "status": "needs-book",
+   "evidence": [
+    {
+     "book": 1726,
+     "page": 1530,
+     "url": "https://shamela.ws/book/1726/1530",
+     "text": "إِنَّ اللَّهَ قَدْ أَبْدَلَكُمْ بِهِمَا خَيْرًا مِنْهُمَا: يَوْمَ الْأَضْحَى، وَيَوْمَ الْفِطْرِ \" [حكم الألباني] : صحيح"
+    }
+   ]
+  },
+  {
+   "i": 23,
+   "status": "needs-book",
+   "evidence": [
+    {
+     "book": 1726,
+     "page": 1530,
+     "url": "https://shamela.ws/book/1726/1530",
+     "text": "إِنَّ اللَّهَ قَدْ أَبْدَلَكُمْ بِهِمَا خَيْرًا مِنْهُمَا: يَوْمَ الْأَضْحَى، وَيَوْمَ الْفِطْرِ \" [حكم الألباني] : صحيح"
+    }
+   ]
+  },
+  {
+   "i": 24,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 19,
+     "url": "https://shamela.ws/book/1681/19",
+     "text": "بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لَا إِلَهَ إِلَّا اللهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللهِ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَالْحَجِّ، وَصَوْمِ رَمَضَانَ"
+    }
+   ]
+  },
+  {
+   "i": 25,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 19,
+     "url": "https://shamela.ws/book/1681/19",
+     "text": "بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لَا إِلَهَ إِلَّا اللهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللهِ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَالْحَجِّ، وَصَوْمِ رَمَضَانَ"
+    }
+   ]
+  },
+  {
+   "i": 26,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 361,
+     "url": "https://shamela.ws/book/23604/361",
+     "text": "كُتِبَ عَلَيْكُمُ الصِّيامُ"
+    }
+   ]
+  },
+  {
+   "i": 27,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 1043,
+     "url": "https://shamela.ws/book/23604/1043",
+     "text": "إِذا قُمْتُمْ إِلَى الصَّلاةِ فَاغْسِلُوا وُجُوهَكُمْ"
+    }
+   ]
+  },
+  {
+   "i": 28,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 999,
+     "url": "https://shamela.ws/book/1681/999",
+     "text": "يَا بِلَالُ، قُمْ فَنَادِ بِالصَّلَاةِ"
+    }
+   ]
+  },
+  {
+   "i": 29,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 999,
+     "url": "https://shamela.ws/book/1681/999",
+     "text": "يَا بِلَالُ، قُمْ فَنَادِ بِالصَّلَاةِ"
+    }
+   ]
+  },
+  {
+   "i": 30,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 999,
+     "url": "https://shamela.ws/book/1681/999",
+     "text": "يَا بِلَالُ، قُمْ فَنَادِ بِالصَّلَاةِ"
+    }
+   ]
+  },
+  {
+   "i": 31,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 1763,
+     "url": "https://shamela.ws/book/23604/1763",
+     "text": "وَاِصْنَعِ الْفُلْكَ بِأَعْيُنِنا"
+    }
+   ]
+  },
+  {
+   "i": 32,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 3012,
+     "url": "https://shamela.ws/book/23604/3012",
+     "text": "فَالْتَقَمَهُ الْحُوتُ"
+    }
+   ]
+  },
+  {
+   "i": 33,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 299,
+     "url": "https://shamela.ws/book/23604/299",
+     "text": "وَإِذْ يَرْفَعُ إِبْراهِيمُ الْقَواعِدَ مِنَ الْبَيْتِ وَإِسْماعِيلُ"
+    }
+   ]
+  },
+  {
+   "i": 34,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 2217,
+     "url": "https://shamela.ws/book/23604/2217",
+     "text": "ذلِكَ عِيسَى اِبْنُ مَرْيَمَ"
+    }
+   ]
+  },
+  {
+   "i": 35,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 2261,
+     "url": "https://shamela.ws/book/23604/2261",
+     "text": "اِذْهَبْ إِلى فِرْعَوْنَ إِنَّهُ طَغى"
+    }
+   ]
+  },
+  {
+   "i": 36,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 2614,
+     "url": "https://shamela.ws/book/23604/2614",
+     "text": "قالَتْ نَمْلَةٌ يا أَيُّهَا النَّمْلُ ادْخُلُوا مَساكِنَكُمْ لا يَحْطِمَنَّكُمْ سُلَيْمانُ وَجُنُودُهُ"
+    }
+   ]
+  },
+  {
+   "i": 37,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 1807,
+     "url": "https://shamela.ws/book/23604/1807",
+     "text": "وَأَجْمَعُوا أَنْ يَجْعَلُوهُ فِي غَيابَتِ الْجُبِّ"
+    }
+   ]
+  },
+  {
+   "i": 38,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 1820,
+     "url": "https://shamela.ws/book/23604/1820",
+     "text": "وَاِتَّبَعْتُ مِلَّةَ آبائِي إِبْراهِيمَ وَإِسْحاقَ وَيَعْقُوبَ"
+    }
+   ]
+  },
+  {
+   "i": 39,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 3044,
+     "url": "https://shamela.ws/book/23604/3044",
+     "text": "إِنّا وَجَدْناهُ صابِراً"
+    }
+   ]
+  },
+  {
+   "i": 40,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 127,
+     "url": "https://shamela.ws/book/23604/127",
+     "text": "وَعَلَّمَ آدَمَ الْأَسْماءَ كُلَّها"
+    }
+   ]
+  },
+  {
+   "i": 41,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 2829,
+     "url": "https://shamela.ws/book/23604/2829",
+     "text": "وَلكِنْ رَسُولَ اللهِ وَخاتَمَ النَّبِيِّينَ"
+    }
+   ]
+  },
+  {
+   "i": 42,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 985,
+     "url": "https://shamela.ws/book/23604/985",
+     "text": "وَآتَيْنا داوُدَ زَبُوراً"
+    }
+   ]
+  },
+  {
+   "i": 43,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 160,
+     "url": "https://shamela.ws/book/23604/160",
+     "text": "وَإِذْ آتَيْنا مُوسَى الْكِتابَ وَالْفُرْقانَ"
+    }
+   ]
+  },
+  {
+   "i": 44,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 5594,
+     "url": "https://shamela.ws/book/1681/5594",
+     "text": "بَلْ نُبَايِعُكَ أَنْتَ، فَأَنْتَ سَيِّدُنَا، وَخَيْرُنَا، وَأَحَبُّنَا إِلَى رَسُولِ اللهِ ﷺ ، فَأَخَذَ عُمَرُ بِيَدِهِ فَبَايَعَهُ"
+    }
+   ]
+  },
+  {
+   "i": 45,
+   "status": "needs-book",
+   "evidence": [
+    {
+     "book": 1727,
+     "page": 6215,
+     "url": "https://shamela.ws/book/1727/6215",
+     "text": "لَمْ يَتَزَوَّجْ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ عَلَى خَدِيجَةَ حَتَّى مَاتَتْ"
+    },
+    {
+     "book": 930,
+     "page": 2359,
+     "url": "https://shamela.ws/book/930/2359",
+     "text": "أَنَّ أَوَّلَ امْرَأَةٍ تَزَوَّجَهَا رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ خَدِيجَة"
+    }
+   ]
+  },
+  {
+   "i": 46,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 5111,
+     "url": "https://shamela.ws/book/1681/5111",
+     "text": "بِمَاءِ زَمْزَمَ"
+    }
+   ]
+  },
+  {
+   "i": 47,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 8031,
+     "url": "https://shamela.ws/book/1681/8031",
+     "text": "يَا غُلَامُ، سَمِّ اللهَ، وَكُلْ بِيَمِينِكَ"
+    }
+   ]
+  },
+  {
+   "i": 48,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 9316,
+     "url": "https://shamela.ws/book/1681/9316",
+     "text": "إِذَا عَطَسَ أَحَدُكُمْ فَلْيَقُلِ الْحَمْدُ لِلهِ"
+    }
+   ]
+  },
+  {
+   "i": 49,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 9361,
+     "url": "https://shamela.ws/book/1681/9361",
+     "text": "فَقَالَ عَلَيْكَ السَّلَامُ وَقَالَتْ عَائِشَةُ وَعَلَيْهِ السَّلَامُ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ"
+    }
+   ]
+  },
+  {
+   "i": 50,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 2148,
+     "url": "https://shamela.ws/book/23604/2148",
+     "text": "وَلا تَقُولَنَّ لِشَيْءٍ إِنِّي فاعِلٌ ذلِكَ غَداً (٢٣) إِلاّ أَنْ يَشاءَ اللهُ"
+    }
+   ]
+  },
+  {
+   "i": 51,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 3091,
+     "url": "https://shamela.ws/book/23604/3091",
+     "text": "وَقِيلَ الْحَمْدُ لِلّهِ رَبِّ الْعالَمِينَ"
+    }
+   ]
+  },
+  {
+   "i": 52,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 1303,
+     "url": "https://shamela.ws/book/1681/1303",
+     "text": "إِذَا قُمْتَ إِلَى الصَّلَاةِ فَكَبِّرْ"
+    }
+   ]
+  },
+  {
+   "i": 53,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 365,
+     "url": "https://shamela.ws/book/23604/365",
+     "text": "إِنّا أَنْزَلْناهُ فِي لَيْلَةِ الْقَدْرِ"
+    }
+   ]
+  },
+  {
+   "i": 54,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 3203,
+     "url": "https://shamela.ws/book/23604/3203",
+     "text": "شَهْرُ رَمَضانَ الَّذِي أُنْزِلَ فِيهِ الْقُرْآنُ"
+    }
+   ]
+  },
+  {
+   "i": 55,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 2016,
+     "url": "https://shamela.ws/book/23604/2016",
+     "text": "وهو بيت المقدس الذي بإيلياء"
+    }
+   ]
+  },
+  {
+   "i": 56,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 1919,
+     "url": "https://shamela.ws/book/1681/1919",
+     "text": "لَا تُشَدُّ الرِّحَالُ إِلَّا إِلَى ثَلَاثَةِ مَسَاجِدَ؛ الْمَسْجِدِ الْحَرَامِ، وَمَسْجِدِ الرَّسُولِ ﷺ ، وَمَسْجِدِ الْأَقْصَى"
+    }
+   ]
+  },
+  {
+   "i": 57,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 1614,
+     "url": "https://shamela.ws/book/23604/1614",
+     "text": "إِنَّ عِدَّةَ الشُّهُورِ عِنْدَ اللهِ اِثْنا عَشَرَ شَهْراً"
+    }
+   ]
+  },
+  {
+   "i": 58,
+   "status": "needs-book",
+   "evidence": [
+    {
+     "book": 4445,
+     "page": 2229,
+     "url": "https://shamela.ws/book/4445/2229",
+     "text": "وَأَيَّ الشُّهُورِ نَبْدَأُ؟ فَقَالُوا: رَمَضَانَ. ثُمَّ قَالُوا: الْمُحَرَّمَ فَهُوَ مُنْصَرَفُ النَّاسِ مِنْ حَجِّهِمْ وَهُوَ شَهْرٌ حَرَامٌ. فَاجْتَمَعُوا عَلَى الْمُحَرَّمِ"
+    }
+   ]
+  },
+  {
+   "i": 59,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1727,
+     "page": 2879,
+     "url": "https://shamela.ws/book/1727/2879",
+     "text": "فَرَمَلَ ثَلَاثًا وَمَشَى أَرْبَعًا"
+    }
+   ]
+  },
+  {
+   "i": 60,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 4330,
+     "url": "https://shamela.ws/book/1681/4330",
+     "text": "إِنَّ لِلهِ تِسْعَةً وَتِسْعِينَ اسْمًا"
+    }
+   ]
+  },
+  {
+   "i": 61,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 3940,
+     "url": "https://shamela.ws/book/23604/3940",
+     "text": "قُلْ هُوَ اللهُ أَحَدٌ"
+    }
+   ]
+  },
+  {
+   "i": 62,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 509,
+     "url": "https://shamela.ws/book/23604/509",
+     "text": "هذه آية الكرسي"
+    }
+   ]
+  },
+  {
+   "i": 63,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 2252,
+     "url": "https://shamela.ws/book/23604/2252",
+     "text": "آخر تفسير سورة مريم"
+    }
+   ]
+  },
+  {
+   "i": 64,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1727,
+     "page": 1293,
+     "url": "https://shamela.ws/book/1727/1293",
+     "text": "من سَبَّحَ اللَّهَ فِي دُبُرِ كُلِّ صَلَاةٍ ثَلَاثًا وَثَلَاثِينَ"
+    }
+   ]
+  },
+  {
+   "i": 65,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 2032,
+     "url": "https://shamela.ws/book/23604/2032",
+     "text": "سُبْحانَ الَّذِي أَسْرى بِعَبْدِهِ لَيْلاً"
+    }
+   ]
+  },
+  {
+   "i": 66,
+   "status": "needs-book",
+   "evidence": [
+    {
+     "book": 1726,
+     "page": 3156,
+     "url": "https://shamela.ws/book/1726/3156",
+     "text": "كَانَ رَسُولُ اللَّهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ يُفْطِرُ عَلَى رُطَبَاتٍ قَبْلَ أَنْ يُصَلِّيَ، فَإِنْ لَمْ تَكُنْ رُطَبَاتٌ، فَعَلَى تَمَرَاتٍ، فَإِنْ لَمْ تَكُنْ حَسَا حَسَوَاتٍ مِنْ مَاءٍ» [حكم الألباني] : حسن صحيح"
+    }
+   ]
+  },
+  {
+   "i": 67,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 3070,
+     "url": "https://shamela.ws/book/1681/3070",
+     "text": "تَسَحَّرُوا، فَإِنَّ فِي السَّحُورِ بَرَكَةً"
+    }
+   ]
+  },
+  {
+   "i": 68,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 3120,
+     "url": "https://shamela.ws/book/1681/3120",
+     "text": "إِذَا أَقْبَلَ اللَّيْلُ مِنْ هَا هُنَا، وَأَدْبَرَ النَّهَارُ مِنْ هَا هُنَا، وَغَرَبَتِ الشَّمْسُ، فَقَدْ أَفْطَرَ الصَّائِمُ"
+    }
+   ]
+  },
+  {
+   "i": 69,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 3046,
+     "url": "https://shamela.ws/book/1681/3046",
+     "text": "الشَّهْرُ تِسْعٌ وَعِشْرُونَ لَيْلَةً، فَلَا تَصُومُوا حَتَّى تَرَوْهُ، فَإِنْ غُمَّ عَلَيْكُمْ فَأَكْمِلُوا الْعِدَّةَ ثَلَاثِينَ"
+    }
+   ]
+  },
+  {
+   "i": 70,
+   "status": "no-evidence",
+   "why": "Los hadices hablan de «qiyām Ramaḍān»; no se encontró el nombre «Tarawih» en un texto sahih.",
+   "evidence": []
+  },
+  {
+   "i": 71,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1727,
+     "page": 62,
+     "url": "https://shamela.ws/book/1727/62",
+     "text": "أَنْ تُؤْمِنَ بِاللَّهِ، وَمَلَائِكَتِهِ، وَكُتُبِهِ، وَرُسُلِهِ، وَالْيَوْمِ الآخِرِ. وَتُؤْمِنَ بِالْقَدَرِ خَيْرِهِ وَشَرِّهِ"
+    }
+   ]
+  },
+  {
+   "i": 72,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 3940,
+     "url": "https://shamela.ws/book/23604/3940",
+     "text": "قُلْ هُوَ اللهُ أَحَدٌ"
+    }
+   ]
+  },
+  {
+   "i": 73,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 4,
+     "url": "https://shamela.ws/book/23604/4",
+     "text": "الْحَمْدُ لِلّهِ الَّذِي خَلَقَ السَّماواتِ وَالْأَرْضَ"
+    }
+   ]
+  },
+  {
+   "i": 74,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1727,
+     "page": 7427,
+     "url": "https://shamela.ws/book/1727/7427",
+     "text": "خلقت الملائكة من نور"
+    }
+   ]
+  },
+  {
+   "i": 75,
+   "status": "needs-book",
+   "evidence": [
+    {
+     "book": 930,
+     "page": 197,
+     "url": "https://shamela.ws/book/930/197",
+     "text": "ثُمَّ تَزَوَّجَ عَبْدُ اللَّهِ بْنُ عَبْدِ الْمُطَّلِبِ آمِنَةَ بِنْتَ وَهْبٍ فَوَلَدَتْ رَسُولِ اللَّهِ"
+    }
+   ]
+  },
+  {
+   "i": 76,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 5871,
+     "url": "https://shamela.ws/book/1681/5871",
+     "text": "مَا أَغْنَيْتَ عَنْ عَمِّكَ، فَإِنَّهُ كَانَ يَحُوطُكَ وَيَغْضَبُ لَكَ"
+    }
+   ]
+  },
+  {
+   "i": 77,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 665,
+     "url": "https://shamela.ws/book/23604/665",
+     "text": "وَلَقَدْ نَصَرَكُمُ اللهُ بِبَدْرٍ"
+    }
+   ]
+  },
+  {
+   "i": 78,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 636,
+     "url": "https://shamela.ws/book/23604/636",
+     "text": "إِنَّ أَوَّلَ بَيْتٍ وُضِعَ لِلنّاسِ لَلَّذِي بِبَكَّةَ"
+    }
+   ]
+  },
+  {
+   "i": 79,
+   "status": "needs-book",
+   "evidence": [
+    {
+     "book": 1435,
+     "page": 1540,
+     "url": "https://shamela.ws/book/1435/1540",
+     "text": "الحَجُّ عَرَفَةُ"
+    }
+   ]
+  },
+  {
+   "i": 80,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 399,
+     "url": "https://shamela.ws/book/23604/399",
+     "text": "الْحَجُّ أَشْهُرٌ مَعْلُوماتٌ"
+    }
+   ]
+  },
+  {
+   "i": 81,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 2156,
+     "url": "https://shamela.ws/book/23604/2156",
+     "text": "ما شاءَ اللهُ لا قُوَّةَ إِلاّ بِاللهِ"
+    }
+   ]
+  },
+  {
+   "i": 82,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 8031,
+     "url": "https://shamela.ws/book/1681/8031",
+     "text": "يَا غُلَامُ، سَمِّ اللهَ، وَكُلْ بِيَمِينِكَ"
+    }
+   ]
+  },
+  {
+   "i": 83,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 9454,
+     "url": "https://shamela.ws/book/1681/9454",
+     "text": "وَاللهِ إِنِّي لَأَسْتَغْفِرُ اللهَ وَأَتُوبُ فِي الْيَوْمِ أَكْثَرَ مِنْ سَبْعِينَ مَرَّةً"
+    }
+   ]
+  },
+  {
+   "i": 84,
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 747,
+     "url": "https://shamela.ws/book/1681/747",
+     "text": "إِذَا دَخَلَ أَحَدُكُمُ الْمَسْجِدَ فَلْيَرْكَعْ رَكْعَتَيْنِ قَبْلَ أَنْ يَجْلِسَ"
+    }
+   ]
+  }
+ ]
+}

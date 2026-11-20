@@ -57,6 +57,24 @@ const skip = msg => Object.assign(new Error(msg), { skip:true });
     await p.context().close();
   });
 
+  await test("solo se juegan preguntas con prueba comprobada en Shamela, en todas las edades y temas", async () => {
+    const p = await page();
+    const qs = JSON.parse(fs.readFileSync(path.join(ROOT, "content/quiz-sources.json"), "utf8")).questions;
+    const ok = new Set(qs.filter(q => q.status === "verified").map(q => q.i));
+    const seen = await T(p, () => {
+      const out = new Set(), cats = Object.keys(__tdc.cfg.cats.size ? Object.fromEntries([...__tdc.cfg.cats].map(c => [c, 1])) : {});
+      for (const age of [1, 2, 3]) for (const c of [null, ...cats]) {
+        __tdc.cfg.age = age; __tdc.cfg.cats = new Set(c ? [c] : cats);
+        for (let k = 0; k < 5; k++) __tdc.quizDeck().forEach(i => out.add(i));
+      }
+      return [...out];
+    });
+    const bad = seen.filter(i => !ok.has(i));
+    assert.deepStrictEqual(bad, [], "salen preguntas sin prueba: " + bad.join(", "));
+    assert.ok(seen.length >= 60, "muy pocas preguntas en juego: " + seen.length);
+    await p.context().close();
+  });
+
   await test("todos los textos árabes tienen su audio", async () => {
     const p = await page();
     const missing = await T(p, async () => { const idx = await (await fetch("assets/audio/ar/index.json")).json(); return window.tdcArTexts().filter(t => !idx[t]); });
