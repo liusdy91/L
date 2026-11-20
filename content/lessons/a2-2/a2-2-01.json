@@ -1,12 +1,34 @@
 {
   "id": "a2-2-01",
   "unit": "a2-2",
-  "ages": [7, 9],
-  "title": { "es": "Cómo hacer el wudu", "en": "How to make wudu", "ar": "كيف نتوضأ" },
+  "ages": [
+    7,
+    9
+  ],
+  "title": {
+    "es": "Cómo hacer el wudu",
+    "en": "How to make wudu",
+    "ar": "كيف نتوضأ"
+  },
   "objectives": {
-    "es": ["Saber que la oración necesita wudu.", "Nombrar las cuatro partes que menciona la aleya del wudu.", "Ordenar los pasos del wudu como lo enseñó ʿUthmān ibn ʿAffān.", "Recordar que el wudu se hace con intención, por Allah."],
-    "en": ["Know that prayer needs wudu.", "Name the four parts mentioned in the verse of wudu.", "Put the steps of wudu in order, as ʿUthmān ibn ʿAffān taught them.", "Remember that wudu is done with intention, for Allah."],
-    "ar": ["أن يعرف أن الصلاة تحتاج إلى الوضوء.", "أن يذكر الأعضاء الأربعة التي في آية الوضوء.", "أن يرتّب خطوات الوضوء كما علّمها عثمان بن عفان رضي الله عنه.", "أن يتذكّر أن الوضوء يكون بنيّة لله."]
+    "es": [
+      "Saber que la oración necesita wudu.",
+      "Nombrar las cuatro partes que menciona la aleya del wudu.",
+      "Ordenar los pasos del wudu como lo enseñó ʿUthmān ibn ʿAffān.",
+      "Recordar que el wudu se hace con intención, por Allah."
+    ],
+    "en": [
+      "Know that prayer needs wudu.",
+      "Name the four parts mentioned in the verse of wudu.",
+      "Put the steps of wudu in order, as ʿUthmān ibn ʿAffān taught them.",
+      "Remember that wudu is done with intention, for Allah."
+    ],
+    "ar": [
+      "أن يعرف أن الصلاة تحتاج إلى الوضوء.",
+      "أن يذكر الأعضاء الأربعة التي في آية الوضوء.",
+      "أن يرتّب خطوات الوضوء كما علّمها عثمان بن عفان رضي الله عنه.",
+      "أن يتذكّر أن الوضوء يكون بنيّة لله."
+    ]
   },
   "prerequisites": [],
   "explanation": {
@@ -15,12 +37,36 @@
     "ar": "قبل الصلاة نتوضأ: نغسل بالماء أعضاء من الجسم كما علّمنا الله ورسوله ﷺ. وقد أخبر النبي ﷺ أن صلاة من أحدث لا تُقبل حتى يتوضأ.\n\nوفي الآية السادسة من سورة المائدة ذكر الله أربعة أعضاء: غسل الوجه، وغسل اليدين إلى المرفقين، ومسح الرأس، وغسل الرجلين إلى الكعبين.\n\nوعلّمنا عثمان بن عفان رضي الله عنه كيف كان النبي ﷺ يتوضأ: غسل كفّيه ثلاثًا، ثم مضمض واستنشق، ثم غسل وجهه ثلاثًا، ثم يديه إلى المرفقين ثلاثًا —اليمنى ثم اليسرى—، ثم مسح رأسه، ثم غسل رجليه إلى الكعبين ثلاثًا —اليمنى أولًا—.\n\nوكل ذلك يبدأ بالنيّة: نتوضأ لله. قال النبي ﷺ: «إنما الأعمال بالنيات»."
   },
   "examples": [
-    { "es": "1. Lavar las manos (3 veces).", "en": "1. Wash the hands (3 times).", "ar": "١. غسل الكفّين (ثلاثًا)." },
-    { "es": "2. Enjuagar la boca y la nariz.", "en": "2. Rinse the mouth and the nose.", "ar": "٢. المضمضة والاستنشاق." },
-    { "es": "3. Lavar la cara (3 veces).", "en": "3. Wash the face (3 times).", "ar": "٣. غسل الوجه (ثلاثًا)." },
-    { "es": "4. Lavar los brazos hasta los codos, primero el derecho (3 veces).", "en": "4. Wash the arms up to the elbows, right first (3 times).", "ar": "٤. غسل اليدين إلى المرفقين، اليمنى أولًا (ثلاثًا)." },
-    { "es": "5. Pasar las manos mojadas por la cabeza.", "en": "5. Wipe the head with wet hands.", "ar": "٥. مسح الرأس." },
-    { "es": "6. Lavar los pies hasta los tobillos, primero el derecho (3 veces).", "en": "6. Wash the feet up to the ankles, right first (3 times).", "ar": "٦. غسل الرجلين إلى الكعبين، اليمنى أولًا (ثلاثًا)." }
+    {
+      "es": "1. Lavar las manos (3 veces).",
+      "en": "1. Wash the hands (3 times).",
+      "ar": "١. غسل الكفّين (ثلاثًا)."
+    },
+    {
+      "es": "2. Enjuagar la boca y la nariz.",
+      "en": "2. Rinse the mouth and the nose.",
+      "ar": "٢. المضمضة والاستنشاق."
+    },
+    {
+      "es": "3. Lavar la cara (3 veces).",
+      "en": "3. Wash the face (3 times).",
+      "ar": "٣. غسل الوجه (ثلاثًا)."
+    },
+    {
+      "es": "4. Lavar los brazos hasta los codos, primero el derecho (3 veces).",
+      "en": "4. Wash the arms up to the elbows, right first (3 times).",
+      "ar": "٤. غسل اليدين إلى المرفقين، اليمنى أولًا (ثلاثًا)."
+    },
+    {
+      "es": "5. Pasar las manos mojadas por la cabeza.",
+      "en": "5. Wipe the head with wet hands.",
+      "ar": "٥. مسح الرأس."
+    },
+    {
+      "es": "6. Lavar los pies hasta los tobillos, primero el derecho (3 veces).",
+      "en": "6. Wash the feet up to the ankles, right first (3 times).",
+      "ar": "٦. غسل الرجلين إلى الكعبين، اليمنى أولًا (ثلاثًا)."
+    }
   ],
   "note": {
     "es": "Los sabios explican el wudu con más detalle en los libros de fiqh. Esta lección enseña solo lo que dicen la aleya y estos hadices sahih.",
@@ -28,102 +74,329 @@
     "ar": "يشرح العلماء الوضوء بتفصيل أكثر في كتب الفقه، وهذا الدرس يقتصر على ما في الآية وهذه الأحاديث الصحيحة."
   },
   "activities": [
-    { "type": "choice",
-      "q": { "es": "Alguien perdió su wudu. ¿Qué debe hacer antes de rezar?", "en": "Someone has lost their wudu. What must they do before praying?", "ar": "شخصٌ انتقض وضوؤه، ماذا يفعل قبل أن يصلّي؟" },
+    {
+      "type": "choice",
+      "q": {
+        "es": "Alguien perdió su wudu. ¿Qué debe hacer antes de rezar?",
+        "en": "Someone has lost their wudu. What must they do before praying?",
+        "ar": "شخصٌ انتقض وضوؤه، ماذا يفعل قبل أن يصلّي؟"
+      },
       "options": [
-        { "es": "Hacer wudu otra vez", "en": "Make wudu again", "ar": "يتوضأ من جديد" },
-        { "es": "Rezar así", "en": "Pray as they are", "ar": "يصلّي كما هو" },
-        { "es": "Solo lavarse las manos", "en": "Only wash their hands", "ar": "يغسل يديه فقط" }
+        {
+          "es": "Hacer wudu otra vez",
+          "en": "Make wudu again",
+          "ar": "يتوضأ من جديد"
+        },
+        {
+          "es": "Rezar así",
+          "en": "Pray as they are",
+          "ar": "يصلّي كما هو"
+        },
+        {
+          "es": "Solo lavarse las manos",
+          "en": "Only wash their hands",
+          "ar": "يغسل يديه فقط"
+        }
       ],
       "answer": 0,
-      "why": { "es": "El Profeta ﷺ dijo que no se acepta la oración de quien perdió el wudu hasta que haga wudu.", "en": "The Prophet ﷺ said the prayer of someone who lost their wudu is not accepted until they make wudu.", "ar": "قال النبي ﷺ: «لا تُقبل صلاة من أحدث حتى يتوضأ»." },
-      "evidence": ["e2"] },
-    { "type": "choice",
-      "q": { "es": "¿Hasta dónde se lavan los brazos en el wudu?", "en": "How far are the arms washed in wudu?", "ar": "إلى أين نغسل اليدين في الوضوء؟" },
+      "why": {
+        "es": "El Profeta ﷺ dijo que no se acepta la oración de quien perdió el wudu hasta que haga wudu.",
+        "en": "The Prophet ﷺ said the prayer of someone who lost their wudu is not accepted until they make wudu.",
+        "ar": "قال النبي ﷺ: «لا تُقبل صلاة من أحدث حتى يتوضأ»."
+      },
+      "evidence": [
+        "e2"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Hasta dónde se lavan los brazos en el wudu?",
+        "en": "How far are the arms washed in wudu?",
+        "ar": "إلى أين نغسل اليدين في الوضوء؟"
+      },
       "options": [
-        { "es": "Hasta los codos", "en": "Up to the elbows", "ar": "إلى المرفقين" },
-        { "es": "Solo las manos", "en": "Only the hands", "ar": "الكفّان فقط" },
-        { "es": "Hasta los hombros", "en": "Up to the shoulders", "ar": "إلى الكتفين" }
+        {
+          "es": "Hasta los codos",
+          "en": "Up to the elbows",
+          "ar": "إلى المرفقين"
+        },
+        {
+          "es": "Solo las manos",
+          "en": "Only the hands",
+          "ar": "الكفّان فقط"
+        },
+        {
+          "es": "Hasta los hombros",
+          "en": "Up to the shoulders",
+          "ar": "إلى الكتفين"
+        }
       ],
       "answer": 0,
-      "why": { "es": "La aleya dice: «y vuestras manos hasta los codos».", "en": "The verse says: \"and your hands up to the elbows\".", "ar": "قال الله تعالى: ﴿وأيديكم إلى المرافق﴾." },
-      "evidence": ["e1"] },
-    { "type": "choice",
-      "q": { "es": "¿Qué se hace con la cabeza en el wudu?", "en": "What is done with the head in wudu?", "ar": "ماذا نفعل بالرأس في الوضوء؟" },
+      "why": {
+        "es": "La aleya dice: «y vuestras manos hasta los codos».",
+        "en": "The verse says: \"and your hands up to the elbows\".",
+        "ar": "قال الله تعالى: ﴿وأيديكم إلى المرافق﴾."
+      },
+      "evidence": [
+        "e1"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué se hace con la cabeza en el wudu?",
+        "en": "What is done with the head in wudu?",
+        "ar": "ماذا نفعل بالرأس في الوضوء؟"
+      },
       "options": [
-        { "es": "Se pasan las manos mojadas", "en": "It is wiped with wet hands", "ar": "نمسحه" },
-        { "es": "Se lava tres veces", "en": "It is washed three times", "ar": "نغسله ثلاثًا" },
-        { "es": "Nada", "en": "Nothing", "ar": "لا شيء" }
+        {
+          "es": "Se pasan las manos mojadas",
+          "en": "It is wiped with wet hands",
+          "ar": "نمسحه"
+        },
+        {
+          "es": "Se lava tres veces",
+          "en": "It is washed three times",
+          "ar": "نغسله ثلاثًا"
+        },
+        {
+          "es": "Nada",
+          "en": "Nothing",
+          "ar": "لا شيء"
+        }
       ],
       "answer": 0,
-      "why": { "es": "La aleya dice «pasad las manos por vuestras cabezas», y ʿUthmān pasó las manos por su cabeza.", "en": "The verse says \"wipe your heads\", and ʿUthmān wiped his head.", "ar": "قال الله تعالى: ﴿وامسحوا برؤوسكم﴾، ومسح عثمان رضي الله عنه رأسه." },
-      "evidence": ["e1", "e3"] },
-    { "type": "choice",
-      "q": { "es": "¿Hasta dónde se lavan los pies?", "en": "How far are the feet washed?", "ar": "إلى أين نغسل الرجلين؟" },
+      "why": {
+        "es": "La aleya dice «pasad las manos por vuestras cabezas», y ʿUthmān pasó las manos por su cabeza.",
+        "en": "The verse says \"wipe your heads\", and ʿUthmān wiped his head.",
+        "ar": "قال الله تعالى: ﴿وامسحوا برؤوسكم﴾، ومسح عثمان رضي الله عنه رأسه."
+      },
+      "evidence": [
+        "e1",
+        "e3"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Hasta dónde se lavan los pies?",
+        "en": "How far are the feet washed?",
+        "ar": "إلى أين نغسل الرجلين؟"
+      },
       "options": [
-        { "es": "Hasta los tobillos", "en": "Up to the ankles", "ar": "إلى الكعبين" },
-        { "es": "Hasta las rodillas", "en": "Up to the knees", "ar": "إلى الركبتين" },
-        { "es": "Solo los dedos", "en": "Only the toes", "ar": "الأصابع فقط" }
+        {
+          "es": "Hasta los tobillos",
+          "en": "Up to the ankles",
+          "ar": "إلى الكعبين"
+        },
+        {
+          "es": "Hasta las rodillas",
+          "en": "Up to the knees",
+          "ar": "إلى الركبتين"
+        },
+        {
+          "es": "Solo los dedos",
+          "en": "Only the toes",
+          "ar": "الأصابع فقط"
+        }
       ],
       "answer": 0,
-      "why": { "es": "La aleya dice: «y vuestros pies hasta los tobillos».", "en": "The verse says: \"and your feet up to the ankles\".", "ar": "قال الله تعالى: ﴿وأرجلكم إلى الكعبين﴾." },
-      "evidence": ["e1"] },
-    { "type": "choice",
-      "q": { "es": "En el wudu que enseñó ʿUthmān, ¿qué se lava justo después de enjuagar la boca y la nariz?", "en": "In the wudu ʿUthmān taught, what is washed right after rinsing the mouth and nose?", "ar": "في وضوء عثمان رضي الله عنه، ماذا غسل بعد المضمضة والاستنشاق؟" },
+      "why": {
+        "es": "La aleya dice: «y vuestros pies hasta los tobillos».",
+        "en": "The verse says: \"and your feet up to the ankles\".",
+        "ar": "قال الله تعالى: ﴿وأرجلكم إلى الكعبين﴾."
+      },
+      "evidence": [
+        "e1"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "En el wudu que enseñó ʿUthmān, ¿qué se lava justo después de enjuagar la boca y la nariz?",
+        "en": "In the wudu ʿUthmān taught, what is washed right after rinsing the mouth and nose?",
+        "ar": "في وضوء عثمان رضي الله عنه، ماذا غسل بعد المضمضة والاستنشاق؟"
+      },
       "options": [
-        { "es": "La cara", "en": "The face", "ar": "الوجه" },
-        { "es": "Los pies", "en": "The feet", "ar": "الرجلين" },
-        { "es": "La cabeza", "en": "The head", "ar": "الرأس" }
+        {
+          "es": "La cara",
+          "en": "The face",
+          "ar": "الوجه"
+        },
+        {
+          "es": "Los pies",
+          "en": "The feet",
+          "ar": "الرجلين"
+        },
+        {
+          "es": "La cabeza",
+          "en": "The head",
+          "ar": "الرأس"
+        }
       ],
       "answer": 0,
-      "why": { "es": "ʿUthmān se enjuagó la boca y la nariz y después lavó su cara tres veces.", "en": "ʿUthmān rinsed his mouth and nose and then washed his face three times.", "ar": "مضمض عثمان واستنشق، ثم غسل وجهه ثلاثًا." },
-      "evidence": ["e3"] },
-    { "type": "choice",
-      "q": { "es": "¿Qué brazo se lava primero?", "en": "Which arm is washed first?", "ar": "أيّ اليدين نغسل أولًا؟" },
+      "why": {
+        "es": "ʿUthmān se enjuagó la boca y la nariz y después lavó su cara tres veces.",
+        "en": "ʿUthmān rinsed his mouth and nose and then washed his face three times.",
+        "ar": "مضمض عثمان واستنشق، ثم غسل وجهه ثلاثًا."
+      },
+      "evidence": [
+        "e3"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué brazo se lava primero?",
+        "en": "Which arm is washed first?",
+        "ar": "أيّ اليدين نغسل أولًا؟"
+      },
       "options": [
-        { "es": "El derecho", "en": "The right", "ar": "اليمنى" },
-        { "es": "El izquierdo", "en": "The left", "ar": "اليسرى" },
-        { "es": "Da igual, siempre los dos juntos", "en": "Both together, always", "ar": "الاثنتان معًا دائمًا" }
+        {
+          "es": "El derecho",
+          "en": "The right",
+          "ar": "اليمنى"
+        },
+        {
+          "es": "El izquierdo",
+          "en": "The left",
+          "ar": "اليسرى"
+        },
+        {
+          "es": "Da igual, siempre los dos juntos",
+          "en": "Both together, always",
+          "ar": "الاثنتان معًا دائمًا"
+        }
       ],
       "answer": 0,
-      "why": { "es": "En el relato de Muslim, ʿUthmān lavó primero su brazo derecho hasta el codo y después el izquierdo.", "en": "In Muslim's narration, ʿUthmān washed his right arm up to the elbow first, then the left.", "ar": "في رواية مسلم: غسل عثمان يده اليمنى إلى المرفق، ثم اليسرى مثل ذلك." },
-      "evidence": ["e3"] },
-    { "type": "choice",
-      "q": { "es": "¿Para quién hacemos el wudu?", "en": "Who do we make wudu for?", "ar": "لِمَن نتوضأ؟" },
+      "why": {
+        "es": "En el relato de Muslim, ʿUthmān lavó primero su brazo derecho hasta el codo y después el izquierdo.",
+        "en": "In Muslim's narration, ʿUthmān washed his right arm up to the elbow first, then the left.",
+        "ar": "في رواية مسلم: غسل عثمان يده اليمنى إلى المرفق، ثم اليسرى مثل ذلك."
+      },
+      "evidence": [
+        "e3"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Para quién hacemos el wudu?",
+        "en": "Who do we make wudu for?",
+        "ar": "لِمَن نتوضأ؟"
+      },
       "options": [
-        { "es": "Para Allah", "en": "For Allah", "ar": "لله" },
-        { "es": "Para que nos vean", "en": "So people see us", "ar": "ليرانا الناس" },
-        { "es": "Para refrescarnos", "en": "To cool down", "ar": "لنتبرّد" }
+        {
+          "es": "Para Allah",
+          "en": "For Allah",
+          "ar": "لله"
+        },
+        {
+          "es": "Para que nos vean",
+          "en": "So people see us",
+          "ar": "ليرانا الناس"
+        },
+        {
+          "es": "Para refrescarnos",
+          "en": "To cool down",
+          "ar": "لنتبرّد"
+        }
       ],
       "answer": 0,
-      "why": { "es": "El Profeta ﷺ dijo: «Las obras son según las intenciones, y cada uno tendrá lo que tuvo intención».", "en": "The Prophet ﷺ said: \"Actions are only by intentions, and everyone will have what they intended.\"", "ar": "قال النبي ﷺ: «إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى»." },
-      "evidence": ["e4"] }
+      "why": {
+        "es": "El Profeta ﷺ dijo: «Las obras son según las intenciones, y cada uno tendrá lo que tuvo intención».",
+        "en": "The Prophet ﷺ said: \"Actions are only by intentions, and everyone will have what they intended.\"",
+        "ar": "قال النبي ﷺ: «إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى»."
+      },
+      "evidence": [
+        "e4"
+      ]
+    }
   ],
   "evidence": [
-    { "id": "e1",
+    {
+      "id": "e1",
       "claim": "Allah ordena lavar la cara, las manos hasta los codos, pasar las manos por la cabeza y lavar los pies hasta los tobillos antes de la oración.",
-      "quran": { "surah": 5, "ayah": 6 },
-      "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا قُمْتُمْ إِلَى الصَّلَاةِ فَاغْسِلُوا وُجُوهَكُمْ وَأَيْدِيَكُمْ إِلَى الْمَرَافِقِ وَامْسَحُوا بِرُءُوسِكُمْ وَأَرْجُلَكُمْ إِلَى الْكَعْبَيْنِ",
-      "translation": { "es": "«¡Oh, creyentes! Cuando os dispongáis a rezar, lavad vuestras caras y vuestras manos hasta los codos, pasad las manos por vuestras cabezas, y lavad vuestros pies hasta los tobillos» (traducción del significado).", "en": "\"O you who believe, when you rise for prayer, wash your faces and your hands up to the elbows, wipe your heads, and wash your feet up to the ankles\" (translation of the meaning)." },
-      "source": { "book": "Tafsir Ibn Kathir (ed. Dar al-Kutub al-ʿIlmiyya), al-Māʾida 5:6", "ref": "Sura al-Māʾida, aleya 6", "shamela": "https://shamela.ws/book/23604/1040" } },
-    { "id": "e2",
+      "quran": {
+        "surah": 5,
+        "ayah": 6
+      },
+      "text": "يا أَيُّهَا الَّذِينَ آمَنُوا إِذا قُمْتُمْ إِلَى الصَّلاةِ فَاغْسِلُوا وُجُوهَكُمْ وَأَيْدِيَكُمْ إِلَى الْمَرافِقِ وَاِمْسَحُوا بِرُؤُسِكُمْ وَأَرْجُلَكُمْ إِلَى الْكَعْبَيْنِ",
+      "translation": {
+        "es": "«¡Oh, creyentes! Cuando os dispongáis a rezar, lavad vuestras caras y vuestras manos hasta los codos, pasad las manos por vuestras cabezas, y lavad vuestros pies hasta los tobillos» (traducción del significado).",
+        "en": "\"O you who believe, when you rise for prayer, wash your faces and your hands up to the elbows, wipe your heads, and wash your feet up to the ankles\" (translation of the meaning)."
+      },
+      "source": {
+        "book": "Tafsir Ibn Kathir (ed. Dar al-Kutub al-ʿIlmiyya), al-Māʾida 5:6",
+        "ref": "Sura al-Māʾida, aleya 6",
+        "shamela": "https://shamela.ws/book/23604/1040"
+      }
+    },
+    {
+      "id": "e2",
       "claim": "No se acepta la oración de quien perdió el wudu hasta que lo haga.",
-      "hadith": { "collection": "Sahih al-Bukhari", "number": "135 (también Muslim 225)", "grade": "sahih", "graded_by": "al-Bukhari y Muslim" },
+      "hadith": {
+        "collection": "Sahih al-Bukhari",
+        "number": "135 (también Muslim 225)",
+        "grade": "sahih",
+        "graded_by": "al-Bukhari y Muslim"
+      },
       "text": "لَا تُقْبَلُ صَلَاةُ مَنْ أَحْدَثَ حَتَّى يَتَوَضَّأَ",
-      "translation": { "es": "«No se acepta la oración de quien tiene hadaz hasta que haga wudu».", "en": "\"The prayer of one who has broken wudu is not accepted until they make wudu.\"" },
-      "source": { "book": "Sahih al-Bukhari (ed. Mustafa al-Bughā), Kitāb al-Wuḍūʾ", "ref": "n.º 135", "shamela": "https://shamela.ws/book/735/248" } },
-    { "id": "e3",
+      "translation": {
+        "es": "«No se acepta la oración de quien tiene hadaz hasta que haga wudu».",
+        "en": "\"The prayer of one who has broken wudu is not accepted until they make wudu.\""
+      },
+      "source": {
+        "book": "Sahih al-Bukhari (ed. Mustafa al-Bughā), Kitāb al-Wuḍūʾ",
+        "ref": "n.º 135",
+        "shamela": "https://shamela.ws/book/735/248"
+      }
+    },
+    {
+      "id": "e3",
       "claim": "ʿUthmān ibn ʿAffān mostró el wudu del Profeta ﷺ: manos tres veces, boca y nariz, cara tres veces, brazos hasta los codos (derecho y luego izquierdo), cabeza y pies hasta los tobillos (derecho primero).",
-      "hadith": { "collection": "Sahih Muslim (también al-Bukhari 158 en la ed. de al-Bughā)", "number": "226", "grade": "sahih", "graded_by": "Muslim y al-Bukhari" },
+      "hadith": {
+        "collection": "Sahih Muslim (también al-Bukhari 158 en la ed. de al-Bughā)",
+        "number": "226",
+        "grade": "sahih",
+        "graded_by": "Muslim y al-Bukhari"
+      },
       "text": "فَغَسَلَ كَفَّيْهِ ثَلَاثَ مَرَّاتٍ. ثُمَّ مَضْمَضَ وَاسْتَنْثَرَ. ثُمَّ غَسَلَ وَجْهَهُ ثَلَاثَ مَرَّاتٍ. ثُمَّ غَسَلَ يَدَهُ الْيُمْنَى إِلَى الْمِرْفَقِ ثَلَاثَ مَرَّاتٍ. ثُمَّ غَسَلَ يَدَهُ الْيُسْرَى مِثْلَ ذَلِكَ. ثُمَّ مَسَحَ رَأْسَهُ. ثُمَّ غَسَلَ رِجْلَهُ الْيُمْنَى إِلَى الْكَعْبَيْنِ ثَلَاثَ مَرَّاتٍ. ثُمَّ غَسَلَ الْيُسْرَى مِثْلَ ذَلِكَ. ثُمَّ قَالَ: رَأَيْتُ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ تَوَضَّأَ نَحْوَ وُضُوئِي هَذَا",
-      "translation": { "es": "«Lavó sus manos tres veces, luego se enjuagó la boca y la nariz, luego lavó su cara tres veces, luego su brazo derecho hasta el codo tres veces y el izquierdo igual, luego pasó las manos por su cabeza, luego lavó su pie derecho hasta el tobillo tres veces y el izquierdo igual. Después dijo: vi al Mensajero de Allah ﷺ hacer el wudu como este wudu mío».", "en": "\"He washed his hands three times, then rinsed his mouth and nose, then washed his face three times, then his right arm up to the elbow three times and the left likewise, then wiped his head, then washed his right foot up to the ankle three times and the left likewise. Then he said: I saw the Messenger of Allah ﷺ make wudu like this wudu of mine.\"" },
-      "source": { "book": "Sahih Muslim (ed. Muhammad Fuʾād ʿAbd al-Bāqī), Kitāb al-Ṭahāra, bāb ṣifat al-wuḍūʾ", "ref": "n.º 226", "shamela": "https://shamela.ws/book/1727/487" } },
-    { "id": "e4",
+      "translation": {
+        "es": "«Lavó sus manos tres veces, luego se enjuagó la boca y la nariz, luego lavó su cara tres veces, luego su brazo derecho hasta el codo tres veces y el izquierdo igual, luego pasó las manos por su cabeza, luego lavó su pie derecho hasta el tobillo tres veces y el izquierdo igual. Después dijo: vi al Mensajero de Allah ﷺ hacer el wudu como este wudu mío».",
+        "en": "\"He washed his hands three times, then rinsed his mouth and nose, then washed his face three times, then his right arm up to the elbow three times and the left likewise, then wiped his head, then washed his right foot up to the ankle three times and the left likewise. Then he said: I saw the Messenger of Allah ﷺ make wudu like this wudu of mine.\""
+      },
+      "source": {
+        "book": "Sahih Muslim (ed. Muhammad Fuʾād ʿAbd al-Bāqī), Kitāb al-Ṭahāra, bāb ṣifat al-wuḍūʾ",
+        "ref": "n.º 226",
+        "shamela": "https://shamela.ws/book/1727/487"
+      }
+    },
+    {
+      "id": "e4",
       "claim": "Las obras se juzgan según la intención.",
-      "hadith": { "collection": "Sahih al-Bukhari", "number": "1 (también Muslim 1907)", "grade": "sahih", "graded_by": "al-Bukhari y Muslim" },
+      "hadith": {
+        "collection": "Sahih al-Bukhari",
+        "number": "1 (también Muslim 1907)",
+        "grade": "sahih",
+        "graded_by": "al-Bukhari y Muslim"
+      },
       "text": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى",
-      "translation": { "es": "«Las obras son según las intenciones, y cada uno tendrá lo que tuvo intención».", "en": "\"Actions are only by intentions, and everyone will have only what they intended.\"" },
-      "source": { "book": "Sahih al-Bukhari (ed. Mustafa al-Bughā), Badʾ al-Waḥy", "ref": "n.º 1", "shamela": "https://shamela.ws/book/735/13" } }
+      "translation": {
+        "es": "«Las obras son según las intenciones, y cada uno tendrá lo que tuvo intención».",
+        "en": "\"Actions are only by intentions, and everyone will have only what they intended.\""
+      },
+      "source": {
+        "book": "Sahih al-Bukhari (ed. Mustafa al-Bughā), Badʾ al-Waḥy",
+        "ref": "n.º 1",
+        "shamela": "https://shamela.ws/book/735/13"
+      }
+    }
   ],
-  "review": { "status": "in_review", "reviewer": "", "date": "" }
+  "review": {
+    "status": "in_review",
+    "reviewer": "",
+    "date": ""
+  }
 }

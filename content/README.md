@@ -15,6 +15,9 @@ Aquí vive el contenido curricular, separado del código del juego (`index.html`
 
 Decididas por la propietaria del proyecto (17-nov-2026):
 
+0. **Manhaj: Ahlus-Sunnah wal-Jamā'ah según el camino de los Salaf (salafi).** Nada de fuentes chiíes, sufíes
+   ni de otras sectas o desviaciones. Solo se usan los libros de `content/sources.json`; el validador rechaza
+   cualquier otro. Para añadir un libro hay que comprobar autor y edición, y que lo apruebe la propietaria.
 1. **Fuente: la biblioteca Shamela** (shamela.ws). Cada afirmación lleva el libro, el volumen/página o número
    y el enlace a Shamela.
 2. **Solo lo sahih**, según Ahlus-Sunnah wal-Jamā'ah. Los hadices llevan colección, número y grado, con quién
@@ -22,6 +25,10 @@ Decididas por la propietaria del proyecto (17-nov-2026):
 3. No se inventan hadices, referencias, números, grados ni consensos; no se atribuyen palabras sin fuente.
 4. Donde hay diferencias reconocidas entre sabios, se dice qué explicación se enseña.
 5. Solo se muestra a los niños una lección con `review.status: "published"`. Todo lo demás es borrador.
+6. El texto árabe de cada prueba se copia **tal cual** de la página de Shamela enlazada (también las aleyas, tal como
+   las escribe esa edición). `npm run check-sources` lo comprueba en línea página por página.
+7. Las traducciones al español y al inglés son «traducción del significado», preparadas para el juego; las
+   explicaciones y los ejercicios se limitan a lo que dicen las pruebas.
 
 ## Plantilla de una lección (`lessons/<unidad>/<lección>.json`)
 

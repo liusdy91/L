@@ -32,6 +32,7 @@ cur.areas.forEach(a => {
 
 // Lecciones (fase 4 en adelante)
 const LDIR = path.join(ROOT, "content/lessons");
+const SOURCES = JSON.parse(fs.readFileSync(path.join(ROOT, "content/sources.json"), "utf8")).books.map(b => b.shamela);
 const AUDIO = JSON.parse(fs.readFileSync(path.join(ROOT, "assets/audio/ar/index.json"), "utf8"));
 const files = fs.existsSync(LDIR) ? fs.readdirSync(LDIR, { recursive:true }).filter(f => f.endsWith(".json")) : [];
 files.forEach(f => {
@@ -54,7 +55,10 @@ files.forEach(f => {
     (q.evidence || []).forEach(id => { if (!ev.has(id)) err(`${where} actividad ${i + 1}: evidencia «${id}» no existe`); });
   });
   ev.forEach(e => {
-    if (!e.source || !/^https:\/\/shamela\.ws\//.test(e.source.shamela || "")) err(`${where} evidencia ${e.id}: falta el enlace a Shamela`);
+    const m = /^https:\/\/shamela\.ws\/book\/(\d+)\/\d+/.exec((e.source && e.source.shamela) || "");
+    if (!m) err(`${where} evidencia ${e.id}: falta el enlace a una página de Shamela`);
+    else if (!SOURCES.includes(+m[1])) err(`${where} evidencia ${e.id}: el libro ${m[1]} de Shamela no está en content/sources.json (fuentes autorizadas)`);
+    if (!e.text || !e.text.trim()) err(`${where} evidencia ${e.id}: falta el texto árabe copiado de Shamela`);
     if (e.hadith && (e.hadith.grade !== "sahih" || !e.hadith.collection || !e.hadith.number || !e.hadith.graded_by)) err(`${where} evidencia ${e.id}: el hadiz debe ser sahih, con colección, número y quién lo gradúa`);
   });
 });

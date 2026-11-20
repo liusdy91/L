@@ -1,0 +1,9 @@
+{
+  "note": "Fuentes autorizadas para el contenido religioso. Regla de la propietaria (20-nov-2026): solo Ahlus-Sunnah wal-Jamā'ah según el manhaj de los Salaf; nada de fuentes chiíes, sufíes ni de otras sectas. Una lección solo puede enlazar libros de esta lista. Para añadir un libro: comprobar autor y edición, y que lo apruebe la propietaria.",
+  "books": [
+    { "shamela": 735, "title": "صحيح البخاري", "edition": "ت. مصطفى البغا", "author": "الإمام محمد بن إسماعيل البخاري (ت. 256 هـ)", "kind": "hadith" },
+    { "shamela": 1681, "title": "صحيح البخاري", "edition": "الطبعة السلطانية", "author": "الإمام محمد بن إسماعيل البخاري (ت. 256 هـ)", "kind": "hadith" },
+    { "shamela": 1727, "title": "صحيح مسلم", "edition": "ت. محمد فؤاد عبد الباقي", "author": "الإمام مسلم بن الحجاج (ت. 261 هـ)", "kind": "hadith" },
+    { "shamela": 23604, "title": "تفسير القرآن العظيم (تفسير ابن كثير)", "edition": "دار الكتب العلمية", "author": "الحافظ إسماعيل بن عمر بن كثير (ت. 774 هـ)", "kind": "tafsir" }
+  ]
+}
