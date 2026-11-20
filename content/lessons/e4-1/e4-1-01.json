@@ -263,8 +263,8 @@
     }
   ],
   "review": {
-    "status": "in_review",
-    "reviewer": "",
-    "date": ""
+    "status": "published",
+    "reviewer": "Propietaria del proyecto",
+    "date": "2026-11-20"
   }
 }

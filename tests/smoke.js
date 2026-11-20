@@ -160,14 +160,21 @@ const skip = msg => Object.assign(new Error(msg), { skip:true });
     await p.context().close();
   });
 
-  await test("lecciones: los borradores no se ven sin ?revision=1; con él, cada lección se lee, se practica y se completa", async () => {
-    const p = await page();
-    await p.click("#subjBtn"); await p.click('.subj-area[data-area="islam"]'); await p.waitForTimeout(300);
-    assert.strictEqual(await p.$$eval('#subjBody .unit[data-module="fiqh"] .subj-units button', x => x.length), 0, "el borrador se ve para los niños");
-    await p.context().close();
+  await test("lecciones: las publicadas se ven sin ?revision=1, los borradores no; cada lección se lee, se practica y se completa", async () => {
     const cur = JSON.parse(fs.readFileSync(path.join(ROOT, "content/curriculum.json"), "utf8"));
     const list = cur.areas.flatMap(a => a.modules.flatMap(m => m.units.flatMap(u => (u.lessons || []).map(id => ({ area:a.id, module:m.id, unit:u.id, id })))));
     assert.ok(list.length >= 1, "no hay lecciones");
+    const status = id => JSON.parse(fs.readFileSync(path.join(ROOT, "content/lessons", list.find(x => x.id === id).unit, id + ".json"), "utf8")).review.status;
+    // sin ?revision=1: cada unidad muestra botón de lección solo si su lección está publicada
+    const p = await page();
+    for (const it of list){
+      await p.click("#subjClose").catch(() => {}); await p.click("#subjBtn"); await p.click(`.subj-area[data-area="${it.area}"]`); await p.waitForTimeout(150);
+      const idx = cur.areas.find(a => a.id === it.area).modules.find(m => m.id === it.module).units.findIndex(u => u.id === it.unit);
+      const li = (await p.$$(`#subjBody .unit[data-module="${it.module}"] .subj-units li`))[idx];
+      const has = await li.$$eval("button", b => b.some(x => /Lección|Lesson|الدرس/.test(x.textContent)));
+      assert.strictEqual(has, status(it.id) === "published", `${it.id}: visibilidad incorrecta para los niños`);
+    }
+    await p.context().close();
     const r = await page(undefined, URL + "&revision=1");
     for (const it of list){
       const lesson = JSON.parse(fs.readFileSync(path.join(ROOT, "content/lessons", it.unit, it.id + ".json"), "utf8"));
@@ -175,7 +182,7 @@ const skip = msg => Object.assign(new Error(msg), { skip:true });
       const units = await r.$$(`#subjBody .unit[data-module="${it.module}"] .subj-units li`);
       const idx = cur.areas.find(a => a.id === it.area).modules.find(m => m.id === it.module).units.findIndex(u => u.id === it.unit);
       await (await units[idx].$("button")).click(); await r.waitForTimeout(200);
-      assert.ok(await r.isVisible(".lx-banner"), `${it.id}: falta el aviso de borrador`);
+      assert.strictEqual(await r.isVisible(".lx-banner"), lesson.review.status !== "published", `${it.id}: aviso de borrador incorrecto`);
       if (lesson.evidence.length) assert.ok(await r.$$eval(".ev-card a", a => a.length && a.every(x => x.href.startsWith("https://shamela.ws/"))), `${it.id}: pruebas sin enlace a Shamela`);
       await r.click(".lx-doc .next-btn");
       for (const q of lesson.activities){
