@@ -1319,7 +1319,7 @@ const QUIZ_ES = [
   ["¿Quién creó los cielos y la tierra?","Allah","Los ángeles","Los profetas","Las personas"],
   ["¿Cómo se llaman los seres creados de luz que siempre obedecen a Allah?","Los ángeles","Los yinn","Los profetas","Los compañeros"],
   ["¿Cómo se llamaba la madre del Profeta ﷺ?","Amina","Halima","Fátima","Jadiya"],
-  ["¿Qué tío cuidó al Profeta ﷺ después de la muerte de su abuelo?","Abu Talib","Abu Lahab","Al-Abbás","Hamza"],
+  ["¿Qué tío protegía al Profeta ﷺ y se enfadaba por él en La Meca?","Abu Talib","Abu Lahab","Abu Bakr","Umar"],
   ["¿Cuál fue la primera gran batalla de los musulmanes?","Badr","Uhud","Al-Jandaq","Hunayn"],
   ["¿En qué ciudad está la Kaaba?","La Meca","Medina","Jerusalén","El Cairo"],
   ["¿En qué monte se reúnen los peregrinos el día más importante del Hayy?","Arafat","Uhud","Hira","Zaur"],
@@ -1407,7 +1407,7 @@ const QUIZ_EN = [
   ["Who created the heavens and the earth?","Allah","The angels","The prophets","People"],
   ["What are the beings made of light who always obey Allah called?","Angels","Jinn","Prophets","Companions"],
   ["What was the name of the Prophet's ﷺ mother?","Amina","Halima","Fatimah","Khadijah"],
-  ["Which uncle looked after the Prophet ﷺ after his grandfather died?","Abu Talib","Abu Lahab","Al-Abbas","Hamza"],
+  ["Which uncle protected the Prophet ﷺ and stood up for him in Makkah?","Abu Talib","Abu Lahab","Abu Bakr","Umar"],
   ["What was the first major battle of the Muslims?","Badr","Uhud","Al-Khandaq","Hunayn"],
   ["In which city is the Kaaba?","Makkah","Madinah","Jerusalem","Cairo"],
   ["On which mountain do pilgrims gather on the most important day of Hajj?","Arafat","Uhud","Hira","Thawr"],
@@ -1495,7 +1495,7 @@ const QUIZ_AR = [
   ["من خلق السماوات والأرض؟","الله","الملائكة","الأنبياء","الناس"],
   ["ما اسم المخلوقات التي خُلقت من نور وتطيع الله دائمًا؟","الملائكة","الجن","الأنبياء","الصحابة"],
   ["ما اسم أم النبي ﷺ؟","آمنة","حليمة","فاطمة","خديجة"],
-  ["أي عمّ كفل النبي ﷺ بعد وفاة جده؟","أبو طالب","أبو لهب","العباس","حمزة"],
+  ["أي عمّ كان يحوط النبي ﷺ ويغضب له في مكة؟","أبو طالب","أبو لهب","أبو بكر","عمر"],
   ["ما أول غزوة كبرى للمسلمين؟","بدر","أحد","الخندق","حنين"],
   ["في أي مدينة توجد الكعبة؟","مكة","المدينة","القدس","القاهرة"],
   ["على أي جبل يقف الحجاج في أهم يوم من أيام الحج؟","عرفات","أحد","حراء","ثور"],
@@ -1523,7 +1523,19 @@ const SRC_NAMES = {
   ijma:   { es:"Consenso de los sabios", en:"Scholarly consensus", ar:"إجماع العلماء" },
   umar:   { es:"Calendario de la Hégira, fijado en tiempos de Umar", en:"Hijri calendar, set in the time of Umar", ar:"التقويم الهجري في عهد عمر" },
 };
+// pruebas en Shamela de cada pregunta (se cargan aparte; mientras tanto se usa la referencia corta de siempre)
+let QSRC = null;
+const BOOK_NAMES = { 1681:{ es:"Sahih al-Bujari", en:"Sahih al-Bukhari", ar:"صحيح البخاري" }, 735:{ es:"Sahih al-Bujari", en:"Sahih al-Bukhari", ar:"صحيح البخاري" },
+  1727:{ es:"Sahih Muslim", en:"Sahih Muslim", ar:"صحيح مسلم" }, 23604:{ es:"Tafsir Ibn Kazir", en:"Tafsir Ibn Kathir", ar:"تفسير ابن كثير" } };
+try { fetch("content/quiz-sources.json").then(r => r.ok ? r.json() : null).then(j => { if (j) QSRC = j.questions; }).catch(() => {}); } catch(e){}
+function sourceLinks(i, L){
+  const q = QSRC && QSRC[i]; if (!q || q.status !== "verified") return [];
+  const seen = new Set();
+  return q.evidence.filter(e => !seen.has(e.book) && seen.add(e.book)).map(e => ({ name: (BOOK_NAMES[e.book] || {})[L] || "Shamela", url: e.url }));
+}
 function sourceText(i, L){
+  const links = sourceLinks(i, L);
+  if (links.length) return links.map(x => x.name).join(" · ") + " (Shamela)";
   return SOURCES[i].split("; ").map(part => {
     const [k, ref] = part.split(" ");
     if (!ref && /^\d/.test(k)) return `\u2066${k}\u2069`;            // "12:38" sigue a la referencia anterior
@@ -1858,12 +1870,15 @@ function mathQuestion(){
   else { if (Math.random()<.5){ a=rnd(5,35); b=rnd(2,50-a);} else { op="−"; a=rnd(10,50); b=rnd(2,a-1);} }
   return { type:"math", a, b, op, stars: level===0, ni:rnd(0,NAMES.length-1), ii:rnd(0,ITEMS.length-1), answer: op==="+" ? a+b : a-b };
 }
+// Preguntas con prueba sahih copiada de Shamela (status «verified» en content/quiz-sources.json). Las demás no se juegan.
+const QUIZ_VERIFIED = new Set([0, 1, 2, 3, 4, 6, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 59, 60, 61, 62, 63, 64, 65, 67, 68, 69, 71, 72, 73, 74, 76, 77, 78, 80, 81, 82, 83, 84]);
 function quizDeck(){
   if (cfg.review && cfg.reviewIds.length) return [...cfg.reviewIds];
-  const inCat = [...QUIZ_ES.keys()].filter(i => cfg.cats.has(CAT_OF[i]));
+  const playable = [...QUIZ_ES.keys()].filter(i => QUIZ_VERIFIED.has(i));
+  const inCat = playable.filter(i => cfg.cats.has(CAT_OF[i]));
   const byAge = inCat.filter(i => DIFF[i] <= cfg.age);
   // si el tema elegido no tiene bastantes preguntas para esa edad, se usan todas las del tema
-  const ids = byAge.length >= 4 ? byAge : inCat.length ? inCat : [...QUIZ_ES.keys()];
+  const ids = byAge.length >= 4 ? byAge : inCat.length ? inCat : playable;
   return shuffle(ids);
 }
 function quizQuestion(team){
@@ -2218,7 +2233,7 @@ function recordMiss(team){
 }
 function reviewItem(q, L){
   const t = UI[L];
-  if (q.type === "quiz"){ const row = QUIZ[L][q.idx]; return { q: row[0], a: row[1], s: t.source + ": " + sourceText(q.idx, L) }; }
+  if (q.type === "quiz"){ const row = QUIZ[L][q.idx]; return { q: row[0], a: row[1], s: t.source + ": " + sourceText(q.idx, L), links: sourceLinks(q.idx, L) }; }
   if (q.type === "math") return { q: q.stars ? t.starsStory : storyText(q, L), a: `${q.a} ${q.op} ${q.b} = ${q.answer}` };
   const i = q.items[0];
   if (q.kind === "letter") return { q: `${t.qLetter} ${LETTERS[i][0]}`, a: L === "ar" ? LETTERS[i][2] : `${(L === "en" && LETTER_EN[LETTERS[i][1]]) || LETTERS[i][1]} (${LETTERS[i][2]})` };
@@ -2237,7 +2252,11 @@ function renderReview(box, list, L){
     const a = document.createElement("div"); a.className = "rq"; a.textContent = num(r.q, L);
     const b = document.createElement("div"); b.className = "ra"; b.textContent = "✓ " + num(r.a, L);
     li.append(a, b);
-    if (r.s){ const c = document.createElement("div"); c.className = "rs"; c.textContent = num(r.s, L); li.append(c); }
+    if (r.s){
+      const c = document.createElement("div"); c.className = "rs"; c.textContent = num(r.s, L);
+      (r.links || []).forEach(x => { const a = document.createElement("a"); a.href = x.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = " ↗"; a.title = x.name; a.setAttribute("aria-label", x.name + " — Shamela"); c.append(a); });
+      li.append(c);
+    }
     ol.append(li);
   });
   box.append(ol);
@@ -3881,7 +3900,7 @@ window.addEventListener("beforeunload", () => netClose());
 $("inA").addEventListener("change", () => { if (cfg.players === 3 && NET.ready) netSend({ t:"hello", name: netMyName() }); });
 // solo para las pruebas automáticas con un servidor propio
 const TEST_Q = new URLSearchParams(location.search);
-if (TEST_Q.has("peerhost") || TEST_Q.has("test")) window.__tdc = { teams, cfg, check, profiles, mastery, dueQuiz, data:{ QUIZ_ES, QUIZ_EN, QUIZ_AR, SOURCES, DIFF, CAT_OF }, netCode, get pos(){ return pos; }, get playing(){ return playing; }, get lastWinner(){ return lastWinner; } };
+if (TEST_Q.has("peerhost") || TEST_Q.has("test")) window.__tdc = { teams, cfg, check, profiles, mastery, dueQuiz, data:{ QUIZ_ES, QUIZ_EN, QUIZ_AR, SOURCES, DIFF, CAT_OF, QUIZ_VERIFIED:[...QUIZ_VERIFIED] }, quizDeck, netCode, get pos(){ return pos; }, get playing(){ return playing; }, get lastWinner(){ return lastWinner; } };
 // enlace de invitación: …#join-ABCD abre directamente la sala del amigo
 (() => {
   const m = location.hash.match(/^#join-([A-Za-z0-9]{6})$/); if (!m) return;

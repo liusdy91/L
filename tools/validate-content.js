@@ -63,5 +63,23 @@ files.forEach(f => {
   });
 });
 
+// Preguntas del juego: cada una con su prueba de Shamela; las «verified» solo con libros autorizados
+const QS = JSON.parse(fs.readFileSync(path.join(ROOT, "content/quiz-sources.json"), "utf8")).questions;
+if (QS.length !== 85) err(`quiz-sources.json: se esperaban 85 preguntas, hay ${QS.length}`);
+QS.forEach((q, k) => {
+  if (q.i !== k) err(`quiz-sources.json: posición ${k} con i=${q.i}`);
+  if (!["verified", "needs-book", "no-evidence"].includes(q.status)) err(`pregunta ${k}: status no válido`);
+  if (q.status === "verified" && !q.evidence.length) err(`pregunta ${k}: «verified» sin pruebas`);
+  q.evidence.forEach(e => {
+    if (!e.text || !e.text.trim()) err(`pregunta ${k}: prueba sin texto`);
+    if (e.url !== `https://shamela.ws/book/${e.book}/${e.page}`) err(`pregunta ${k}: enlace incoherente`);
+    if (q.status === "verified" && !SOURCES.includes(e.book)) err(`pregunta ${k}: el libro ${e.book} no está autorizado`);
+  });
+});
+const html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+const m = /const QUIZ_VERIFIED = new Set\((\[[^\]]*\])\)/.exec(html);
+const want = JSON.stringify(QS.filter(q => q.status === "verified").map(q => q.i));
+if (!m || JSON.stringify(JSON.parse(m[1])) !== want) err("index.html: QUIZ_VERIFIED no coincide con las preguntas «verified» de content/quiz-sources.json");
+
 if (errors.length) { console.error("Contenido NO válido:\n- " + errors.join("\n- ")); process.exit(1); }
 console.log(`Contenido válido: ${cur.areas.length} áreas, ${ids.size - files.length} entradas del mapa, ${files.length} lecciones.`);

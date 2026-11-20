@@ -29,6 +29,16 @@ const contains = (page, frag) => { const P = units(page).join("|"), F = units(fr
       } catch (err) { bad++; console.log(`FALLO  ${L.id} ${e.id}  ${err.message}`); }
     }
   }
+  const QS = JSON.parse(fs.readFileSync(path.join(ROOT, "content/quiz-sources.json"), "utf8")).questions;
+  const cache = {};
+  for (const q of QS) for (const e of q.evidence) {
+    n++;
+    try {
+      const txt = cache[e.url] || (cache[e.url] = pageText(await get(e.url)));
+      if (contains(txt, e.text)) console.log(`OK     pregunta ${q.i}  ${e.url}`);
+      else { bad++; console.log(`FALLO  pregunta ${q.i}  el texto no está en ${e.url}`); }
+    } catch (err) { bad++; console.log(`FALLO  pregunta ${q.i}  ${err.message}`); }
+  }
   console.log(`\n${n - bad} de ${n} pruebas coinciden con Shamela`);
   process.exit(bad ? 1 : 0);
 })();
