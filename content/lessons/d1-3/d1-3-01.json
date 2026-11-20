@@ -1,0 +1,61 @@
+{
+  "id": "d1-3-01",
+  "unit": "d1-3",
+  "ages": [7, 9],
+  "title": { "es": "Multiplicar es sumar grupos iguales", "en": "Multiplying is adding equal groups", "ar": "الضرب جمعُ مجموعات متساوية" },
+  "objectives": {
+    "es": ["Entender la multiplicación como suma de grupos iguales.", "Escribir una suma repetida como multiplicación.", "Saber que el orden de los factores no cambia el resultado."],
+    "en": ["Understand multiplication as adding equal groups.", "Write a repeated addition as a multiplication.", "Know that the order of the factors does not change the result."],
+    "ar": ["أن يفهم الضرب على أنه جمع مجموعات متساوية.", "أن يكتب الجمع المتكرّر على صورة ضرب.", "أن يعرف أن تبديل العددين لا يغيّر الناتج."]
+  },
+  "prerequisites": ["d1-2"],
+  "explanation": {
+    "es": "Imagina 3 platos con 4 dátiles en cada uno. Para saber cuántos dátiles hay puedes sumar: 4 + 4 + 4 = 12.\n\nMultiplicar es una forma corta de escribir esa suma: 3 × 4 = 12. Se lee «tres por cuatro» y quiere decir «3 grupos de 4».\n\nSi cambias el orden, el resultado es el mismo: 4 × 3 = 12 (4 grupos de 3). Por eso puedes elegir la forma que te resulte más fácil.",
+    "en": "Imagine 3 plates with 4 dates on each. To find how many dates there are you can add: 4 + 4 + 4 = 12.\n\nMultiplying is a short way to write that addition: 3 × 4 = 12. We read it \"three times four\" and it means \"3 groups of 4\".\n\nIf you swap the order, the result is the same: 4 × 3 = 12 (4 groups of 3). So you can choose whichever way is easier for you.",
+    "ar": "تخيّل ٣ أطباق في كلّ طبق ٤ تمرات. لتعرف عدد التمرات تجمع: ٤ + ٤ + ٤ = ١٢.\n\nوالضرب طريقة مختصرة لكتابة هذا الجمع: ٣ × ٤ = ١٢، ونقرؤها «ثلاثة في أربعة»، ومعناها «٣ مجموعات في كلّ منها ٤».\n\nوإذا بدّلت العددين فالناتج لا يتغيّر: ٤ × ٣ = ١٢ (٤ مجموعات في كلّ منها ٣)، فاختر الطريقة الأسهل عليك."
+  },
+  "examples": [
+    { "es": "🌴🌴 + 🌴🌴 + 🌴🌴 → 2 + 2 + 2 = 6 → 3 × 2 = 6", "en": "🌴🌴 + 🌴🌴 + 🌴🌴 → 2 + 2 + 2 = 6 → 3 × 2 = 6", "ar": "🌴🌴 + 🌴🌴 + 🌴🌴 ← ٢ + ٢ + ٢ = ٦ ← ٣ × ٢ = ٦" },
+    { "es": "5 + 5 + 5 + 5 = 20 → 4 × 5 = 20", "en": "5 + 5 + 5 + 5 = 20 → 4 × 5 = 20", "ar": "٥ + ٥ + ٥ + ٥ = ٢٠ ← ٤ × ٥ = ٢٠" },
+    { "es": "2 × 6 = 12 y 6 × 2 = 12", "en": "2 × 6 = 12 and 6 × 2 = 12", "ar": "٢ × ٦ = ١٢ و ٦ × ٢ = ١٢" }
+  ],
+  "activities": [
+    { "type": "choice",
+      "q": { "es": "¿Qué multiplicación es igual a 3 + 3 + 3 + 3?", "en": "Which multiplication equals 3 + 3 + 3 + 3?", "ar": "أيّ عملية ضرب تساوي ٣ + ٣ + ٣ + ٣؟" },
+      "options": [ { "es": "4 × 3", "en": "4 × 3", "ar": "٤ × ٣" }, { "es": "3 × 3", "en": "3 × 3", "ar": "٣ × ٣" }, { "es": "4 + 3", "en": "4 + 3", "ar": "٤ + ٣" } ],
+      "answer": 0,
+      "why": { "es": "Son 4 grupos de 3: 4 × 3.", "en": "There are 4 groups of 3: 4 × 3.", "ar": "هي ٤ مجموعات في كلّ منها ٣: ٤ × ٣." } },
+    { "type": "choice",
+      "q": { "es": "Hay 2 cestas con 5 manzanas cada una. ¿Cuántas manzanas hay?", "en": "There are 2 baskets with 5 apples each. How many apples are there?", "ar": "سلّتان في كلّ منهما ٥ تفاحات. كم تفاحة؟" },
+      "options": [ { "es": "10", "en": "10", "ar": "١٠" }, { "es": "7", "en": "7", "ar": "٧" }, { "es": "25", "en": "25", "ar": "٢٥" } ],
+      "answer": 0,
+      "why": { "es": "2 × 5 = 5 + 5 = 10.", "en": "2 × 5 = 5 + 5 = 10.", "ar": "٢ × ٥ = ٥ + ٥ = ١٠." } },
+    { "type": "choice",
+      "q": { "es": "¿Cuánto es 3 × 4?", "en": "What is 3 × 4?", "ar": "كم يساوي ٣ × ٤؟" },
+      "options": [ { "es": "12", "en": "12", "ar": "١٢" }, { "es": "7", "en": "7", "ar": "٧" }, { "es": "34", "en": "34", "ar": "٣٤" } ],
+      "answer": 0,
+      "why": { "es": "3 grupos de 4: 4 + 4 + 4 = 12.", "en": "3 groups of 4: 4 + 4 + 4 = 12.", "ar": "٣ مجموعات من ٤: ٤ + ٤ + ٤ = ١٢." } },
+    { "type": "choice",
+      "q": { "es": "Si 6 × 2 = 12, ¿cuánto es 2 × 6?", "en": "If 6 × 2 = 12, what is 2 × 6?", "ar": "إذا كان ٦ × ٢ = ١٢، فكم يساوي ٢ × ٦؟" },
+      "options": [ { "es": "12", "en": "12", "ar": "١٢" }, { "es": "8", "en": "8", "ar": "٨" }, { "es": "26", "en": "26", "ar": "٢٦" } ],
+      "answer": 0,
+      "why": { "es": "Cambiar el orden no cambia el resultado.", "en": "Swapping the order does not change the result.", "ar": "تبديل العددين لا يغيّر الناتج." } },
+    { "type": "choice",
+      "q": { "es": "5 niños tienen 2 lápices cada uno. ¿Cuántos lápices tienen en total?", "en": "5 children have 2 pencils each. How many pencils in total?", "ar": "٥ أطفال مع كلّ واحد قلمان. كم قلمًا معهم؟" },
+      "options": [ { "es": "10", "en": "10", "ar": "١٠" }, { "es": "7", "en": "7", "ar": "٧" }, { "es": "52", "en": "52", "ar": "٥٢" } ],
+      "answer": 0,
+      "why": { "es": "5 × 2 = 2 + 2 + 2 + 2 + 2 = 10.", "en": "5 × 2 = 2 + 2 + 2 + 2 + 2 = 10.", "ar": "٥ × ٢ = ٢ + ٢ + ٢ + ٢ + ٢ = ١٠." } },
+    { "type": "choice",
+      "q": { "es": "¿Qué significa 4 × 5?", "en": "What does 4 × 5 mean?", "ar": "ماذا يعني ٤ × ٥؟" },
+      "options": [ { "es": "4 grupos de 5", "en": "4 groups of 5", "ar": "٤ مجموعات في كلّ منها ٥" }, { "es": "4 más 5", "en": "4 plus 5", "ar": "٤ زائد ٥" }, { "es": "45", "en": "45", "ar": "٤٥" } ],
+      "answer": 0,
+      "why": { "es": "La multiplicación cuenta grupos iguales: 4 grupos de 5 = 20.", "en": "Multiplication counts equal groups: 4 groups of 5 = 20.", "ar": "الضرب يعدّ مجموعات متساوية: ٤ مجموعات من ٥ = ٢٠." } },
+    { "type": "choice",
+      "q": { "es": "¿Cuánto es 10 × 3?", "en": "What is 10 × 3?", "ar": "كم يساوي ١٠ × ٣؟" },
+      "options": [ { "es": "30", "en": "30", "ar": "٣٠" }, { "es": "13", "en": "13", "ar": "١٣" }, { "es": "103", "en": "103", "ar": "١٠٣" } ],
+      "answer": 0,
+      "why": { "es": "10 grupos de 3 = 3 grupos de 10 = 10 + 10 + 10 = 30.", "en": "10 groups of 3 = 3 groups of 10 = 10 + 10 + 10 = 30.", "ar": "١٠ مجموعات من ٣ = ٣ مجموعات من ١٠ = ١٠ + ١٠ + ١٠ = ٣٠." } }
+  ],
+  "evidence": [],
+  "review": { "status": "in_review", "reviewer": "", "date": "" }
+}
