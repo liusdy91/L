@@ -1,12 +1,31 @@
 {
   "id": "e4-1-01",
   "unit": "e4-1",
-  "ages": [6, 10],
-  "title": { "es": "Decir siempre la verdad", "en": "Always telling the truth", "ar": "الصدق دائمًا" },
+  "ages": [
+    6,
+    10
+  ],
+  "title": {
+    "es": "Decir siempre la verdad",
+    "en": "Always telling the truth",
+    "ar": "الصدق دائمًا"
+  },
   "objectives": {
-    "es": ["Saber que Allah nos manda estar con los veraces.", "Explicar adónde lleva la verdad y adónde lleva la mentira.", "Elegir decir la verdad en situaciones de cada día."],
-    "en": ["Know that Allah tells us to be with the truthful.", "Explain where truth leads and where lying leads.", "Choose to tell the truth in everyday situations."],
-    "ar": ["أن يعرف أن الله أمرنا أن نكون مع الصادقين.", "أن يبيّن إلى أين يهدي الصدق وإلى أين يهدي الكذب.", "أن يختار الصدق في مواقف حياته اليومية."]
+    "es": [
+      "Saber que Allah nos manda estar con los veraces.",
+      "Explicar adónde lleva la verdad y adónde lleva la mentira.",
+      "Elegir decir la verdad en situaciones de cada día."
+    ],
+    "en": [
+      "Know that Allah tells us to be with the truthful.",
+      "Explain where truth leads and where lying leads.",
+      "Choose to tell the truth in everyday situations."
+    ],
+    "ar": [
+      "أن يعرف أن الله أمرنا أن نكون مع الصادقين.",
+      "أن يبيّن إلى أين يهدي الصدق وإلى أين يهدي الكذب.",
+      "أن يختار الصدق في مواقف حياته اليومية."
+    ]
   },
   "prerequisites": [],
   "explanation": {
@@ -15,53 +34,237 @@
     "ar": "الصدق أن نقول الأمر كما هو وإن صعب علينا. قال تعالى: ﴿يا أيها الذين آمنوا اتقوا الله وكونوا مع الصادقين﴾.\n\nوبيّن لنا النبي ﷺ إلى أين يوصل كلّ طريق: الصدق يهدي إلى البرّ، والبرّ يهدي إلى الجنة، ومن يتحرّى الصدق يُكتب عند الله صدّيقًا. والكذب يهدي إلى الفجور، والفجور يهدي إلى النار، ومن يكذب ويتحرّى الكذب يُكتب عند الله كذّابًا.\n\nفإذا أخطأنا قلنا الحقّ بشجاعة، واعتذرنا، وحاولنا الإصلاح."
   },
   "examples": [
-    { "es": "Rompí un vaso sin querer → «Mamá, he roto el vaso, lo siento».", "en": "I broke a glass by accident → \"Mum, I broke the glass, I'm sorry.\"", "ar": "كسرتُ كأسًا دون قصد ← «أمّي، كسرتُ الكأس، آسف»." },
-    { "es": "No hice la tarea → «Maestra, no la terminé; la haré hoy».", "en": "I didn't do my homework → \"Teacher, I didn't finish it; I'll do it today.\"", "ar": "لم أكتب الواجب ← «يا معلّمتي، لم أُكمله، سأكتبه اليوم»." },
-    { "es": "Encontré dinero en el patio → se lo doy a la maestra para que busque al dueño.", "en": "I found money in the playground → I give it to the teacher to find the owner.", "ar": "وجدتُ مالًا في الساحة ← أعطيه المعلّمة لتبحث عن صاحبه." }
+    {
+      "es": "Rompí un vaso sin querer → «Mamá, he roto el vaso, lo siento».",
+      "en": "I broke a glass by accident → \"Mum, I broke the glass, I'm sorry.\"",
+      "ar": "كسرتُ كأسًا دون قصد ← «أمّي، كسرتُ الكأس، آسف»."
+    },
+    {
+      "es": "No hice la tarea → «Maestra, no la terminé; la haré hoy».",
+      "en": "I didn't do my homework → \"Teacher, I didn't finish it; I'll do it today.\"",
+      "ar": "لم أكتب الواجب ← «يا معلّمتي، لم أُكمله، سأكتبه اليوم»."
+    },
+    {
+      "es": "Encontré dinero en el patio → se lo doy a la maestra para que busque al dueño.",
+      "en": "I found money in the playground → I give it to the teacher to find the owner.",
+      "ar": "وجدتُ مالًا في الساحة ← أعطيه المعلّمة لتبحث عن صاحبه."
+    }
   ],
   "activities": [
-    { "type": "choice",
-      "q": { "es": "¿Con quién nos manda Allah estar?", "en": "Who does Allah tell us to be with?", "ar": "مع مَن أمرنا الله أن نكون؟" },
-      "options": [ { "es": "Con los veraces", "en": "With the truthful", "ar": "مع الصادقين" }, { "es": "Con los que se burlan", "en": "With those who mock", "ar": "مع المستهزئين" }, { "es": "Con cualquiera", "en": "With anyone", "ar": "مع أيّ أحد" } ],
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Con quién nos manda Allah estar?",
+        "en": "Who does Allah tell us to be with?",
+        "ar": "مع مَن أمرنا الله أن نكون؟"
+      },
+      "options": [
+        {
+          "es": "Con los veraces",
+          "en": "With the truthful",
+          "ar": "مع الصادقين"
+        },
+        {
+          "es": "Con los que se burlan",
+          "en": "With those who mock",
+          "ar": "مع المستهزئين"
+        },
+        {
+          "es": "Con cualquiera",
+          "en": "With anyone",
+          "ar": "مع أيّ أحد"
+        }
+      ],
       "answer": 0,
-      "why": { "es": "Allah dice: «Temed a Allah y estad con los veraces» (9:119).", "en": "Allah says: \"Fear Allah and be with the truthful\" (9:119).", "ar": "قال تعالى: ﴿اتقوا الله وكونوا مع الصادقين﴾." },
-      "evidence": ["e1"] },
-    { "type": "choice",
-      "q": { "es": "Según el Profeta ﷺ, ¿adónde lleva la verdad?", "en": "According to the Prophet ﷺ, where does truthfulness lead?", "ar": "إلى أين يهدي الصدق كما قال النبي ﷺ؟" },
-      "options": [ { "es": "Al bien, y el bien al Paraíso", "en": "To goodness, and goodness to Paradise", "ar": "إلى البرّ، والبرّ إلى الجنة" }, { "es": "A tener problemas", "en": "To getting into trouble", "ar": "إلى المشاكل" }, { "es": "A ningún sitio", "en": "Nowhere", "ar": "إلى لا شيء" } ],
+      "why": {
+        "es": "Allah dice: «Temed a Allah y estad con los veraces» (9:119).",
+        "en": "Allah says: \"Fear Allah and be with the truthful\" (9:119).",
+        "ar": "قال تعالى: ﴿اتقوا الله وكونوا مع الصادقين﴾."
+      },
+      "evidence": [
+        "e1"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "Según el Profeta ﷺ, ¿adónde lleva la verdad?",
+        "en": "According to the Prophet ﷺ, where does truthfulness lead?",
+        "ar": "إلى أين يهدي الصدق كما قال النبي ﷺ؟"
+      },
+      "options": [
+        {
+          "es": "Al bien, y el bien al Paraíso",
+          "en": "To goodness, and goodness to Paradise",
+          "ar": "إلى البرّ، والبرّ إلى الجنة"
+        },
+        {
+          "es": "A tener problemas",
+          "en": "To getting into trouble",
+          "ar": "إلى المشاكل"
+        },
+        {
+          "es": "A ningún sitio",
+          "en": "Nowhere",
+          "ar": "إلى لا شيء"
+        }
+      ],
       "answer": 0,
-      "why": { "es": "El Profeta ﷺ dijo: «La verdad lleva al bien, y el bien lleva al Paraíso» (Muslim).", "en": "The Prophet ﷺ said: \"Truthfulness leads to goodness, and goodness leads to Paradise\" (Muslim).", "ar": "قال النبي ﷺ: «إن الصدق يهدي إلى البرّ، وإن البرّ يهدي إلى الجنة» (رواه مسلم)." },
-      "evidence": ["e2"] },
-    { "type": "choice",
-      "q": { "es": "¿Y adónde lleva la mentira?", "en": "And where does lying lead?", "ar": "وإلى أين يهدي الكذب؟" },
-      "options": [ { "es": "A la maldad, y la maldad al Fuego", "en": "To wickedness, and wickedness to the Fire", "ar": "إلى الفجور، والفجور إلى النار" }, { "es": "A ganar siempre", "en": "To always winning", "ar": "إلى الفوز دائمًا" }, { "es": "A tener más amigos", "en": "To having more friends", "ar": "إلى كثرة الأصدقاء" } ],
+      "why": {
+        "es": "El Profeta ﷺ dijo: «La verdad lleva al bien, y el bien lleva al Paraíso» (Muslim).",
+        "en": "The Prophet ﷺ said: \"Truthfulness leads to goodness, and goodness leads to Paradise\" (Muslim).",
+        "ar": "قال النبي ﷺ: «إن الصدق يهدي إلى البرّ، وإن البرّ يهدي إلى الجنة» (رواه مسلم)."
+      },
+      "evidence": [
+        "e2"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Y adónde lleva la mentira?",
+        "en": "And where does lying lead?",
+        "ar": "وإلى أين يهدي الكذب؟"
+      },
+      "options": [
+        {
+          "es": "A la maldad, y la maldad al Fuego",
+          "en": "To wickedness, and wickedness to the Fire",
+          "ar": "إلى الفجور، والفجور إلى النار"
+        },
+        {
+          "es": "A ganar siempre",
+          "en": "To always winning",
+          "ar": "إلى الفوز دائمًا"
+        },
+        {
+          "es": "A tener más amigos",
+          "en": "To having more friends",
+          "ar": "إلى كثرة الأصدقاء"
+        }
+      ],
       "answer": 0,
-      "why": { "es": "El Profeta ﷺ dijo: «La mentira lleva a la maldad, y la maldad lleva al Fuego» (Muslim).", "en": "The Prophet ﷺ said: \"Lying leads to wickedness, and wickedness leads to the Fire\" (Muslim).", "ar": "قال النبي ﷺ: «وإن الكذب يهدي إلى الفجور، وإن الفجور يهدي إلى النار» (رواه مسلم)." },
-      "evidence": ["e2"] },
-    { "type": "choice",
-      "q": { "es": "Rompiste un vaso sin querer y tu madre pregunta quién fue. ¿Qué haces?", "en": "You broke a glass by accident and your mother asks who did it. What do you do?", "ar": "كسرتَ كأسًا دون قصد، وسألت أمّك: مَن كسره؟ ماذا تفعل؟" },
-      "options": [ { "es": "Digo la verdad y pido perdón", "en": "I tell the truth and apologise", "ar": "أقول الحقّ وأعتذر" }, { "es": "Digo que fue el gato", "en": "I say the cat did it", "ar": "أقول: القطّة كسرته" }, { "es": "Me escondo", "en": "I hide", "ar": "أختبئ" } ],
+      "why": {
+        "es": "El Profeta ﷺ dijo: «La mentira lleva a la maldad, y la maldad lleva al Fuego» (Muslim).",
+        "en": "The Prophet ﷺ said: \"Lying leads to wickedness, and wickedness leads to the Fire\" (Muslim).",
+        "ar": "قال النبي ﷺ: «وإن الكذب يهدي إلى الفجور، وإن الفجور يهدي إلى النار» (رواه مسلم)."
+      },
+      "evidence": [
+        "e2"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "Rompiste un vaso sin querer y tu madre pregunta quién fue. ¿Qué haces?",
+        "en": "You broke a glass by accident and your mother asks who did it. What do you do?",
+        "ar": "كسرتَ كأسًا دون قصد، وسألت أمّك: مَن كسره؟ ماذا تفعل؟"
+      },
+      "options": [
+        {
+          "es": "Digo la verdad y pido perdón",
+          "en": "I tell the truth and apologise",
+          "ar": "أقول الحقّ وأعتذر"
+        },
+        {
+          "es": "Digo que fue el gato",
+          "en": "I say the cat did it",
+          "ar": "أقول: القطّة كسرته"
+        },
+        {
+          "es": "Me escondo",
+          "en": "I hide",
+          "ar": "أختبئ"
+        }
+      ],
       "answer": 0,
-      "why": { "es": "La verdad lleva al bien. Decirla con valentía y pedir perdón es lo que hace el veraz.", "en": "Truthfulness leads to goodness. Saying it bravely and apologising is what the truthful do.", "ar": "الصدق يهدي إلى البرّ، والصادق يقول الحقّ بشجاعة ويعتذر." },
-      "evidence": ["e2"] },
-    { "type": "choice",
-      "q": { "es": "Quien dice la verdad una y otra vez es escrito ante Allah como…", "en": "Whoever keeps telling the truth is written with Allah as…", "ar": "من يتحرّى الصدق يُكتب عند الله…" },
-      "options": [ { "es": "muy veraz (ṣiddīq)", "en": "very truthful (ṣiddīq)", "ar": "صدّيقًا" }, { "es": "aburrido", "en": "boring", "ar": "مملًّا" }, { "es": "nada especial", "en": "nothing special", "ar": "لا شيء مميّزًا" } ],
+      "why": {
+        "es": "La verdad lleva al bien. Decirla con valentía y pedir perdón es lo que hace el veraz.",
+        "en": "Truthfulness leads to goodness. Saying it bravely and apologising is what the truthful do.",
+        "ar": "الصدق يهدي إلى البرّ، والصادق يقول الحقّ بشجاعة ويعتذر."
+      },
+      "evidence": [
+        "e2"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "Quien dice la verdad una y otra vez es escrito ante Allah como…",
+        "en": "Whoever keeps telling the truth is written with Allah as…",
+        "ar": "من يتحرّى الصدق يُكتب عند الله…"
+      },
+      "options": [
+        {
+          "es": "muy veraz (ṣiddīq)",
+          "en": "very truthful (ṣiddīq)",
+          "ar": "صدّيقًا"
+        },
+        {
+          "es": "aburrido",
+          "en": "boring",
+          "ar": "مملًّا"
+        },
+        {
+          "es": "nada especial",
+          "en": "nothing special",
+          "ar": "لا شيء مميّزًا"
+        }
+      ],
       "answer": 0,
-      "why": { "es": "El Profeta ﷺ dijo: «El hombre dice la verdad hasta que es escrito como muy veraz» (Muslim).", "en": "The Prophet ﷺ said: \"A man keeps telling the truth until he is written as very truthful\" (Muslim).", "ar": "قال النبي ﷺ: «وإن الرجل ليصدق حتى يُكتب صدّيقًا» (رواه مسلم)." },
-      "evidence": ["e2"] }
+      "why": {
+        "es": "El Profeta ﷺ dijo: «El hombre dice la verdad hasta que es escrito como muy veraz» (Muslim).",
+        "en": "The Prophet ﷺ said: \"A man keeps telling the truth until he is written as very truthful\" (Muslim).",
+        "ar": "قال النبي ﷺ: «وإن الرجل ليصدق حتى يُكتب صدّيقًا» (رواه مسلم)."
+      },
+      "evidence": [
+        "e2"
+      ]
+    }
   ],
   "evidence": [
-    { "id": "e1", "claim": "Allah ordena temerle y estar con los veraces.",
-      "quran": { "surah": 9, "ayah": 119 },
-      "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَكُونُوا مَعَ الصَّادِقِينَ",
-      "translation": { "es": "«¡Oh, creyentes! Temed a Allah y estad con los veraces» (traducción del significado).", "en": "\"O you who believe, fear Allah and be with the truthful\" (translation of the meaning)." },
-      "source": { "book": "Tafsir Ibn Kathir (ed. Dar al-Kutub al-ʿIlmiyya), at-Tawba 9:119", "ref": "Sura at-Tawba, aleyas 118–119", "shamela": "https://shamela.ws/book/23604/1687" } },
-    { "id": "e2", "claim": "La verdad lleva al bien y al Paraíso; la mentira lleva a la maldad y al Fuego.",
-      "hadith": { "collection": "Sahih Muslim", "number": "2607", "grade": "sahih", "graded_by": "Muslim" },
-      "text": "إن الصدق يهدي إلى البر. وإن البر يهدي إلى الجنة. وإن الرجل ليصدق حتى يكتب صديقا. وإن الكذب يهدي إلى الفجور. وإن الفجور يهدي إلى النار. وإن الرجل ليكذب حتى يكتب كذابا",
-      "translation": { "es": "«La verdad lleva al bien, y el bien lleva al Paraíso; el hombre dice la verdad hasta que es escrito como muy veraz. La mentira lleva a la maldad, y la maldad lleva al Fuego; el hombre miente hasta que es escrito como gran mentiroso».", "en": "\"Truthfulness leads to goodness, and goodness leads to Paradise; a man keeps telling the truth until he is written as very truthful. Lying leads to wickedness, and wickedness leads to the Fire; a man keeps lying until he is written as a great liar.\"" },
-      "source": { "book": "Sahih Muslim (ed. Muhammad Fuʾād ʿAbd al-Bāqī), al-Birr wa-ṣ-Ṣila, bāb qubḥ al-kadhib", "ref": "n.º 2607", "shamela": "https://shamela.ws/book/1727/6572" } }
+    {
+      "id": "e1",
+      "claim": "Allah ordena temerle y estar con los veraces.",
+      "quran": {
+        "surah": 9,
+        "ayah": 119
+      },
+      "text": "يا أَيُّهَا الَّذِينَ آمَنُوا اِتَّقُوا اللهَ وَكُونُوا مَعَ الصّادِقِينَ",
+      "translation": {
+        "es": "«¡Oh, creyentes! Temed a Allah y estad con los veraces» (traducción del significado).",
+        "en": "\"O you who believe, fear Allah and be with the truthful\" (translation of the meaning)."
+      },
+      "source": {
+        "book": "Tafsir Ibn Kathir (ed. Dar al-Kutub al-ʿIlmiyya), at-Tawba 9:119",
+        "ref": "Sura at-Tawba, aleyas 118–119",
+        "shamela": "https://shamela.ws/book/23604/1687"
+      }
+    },
+    {
+      "id": "e2",
+      "claim": "La verdad lleva al bien y al Paraíso; la mentira lleva a la maldad y al Fuego.",
+      "hadith": {
+        "collection": "Sahih Muslim",
+        "number": "2607",
+        "grade": "sahih",
+        "graded_by": "Muslim"
+      },
+      "text": "أن الصدق يهدي إلى البر. وإن البر يهدي إلى الجنة. وإن الرجل ليصدق حتى يكتب صديقا. وإن الكذب يهدي إلى الفجور. وإن الفجور يهدي إلى النار. وإن الرجل ليكذب حتى يكتب كذابا",
+      "translation": {
+        "es": "«La verdad lleva al bien, y el bien lleva al Paraíso; el hombre dice la verdad hasta que es escrito como muy veraz. La mentira lleva a la maldad, y la maldad lleva al Fuego; el hombre miente hasta que es escrito como gran mentiroso».",
+        "en": "\"Truthfulness leads to goodness, and goodness leads to Paradise; a man keeps telling the truth until he is written as very truthful. Lying leads to wickedness, and wickedness leads to the Fire; a man keeps lying until he is written as a great liar.\""
+      },
+      "source": {
+        "book": "Sahih Muslim (ed. Muhammad Fuʾād ʿAbd al-Bāqī), al-Birr wa-ṣ-Ṣila, bāb qubḥ al-kadhib",
+        "ref": "n.º 2607",
+        "shamela": "https://shamela.ws/book/1727/6572"
+      }
+    }
   ],
-  "review": { "status": "in_review", "reviewer": "", "date": "" }
+  "review": {
+    "status": "in_review",
+    "reviewer": "",
+    "date": ""
+  }
 }

@@ -1,12 +1,34 @@
 {
   "id": "c1-1-01",
   "unit": "c1-1",
-  "ages": [7, 12],
-  "title": { "es": "Cómo tratamos el Corán", "en": "How we treat the Quran", "ar": "آدابنا مع القرآن" },
+  "ages": [
+    7,
+    12
+  ],
+  "title": {
+    "es": "Cómo tratamos el Corán",
+    "en": "How we treat the Quran",
+    "ar": "آدابنا مع القرآن"
+  },
   "objectives": {
-    "es": ["Pedir refugio en Allah antes de leer el Corán.", "Recitar despacio y con claridad.", "Escuchar en silencio cuando se recita el Corán.", "Saber que aprender y enseñar el Corán es de lo mejor, aunque cueste."],
-    "en": ["Seek refuge in Allah before reading the Quran.", "Recite slowly and clearly.", "Listen quietly when the Quran is recited.", "Know that learning and teaching the Quran is among the best deeds, even when it is hard."],
-    "ar": ["أن يستعيذ بالله قبل قراءة القرآن.", "أن يقرأ القرآن بتمهّل ووضوح.", "أن ينصت إذا قُرئ القرآن.", "أن يعرف أن تعلّم القرآن وتعليمه من خير الأعمال وإن كان صعبًا."]
+    "es": [
+      "Pedir refugio en Allah antes de leer el Corán.",
+      "Recitar despacio y con claridad.",
+      "Escuchar en silencio cuando se recita el Corán.",
+      "Saber que aprender y enseñar el Corán es de lo mejor, aunque cueste."
+    ],
+    "en": [
+      "Seek refuge in Allah before reading the Quran.",
+      "Recite slowly and clearly.",
+      "Listen quietly when the Quran is recited.",
+      "Know that learning and teaching the Quran is among the best deeds, even when it is hard."
+    ],
+    "ar": [
+      "أن يستعيذ بالله قبل قراءة القرآن.",
+      "أن يقرأ القرآن بتمهّل ووضوح.",
+      "أن ينصت إذا قُرئ القرآن.",
+      "أن يعرف أن تعلّم القرآن وتعليمه من خير الأعمال وإن كان صعبًا."
+    ]
   },
   "prerequisites": [],
   "explanation": {
@@ -15,10 +37,26 @@
     "ar": "القرآن كلام الله، وقد علّمنا الله كيف نتعامل معه.\n\nقبل القراءة نستعيذ بالله من الشيطان، قال تعالى: ﴿فإذا قرأت القرآن فاستعذ بالله من الشيطان الرجيم﴾، فنقول: أعوذ بالله من الشيطان الرجيم.\n\nونقرأ بتمهّل ووضوح لقوله تعالى: ﴿ورتّل القرآن ترتيلًا﴾، وإذا قرأ غيرنا أنصتنا لقوله تعالى: ﴿وإذا قُرئ القرآن فاستمعوا له وأنصتوا لعلكم ترحمون﴾.\n\nوقال النبي ﷺ: «خيركم من تعلّم القرآن وعلّمه». وإن صعبت عليك القراءة فلا تيأس، فالذي يقرأ القرآن ويتتعتع فيه وهو عليه شاقّ له أجران."
   },
   "examples": [
-    { "es": "1. Antes de empezar: «aʿūdhu billāhi mina sh-shayṭāni r-rajīm».", "en": "1. Before starting: \"aʿūdhu billāhi mina sh-shayṭāni r-rajīm\".", "ar": "١. قبل البدء: أعوذ بالله من الشيطان الرجيم." },
-    { "es": "2. Leer despacio, letra a letra, sin prisa.", "en": "2. Read slowly, letter by letter, without rushing.", "ar": "٢. القراءة بتمهّل، حرفًا حرفًا، دون عجلة." },
-    { "es": "3. Cuando otro recita: escuchar y guardar silencio.", "en": "3. When someone else recites: listen and stay quiet.", "ar": "٣. إذا قرأ غيرك: استمع وأنصت." },
-    { "es": "4. Aprender un poco cada día y enseñar lo que sabes.", "en": "4. Learn a little every day and teach what you know.", "ar": "٤. تعلّم قليلًا كل يوم، وعلّم ما تعرف." }
+    {
+      "es": "1. Antes de empezar: «aʿūdhu billāhi mina sh-shayṭāni r-rajīm».",
+      "en": "1. Before starting: \"aʿūdhu billāhi mina sh-shayṭāni r-rajīm\".",
+      "ar": "١. قبل البدء: أعوذ بالله من الشيطان الرجيم."
+    },
+    {
+      "es": "2. Leer despacio, letra a letra, sin prisa.",
+      "en": "2. Read slowly, letter by letter, without rushing.",
+      "ar": "٢. القراءة بتمهّل، حرفًا حرفًا، دون عجلة."
+    },
+    {
+      "es": "3. Cuando otro recita: escuchar y guardar silencio.",
+      "en": "3. When someone else recites: listen and stay quiet.",
+      "ar": "٣. إذا قرأ غيرك: استمع وأنصت."
+    },
+    {
+      "es": "4. Aprender un poco cada día y enseñar lo que sabes.",
+      "en": "4. Learn a little every day and teach what you know.",
+      "ar": "٤. تعلّم قليلًا كل يوم، وعلّم ما تعرف."
+    }
   ],
   "note": {
     "es": "Los sabios explican otros modales con el Corán (por ejemplo, sobre tocar el mushaf) con más detalle en los libros de fiqh. Esta lección enseña solo lo que dicen estas aleyas y estos hadices sahih.",
@@ -26,63 +64,276 @@
     "ar": "يذكر العلماء آدابًا أخرى مع القرآن (كمسّ المصحف) بتفصيل في كتب الفقه، وهذا الدرس يقتصر على ما في هذه الآيات والأحاديث الصحيحة."
   },
   "activities": [
-    { "type": "choice",
-      "q": { "es": "¿Qué decimos antes de empezar a leer el Corán?", "en": "What do we say before starting to read the Quran?", "ar": "ماذا نقول قبل أن نبدأ قراءة القرآن؟" },
-      "options": [ { "es": "Pedimos refugio en Allah del Shaytán", "en": "We seek refuge in Allah from Shaytan", "ar": "نستعيذ بالله من الشيطان الرجيم" }, { "es": "Nada", "en": "Nothing", "ar": "لا شيء" }, { "es": "«¡Vamos!»", "en": "\"Let's go!\"", "ar": "«هيّا»" } ],
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué decimos antes de empezar a leer el Corán?",
+        "en": "What do we say before starting to read the Quran?",
+        "ar": "ماذا نقول قبل أن نبدأ قراءة القرآن؟"
+      },
+      "options": [
+        {
+          "es": "Pedimos refugio en Allah del Shaytán",
+          "en": "We seek refuge in Allah from Shaytan",
+          "ar": "نستعيذ بالله من الشيطان الرجيم"
+        },
+        {
+          "es": "Nada",
+          "en": "Nothing",
+          "ar": "لا شيء"
+        },
+        {
+          "es": "«¡Vamos!»",
+          "en": "\"Let's go!\"",
+          "ar": "«هيّا»"
+        }
+      ],
       "answer": 0,
-      "why": { "es": "Allah dice: «Cuando recites el Corán, pide refugio en Allah del Shaytán maldito» (16:98).", "en": "Allah says: \"When you recite the Quran, seek refuge in Allah from the accursed Shaytan\" (16:98).", "ar": "قال تعالى: ﴿فإذا قرأت القرآن فاستعذ بالله من الشيطان الرجيم﴾." },
-      "evidence": ["e1"] },
-    { "type": "choice",
-      "q": { "es": "¿Cómo debemos recitar el Corán?", "en": "How should we recite the Quran?", "ar": "كيف نقرأ القرآن؟" },
-      "options": [ { "es": "Despacio y con claridad", "en": "Slowly and clearly", "ar": "بتمهّل ووضوح" }, { "es": "Lo más rápido posible", "en": "As fast as possible", "ar": "بأسرع ما يمكن" }, { "es": "Sin mirar las letras", "en": "Without looking at the letters", "ar": "دون النظر إلى الحروف" } ],
+      "why": {
+        "es": "Allah dice: «Cuando recites el Corán, pide refugio en Allah del Shaytán maldito» (16:98).",
+        "en": "Allah says: \"When you recite the Quran, seek refuge in Allah from the accursed Shaytan\" (16:98).",
+        "ar": "قال تعالى: ﴿فإذا قرأت القرآن فاستعذ بالله من الشيطان الرجيم﴾."
+      },
+      "evidence": [
+        "e1"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Cómo debemos recitar el Corán?",
+        "en": "How should we recite the Quran?",
+        "ar": "كيف نقرأ القرآن؟"
+      },
+      "options": [
+        {
+          "es": "Despacio y con claridad",
+          "en": "Slowly and clearly",
+          "ar": "بتمهّل ووضوح"
+        },
+        {
+          "es": "Lo más rápido posible",
+          "en": "As fast as possible",
+          "ar": "بأسرع ما يمكن"
+        },
+        {
+          "es": "Sin mirar las letras",
+          "en": "Without looking at the letters",
+          "ar": "دون النظر إلى الحروف"
+        }
+      ],
       "answer": 0,
-      "why": { "es": "Allah dice: «y recita el Corán pausadamente» (73:4).", "en": "Allah says: \"and recite the Quran with measured recitation\" (73:4).", "ar": "قال تعالى: ﴿ورتّل القرآن ترتيلًا﴾." },
-      "evidence": ["e2"] },
-    { "type": "choice",
-      "q": { "es": "Tu hermano recita el Corán en voz alta. ¿Qué haces?", "en": "Your brother is reciting the Quran aloud. What do you do?", "ar": "أخوك يقرأ القرآن بصوت مسموع، ماذا تفعل؟" },
-      "options": [ { "es": "Escucho en silencio", "en": "I listen quietly", "ar": "أستمع وأنصت" }, { "es": "Pongo música", "en": "I put on music", "ar": "أشغّل الموسيقى" }, { "es": "Hablo con mis amigos", "en": "I chat with my friends", "ar": "أتحدّث مع أصدقائي" } ],
+      "why": {
+        "es": "Allah dice: «y recita el Corán pausadamente» (73:4).",
+        "en": "Allah says: \"and recite the Quran with measured recitation\" (73:4).",
+        "ar": "قال تعالى: ﴿ورتّل القرآن ترتيلًا﴾."
+      },
+      "evidence": [
+        "e2"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "Tu hermano recita el Corán en voz alta. ¿Qué haces?",
+        "en": "Your brother is reciting the Quran aloud. What do you do?",
+        "ar": "أخوك يقرأ القرآن بصوت مسموع، ماذا تفعل؟"
+      },
+      "options": [
+        {
+          "es": "Escucho en silencio",
+          "en": "I listen quietly",
+          "ar": "أستمع وأنصت"
+        },
+        {
+          "es": "Pongo música",
+          "en": "I put on music",
+          "ar": "أشغّل الموسيقى"
+        },
+        {
+          "es": "Hablo con mis amigos",
+          "en": "I chat with my friends",
+          "ar": "أتحدّث مع أصدقائي"
+        }
+      ],
       "answer": 0,
-      "why": { "es": "Allah dice: «Cuando se recite el Corán, escuchadlo y guardad silencio, para que se os tenga misericordia» (7:204).", "en": "Allah says: \"When the Quran is recited, listen to it and be silent, so that you may receive mercy\" (7:204).", "ar": "قال تعالى: ﴿وإذا قُرئ القرآن فاستمعوا له وأنصتوا لعلكم ترحمون﴾." },
-      "evidence": ["e3"] },
-    { "type": "choice",
-      "q": { "es": "¿Quién es «el mejor de vosotros», según el Profeta ﷺ?", "en": "Who is \"the best of you\", according to the Prophet ﷺ?", "ar": "مَن «خيركم» كما قال النبي ﷺ؟" },
-      "options": [ { "es": "Quien aprende el Corán y lo enseña", "en": "The one who learns the Quran and teaches it", "ar": "من تعلّم القرآن وعلّمه" }, { "es": "Quien corre más rápido", "en": "The one who runs fastest", "ar": "أسرعهم جريًا" }, { "es": "Quien tiene más juguetes", "en": "The one with the most toys", "ar": "أكثرهم ألعابًا" } ],
+      "why": {
+        "es": "Allah dice: «Cuando se recite el Corán, escuchadlo y guardad silencio, para que se os tenga misericordia» (7:204).",
+        "en": "Allah says: \"When the Quran is recited, listen to it and be silent, so that you may receive mercy\" (7:204).",
+        "ar": "قال تعالى: ﴿وإذا قُرئ القرآن فاستمعوا له وأنصتوا لعلكم ترحمون﴾."
+      },
+      "evidence": [
+        "e3"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Quién es «el mejor de vosotros», según el Profeta ﷺ?",
+        "en": "Who is \"the best of you\", according to the Prophet ﷺ?",
+        "ar": "مَن «خيركم» كما قال النبي ﷺ؟"
+      },
+      "options": [
+        {
+          "es": "Quien aprende el Corán y lo enseña",
+          "en": "The one who learns the Quran and teaches it",
+          "ar": "من تعلّم القرآن وعلّمه"
+        },
+        {
+          "es": "Quien corre más rápido",
+          "en": "The one who runs fastest",
+          "ar": "أسرعهم جريًا"
+        },
+        {
+          "es": "Quien tiene más juguetes",
+          "en": "The one with the most toys",
+          "ar": "أكثرهم ألعابًا"
+        }
+      ],
       "answer": 0,
-      "why": { "es": "El Profeta ﷺ dijo: «El mejor de vosotros es quien aprende el Corán y lo enseña» (al-Bukhari).", "en": "The Prophet ﷺ said: \"The best of you is the one who learns the Quran and teaches it\" (al-Bukhari).", "ar": "قال النبي ﷺ: «خيركم من تعلّم القرآن وعلّمه» (رواه البخاري)." },
-      "evidence": ["e4"] },
-    { "type": "choice",
-      "q": { "es": "A Yusuf le cuesta mucho leer el Corán y se equivoca. ¿Qué le dices?", "en": "Yusuf finds reading the Quran very hard and makes mistakes. What do you tell him?", "ar": "يوسف يجد صعوبة في قراءة القرآن ويخطئ، ماذا تقول له؟" },
-      "options": [ { "es": "Sigue: tienes dos recompensas", "en": "Keep going: you get two rewards", "ar": "استمرّ، فلك أجران" }, { "es": "Déjalo, no sirve", "en": "Give up, it's no use", "ar": "اتركه، لا فائدة" }, { "es": "Lee solo cuando no te equivoques", "en": "Only read when you make no mistakes", "ar": "لا تقرأ إلا إذا لم تخطئ" } ],
+      "why": {
+        "es": "El Profeta ﷺ dijo: «El mejor de vosotros es quien aprende el Corán y lo enseña» (al-Bukhari).",
+        "en": "The Prophet ﷺ said: \"The best of you is the one who learns the Quran and teaches it\" (al-Bukhari).",
+        "ar": "قال النبي ﷺ: «خيركم من تعلّم القرآن وعلّمه» (رواه البخاري)."
+      },
+      "evidence": [
+        "e4"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "A Yusuf le cuesta mucho leer el Corán y se equivoca. ¿Qué le dices?",
+        "en": "Yusuf finds reading the Quran very hard and makes mistakes. What do you tell him?",
+        "ar": "يوسف يجد صعوبة في قراءة القرآن ويخطئ، ماذا تقول له؟"
+      },
+      "options": [
+        {
+          "es": "Sigue: tienes dos recompensas",
+          "en": "Keep going: you get two rewards",
+          "ar": "استمرّ، فلك أجران"
+        },
+        {
+          "es": "Déjalo, no sirve",
+          "en": "Give up, it's no use",
+          "ar": "اتركه، لا فائدة"
+        },
+        {
+          "es": "Lee solo cuando no te equivoques",
+          "en": "Only read when you make no mistakes",
+          "ar": "لا تقرأ إلا إذا لم تخطئ"
+        }
+      ],
       "answer": 0,
-      "why": { "es": "El Profeta ﷺ dijo que quien lee el Corán con dificultad, y le cuesta, tiene dos recompensas (Muslim).", "en": "The Prophet ﷺ said that whoever reads the Quran with difficulty, finding it hard, gets two rewards (Muslim).", "ar": "قال النبي ﷺ: «والذي يقرأ القرآن ويتتعتع فيه وهو عليه شاقّ له أجران» (رواه مسلم)." },
-      "evidence": ["e5"] }
+      "why": {
+        "es": "El Profeta ﷺ dijo que quien lee el Corán con dificultad, y le cuesta, tiene dos recompensas (Muslim).",
+        "en": "The Prophet ﷺ said that whoever reads the Quran with difficulty, finding it hard, gets two rewards (Muslim).",
+        "ar": "قال النبي ﷺ: «والذي يقرأ القرآن ويتتعتع فيه وهو عليه شاقّ له أجران» (رواه مسلم)."
+      },
+      "evidence": [
+        "e5"
+      ]
+    }
   ],
   "evidence": [
-    { "id": "e1", "claim": "Pedir refugio en Allah antes de recitar el Corán.",
-      "quran": { "surah": 16, "ayah": 98 },
-      "text": "فَإِذَا قَرَأْتَ الْقُرْآنَ فَاسْتَعِذْ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ",
-      "translation": { "es": "«Cuando recites el Corán, pide refugio en Allah del Shaytán maldito» (traducción del significado).", "en": "\"When you recite the Quran, seek refuge in Allah from the accursed Shaytan\" (translation of the meaning)." },
-      "source": { "book": "Tafsir Ibn Kathir (ed. Dar al-Kutub al-ʿIlmiyya), an-Naḥl 16:98", "ref": "Sura an-Naḥl, aleyas 98–100", "shamela": "https://shamela.ws/book/23604/2004" } },
-    { "id": "e2", "claim": "Recitar el Corán pausadamente.",
-      "quran": { "surah": 73, "ayah": 4 },
-      "text": "وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا",
-      "translation": { "es": "«y recita el Corán pausadamente» (traducción del significado).", "en": "\"and recite the Quran with measured recitation\" (translation of the meaning)." },
-      "source": { "book": "Tafsir Ibn Kathir (ed. Dar al-Kutub al-ʿIlmiyya), al-Muzzammil 73:4", "ref": "Sura al-Muzzammil, aleyas 1–9", "shamela": "https://shamela.ws/book/23604/3707" } },
-    { "id": "e3", "claim": "Escuchar en silencio cuando se recita el Corán.",
-      "quran": { "surah": 7, "ayah": 204 },
-      "text": "وَإِذَا قُرِئَ الْقُرْآنُ فَاسْتَمِعُوا لَهُ وَأَنصِتُوا لَعَلَّكُمْ تُرْحَمُونَ",
-      "translation": { "es": "«Cuando se recite el Corán, escuchadlo y guardad silencio, para que se os tenga misericordia» (traducción del significado).", "en": "\"When the Quran is recited, listen to it and be silent, so that you may receive mercy\" (translation of the meaning)." },
-      "source": { "book": "Tafsir Ibn Kathir (ed. Dar al-Kutub al-ʿIlmiyya), al-Aʿrāf 7:204", "ref": "Sura al-Aʿrāf, aleya 204", "shamela": "https://shamela.ws/book/23604/1485" } },
-    { "id": "e4", "claim": "El mejor es quien aprende el Corán y lo enseña.",
-      "hadith": { "collection": "Sahih al-Bukhari", "number": "4739 (ed. al-Bughā; 5027 en la numeración de Fatḥ al-Bārī)", "grade": "sahih", "graded_by": "al-Bukhari" },
+    {
+      "id": "e1",
+      "claim": "Pedir refugio en Allah antes de recitar el Corán.",
+      "quran": {
+        "surah": 16,
+        "ayah": 98
+      },
+      "text": "فَإِذا قَرَأْتَ الْقُرْآنَ فَاسْتَعِذْ بِاللهِ مِنَ الشَّيْطانِ الرَّجِيمِ",
+      "translation": {
+        "es": "«Cuando recites el Corán, pide refugio en Allah del Shaytán maldito» (traducción del significado).",
+        "en": "\"When you recite the Quran, seek refuge in Allah from the accursed Shaytan\" (translation of the meaning)."
+      },
+      "source": {
+        "book": "Tafsir Ibn Kathir (ed. Dar al-Kutub al-ʿIlmiyya), an-Naḥl 16:98",
+        "ref": "Sura an-Naḥl, aleyas 98–100",
+        "shamela": "https://shamela.ws/book/23604/2004"
+      }
+    },
+    {
+      "id": "e2",
+      "claim": "Recitar el Corán pausadamente.",
+      "quran": {
+        "surah": 73,
+        "ayah": 4
+      },
+      "text": "وَرَتِّلِ الْقُرْآنَ تَرْتِيلاً",
+      "translation": {
+        "es": "«y recita el Corán pausadamente» (traducción del significado).",
+        "en": "\"and recite the Quran with measured recitation\" (translation of the meaning)."
+      },
+      "source": {
+        "book": "Tafsir Ibn Kathir (ed. Dar al-Kutub al-ʿIlmiyya), al-Muzzammil 73:4",
+        "ref": "Sura al-Muzzammil, aleyas 1–9",
+        "shamela": "https://shamela.ws/book/23604/3707"
+      }
+    },
+    {
+      "id": "e3",
+      "claim": "Escuchar en silencio cuando se recita el Corán.",
+      "quran": {
+        "surah": 7,
+        "ayah": 204
+      },
+      "text": "وَإِذا قُرِئَ الْقُرْآنُ فَاسْتَمِعُوا لَهُ وَأَنْصِتُوا لَعَلَّكُمْ تُرْحَمُونَ",
+      "translation": {
+        "es": "«Cuando se recite el Corán, escuchadlo y guardad silencio, para que se os tenga misericordia» (traducción del significado).",
+        "en": "\"When the Quran is recited, listen to it and be silent, so that you may receive mercy\" (translation of the meaning)."
+      },
+      "source": {
+        "book": "Tafsir Ibn Kathir (ed. Dar al-Kutub al-ʿIlmiyya), al-Aʿrāf 7:204",
+        "ref": "Sura al-Aʿrāf, aleya 204",
+        "shamela": "https://shamela.ws/book/23604/1485"
+      }
+    },
+    {
+      "id": "e4",
+      "claim": "El mejor es quien aprende el Corán y lo enseña.",
+      "hadith": {
+        "collection": "Sahih al-Bukhari",
+        "number": "4739 (ed. al-Bughā)",
+        "grade": "sahih",
+        "graded_by": "al-Bukhari"
+      },
       "text": "خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ",
-      "translation": { "es": "«El mejor de vosotros es quien aprende el Corán y lo enseña».", "en": "\"The best of you is the one who learns the Quran and teaches it.\"" },
-      "source": { "book": "Sahih al-Bukhari (ed. Mustafa al-Bughā), Faḍāʾil al-Qurʾān", "ref": "n.º 4739", "shamela": "https://shamela.ws/book/735/7589" } },
-    { "id": "e5", "claim": "Quien lee el Corán con dificultad tiene dos recompensas.",
-      "hadith": { "collection": "Sahih Muslim", "number": "798", "grade": "sahih", "graded_by": "Muslim" },
+      "translation": {
+        "es": "«El mejor de vosotros es quien aprende el Corán y lo enseña».",
+        "en": "\"The best of you is the one who learns the Quran and teaches it.\""
+      },
+      "source": {
+        "book": "Sahih al-Bukhari (ed. Mustafa al-Bughā), Faḍāʾil al-Qurʾān",
+        "ref": "n.º 4739",
+        "shamela": "https://shamela.ws/book/735/7589"
+      }
+    },
+    {
+      "id": "e5",
+      "claim": "Quien lee el Corán con dificultad tiene dos recompensas.",
+      "hadith": {
+        "collection": "Sahih Muslim",
+        "number": "798",
+        "grade": "sahih",
+        "graded_by": "Muslim"
+      },
       "text": "الْمَاهِرُ بِالْقُرْآنِ مَعَ السَّفَرَةِ الْكِرَامِ الْبَرَرَةِ. وَالَّذِي يَقْرَأُ الْقُرْآنَ وَيَتَتَعْتَعُ فِيهِ، وَهُوَ عَلَيْهِ شَاقٌّ، لَهُ أجران",
-      "translation": { "es": "«Quien domina el Corán estará con los ángeles nobles y obedientes; y quien lee el Corán con dificultad, y le cuesta, tiene dos recompensas».", "en": "\"The one skilled in the Quran will be with the noble, righteous angels; and the one who reads the Quran with difficulty, finding it hard, has two rewards.\"" },
-      "source": { "book": "Sahih Muslim (ed. Muhammad Fuʾād ʿAbd al-Bāqī), Ṣalāt al-Musāfirīn", "ref": "n.º 798", "shamela": "https://shamela.ws/book/1727/1792" } }
+      "translation": {
+        "es": "«Quien domina el Corán estará con los ángeles nobles y obedientes; y quien lee el Corán con dificultad, y le cuesta, tiene dos recompensas».",
+        "en": "\"The one skilled in the Quran will be with the noble, righteous angels; and the one who reads the Quran with difficulty, finding it hard, has two rewards.\""
+      },
+      "source": {
+        "book": "Sahih Muslim (ed. Muhammad Fuʾād ʿAbd al-Bāqī), Ṣalāt al-Musāfirīn",
+        "ref": "n.º 798",
+        "shamela": "https://shamela.ws/book/1727/1792"
+      }
+    }
   ],
-  "review": { "status": "in_review", "reviewer": "", "date": "" }
+  "review": {
+    "status": "in_review",
+    "reviewer": "",
+    "date": ""
+  }
 }
