@@ -447,7 +447,10 @@
         "es": "Sukun, shaddah, tanwin y madd",
         "en": "Sukun, shaddah, tanwin and madd",
         "ar": "السكون والشدة والتنوين والمد"
-       }
+       },
+       "lessons": [
+        "b1-3-01"
+       ]
       },
       {
        "id": "b1-4",
@@ -666,7 +669,10 @@
         "es": "Intención y respeto",
         "en": "Intention and respect",
         "ar": "النية والاحترام"
-       }
+       },
+       "lessons": [
+        "c1-1-01"
+       ]
       }
      ],
      "activity": {
@@ -847,7 +853,10 @@
         "es": "Multiplicación y división",
         "en": "Multiplication and division",
         "ar": "الضرب والقسمة"
-       }
+       },
+       "lessons": [
+        "d1-3-01"
+       ]
       },
       {
        "id": "d1-4",
@@ -1099,7 +1108,10 @@
         "es": "Hablar con bondad, no mentir, pedir perdón y controlar el enfado",
         "en": "Speaking kindly, not lying, apologising and controlling anger",
         "ar": "الكلام الطيب وترك الكذب والاعتذار وكظم الغيظ"
-       }
+       },
+       "lessons": [
+        "e4-1-01"
+       ]
       }
      ],
      "activity": {

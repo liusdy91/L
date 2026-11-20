@@ -337,6 +337,9 @@ body.net-guest #setup .field:not(.keep), body.net-guest #setup .hint, body.net-g
 .lx-opts button{text-align:start;background:var(--night-3);border:2px solid transparent;border-radius:12px;padding:12px 14px;font:inherit;font-weight:700;color:inherit}
 .lx-opts button.ok{border-color:var(--teamA)} .lx-opts button.bad{border-color:#e06a5c}
 .lx-why{background:var(--night);border-radius:12px;padding:12px 14px}
+.lx-word{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--night);border-radius:12px;padding:8px 12px}
+.lx-word .lx-ar{font-family:var(--font-ar,serif);font-size:2rem;line-height:1.5}
+.lx-word button{padding:6px 12px;font-size:1.1rem}
 .learn-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .learn-top h2{margin:0;order:3;flex:1 0 100%;min-width:0;font-size:clamp(1.5rem,4vw,2.1rem)}
 .units{display:flex;flex-direction:column;gap:14px}
@@ -3473,10 +3476,20 @@ function renderLessonDoc(){
     L.explanation[lang].split("\n\n").forEach(par => doc.append(el("p", null, par)));
     if (L.examples && L.examples.length){
       doc.append(el("h4", null, t.lxSteps));
-      const ol = el("ul"); L.examples.forEach(x => ol.append(el("li", null, x[lang]))); ol.style.listStyle = "none"; ol.style.paddingInlineStart = "0"; doc.append(ol);
+      const ol = el("ul"); ol.style.listStyle = "none"; ol.style.paddingInlineStart = "0";
+      L.examples.forEach(x => {
+        const li = el("li");
+        if (x.arabic){
+          li.className = "lx-word";
+          const w = el("span", "lx-ar", x.arabic); w.lang = "ar"; w.dir = "rtl";
+          const say = el("button", "ghost", "🔊"); say.type = "button"; say.setAttribute("aria-label", x.arabic); say.addEventListener("click", () => listenAr(x.arabic));
+          li.append(say, w, el("span", "subj-note", x[lang]));
+        } else li.textContent = x[lang];
+        ol.append(li);
+      });
+      doc.append(ol);
     }
-    doc.append(el("h4", null, t.lxEvidence));
-    L.evidence.forEach(e => doc.append(evidenceCard(e, lang, t)));
+    if ((L.evidence || []).length){ doc.append(el("h4", null, t.lxEvidence)); L.evidence.forEach(e => doc.append(evidenceCard(e, lang, t))); }
     if (L.note) doc.append(el("p", "subj-note", L.note[lang]));
     const go = el("button", "next-btn", t.lxPractice); go.type = "button"; go.addEventListener("click", () => { LX = { L, step:"quiz", i:0, right:0, order: L.activities.map(() => null) }; renderLessonDoc(); });
     doc.append(go);
@@ -3495,8 +3508,8 @@ function renderLessonDoc(){
         const why = el("div", "lx-why");
         why.append(el("p", null, ok ? t.lxRight : t.lxWrong + " " + q.options[q.answer][lang]));
         why.append(el("p", null, t.lxWhy + " " + q.why[lang]));
-        const refs = q.evidence.map(id => L.evidence.find(e => e.id === id)).filter(Boolean).map(e => e.source.book + " — " + e.source.ref).join(" · ");
-        why.append(el("p", "ev-src", refs));
+        const refs = (q.evidence || []).map(id => L.evidence.find(e => e.id === id)).filter(Boolean).map(e => e.source.book + " — " + e.source.ref).join(" · ");
+        if (refs) why.append(el("p", "ev-src", refs));
         const nx = el("button", "next-btn", t.lxNext); nx.type = "button";
         nx.addEventListener("click", () => { LX.answered = false; LX.i++; if (LX.i >= L.activities.length) LX.step = "end"; renderLessonDoc(); });
         why.append(nx); doc.append(why); nx.focus();

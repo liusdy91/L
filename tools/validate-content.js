@@ -32,6 +32,7 @@ cur.areas.forEach(a => {
 
 // Lecciones (fase 4 en adelante)
 const LDIR = path.join(ROOT, "content/lessons");
+const AUDIO = JSON.parse(fs.readFileSync(path.join(ROOT, "assets/audio/ar/index.json"), "utf8"));
 const files = fs.existsSync(LDIR) ? fs.readdirSync(LDIR, { recursive:true }).filter(f => f.endsWith(".json")) : [];
 files.forEach(f => {
   const where = `lección ${f}`; let L;
@@ -44,6 +45,7 @@ files.forEach(f => {
   tri(L.explanation, `${where} explicación`);
   if (!L.review || !STATUS.includes(L.review.status)) err(`${where}: review.status no válido`);
   if (L.review && ["approved", "published"].includes(L.review.status) && (!L.review.reviewer || !L.review.date)) err(`${where}: aprobada sin revisor ni fecha`);
+  (L.examples || []).forEach((x, i) => { if (x.arabic && !AUDIO[x.arabic]) err(`${where} ejemplo ${i + 1}: «${x.arabic}» no tiene audio en assets/audio/ar/index.json`); });
   const ev = new Map((L.evidence || []).map(e => [e.id, e]));
   (L.activities || []).forEach((q, i) => {
     tri(q.q, `${where} actividad ${i + 1}`); tri(q.why, `${where} actividad ${i + 1} (por qué)`);
