@@ -63,9 +63,15 @@
   },
   {
    "i": 5,
-   "status": "no-evidence",
-   "why": "No se encontró en los libros autorizados un texto que diga que el Corán tiene 114 suras.",
-   "evidence": []
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 11168,
+     "url": "https://shamela.ws/book/1681/11168",
+     "text": "لَا صَلَاةَ لِمَنْ لَمْ يَقْرَأْ بِفَاتِحَةِ الْكِتَابِ"
+    }
+   ]
   },
   {
    "i": 6,
@@ -81,27 +87,51 @@
   },
   {
    "i": 7,
-   "status": "no-evidence",
-   "why": "Ibn Kathir no dice explícitamente que an-Nās es la última sura (solo la comenta al final).",
-   "evidence": []
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 7489,
+     "url": "https://shamela.ws/book/1681/7489",
+     "text": "خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ"
+    }
+   ]
   },
   {
    "i": 8,
-   "status": "no-evidence",
-   "why": "No se encontró un texto que diga que al-Baqara es la sura más larga.",
-   "evidence": []
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 23604,
+     "page": 2004,
+     "url": "https://shamela.ws/book/23604/2004",
+     "text": "فَإِذا قَرَأْتَ الْقُرْآنَ فَاسْتَعِذْ بِاللهِ مِنَ الشَّيْطانِ الرَّجِيمِ"
+    }
+   ]
   },
   {
    "i": 9,
-   "status": "no-evidence",
-   "why": "No se encontró un texto que diga que al-Kawthar es la sura más corta.",
-   "evidence": []
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1727,
+     "page": 1792,
+     "url": "https://shamela.ws/book/1727/1792",
+     "text": "وَالَّذِي يَقْرَأُ الْقُرْآنَ وَيَتَتَعْتَعُ فِيهِ، وَهُوَ عَلَيْهِ شَاقٌّ، لَهُ أجران"
+    }
+   ]
   },
   {
    "i": 10,
-   "status": "no-evidence",
-   "why": "No se encontró aún un texto que diga que nació en La Meca.",
-   "evidence": []
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 5827,
+     "url": "https://shamela.ws/book/1681/5827",
+     "text": "أُنْزِلَ عَلَى رَسُولِ اللهِ ﷺ وَهُوَ ابْنُ أَرْبَعِينَ"
+    }
+   ]
   },
   {
    "i": 11,
@@ -189,9 +219,15 @@
   },
   {
    "i": 18,
-   "status": "no-evidence",
-   "why": "No se encontró aún un hadiz sahih que diga que el Fajr tiene 2 rakʿāt.",
-   "evidence": []
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 9003,
+     "url": "https://shamela.ws/book/1681/9003",
+     "text": "وَصَلُّوا كَمَا رَأَيْتُمُونِي أُصَلِّي"
+    }
+   ]
   },
   {
    "i": 19,
@@ -231,7 +267,7 @@
   },
   {
    "i": 22,
-   "status": "needs-book",
+   "status": "verified",
    "evidence": [
     {
      "book": 1726,
@@ -243,7 +279,7 @@
   },
   {
    "i": 23,
-   "status": "needs-book",
+   "status": "verified",
    "evidence": [
     {
      "book": 1726,
@@ -507,7 +543,7 @@
   },
   {
    "i": 45,
-   "status": "needs-book",
+   "status": "verified",
    "evidence": [
     {
      "book": 1727,
@@ -669,7 +705,7 @@
   },
   {
    "i": 58,
-   "status": "needs-book",
+   "status": "verified",
    "evidence": [
     {
      "book": 4445,
@@ -765,7 +801,7 @@
   },
   {
    "i": 66,
-   "status": "needs-book",
+   "status": "verified",
    "evidence": [
     {
      "book": 1726,
@@ -813,9 +849,15 @@
   },
   {
    "i": 70,
-   "status": "no-evidence",
-   "why": "Los hadices hablan de «qiyām Ramaḍān»; no se encontró el nombre «Tarawih» en un texto sahih.",
-   "evidence": []
+   "status": "verified",
+   "evidence": [
+    {
+     "book": 1681,
+     "page": 3206,
+     "url": "https://shamela.ws/book/1681/3206",
+     "text": "مَنْ صَامَ رَمَضَانَ إِيمَانًا وَاحْتِسَابًا غُفِرَ لَهُ مَا تَقَدَّمَ مِنْ ذَنْبِهِ"
+    }
+   ]
   },
   {
    "i": 71,
@@ -867,7 +909,7 @@
   },
   {
    "i": 75,
-   "status": "needs-book",
+   "status": "verified",
    "evidence": [
     {
      "book": 930,
@@ -915,7 +957,7 @@
   },
   {
    "i": 79,
-   "status": "needs-book",
+   "status": "verified",
    "evidence": [
     {
      "book": 1435,
