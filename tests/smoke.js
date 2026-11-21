@@ -152,11 +152,35 @@ const skip = msg => Object.assign(new Error(msg), { skip:true });
     const p = await page();
     await p.click("#learnBtn"); await p.waitForTimeout(400);
     assert.ok(await p.$$eval(".unit", x => x.length) >= 6);
-    assert.ok(await p.$$eval(".lesson-btn", x => x.length) >= 29);
+    assert.ok(await p.$$eval(".lesson-btn", x => x.length) >= 43);
     await p.click(".units .unit:first-child .lesson-btn:first-child"); await p.waitForTimeout(400);
     assert.ok(await p.isVisible(".lx-show"), "la lección no abre");
     assert.deepStrictEqual(p.errs, []);
     await p.context().close();
+  });
+
+  await test("Tomo 1 de árabe: 22 lecciones; cada una se abre, se recorre y llega a los ejercicios", async () => {
+    const ctx = await browser.newContext({ viewport:{ width:1280, height:800 } });
+    // todas las lecciones anteriores hechas, para poder abrir cualquiera
+    await ctx.addInitScript(() => { localStorage.setItem("tdc-tut", "1");
+      const done = {}; ["a1","a2","a3","a4","a5","a6","a7","a8","h1","h2","h3","h4"].forEach(k => done[k] = 3);
+      for (let n = 1; n <= 22; n++) done["m" + n] = 3; localStorage.setItem("tdc-learn", JSON.stringify({ done })); });
+    const p = await ctx.newPage(); p.errs = []; p.on("pageerror", e => p.errs.push(e.message));
+    await p.goto(URL); await p.waitForTimeout(600);
+    await p.click("#learnBtn"); await p.waitForTimeout(300);
+    const ui = await p.$$eval("#learnBody .unit h3", hs => hs.findIndex(h => /Medina/.test(h.textContent)));
+    const unit = p.locator("#learnBody .unit").nth(ui);
+    assert.strictEqual(await unit.locator(".lesson-btn").count(), 22, "el Tomo 1 no tiene 22 lecciones");
+    for (let k = 8; k < 22; k++){
+      await unit.locator(".lesson-btn").nth(k).click(); await p.waitForTimeout(150);
+      for (let s = 0; s < 30 && !(await p.locator(".lx-prompt").count()); s++){
+        await p.locator(".lx-nav button").last().click(); await p.waitForTimeout(60);
+      }
+      assert.ok(await p.locator(".lx-prompt").count(), `lección ${k + 1}: no llega a los ejercicios`);
+      await p.click("#learnBack"); await p.waitForTimeout(150);
+    }
+    assert.deepStrictEqual(p.errs, []);
+    await ctx.close();
   });
 
   await test("Materias: 5 áreas, módulos con estado y la práctica abre con las categorías del módulo", async () => {
