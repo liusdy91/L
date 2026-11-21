@@ -1,9 +1,65 @@
 {
-  "note": "Fuentes autorizadas para el contenido religioso. Regla de la propietaria (20-nov-2026): solo Ahlus-Sunnah wal-Jamā'ah según el manhaj de los Salaf; nada de fuentes chiíes, sufíes ni de otras sectas. Una lección solo puede enlazar libros de esta lista. Para añadir un libro: comprobar autor y edición, y que lo apruebe la propietaria.",
+  "note": "Fuentes autorizadas para el contenido religioso. Regla de la propietaria (20-nov-2026): solo Ahlus-Sunnah wal-Jamā'ah según el manhaj de los Salaf; nada de fuentes chiíes, sufíes ni de otras sectas. Una lección solo puede enlazar libros de esta lista. Para añadir un libro: comprobar autor y edición, y que lo apruebe la propietaria. Ampliada el 21-nov-2026 con Abu Dawud y at-Tirmidhi (con el juicio de al-Albani) y dos obras de Ibn Kathir; se acepta el juicio «hasan sahih» de al-Albani.",
   "books": [
-    { "shamela": 735, "title": "صحيح البخاري", "edition": "ت. مصطفى البغا", "author": "الإمام محمد بن إسماعيل البخاري (ت. 256 هـ)", "kind": "hadith" },
-    { "shamela": 1681, "title": "صحيح البخاري", "edition": "الطبعة السلطانية", "author": "الإمام محمد بن إسماعيل البخاري (ت. 256 هـ)", "kind": "hadith" },
-    { "shamela": 1727, "title": "صحيح مسلم", "edition": "ت. محمد فؤاد عبد الباقي", "author": "الإمام مسلم بن الحجاج (ت. 261 هـ)", "kind": "hadith" },
-    { "shamela": 23604, "title": "تفسير القرآن العظيم (تفسير ابن كثير)", "edition": "دار الكتب العلمية", "author": "الحافظ إسماعيل بن عمر بن كثير (ت. 774 هـ)", "kind": "tafsir" }
+    {
+      "shamela": 735,
+      "title": "صحيح البخاري",
+      "edition": "ت. مصطفى البغا",
+      "author": "الإمام محمد بن إسماعيل البخاري (ت. 256 هـ)",
+      "kind": "hadith"
+    },
+    {
+      "shamela": 1681,
+      "title": "صحيح البخاري",
+      "edition": "الطبعة السلطانية",
+      "author": "الإمام محمد بن إسماعيل البخاري (ت. 256 هـ)",
+      "kind": "hadith"
+    },
+    {
+      "shamela": 1727,
+      "title": "صحيح مسلم",
+      "edition": "ت. محمد فؤاد عبد الباقي",
+      "author": "الإمام مسلم بن الحجاج (ت. 261 هـ)",
+      "kind": "hadith"
+    },
+    {
+      "shamela": 23604,
+      "title": "تفسير القرآن العظيم (تفسير ابن كثير)",
+      "edition": "دار الكتب العلمية",
+      "author": "الحافظ إسماعيل بن عمر بن كثير (ت. 774 هـ)",
+      "kind": "tafsir"
+    },
+    {
+      "shamela": 1726,
+      "title": "سنن أبي داود",
+      "edition": "ت. محمد محيي الدين عبد الحميد، مع حكم الألباني",
+      "author": "الإمام أبو داود السجستاني (ت. 275 هـ)؛ الحكم: الشيخ محمد ناصر الدين الألباني",
+      "kind": "hadith",
+      "approved": "2026-11-21"
+    },
+    {
+      "shamela": 1435,
+      "title": "سنن الترمذي",
+      "edition": "ت. أحمد شاكر وآخرين، مع حكم الألباني",
+      "author": "الإمام أبو عيسى الترمذي (ت. 279 هـ)؛ الحكم: الشيخ محمد ناصر الدين الألباني",
+      "kind": "hadith",
+      "approved": "2026-11-21"
+    },
+    {
+      "shamela": 930,
+      "title": "السيرة النبوية من البداية والنهاية",
+      "edition": "ت. مصطفى عبد الواحد",
+      "author": "الحافظ إسماعيل بن كثير (ت. 774 هـ)",
+      "kind": "sira",
+      "approved": "2026-11-21"
+    },
+    {
+      "shamela": 4445,
+      "title": "البداية والنهاية",
+      "edition": "ت. عبد الله بن عبد المحسن التركي",
+      "author": "الحافظ إسماعيل بن كثير (ت. 774 هـ)",
+      "kind": "history",
+      "approved": "2026-11-21"
+    }
   ]
 }
