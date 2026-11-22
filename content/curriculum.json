@@ -567,19 +567,20 @@
       {
        "id": "b3-1",
        "t": {
-        "es": "Tomo 1: demostrativos, artículo, preposiciones, iḍāfa y pronombres",
-        "en": "Book 1: demonstratives, article, prepositions, iḍāfa and pronouns",
-        "ar": "الجزء الأول: أسماء الإشارة وأل وحروف الجر والإضافة والضمائر"
+        "es": "Tomo 1 (22 lecciones): demostrativos, artículo, preposiciones, iḍāfa, pronombres, adjetivo y pasado",
+        "en": "Book 1 (22 lessons): demonstratives, article, prepositions, iḍāfa, pronouns, adjectives and the past",
+        "ar": "الجزء الأول (٢٢ درسًا): أسماء الإشارة وأل وحروف الجر والإضافة والضمائر والنعت والماضي"
        },
        "status": "available"
       },
       {
        "id": "b3-2",
        "t": {
-        "es": "Tomo 2",
-        "en": "Book 2",
-        "ar": "الجزء الثاني"
-       }
+        "es": "Tomo 2: presente, futuro, negación, órdenes, dual, números, كَانَ، لَيْسَ، إِنَّ y comparativos",
+        "en": "Book 2: present, future, negation, orders, dual, numbers, كَانَ، لَيْسَ، إِنَّ and comparatives",
+        "ar": "الجزء الثاني: المضارع والمستقبل والنفي والأمر والمثنى والعدد وكان وليس وإن والتفضيل"
+       },
+       "status": "available"
       },
       {
        "id": "b3-3",
