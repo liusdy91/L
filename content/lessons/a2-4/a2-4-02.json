@@ -1,0 +1,430 @@
+{
+  "id": "a2-4-02",
+  "unit": "a2-4",
+  "ages": [
+    7,
+    10
+  ],
+  "title": {
+    "es": "Cómo rezar paso a paso",
+    "en": "How to pray step by step",
+    "ar": "كيف نصلّي خطوة بخطوة"
+  },
+  "objectives": {
+    "es": [
+      "Saber que rezamos como rezaba el Profeta ﷺ.",
+      "Ordenar los pasos de una rakʿa: takbīr, recitación, rukūʿ, levantarse, suyūd, sentarse, suyūd.",
+      "Saber que no hay oración sin la Fātiḥa.",
+      "Saber que la oración empieza con el takbīr y termina con el taslīm."
+    ],
+    "en": [
+      "Know that we pray as the Prophet ﷺ prayed.",
+      "Put the steps of a rakʿa in order: takbīr, recitation, rukūʿ, rising, sujūd, sitting, sujūd.",
+      "Know that there is no prayer without al-Fātiḥa.",
+      "Know that prayer begins with the takbīr and ends with the taslīm."
+    ],
+    "ar": [
+      "أن يعرف أننا نصلّي كما صلّى النبي ﷺ.",
+      "أن يرتّب أركان الركعة: التكبير، القراءة، الركوع، الرفع، السجود، الجلوس، السجود.",
+      "أن يعرف أنه لا صلاة لمن لم يقرأ بالفاتحة.",
+      "أن يعرف أن الصلاة تُفتتح بالتكبير وتُختم بالتسليم."
+    ]
+  },
+  "prerequisites": [
+    "a2-2-01",
+    "a2-4-01"
+  ],
+  "explanation": {
+    "es": "El Profeta ﷺ dijo: «Rezad como me habéis visto rezar». Por eso aprendemos la oración de sus hadices.\n\nUn hombre rezó deprisa y el Profeta ﷺ le dijo tres veces: «Vuelve y reza, porque no has rezado». Luego le enseñó: cuando te levantes para rezar di el takbīr (Allāhu akbar), recita lo que puedas del Corán, haz el rukūʿ hasta quedarte tranquilo, levántate hasta quedar recto de pie, haz el suyūd hasta quedarte tranquilo, siéntate hasta quedarte tranquilo y haz otra vez el suyūd. Y haz eso en toda tu oración.\n\nY dijo ﷺ: «No hay oración para quien no recita la Fātiḥa». ʿĀʾisha contó que el Profeta ﷺ empezaba la oración con el takbīr y la recitación de «al-ḥamdu lillāhi rabbi l-ʿālamīn», y la terminaba con el taslīm (as-salāmu ʿalaykum).",
+    "en": "The Prophet ﷺ said: \"Pray as you have seen me pray.\" That is why we learn prayer from his hadiths.\n\nA man prayed in a hurry and the Prophet ﷺ told him three times: \"Go back and pray, for you have not prayed.\" Then he taught him: when you stand for prayer say the takbīr (Allāhu akbar), recite what you can of the Quran, bow in rukūʿ until you are at rest, rise until you stand straight, prostrate in sujūd until you are at rest, sit until you are at rest, then prostrate again. And do that in all your prayer.\n\nAnd he ﷺ said: \"There is no prayer for whoever does not recite al-Fātiḥa.\" ʿĀʾisha said the Prophet ﷺ began the prayer with the takbīr and the recitation of \"al-ḥamdu lillāhi rabbi l-ʿālamīn\", and ended it with the taslīm (as-salāmu ʿalaykum).",
+    "ar": "قال النبي ﷺ: «صلّوا كما رأيتموني أصلّي»، ولذلك نتعلّم الصلاة من أحاديثه.\n\nصلّى رجل مستعجلًا فقال له النبي ﷺ ثلاثًا: «ارجع فصلِّ فإنك لم تصلِّ»، ثم علّمه: إذا قمت إلى الصلاة فكبّر، ثم اقرأ ما تيسّر معك من القرآن، ثم اركع حتى تطمئن راكعًا، ثم ارفع حتى تعتدل قائمًا، ثم اسجد حتى تطمئن ساجدًا، ثم ارفع حتى تطمئن جالسًا، ثم اسجد حتى تطمئن ساجدًا، ثم افعل ذلك في صلاتك كلها.\n\nوقال ﷺ: «لا صلاة لمن لم يقرأ بفاتحة الكتاب». وقالت عائشة رضي الله عنها: كان رسول الله ﷺ يستفتح الصلاة بالتكبير، والقراءة بالحمد لله رب العالمين، وكان يختم الصلاة بالتسليم."
+  },
+  "examples": [
+    {
+      "es": "1. Takbīr: «Allāhu akbar».",
+      "en": "1. Takbīr: \"Allāhu akbar\".",
+      "ar": "١. التكبير: «الله أكبر»."
+    },
+    {
+      "es": "2. Recitar la Fātiḥa y lo que puedas del Corán.",
+      "en": "2. Recite al-Fātiḥa and what you can of the Quran.",
+      "ar": "٢. قراءة الفاتحة وما تيسّر من القرآن."
+    },
+    {
+      "es": "3. Rukūʿ (inclinarse), tranquilo.",
+      "en": "3. Rukūʿ (bowing), at rest.",
+      "ar": "٣. الركوع مع الطمأنينة."
+    },
+    {
+      "es": "4. Levantarse hasta quedar recto.",
+      "en": "4. Rise until standing straight.",
+      "ar": "٤. الرفع حتى الاعتدال قائمًا."
+    },
+    {
+      "es": "5. Suyūd (postrarse), tranquilo.",
+      "en": "5. Sujūd (prostration), at rest.",
+      "ar": "٥. السجود مع الطمأنينة."
+    },
+    {
+      "es": "6. Sentarse, tranquilo.",
+      "en": "6. Sit, at rest.",
+      "ar": "٦. الجلوس مع الطمأنينة."
+    },
+    {
+      "es": "7. Segundo suyūd. Así cada rakʿa; al final, el taslīm.",
+      "en": "7. Second sujūd. So in every rakʿa; at the end, the taslīm.",
+      "ar": "٧. السجدة الثانية، وهكذا في كل ركعة، ثم التسليم في آخر الصلاة."
+    }
+  ],
+  "note": {
+    "es": "Los sabios explican en los libros de fiqh más detalles de la oración (lo que se dice en cada posición, el tashahhud, etc.). Esta lección enseña solo lo que dicen estos hadices sahih.",
+    "en": "Scholars explain more details of prayer in the books of fiqh (what is said in each position, the tashahhud, etc.). This lesson teaches only what these sahih hadiths say.",
+    "ar": "يشرح العلماء في كتب الفقه تفاصيل أكثر للصلاة كالأذكار والتشهد، وهذا الدرس يقتصر على ما في هذه الأحاديث الصحيحة."
+  },
+  "activities": [
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Cómo debemos rezar?",
+        "en": "How should we pray?",
+        "ar": "كيف نصلّي؟"
+      },
+      "options": [
+        {
+          "es": "Como rezaba el Profeta ﷺ",
+          "en": "As the Prophet ﷺ prayed",
+          "ar": "كما صلّى النبي ﷺ"
+        },
+        {
+          "es": "Como cada uno quiera",
+          "en": "However each person likes",
+          "ar": "كما يحبّ كل واحد"
+        },
+        {
+          "es": "Muy deprisa",
+          "en": "Very fast",
+          "ar": "بسرعة كبيرة"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "El Profeta ﷺ dijo: «Rezad como me habéis visto rezar».",
+        "en": "The Prophet ﷺ said: \"Pray as you have seen me pray.\"",
+        "ar": "قال النبي ﷺ: «صلّوا كما رأيتموني أصلّي»."
+      },
+      "evidence": [
+        "e1"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Con qué empieza la oración?",
+        "en": "What does prayer begin with?",
+        "ar": "بمَ تبدأ الصلاة؟"
+      },
+      "options": [
+        {
+          "es": "Con el takbīr: «Allāhu akbar»",
+          "en": "With the takbīr: \"Allāhu akbar\"",
+          "ar": "بالتكبير: «الله أكبر»"
+        },
+        {
+          "es": "Con el taslīm",
+          "en": "With the taslīm",
+          "ar": "بالتسليم"
+        },
+        {
+          "es": "Con el suyūd",
+          "en": "With sujūd",
+          "ar": "بالسجود"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«Cuando te levantes para rezar, di el takbīr», y ʿĀʾisha dijo que empezaba la oración con el takbīr.",
+        "en": "\"When you stand for prayer, say the takbīr\", and ʿĀʾisha said he began the prayer with the takbīr.",
+        "ar": "«إذا قمت إلى الصلاة فكبّر»، و«كان يستفتح الصلاة بالتكبير»."
+      },
+      "evidence": [
+        "e2",
+        "e4"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué sura es obligatorio recitar en la oración?",
+        "en": "Which surah must be recited in prayer?",
+        "ar": "ما السورة التي لا تصحّ الصلاة بدونها؟"
+      },
+      "options": [
+        {
+          "es": "La Fātiḥa",
+          "en": "Al-Fātiḥa",
+          "ar": "الفاتحة"
+        },
+        {
+          "es": "Ninguna",
+          "en": "None",
+          "ar": "لا شيء"
+        },
+        {
+          "es": "Solo la sura al-Ikhlāṣ",
+          "en": "Only Surat al-Ikhlāṣ",
+          "ar": "الإخلاص فقط"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«No hay oración para quien no recita la Fātiḥa».",
+        "en": "\"There is no prayer for whoever does not recite al-Fātiḥa.\"",
+        "ar": "«لا صلاة لمن لم يقرأ بفاتحة الكتاب»."
+      },
+      "evidence": [
+        "e3"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué viene después del rukūʿ?",
+        "en": "What comes after rukūʿ?",
+        "ar": "ماذا بعد الركوع؟"
+      },
+      "options": [
+        {
+          "es": "Levantarse hasta quedar recto de pie",
+          "en": "Rising until standing straight",
+          "ar": "الرفع حتى الاعتدال قائمًا"
+        },
+        {
+          "es": "El taslīm",
+          "en": "The taslīm",
+          "ar": "التسليم"
+        },
+        {
+          "es": "Sentarse",
+          "en": "Sitting",
+          "ar": "الجلوس"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«Luego levántate hasta quedar recto de pie, luego haz el suyūd».",
+        "en": "\"Then rise until you stand straight, then prostrate.\"",
+        "ar": "«ثم ارفع حتى تعتدل قائمًا، ثم اسجد»."
+      },
+      "evidence": [
+        "e2"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Cuántos suyūd hay en cada rakʿa?",
+        "en": "How many sujūd are there in each rakʿa?",
+        "ar": "كم سجدة في كل ركعة؟"
+      },
+      "options": [
+        {
+          "es": "Dos",
+          "en": "Two",
+          "ar": "سجدتان"
+        },
+        {
+          "es": "Uno",
+          "en": "One",
+          "ar": "سجدة واحدة"
+        },
+        {
+          "es": "Cuatro",
+          "en": "Four",
+          "ar": "أربع"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "El Profeta ﷺ enseñó: suyūd, sentarse y otra vez suyūd, «y haz eso en toda tu oración».",
+        "en": "The Prophet ﷺ taught: sujūd, sitting, then sujūd again, \"and do that in all your prayer\".",
+        "ar": "«ثم اسجد... ثم ارفع حتى تطمئن جالسًا، ثم اسجد... ثم افعل ذلك في صلاتك كلها»."
+      },
+      "evidence": [
+        "e2"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Por qué el Profeta ﷺ le dijo al hombre «vuelve y reza»?",
+        "en": "Why did the Prophet ﷺ tell the man \"go back and pray\"?",
+        "ar": "لماذا قال النبي ﷺ للرجل: «ارجع فصلّ»؟"
+      },
+      "options": [
+        {
+          "es": "Porque rezó deprisa, sin estar tranquilo",
+          "en": "Because he prayed in a hurry, without being at rest",
+          "ar": "لأنه لم يطمئن في صلاته"
+        },
+        {
+          "es": "Porque llegó tarde",
+          "en": "Because he arrived late",
+          "ar": "لأنه تأخّر"
+        },
+        {
+          "es": "Porque rezó en voz baja",
+          "en": "Because he prayed quietly",
+          "ar": "لأنه صلّى بصوت منخفض"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "El Profeta ﷺ le enseñó a hacer cada posición «hasta quedarte tranquilo».",
+        "en": "The Prophet ﷺ taught him to do each position \"until you are at rest\".",
+        "ar": "علّمه النبي ﷺ أن يطمئن في كل ركن: «حتى تطمئن راكعًا»."
+      },
+      "evidence": [
+        "e2"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Con qué termina la oración?",
+        "en": "What does prayer end with?",
+        "ar": "بمَ تُختم الصلاة؟"
+      },
+      "options": [
+        {
+          "es": "Con el taslīm: «as-salāmu ʿalaykum»",
+          "en": "With the taslīm: \"as-salāmu ʿalaykum\"",
+          "ar": "بالتسليم"
+        },
+        {
+          "es": "Con el takbīr",
+          "en": "With the takbīr",
+          "ar": "بالتكبير"
+        },
+        {
+          "es": "Con el rukūʿ",
+          "en": "With rukūʿ",
+          "ar": "بالركوع"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "ʿĀʾisha dijo: «Y terminaba la oración con el taslīm».",
+        "en": "ʿĀʾisha said: \"And he ended the prayer with the taslīm.\"",
+        "ar": "قالت عائشة: «وكان يختم الصلاة بالتسليم»."
+      },
+      "evidence": [
+        "e5"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "claim": "Debemos rezar como rezaba el Profeta ﷺ.",
+      "hadith": {
+        "collection": "Sahih al-Bukhari",
+        "number": "6008 (también 631)",
+        "grade": "sahih",
+        "graded_by": "al-Bukhari"
+      },
+      "text": "وَصَلُّوا كَمَا رَأَيْتُمُونِي أُصَلِّي",
+      "translation": {
+        "es": "«Y rezad como me habéis visto rezar».",
+        "en": "\"And pray as you have seen me pray.\""
+      },
+      "source": {
+        "book": "Sahih al-Bukhari (ed. Sultāniyya), al-Adab",
+        "ref": "n.º 6008",
+        "shamela": "https://shamela.ws/book/1681/9003"
+      }
+    },
+    {
+      "id": "e2",
+      "claim": "El Profeta ﷺ enseñó los pasos de la oración: takbīr, recitación, rukūʿ, levantarse, suyūd, sentarse y suyūd, todo con calma.",
+      "hadith": {
+        "collection": "Sahih al-Bukhari",
+        "number": "793 (también 757; Muslim 397)",
+        "grade": "sahih",
+        "graded_by": "al-Bukhari y Muslim"
+      },
+      "text": "إِذَا قُمْتَ إِلَى الصَّلَاةِ فَكَبِّرْ، ثُمَّ اقْرَأْ مَا تَيَسَّرَ مَعَكَ مِنَ الْقُرْآنِ، ثُمَّ ارْكَعْ حَتَّى تَطْمَئِنَّ رَاكِعًا، ثُمَّ ارْفَعْ حَتَّى تَعْتَدِلَ قَائِمًا، ثُمَّ اسْجُدْ حَتَّى تَطْمَئِنَّ سَاجِدًا، ثُمَّ ارْفَعْ حَتَّى تَطْمَئِنَّ جَالِسًا، ثُمَّ اسْجُدْ حَتَّى تَطْمَئِنَّ سَاجِدًا، ثُمَّ افْعَلْ ذَلِكَ فِي صَلَاتِكَ كُلِّهَا",
+      "translation": {
+        "es": "«Cuando te levantes para rezar, di el takbīr; luego recita lo que te resulte fácil del Corán; luego haz el rukūʿ hasta quedarte tranquilo; luego levántate hasta quedar recto de pie; luego haz el suyūd hasta quedarte tranquilo; luego levántate hasta quedarte tranquilo sentado; luego haz el suyūd hasta quedarte tranquilo. Y haz eso en toda tu oración».",
+        "en": "\"When you stand for prayer, say the takbīr; then recite what is easy for you of the Quran; then bow until you are at rest bowing; then rise until you stand straight; then prostrate until you are at rest prostrating; then rise until you are at rest sitting; then prostrate until you are at rest prostrating. Then do that in all your prayer.\""
+      },
+      "source": {
+        "book": "Sahih al-Bukhari (ed. Sultāniyya), al-Adhān",
+        "ref": "n.º 793",
+        "shamela": "https://shamela.ws/book/1681/1303"
+      }
+    },
+    {
+      "id": "e3",
+      "claim": "No hay oración sin la Fātiḥa.",
+      "hadith": {
+        "collection": "Sahih al-Bukhari",
+        "number": "756 (también Muslim 394)",
+        "grade": "sahih",
+        "graded_by": "al-Bukhari y Muslim"
+      },
+      "text": "لَا صَلَاةَ لِمَنْ لَمْ يَقْرَأْ بِفَاتِحَةِ الْكِتَابِ",
+      "translation": {
+        "es": "«No hay oración para quien no recita la Fātiḥa del Libro».",
+        "en": "\"There is no prayer for whoever does not recite the Opening of the Book.\""
+      },
+      "source": {
+        "book": "Sahih al-Bukhari (ed. Sultāniyya), al-Adhān",
+        "ref": "n.º 756",
+        "shamela": "https://shamela.ws/book/1681/1241"
+      }
+    },
+    {
+      "id": "e4",
+      "claim": "El Profeta ﷺ empezaba la oración con el takbīr y la recitación de al-ḥamdu lillāhi rabbi l-ʿālamīn.",
+      "hadith": {
+        "collection": "Sahih Muslim",
+        "number": "498",
+        "grade": "sahih",
+        "graded_by": "Muslim"
+      },
+      "text": "يَسْتَفْتِحُ الصَّلَاةَ، بِالتَّكْبِيرِ. وَالْقِرَاءَةَ، بالحمد لِلَّهِ رَبِّ الْعَالَمِينَ",
+      "translation": {
+        "es": "«Empezaba la oración con el takbīr, y la recitación con al-ḥamdu lillāhi rabbi l-ʿālamīn».",
+        "en": "\"He would begin the prayer with the takbīr, and the recitation with al-ḥamdu lillāhi rabbi l-ʿālamīn.\""
+      },
+      "source": {
+        "book": "Sahih Muslim (ed. Muhammad Fuʾād ʿAbd al-Bāqī), al-Ṣalāt",
+        "ref": "n.º 498",
+        "shamela": "https://shamela.ws/book/1727/1057"
+      }
+    },
+    {
+      "id": "e5",
+      "claim": "El Profeta ﷺ terminaba la oración con el taslīm.",
+      "hadith": {
+        "collection": "Sahih Muslim",
+        "number": "498",
+        "grade": "sahih",
+        "graded_by": "Muslim"
+      },
+      "text": "وَكَانَ يَخْتِمُ الصَّلَاةَ بِالتَّسْلِيمِ",
+      "translation": {
+        "es": "«Y terminaba la oración con el taslīm».",
+        "en": "\"And he would end the prayer with the taslīm.\""
+      },
+      "source": {
+        "book": "Sahih Muslim (ed. Muhammad Fuʾād ʿAbd al-Bāqī), al-Ṣalāt",
+        "ref": "n.º 498",
+        "shamela": "https://shamela.ws/book/1727/1057"
+      }
+    }
+  ],
+  "review": {
+    "status": "in_review"
+  }
+}

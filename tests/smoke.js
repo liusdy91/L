@@ -229,7 +229,7 @@ const skip = msg => Object.assign(new Error(msg), { skip:true });
       await r.click("#subjClose").catch(() => {}); await r.click("#subjBtn"); await r.click(`.subj-area[data-area="${it.area}"]`); await r.waitForTimeout(200);
       const units = await r.$$(`#subjBody .unit[data-module="${it.module}"] .subj-units li`);
       const idx = cur.areas.find(a => a.id === it.area).modules.find(m => m.id === it.module).units.findIndex(u => u.id === it.unit);
-      await (await units[idx].$("button")).click(); await r.waitForTimeout(200);
+      await (await units[idx].$(`button[data-lesson="${it.id}"]`)).click(); await r.waitForTimeout(200);
       assert.strictEqual(await r.isVisible(".lx-banner"), lesson.review.status !== "published", `${it.id}: aviso de borrador incorrecto`);
       if (lesson.evidence.length) assert.ok(await r.$$eval(".ev-card a", a => a.length && a.every(x => x.href.startsWith("https://shamela.ws/"))), `${it.id}: pruebas sin enlace a Shamela`);
       await r.click(".lx-doc .next-btn");

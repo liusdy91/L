@@ -1,0 +1,335 @@
+{
+  "id": "a2-3-01",
+  "unit": "a2-3",
+  "ages": [
+    7,
+    10
+  ],
+  "title": {
+    "es": "El tayammum: purificarse sin agua",
+    "en": "Tayammum: purifying without water",
+    "ar": "التيمّم"
+  },
+  "objectives": {
+    "es": [
+      "Saber que, si no hay agua, Allah permite el tayammum con tierra limpia.",
+      "Hacer el tayammum como lo enseñó el Profeta ﷺ: golpear la tierra con las palmas, soplarlas y pasarlas por la cara y las manos.",
+      "Ver en el tayammum una facilidad que Allah dio a esta umma."
+    ],
+    "en": [
+      "Know that, if there is no water, Allah allows tayammum with clean earth.",
+      "Do tayammum as the Prophet ﷺ taught: strike the earth with the palms, blow on them and wipe the face and hands.",
+      "See tayammum as an ease Allah gave this ummah."
+    ],
+    "ar": [
+      "أن يعرف أن الله أباح التيمم بالصعيد الطيب عند فقد الماء.",
+      "أن يتيمّم كما علّم النبي ﷺ: يضرب بكفّيه الأرض، وينفخ فيهما، ثم يمسح بهما وجهه وكفّيه.",
+      "أن يعرف أن التيمم من تيسير الله لهذه الأمة."
+    ]
+  },
+  "prerequisites": [
+    "a2-2-01"
+  ],
+  "explanation": {
+    "es": "Normalmente nos purificamos con agua. Pero en la misma aleya del wudu, Allah dice que si estamos enfermos, de viaje, o no encontramos agua, hagamos tayammum con tierra limpia y pasemos las manos por la cara y las manos.\n\nʿAmmār ibn Yāsir se revolcó en la tierra pensando que así se hacía, y el Profeta ﷺ le dijo: «Te bastaba con esto». Golpeó la tierra con sus palmas, sopló en ellas y las pasó por su cara y sus manos.\n\nEl Profeta ﷺ dijo que Allah le dio cosas que no dio a nadie antes, entre ellas: «la tierra se me ha hecho lugar de oración y medio de purificación». ¡Allah nos pone las cosas fáciles!",
+    "en": "Normally we purify ourselves with water. But in the same verse as wudu, Allah says that if we are ill, travelling, or cannot find water, we make tayammum with clean earth and wipe our faces and hands.\n\nʿAmmār ibn Yāsir rolled in the dust thinking that was how it was done, and the Prophet ﷺ told him: \"This would have been enough for you.\" He struck the earth with his palms, blew on them and wiped his face and hands with them.\n\nThe Prophet ﷺ said Allah gave him things He gave no one before, among them: \"the earth has been made for me a place of prayer and a means of purification\". Allah makes things easy for us!",
+    "ar": "الأصل أن نتطهّر بالماء، لكن الله قال في آية الوضوء نفسها: إن كنتم مرضى أو على سفر أو لم تجدوا ماء فتيمّموا صعيدًا طيبًا فامسحوا بوجوهكم وأيديكم منه.\n\nوتمرّغ عمّار بن ياسر رضي الله عنه في التراب ظنًّا أن ذلك هو التيمم، فقال له النبي ﷺ: «إنما كان يكفيك هكذا»، فضرب بكفّيه الأرض، ونفخ فيهما، ثم مسح بهما وجهه وكفّيه.\n\nوقال النبي ﷺ إن الله أعطاه خمسًا لم يُعطَهنّ أحد قبله، منها: «وجُعلت لي الأرض مسجدًا وطهورًا»، فالحمد لله على تيسيره."
+  },
+  "examples": [
+    {
+      "es": "1. Golpear la tierra limpia con las dos palmas.",
+      "en": "1. Strike clean earth with both palms.",
+      "ar": "١. ضرب الأرض الطيبة بالكفّين."
+    },
+    {
+      "es": "2. Soplar en las palmas.",
+      "en": "2. Blow on the palms.",
+      "ar": "٢. النفخ فيهما."
+    },
+    {
+      "es": "3. Pasarlas por la cara.",
+      "en": "3. Wipe the face with them.",
+      "ar": "٣. مسح الوجه بهما."
+    },
+    {
+      "es": "4. Pasarlas por las manos.",
+      "en": "4. Wipe the hands with them.",
+      "ar": "٤. مسح الكفّين."
+    }
+  ],
+  "note": {
+    "es": "Los sabios explican en los libros de fiqh cuándo exactamente se puede hacer tayammum. Esta lección enseña solo lo que dicen la aleya y estos hadices sahih.",
+    "en": "Scholars explain in the books of fiqh exactly when tayammum may be done. This lesson teaches only what the verse and these sahih hadiths say.",
+    "ar": "يبيّن العلماء في كتب الفقه أحكام التيمم بالتفصيل، وهذا الدرس يقتصر على ما في الآية وهذه الأحاديث الصحيحة."
+  },
+  "activities": [
+    {
+      "type": "choice",
+      "q": {
+        "es": "Estás de viaje para rezar y no encuentras agua. ¿Qué haces?",
+        "en": "You are travelling, it is time to pray and there is no water. What do you do?",
+        "ar": "أنت مسافر وحضرت الصلاة ولم تجد ماء، ماذا تفعل؟"
+      },
+      "options": [
+        {
+          "es": "Hago tayammum con tierra limpia",
+          "en": "I make tayammum with clean earth",
+          "ar": "أتيمّم بالصعيد الطيب"
+        },
+        {
+          "es": "No rezo",
+          "en": "I don't pray",
+          "ar": "لا أصلّي"
+        },
+        {
+          "es": "Espero a llegar a casa aunque pase la hora",
+          "en": "I wait until I get home even if the time passes",
+          "ar": "أنتظر حتى أصل إلى البيت ولو خرج الوقت"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "Allah dice: «y no encontráis agua, haced tayammum con tierra limpia».",
+        "en": "Allah says: \"and you find no water, then make tayammum with clean earth\".",
+        "ar": "قال الله تعالى: ﴿فلم تجدوا ماءً فتيمّموا صعيدًا طيبًا﴾."
+      },
+      "evidence": [
+        "e1"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Con qué se hace el tayammum?",
+        "en": "What is tayammum done with?",
+        "ar": "بمَ يكون التيمم؟"
+      },
+      "options": [
+        {
+          "es": "Con tierra limpia",
+          "en": "With clean earth",
+          "ar": "بالصعيد الطيب"
+        },
+        {
+          "es": "Con leche",
+          "en": "With milk",
+          "ar": "باللبن"
+        },
+        {
+          "es": "Con perfume",
+          "en": "With perfume",
+          "ar": "بالعطر"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«Haced tayammum con tierra limpia (ṣaʿīd ṭayyib)».",
+        "en": "\"Make tayammum with clean earth (ṣaʿīd ṭayyib).\"",
+        "ar": "﴿فتيمّموا صعيدًا طيبًا﴾."
+      },
+      "evidence": [
+        "e1"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué partes se pasan con las manos en el tayammum?",
+        "en": "Which parts are wiped in tayammum?",
+        "ar": "ما الأعضاء التي نمسحها في التيمم؟"
+      },
+      "options": [
+        {
+          "es": "La cara y las manos",
+          "en": "The face and the hands",
+          "ar": "الوجه والكفّان"
+        },
+        {
+          "es": "Los pies",
+          "en": "The feet",
+          "ar": "الرجلان"
+        },
+        {
+          "es": "Todo el cuerpo",
+          "en": "The whole body",
+          "ar": "الجسم كله"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "El Profeta ﷺ pasó las palmas «por su cara y sus manos».",
+        "en": "The Prophet ﷺ wiped \"his face and his hands\".",
+        "ar": "«ثم مسح بهما وجهه وكفّيه»."
+      },
+      "evidence": [
+        "e1",
+        "e2"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "ʿAmmār se revolcó en la tierra. ¿Qué le dijo el Profeta ﷺ?",
+        "en": "ʿAmmār rolled in the dust. What did the Prophet ﷺ tell him?",
+        "ar": "تمرّغ عمّار في التراب، فماذا قال له النبي ﷺ؟"
+      },
+      "options": [
+        {
+          "es": "Que le bastaba con un poco: golpear la tierra y pasar las manos",
+          "en": "That a little was enough: strike the earth and wipe",
+          "ar": "«إنما كان يكفيك هكذا»"
+        },
+        {
+          "es": "Que lo hizo perfecto",
+          "en": "That he did it perfectly",
+          "ar": "أحسنت"
+        },
+        {
+          "es": "Que tenía que hacerlo tres veces",
+          "en": "That he had to do it three times",
+          "ar": "أعِده ثلاثًا"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«Te bastaba con esto»: golpeó la tierra con sus palmas, sopló y se pasó las manos por la cara y las manos.",
+        "en": "\"This would have been enough for you\": he struck the earth with his palms, blew and wiped his face and hands.",
+        "ar": "«إنما كان يكفيك هكذا»، فضرب بكفّيه الأرض ونفخ فيهما ثم مسح بهما وجهه وكفّيه."
+      },
+      "evidence": [
+        "e2"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué hizo el Profeta ﷺ justo después de golpear la tierra?",
+        "en": "What did the Prophet ﷺ do right after striking the earth?",
+        "ar": "ماذا فعل النبي ﷺ بعد أن ضرب الأرض بكفّيه؟"
+      },
+      "options": [
+        {
+          "es": "Sopló en sus palmas",
+          "en": "He blew on his palms",
+          "ar": "نفخ فيهما"
+        },
+        {
+          "es": "Se lavó los pies",
+          "en": "He washed his feet",
+          "ar": "غسل رجليه"
+        },
+        {
+          "es": "Se fue a dormir",
+          "en": "He went to sleep",
+          "ar": "نام"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«Golpeó la tierra con sus palmas, sopló en ellas, y luego las pasó…».",
+        "en": "\"He struck the earth with his palms, blew on them, then wiped…\"",
+        "ar": "«فضرب بكفّيه الأرض، ونفخ فيهما، ثم مسح...»."
+      },
+      "evidence": [
+        "e2"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué regalo de Allah al Profeta ﷺ tiene que ver con el tayammum?",
+        "en": "Which gift of Allah to the Prophet ﷺ is related to tayammum?",
+        "ar": "أيّ خصلة أعطاها الله للنبي ﷺ تتعلّق بالتيمم؟"
+      },
+      "options": [
+        {
+          "es": "La tierra es lugar de oración y medio de purificación",
+          "en": "The earth is a place of prayer and a means of purification",
+          "ar": "«وجُعلت لي الأرض مسجدًا وطهورًا»"
+        },
+        {
+          "es": "Poder volar",
+          "en": "Being able to fly",
+          "ar": "الطيران"
+        },
+        {
+          "es": "No tener que rezar nunca",
+          "en": "Never having to pray",
+          "ar": "ترك الصلاة"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«La tierra se me ha hecho lugar de oración y medio de purificación».",
+        "en": "\"The earth has been made for me a place of prayer and a means of purification.\"",
+        "ar": "«وجُعلت لي الأرض مسجدًا وطهورًا»."
+      },
+      "evidence": [
+        "e3"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "claim": "Si no hay agua, Allah permite el tayammum con tierra limpia, pasando las manos por la cara y las manos.",
+      "quran": {
+        "surah": 5,
+        "ayah": 6
+      },
+      "text": "وَإِنْ كُنْتُمْ مَرْضى أَوْ عَلى سَفَرٍ أَوْ جاءَ أَحَدٌ مِنْكُمْ مِنَ الْغائِطِ أَوْ لامَسْتُمُ النِّساءَ فَلَمْ تَجِدُوا ماءً فَتَيَمَّمُوا صَعِيداً طَيِّباً فَامْسَحُوا بِوُجُوهِكُمْ وَأَيْدِيكُمْ مِنْهُ",
+      "translation": {
+        "es": "«Y si estáis enfermos o de viaje, o alguno de vosotros viene de hacer sus necesidades, o habéis tocado a las mujeres, y no encontráis agua, entonces haced tayammum con tierra limpia y pasad las manos por vuestras caras y vuestras manos con ella» (traducción del significado).",
+        "en": "\"And if you are ill or on a journey, or one of you comes from relieving himself, or you have touched women, and you find no water, then make tayammum with clean earth and wipe your faces and hands with it\" (translation of the meaning)."
+      },
+      "source": {
+        "book": "Tafsir Ibn Kathir (ed. Dar al-Kutub al-ʿIlmiyya), al-Māʾida 5:6",
+        "ref": "Sura al-Māʾida, aleya 6",
+        "shamela": "https://shamela.ws/book/23604/1040"
+      }
+    },
+    {
+      "id": "e2",
+      "claim": "El Profeta ﷺ enseñó el tayammum a ʿAmmār: golpear la tierra con las palmas, soplar en ellas y pasarlas por la cara y las manos.",
+      "hadith": {
+        "collection": "Sahih al-Bukhari",
+        "number": "338 (también Muslim 368)",
+        "grade": "sahih",
+        "graded_by": "al-Bukhari y Muslim"
+      },
+      "text": "إِنَّمَا كَانَ يَكْفِيكَ هَكَذَا. فَضَرَبَ النَّبِيُّ ﷺ بِكَفَّيْهِ الْأَرْضَ، وَنَفَخَ فِيهِمَا، ثُمَّ مَسَحَ بِهِمَا وَجْهَهُ وَكَفَّيْهِ",
+      "translation": {
+        "es": "«Te bastaba con esto. Y el Profeta ﷺ golpeó la tierra con sus palmas, sopló en ellas y luego las pasó por su cara y sus manos».",
+        "en": "\"This would have been enough for you. And the Prophet ﷺ struck the earth with his palms, blew on them, then wiped his face and hands with them.\""
+      },
+      "source": {
+        "book": "Sahih al-Bukhari (ed. Sultāniyya), al-Tayammum",
+        "ref": "n.º 338",
+        "shamela": "https://shamela.ws/book/1681/581"
+      }
+    },
+    {
+      "id": "e3",
+      "claim": "Allah hizo para el Profeta ﷺ y su umma la tierra lugar de oración y medio de purificación.",
+      "hadith": {
+        "collection": "Sahih al-Bukhari",
+        "number": "335 (también Muslim 521)",
+        "grade": "sahih",
+        "graded_by": "al-Bukhari y Muslim"
+      },
+      "text": "وَجُعِلَتْ لِيَ الْأَرْضُ مَسْجِدًا وَطَهُورًا",
+      "translation": {
+        "es": "«Y la tierra se me ha hecho lugar de oración y medio de purificación».",
+        "en": "\"And the earth has been made for me a place of prayer and a means of purification.\""
+      },
+      "source": {
+        "book": "Sahih al-Bukhari (ed. Sultāniyya), al-Tayammum",
+        "ref": "n.º 335",
+        "shamela": "https://shamela.ws/book/1681/575"
+      }
+    }
+  ],
+  "review": {
+    "status": "in_review"
+  }
+}
