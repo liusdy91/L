@@ -1,0 +1,320 @@
+{
+  "id": "a2-4-03",
+  "unit": "a2-4",
+  "ages": [
+    6,
+    9
+  ],
+  "title": {
+    "es": "El adhán y la mezquita",
+    "en": "The adhan and the mosque",
+    "ar": "الأذان والمسجد"
+  },
+  "objectives": {
+    "es": [
+      "Saber que cuando llega la hora de la oración se llama con el adhán.",
+      "Repetir lo que dice el muʾadhdhin.",
+      "Decir la súplica al entrar y al salir de la mezquita.",
+      "Rezar dos rakʿas al entrar en la mezquita antes de sentarse."
+    ],
+    "en": [
+      "Know that when the time of prayer comes, the adhan is called.",
+      "Repeat what the muʾadhdhin says.",
+      "Say the supplication on entering and leaving the mosque.",
+      "Pray two rakʿas on entering the mosque before sitting."
+    ],
+    "ar": [
+      "أن يعرف أنه إذا حضرت الصلاة أذّن لها المؤذن.",
+      "أن يقول مثل ما يقول المؤذن.",
+      "أن يحفظ دعاء دخول المسجد والخروج منه.",
+      "أن يصلّي ركعتين إذا دخل المسجد قبل أن يجلس."
+    ]
+  },
+  "prerequisites": [
+    "a2-4-01"
+  ],
+  "explanation": {
+    "es": "El Profeta ﷺ dijo: «Cuando llegue la hora de la oración, que uno de vosotros haga el adhán». El adhán es la llamada a la oración que hace el muʾadhdhin.\n\nCuando oímos el adhán, decimos lo mismo que dice el muʾadhdhin, como ordenó el Profeta ﷺ.\n\nAl entrar en la mezquita decimos: «Allāhumma ftaḥ lī abwāba raḥmatik» (Oh Allah, ábreme las puertas de Tu misericordia), y al salir: «Allāhumma innī asʾaluka min faḍlik» (Oh Allah, Te pido de Tu favor).\n\nY el Profeta ﷺ dijo: «Cuando uno de vosotros entre en la mezquita, que rece dos rakʿas antes de sentarse».",
+    "en": "The Prophet ﷺ said: \"When the time of prayer comes, let one of you call the adhan.\" The adhan is the call to prayer made by the muʾadhdhin.\n\nWhen we hear the adhan, we say the same as the muʾadhdhin says, as the Prophet ﷺ ordered.\n\nOn entering the mosque we say: \"Allāhumma ftaḥ lī abwāba raḥmatik\" (O Allah, open for me the doors of Your mercy), and on leaving: \"Allāhumma innī asʾaluka min faḍlik\" (O Allah, I ask You of Your bounty).\n\nAnd the Prophet ﷺ said: \"When one of you enters the mosque, let him pray two rakʿas before sitting.\"",
+    "ar": "قال النبي ﷺ: «وإذا حضرت الصلاة فليؤذّن لكم أحدكم»، والأذان هو النداء إلى الصلاة.\n\nوإذا سمعنا الأذان قلنا مثل ما يقول المؤذن كما أمر النبي ﷺ.\n\nوإذا دخلنا المسجد قلنا: «اللهم افتح لي أبواب رحمتك»، وإذا خرجنا قلنا: «اللهم إني أسألك من فضلك».\n\nوقال النبي ﷺ: «إذا دخل أحدكم المسجد فليركع ركعتين قبل أن يجلس»."
+  },
+  "examples": [
+    {
+      "es": "Al oír el adhán: repetir lo que dice el muʾadhdhin.",
+      "en": "On hearing the adhan: repeat what the muʾadhdhin says.",
+      "ar": "عند سماع الأذان: نقول مثل ما يقول المؤذن."
+    },
+    {
+      "es": "Al entrar: «Allāhumma ftaḥ lī abwāba raḥmatik».",
+      "en": "On entering: \"Allāhumma ftaḥ lī abwāba raḥmatik\".",
+      "ar": "عند الدخول: «اللهم افتح لي أبواب رحمتك»."
+    },
+    {
+      "es": "Al salir: «Allāhumma innī asʾaluka min faḍlik».",
+      "en": "On leaving: \"Allāhumma innī asʾaluka min faḍlik\".",
+      "ar": "عند الخروج: «اللهم إني أسألك من فضلك»."
+    },
+    {
+      "es": "Antes de sentarte: dos rakʿas.",
+      "en": "Before sitting: two rakʿas.",
+      "ar": "قبل الجلوس: ركعتان."
+    }
+  ],
+  "activities": [
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué decimos cuando oímos el adhán?",
+        "en": "What do we say when we hear the adhan?",
+        "ar": "ماذا نقول إذا سمعنا الأذان؟"
+      },
+      "options": [
+        {
+          "es": "Lo mismo que dice el muʾadhdhin",
+          "en": "The same as the muʾadhdhin says",
+          "ar": "مثل ما يقول المؤذن"
+        },
+        {
+          "es": "Nada, seguimos jugando",
+          "en": "Nothing, we keep playing",
+          "ar": "لا شيء ونستمرّ في اللعب"
+        },
+        {
+          "es": "Una canción",
+          "en": "A song",
+          "ar": "أنشودة"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«Cuando oigáis la llamada, decid lo mismo que dice el muʾadhdhin».",
+        "en": "\"When you hear the call, say the same as the muʾadhdhin says.\"",
+        "ar": "«إذا سمعتم النداء فقولوا مثل ما يقول المؤذن»."
+      },
+      "evidence": [
+        "e1"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Cuándo se hace el adhán?",
+        "en": "When is the adhan called?",
+        "ar": "متى يكون الأذان؟"
+      },
+      "options": [
+        {
+          "es": "Cuando llega la hora de la oración",
+          "en": "When the time of prayer comes",
+          "ar": "إذا حضرت الصلاة"
+        },
+        {
+          "es": "Solo en Ramadán",
+          "en": "Only in Ramadan",
+          "ar": "في رمضان فقط"
+        },
+        {
+          "es": "Cuando alguien quiera",
+          "en": "Whenever someone wants",
+          "ar": "متى شاء أحد"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«Cuando llegue la hora de la oración, que uno de vosotros haga el adhán».",
+        "en": "\"When the time of prayer comes, let one of you call the adhan.\"",
+        "ar": "«وإذا حضرت الصلاة فليؤذّن لكم أحدكم»."
+      },
+      "evidence": [
+        "e2"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué pedimos al entrar en la mezquita?",
+        "en": "What do we ask for on entering the mosque?",
+        "ar": "ماذا نقول عند دخول المسجد؟"
+      },
+      "options": [
+        {
+          "es": "Que Allah nos abra las puertas de Su misericordia",
+          "en": "That Allah opens for us the doors of His mercy",
+          "ar": "اللهم افتح لي أبواب رحمتك"
+        },
+        {
+          "es": "Que llegue pronto la comida",
+          "en": "That food comes soon",
+          "ar": "أن يأتي الطعام"
+        },
+        {
+          "es": "Nada",
+          "en": "Nothing",
+          "ar": "لا شيء"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«Cuando uno de vosotros entre en la mezquita, que diga: Oh Allah, ábreme las puertas de Tu misericordia».",
+        "en": "\"When one of you enters the mosque, let him say: O Allah, open for me the doors of Your mercy.\"",
+        "ar": "«إذا دخل أحدكم المسجد فليقل: اللهم افتح لي أبواب رحمتك»."
+      },
+      "evidence": [
+        "e3"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué decimos al salir de la mezquita?",
+        "en": "What do we say on leaving the mosque?",
+        "ar": "ماذا نقول عند الخروج من المسجد؟"
+      },
+      "options": [
+        {
+          "es": "«Oh Allah, Te pido de Tu favor»",
+          "en": "\"O Allah, I ask You of Your bounty\"",
+          "ar": "اللهم إني أسألك من فضلك"
+        },
+        {
+          "es": "«Abre las puertas de Tu misericordia»",
+          "en": "\"Open the doors of Your mercy\"",
+          "ar": "اللهم افتح لي أبواب رحمتك"
+        },
+        {
+          "es": "«Buenas noches»",
+          "en": "\"Good night\"",
+          "ar": "تصبحون على خير"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«Y cuando salga, que diga: Oh Allah, Te pido de Tu favor».",
+        "en": "\"And when he leaves, let him say: O Allah, I ask You of Your bounty.\"",
+        "ar": "«وإذا خرج فليقل: اللهم إني أسألك من فضلك»."
+      },
+      "evidence": [
+        "e3"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "Entras en la mezquita. ¿Qué haces antes de sentarte?",
+        "en": "You enter the mosque. What do you do before sitting?",
+        "ar": "دخلت المسجد، ماذا تفعل قبل أن تجلس؟"
+      },
+      "options": [
+        {
+          "es": "Rezo dos rakʿas",
+          "en": "I pray two rakʿas",
+          "ar": "أصلّي ركعتين"
+        },
+        {
+          "es": "Me acuesto a dormir",
+          "en": "I lie down to sleep",
+          "ar": "أنام"
+        },
+        {
+          "es": "Corro por la mezquita",
+          "en": "I run around the mosque",
+          "ar": "أجري في المسجد"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«Cuando uno de vosotros entre en la mezquita, que rece dos rakʿas antes de sentarse».",
+        "en": "\"When one of you enters the mosque, let him pray two rakʿas before sitting.\"",
+        "ar": "«إذا دخل أحدكم المسجد فليركع ركعتين قبل أن يجلس»."
+      },
+      "evidence": [
+        "e4"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "claim": "Al oír el adhán se repite lo que dice el muʾadhdhin.",
+      "hadith": {
+        "collection": "Sahih al-Bukhari",
+        "number": "611 (también Muslim 383)",
+        "grade": "sahih",
+        "graded_by": "al-Bukhari y Muslim"
+      },
+      "text": "إِذَا سَمِعْتُمُ النِّدَاءَ، فَقُولُوا مِثْلَ مَا يَقُولُ الْمُؤَذِّنُ",
+      "translation": {
+        "es": "«Cuando oigáis la llamada, decid lo mismo que dice el muʾadhdhin».",
+        "en": "\"When you hear the call, say the same as the muʾadhdhin says.\""
+      },
+      "source": {
+        "book": "Sahih al-Bukhari (ed. Sultāniyya), al-Adhān",
+        "ref": "n.º 611",
+        "shamela": "https://shamela.ws/book/1681/1012"
+      }
+    },
+    {
+      "id": "e2",
+      "claim": "Cuando llega la hora de la oración, uno hace el adhán.",
+      "hadith": {
+        "collection": "Sahih al-Bukhari",
+        "number": "6008 (también 631)",
+        "grade": "sahih",
+        "graded_by": "al-Bukhari"
+      },
+      "text": "وَإِذَا حَضَرَتِ الصَّلَاةُ فَلْيُؤَذِّنْ لَكُمْ أَحَدُكُمْ",
+      "translation": {
+        "es": "«Y cuando llegue la hora de la oración, que uno de vosotros haga el adhán».",
+        "en": "\"And when the time of prayer comes, let one of you call the adhan.\""
+      },
+      "source": {
+        "book": "Sahih al-Bukhari (ed. Sultāniyya), al-Adab",
+        "ref": "n.º 6008",
+        "shamela": "https://shamela.ws/book/1681/9003"
+      }
+    },
+    {
+      "id": "e3",
+      "claim": "Súplica al entrar y al salir de la mezquita.",
+      "hadith": {
+        "collection": "Sahih Muslim",
+        "number": "713",
+        "grade": "sahih",
+        "graded_by": "Muslim"
+      },
+      "text": "إِذَا دَخَلَ أَحَدُكُمُ الْمَسْجِدَ، فَلْيَقُلْ: اللَّهُمَّ! افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ. وَإِذَا خَرَجَ، فَلْيَقُلْ: اللَّهُمَّ! إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ",
+      "translation": {
+        "es": "«Cuando uno de vosotros entre en la mezquita, que diga: ¡Oh Allah! Ábreme las puertas de Tu misericordia. Y cuando salga, que diga: ¡Oh Allah! Te pido de Tu favor».",
+        "en": "\"When one of you enters the mosque, let him say: O Allah, open for me the doors of Your mercy. And when he leaves, let him say: O Allah, I ask You of Your bounty.\""
+      },
+      "source": {
+        "book": "Sahih Muslim (ed. Muhammad Fuʾād ʿAbd al-Bāqī), Ṣalāt al-Musāfirīn, bāb mā yaqūlu idhā dakhala al-masjid",
+        "ref": "n.º 713",
+        "shamela": "https://shamela.ws/book/1727/1585"
+      }
+    },
+    {
+      "id": "e4",
+      "claim": "Al entrar en la mezquita se rezan dos rakʿas antes de sentarse.",
+      "hadith": {
+        "collection": "Sahih al-Bukhari",
+        "number": "444 (también Muslim 714)",
+        "grade": "sahih",
+        "graded_by": "al-Bukhari y Muslim"
+      },
+      "text": "إِذَا دَخَلَ أَحَدُكُمُ الْمَسْجِدَ فَلْيَرْكَعْ رَكْعَتَيْنِ قَبْلَ أَنْ يَجْلِسَ",
+      "translation": {
+        "es": "«Cuando uno de vosotros entre en la mezquita, que rece dos rakʿas antes de sentarse».",
+        "en": "\"When one of you enters the mosque, let him pray two rakʿas before sitting.\""
+      },
+      "source": {
+        "book": "Sahih al-Bukhari (ed. Sultāniyya), al-Ṣalāt",
+        "ref": "n.º 444",
+        "shamela": "https://shamela.ws/book/1681/747"
+      }
+    }
+  ],
+  "review": {
+    "status": "in_review"
+  }
+}

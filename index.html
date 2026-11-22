@@ -317,6 +317,8 @@ body.net-guest #setup .field:not(.keep), body.net-guest #setup .hint, body.net-g
 .subj-note{margin:0}
 .subj-units{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
 .subj-units li{display:flex;gap:8px;align-items:baseline;font-size:.92rem;line-height:1.4}
+.subj-units li.multi{flex-wrap:wrap}
+.subj-units li.multi button{flex:1 1 100%;margin-inline-start:0;text-align:start;white-space:normal}
 .subj-units .st{flex:none;font-size:.72rem;font-weight:800;border-radius:999px;padding:2px 8px;background:var(--night-3);color:var(--sand-dim)}
 .subj-units .st.ok{background:color-mix(in srgb,var(--teamA) 30%,transparent);color:var(--sand)}
 .subj-units button{margin-inline-start:auto;flex:none}
@@ -3671,7 +3673,8 @@ function renderSubj(){
         st.className = "st " + (pub ? "ok" : "rev"); st.textContent = pub ? t.subjOk : t.lxReviewTag;
       }
       li.append(st, tx);
-      lessons.forEach(id => { const b = document.createElement("button"); b.type = "button"; b.className = "ghost"; b.textContent = t.lxStart; b.addEventListener("click", () => openLessonDoc(id)); li.append(b); });
+      if (lessons.length > 1) li.classList.add("multi");
+      lessons.forEach(id => { const b = document.createElement("button"); b.type = "button"; b.className = "ghost"; b.textContent = lessons.length > 1 ? `${t.lxStart}: ${LESSONS[id].title[L] || LESSONS[id].title.es}` : t.lxStart; b.dataset.lesson = id; b.addEventListener("click", () => openLessonDoc(id)); li.append(b); });
       if (u.activity) li.append(subjButton(u.activity, t));
       ul.append(li);
     });

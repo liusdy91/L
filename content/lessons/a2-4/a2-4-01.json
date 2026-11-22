@@ -1,0 +1,340 @@
+{
+  "id": "a2-4-01",
+  "unit": "a2-4",
+  "ages": [
+    6,
+    9
+  ],
+  "title": {
+    "es": "Las cinco oraciones del día",
+    "en": "The five daily prayers",
+    "ar": "الصلوات الخمس"
+  },
+  "objectives": {
+    "es": [
+      "Saber que Allah ordenó la oración en momentos fijos.",
+      "Nombrar las cinco oraciones del día en su orden.",
+      "Explicar con el hadiz del río por qué la oración es un regalo."
+    ],
+    "en": [
+      "Know that Allah ordered prayer at fixed times.",
+      "Name the five prayers of the day in order.",
+      "Explain with the hadith of the river why prayer is a gift."
+    ],
+    "ar": [
+      "أن يعرف أن الله فرض الصلاة في أوقات محددة.",
+      "أن يذكر الصلوات الخمس بترتيبها.",
+      "أن يشرح بحديث النهر فضل الصلاة."
+    ]
+  },
+  "prerequisites": [
+    "a2-2-01"
+  ],
+  "explanation": {
+    "es": "Allah dice en el Corán que la oración está prescrita a los creyentes en momentos fijos. Cada día rezamos cinco oraciones.\n\nEl Profeta ﷺ explicó sus horas: el Fajr (Ṣubḥ) desde que aparece la luz del alba hasta que sale el sol; el Ẓuhr cuando el sol pasa del punto más alto; el ʿAṣr después, mientras el sol no se ponga amarillo; el Maghrib cuando se pone el sol, mientras quede el rojo del cielo; y el ʿIshāʾ en la noche, hasta su mitad.\n\nEl Profeta ﷺ preguntó a sus compañeros: si un río pasara por la puerta de tu casa y te lavaras en él cinco veces al día, ¿te quedaría suciedad? Dijeron que no. Y dijo que así son las cinco oraciones: Allah borra con ellas las faltas.",
+    "en": "Allah says in the Quran that prayer is prescribed for the believers at fixed times. Every day we pray five prayers.\n\nThe Prophet ﷺ explained their times: Fajr (Ṣubḥ) from the light of dawn until sunrise; Ẓuhr when the sun passes its highest point; ʿAṣr after it, as long as the sun has not turned yellow; Maghrib when the sun sets, while the red of the sky remains; and ʿIshāʾ at night, until its middle.\n\nThe Prophet ﷺ asked his companions: if a river ran past the door of your house and you bathed in it five times a day, would any dirt remain? They said no. He said that this is how the five prayers are: Allah wipes away sins with them.",
+    "ar": "قال الله تعالى إن الصلاة كانت على المؤمنين كتابًا موقوتًا، ونصلّي كل يوم خمس صلوات.\n\nوبيّن النبي ﷺ أوقاتها: الصبح من طلوع الفجر ما لم تطلع الشمس، والظهر إذا زالت الشمس، والعصر ما لم تصفرّ الشمس، والمغرب ما لم يغب الشفق، والعشاء إلى نصف الليل.\n\nوسأل النبي ﷺ أصحابه: لو أن نهرًا بباب أحدكم يغتسل فيه كل يوم خمسًا، هل يبقى من درنه شيء؟ قالوا: لا، قال: فذلك مثل الصلوات الخمس، يمحو الله به الخطايا."
+  },
+  "examples": [
+    {
+      "es": "1. Fajr: del alba a la salida del sol.",
+      "en": "1. Fajr: from dawn until sunrise.",
+      "ar": "١. الصبح: من طلوع الفجر إلى طلوع الشمس."
+    },
+    {
+      "es": "2. Ẓuhr: cuando el sol pasa del mediodía.",
+      "en": "2. Ẓuhr: when the sun passes midday.",
+      "ar": "٢. الظهر: إذا زالت الشمس."
+    },
+    {
+      "es": "3. ʿAṣr: por la tarde, antes de que el sol amarillee.",
+      "en": "3. ʿAṣr: in the afternoon, before the sun turns yellow.",
+      "ar": "٣. العصر: ما لم تصفرّ الشمس."
+    },
+    {
+      "es": "4. Maghrib: al ponerse el sol.",
+      "en": "4. Maghrib: at sunset.",
+      "ar": "٤. المغرب: بعد غروب الشمس ما لم يغب الشفق."
+    },
+    {
+      "es": "5. ʿIshāʾ: por la noche.",
+      "en": "5. ʿIshāʾ: at night.",
+      "ar": "٥. العشاء: إلى نصف الليل."
+    }
+  ],
+  "note": {
+    "es": "Para saber la hora exacta de cada oración en tu ciudad, pregunta a tus padres o a la mezquita.",
+    "en": "To know the exact time of each prayer in your city, ask your parents or the mosque.",
+    "ar": "لمعرفة الوقت الدقيق لكل صلاة في مدينتك اسأل والديك أو المسجد."
+  },
+  "activities": [
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Cuántas oraciones obligatorias rezamos cada día?",
+        "en": "How many obligatory prayers do we pray each day?",
+        "ar": "كم صلاة مفروضة نصلّي في اليوم؟"
+      },
+      "options": [
+        {
+          "es": "Cinco",
+          "en": "Five",
+          "ar": "خمس"
+        },
+        {
+          "es": "Tres",
+          "en": "Three",
+          "ar": "ثلاث"
+        },
+        {
+          "es": "Una",
+          "en": "One",
+          "ar": "واحدة"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "El Profeta ﷺ habló de «las cinco oraciones».",
+        "en": "The Prophet ﷺ spoke of \"the five prayers\".",
+        "ar": "قال النبي ﷺ: «فذلك مثل الصلوات الخمس»."
+      },
+      "evidence": [
+        "e2",
+        "e3"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué oración se reza cuando aparece la luz del alba?",
+        "en": "Which prayer is prayed when the light of dawn appears?",
+        "ar": "أيّ صلاة تكون عند طلوع الفجر؟"
+      },
+      "options": [
+        {
+          "es": "Fajr (Ṣubḥ)",
+          "en": "Fajr (Ṣubḥ)",
+          "ar": "الصبح"
+        },
+        {
+          "es": "Maghrib",
+          "en": "Maghrib",
+          "ar": "المغرب"
+        },
+        {
+          "es": "ʿIshāʾ",
+          "en": "ʿIshāʾ",
+          "ar": "العشاء"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«El tiempo de la oración del Ṣubḥ es desde que sale el alba».",
+        "en": "\"The time of the Ṣubḥ prayer is from the appearance of dawn.\"",
+        "ar": "«ووقت صلاة الصبح من طلوع الفجر»."
+      },
+      "evidence": [
+        "e3"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué oración se reza al ponerse el sol?",
+        "en": "Which prayer is prayed at sunset?",
+        "ar": "أيّ صلاة تكون بعد غروب الشمس؟"
+      },
+      "options": [
+        {
+          "es": "Maghrib",
+          "en": "Maghrib",
+          "ar": "المغرب"
+        },
+        {
+          "es": "Ẓuhr",
+          "en": "Ẓuhr",
+          "ar": "الظهر"
+        },
+        {
+          "es": "Fajr",
+          "en": "Fajr",
+          "ar": "الصبح"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "El tiempo del Maghrib dura mientras no desaparezca el rojo del cielo tras la puesta del sol.",
+        "en": "The time of Maghrib lasts while the red of the sky after sunset has not gone.",
+        "ar": "«ووقت صلاة المغرب ما لم يغب الشفق»."
+      },
+      "evidence": [
+        "e3"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué dice Allah sobre la hora de la oración?",
+        "en": "What does Allah say about the time of prayer?",
+        "ar": "ماذا قال الله عن وقت الصلاة؟"
+      },
+      "options": [
+        {
+          "es": "Que tiene momentos fijos",
+          "en": "That it has fixed times",
+          "ar": "أنها كتاب موقوت"
+        },
+        {
+          "es": "Que se reza cuando queramos",
+          "en": "That we pray whenever we like",
+          "ar": "أنها في أي وقت نشاء"
+        },
+        {
+          "es": "Que es solo los viernes",
+          "en": "That it is only on Fridays",
+          "ar": "أنها يوم الجمعة فقط"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«La oración es para los creyentes una prescripción en momentos fijos».",
+        "en": "\"Prayer is prescribed for the believers at fixed times.\"",
+        "ar": "﴿إن الصلاة كانت على المؤمنين كتابًا موقوتًا﴾."
+      },
+      "evidence": [
+        "e1"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "En el hadiz del río, ¿qué borran las cinco oraciones?",
+        "en": "In the hadith of the river, what do the five prayers wipe away?",
+        "ar": "في حديث النهر، ماذا تمحو الصلوات الخمس؟"
+      },
+      "options": [
+        {
+          "es": "Las faltas",
+          "en": "Sins",
+          "ar": "الخطايا"
+        },
+        {
+          "es": "La comida",
+          "en": "Food",
+          "ar": "الطعام"
+        },
+        {
+          "es": "Los deberes",
+          "en": "Homework",
+          "ar": "الواجبات"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "«Así son las cinco oraciones: con ellas Allah borra las faltas».",
+        "en": "\"That is the likeness of the five prayers: through them Allah wipes away sins.\"",
+        "ar": "«فذلك مثل الصلوات الخمس، يمحو الله به الخطايا»."
+      },
+      "evidence": [
+        "e2"
+      ]
+    },
+    {
+      "type": "choice",
+      "q": {
+        "es": "¿Qué oración viene justo después del ʿAṣr?",
+        "en": "Which prayer comes right after ʿAṣr?",
+        "ar": "ما الصلاة التي تأتي بعد العصر؟"
+      },
+      "options": [
+        {
+          "es": "Maghrib",
+          "en": "Maghrib",
+          "ar": "المغرب"
+        },
+        {
+          "es": "Fajr",
+          "en": "Fajr",
+          "ar": "الصبح"
+        },
+        {
+          "es": "Ẓuhr",
+          "en": "Ẓuhr",
+          "ar": "الظهر"
+        }
+      ],
+      "answer": 0,
+      "why": {
+        "es": "El hadiz las nombra por orden del día: Ẓuhr, ʿAṣr, Maghrib, ʿIshāʾ y Ṣubḥ.",
+        "en": "The hadith names them in the order of the day: Ẓuhr, ʿAṣr, Maghrib, ʿIshāʾ and Ṣubḥ.",
+        "ar": "ذكرها الحديث بترتيبها: الظهر ثم العصر ثم المغرب ثم العشاء ثم الصبح."
+      },
+      "evidence": [
+        "e3"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "e1",
+      "claim": "La oración está prescrita a los creyentes en momentos fijos.",
+      "quran": {
+        "surah": 4,
+        "ayah": 103
+      },
+      "text": "إِنَّ الصَّلاةَ كانَتْ عَلَى الْمُؤْمِنِينَ كِتاباً مَوْقُوتاً",
+      "translation": {
+        "es": "«Ciertamente, la oración es para los creyentes una prescripción en momentos fijos» (traducción del significado).",
+        "en": "\"Indeed, prayer has been prescribed for the believers at fixed times\" (translation of the meaning)."
+      },
+      "source": {
+        "book": "Tafsir Ibn Kathir (ed. Dar al-Kutub al-ʿIlmiyya), an-Nisāʾ 4:103",
+        "ref": "Sura an-Nisāʾ, aleya 103",
+        "shamela": "https://shamela.ws/book/23604/926"
+      }
+    },
+    {
+      "id": "e2",
+      "claim": "Las cinco oraciones borran las faltas como un río en la puerta de casa en el que uno se lava cinco veces al día.",
+      "hadith": {
+        "collection": "Sahih al-Bukhari",
+        "number": "528 (también Muslim 667)",
+        "grade": "sahih",
+        "graded_by": "al-Bukhari y Muslim"
+      },
+      "text": "أَرَأَيْتُمْ لَوْ أَنَّ نَهَرًا بِبَابِ أَحَدِكُمْ، يَغْتَسِلُ فِيهِ كُلَّ يَوْمٍ خَمْسًا، مَا تَقُولُ: ذَلِكَ يُبْقِي مِنْ دَرَنِهِ. قَالُوا: لَا يُبْقِي مِنْ دَرَنِهِ شَيْئًا، قَالَ: فَذَلِكَ مِثْلُ الصَّلَوَاتِ الْخَمْسِ، يَمْحُو اللهُ بِهِ الْخَطَايَا",
+      "translation": {
+        "es": "«¿Qué os parece si hubiera un río a la puerta de uno de vosotros y se lavara en él cinco veces cada día? ¿Le quedaría algo de suciedad? Dijeron: No le quedaría nada de suciedad. Dijo: Así son las cinco oraciones: con ellas Allah borra las faltas».",
+        "en": "\"What do you think if there were a river at the door of one of you and he bathed in it five times every day, would any dirt remain on him? They said: No dirt would remain on him. He said: That is the likeness of the five prayers: through them Allah wipes away sins.\""
+      },
+      "source": {
+        "book": "Sahih al-Bukhari (ed. Sultāniyya), Mawāqīt al-Ṣalāt",
+        "ref": "n.º 528",
+        "shamela": "https://shamela.ws/book/1681/886"
+      }
+    },
+    {
+      "id": "e3",
+      "claim": "El Profeta ﷺ explicó los tiempos de las cinco oraciones.",
+      "hadith": {
+        "collection": "Sahih Muslim",
+        "number": "612",
+        "grade": "sahih",
+        "graded_by": "Muslim"
+      },
+      "text": "وَقْتُ الظُّهْرِ إِذَا زَالَتِ الشَّمْسُ. وَكَانَ ظِلُّ الرَّجُلِ كَطُولِهِ. مَا لَمْ يَحْضُرِ الْعَصْرُ. وَوَقْتُ الْعَصْرِ مَا لَمْ تَصْفَرَّ الشَّمْسُ. وَوَقْتُ صَلَاةِ الْمَغْرِبِ مَا لَمْ يَغِبْ الشَّفَقُ. وَوَقْتُ صَلَاةِ الْعِشَاءِ إِلَى نِصْفِ اللَّيْلِ الأَوْسَطِ. وَوَقْتُ صَلَاةِ الصُّبْحِ مِنْ طُلُوعِ الْفَجْرِ",
+      "translation": {
+        "es": "«El tiempo del Ẓuhr es cuando el sol pasa del mediodía y la sombra de un hombre es como su altura, mientras no llegue el ʿAṣr; el tiempo del ʿAṣr, mientras el sol no se ponga amarillo; el tiempo del Maghrib, mientras no desaparezca el rojo del ocaso; el tiempo del ʿIshāʾ, hasta la mitad de la noche; y el tiempo del Ṣubḥ, desde que sale el alba».",
+        "en": "\"The time of Ẓuhr is when the sun passes the meridian and a man's shadow is like his height, as long as ʿAṣr has not come; the time of ʿAṣr is as long as the sun has not turned yellow; the time of Maghrib is as long as the twilight has not gone; the time of ʿIshāʾ is until the middle of the night; and the time of Ṣubḥ is from the appearance of dawn.\""
+      },
+      "source": {
+        "book": "Sahih Muslim (ed. Muhammad Fuʾād ʿAbd al-Bāqī), al-Masājid, bāb awqāt al-ṣalawāt al-khams",
+        "ref": "n.º 612",
+        "shamela": "https://shamela.ws/book/1727/1329"
+      }
+    }
+  ],
+  "review": {
+    "status": "in_review"
+  }
+}
