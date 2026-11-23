@@ -263,6 +263,7 @@ button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
       <button class="iconbtn" id="home" aria-label="Back to start">🏠</button>
       <div class="prog" aria-hidden="true"><i id="progFill"></i></div>
       <span class="count" id="count">1 / 10</span>
+      <button class="iconbtn" id="mute" aria-label="Turn sound effects off">🔔</button>
       <button class="iconbtn" id="speak" aria-label="Read the question out loud">🔊</button>
     </div>
 
@@ -486,8 +487,8 @@ $("answers").addEventListener("click", e => {
   const actors = mode === "vs" ? [turn] : [0,1];
   const girls = $("playGirls").querySelectorAll(".girl");
   actors.forEach(i => girls[i].classList.add(ok ? "cheer" : "sad"));
-  if (ok) { mode === "vs" ? scores[turn]++ : teamScore++; burst(18); }
-  else missed.push(item);
+  if (ok) { mode === "vs" ? scores[turn]++ : teamScore++; burst(18); sfx("right"); }
+  else { missed.push(item); sfx("wrong"); }
   updateScores();
   const name = mode === "vs" ? GIRLS[turn].name : "Yusra & Huda";
   $("res").className = "res " + (ok ? "good" : "bad");
@@ -501,7 +502,7 @@ $("answers").addEventListener("click", e => {
 });
 
 $("next").addEventListener("click", () => {
-  speechSynthesis && speechSynthesis.cancel();
+  hush(); sfx("tap");
   idx++;
   if (mode === "vs") turn = 1 - turn;
   if (idx < deck.length) renderQ(); else finish();
@@ -530,19 +531,52 @@ function finish(){
   $("endTitle").textContent = title; $("endText").textContent = text;
   $("reviewCard").hidden = !missed.length;
   $("review").innerHTML = missed.map(m => `<li>${m.q}<br><b>${m.a}</b></li>`).join("");
-  show("end"); burst(80);
+  show("end"); burst(80); sfx("win");
 }
 
 /* ===================== Read aloud ===================== */
+const SPEECH = (() => { try { return window.speechSynthesis && window.SpeechSynthesisUtterance ? window.speechSynthesis : null; } catch(e){ return null; } })();
+function hush(){ try { SPEECH && SPEECH.cancel(); } catch(e){} }
+function say(text){
+  if (!SPEECH) return false;
+  try {
+    hush();
+    const u = new SpeechSynthesisUtterance(text.replace(/ﷺ/g, ", peace be upon him,"));
+    u.lang = "en-US"; u.rate = .92; SPEECH.speak(u); return true;
+  } catch(e){ return false; }
+}
 $("speak").addEventListener("click", () => {
-  if (!("speechSynthesis" in window)) return;
-  speechSynthesis.cancel();
   const item = deck[idx];
   const opts = [...$("answers").querySelectorAll(".ans span:last-child")].map((s,i) => `${"ABCD"[i]}: ${s.textContent}`);
-  const text = (answered ? $("res").textContent + ". " + item.fact : item.q + " " + opts.join(". "))
-    .replace(/ﷺ/g, ", peace be upon him,");
-  const u = new SpeechSynthesisUtterance(text); u.lang = "en-US"; u.rate = .92;
-  speechSynthesis.speak(u);
+  const text = answered ? $("res").textContent + ". " + item.fact : item.q + " " + opts.join(". ");
+  if (!say(text)) { sfx("wrong"); $("speak").title = "Reading out loud isn't available on this device"; }
+});
+
+/* ===================== Sound effects (made in the browser, no files) ===================== */
+let AC = null, soundOn = true;
+function tone(freq, start, dur, type="sine", vol=.18){
+  const o = AC.createOscillator(), g = AC.createGain(), t = AC.currentTime + start;
+  o.type = type; o.frequency.setValueAtTime(freq, t);
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .02);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(g).connect(AC.destination); o.start(t); o.stop(t + dur + .05);
+}
+function sfx(kind){
+  if (!soundOn) return;
+  try {
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)();
+    if (AC.state === "suspended") AC.resume();
+    if (kind === "tap")   tone(660, 0, .08, "triangle", .12);
+    if (kind === "right") { tone(523, 0, .14, "triangle"); tone(659, .1, .14, "triangle"); tone(784, .2, .28, "triangle"); }
+    if (kind === "wrong") { tone(300, 0, .18, "sine", .15); tone(220, .15, .3, "sine", .15); }
+    if (kind === "win")   [523,659,784,1047,784,1047].forEach((f,i) => tone(f, i*.13, i === 5 ? .5 : .16, "triangle", .16));
+  } catch(e){}
+}
+$("mute").addEventListener("click", () => {
+  soundOn = !soundOn;
+  $("mute").textContent = soundOn ? "🔔" : "🔕";
+  $("mute").setAttribute("aria-label", soundOn ? "Turn sound effects off" : "Turn sound effects on");
+  if (soundOn) sfx("tap");
 });
 
 /* ===================== Confetti ===================== */
@@ -560,10 +594,10 @@ function burst(n){
 }
 
 /* ===================== Navigation ===================== */
-$("go").addEventListener("click", startGame);
-$("again").addEventListener("click", startGame);
+$("go").addEventListener("click", () => { sfx("tap"); startGame(); });
+$("again").addEventListener("click", () => { sfx("tap"); startGame(); });
 $("toStart").addEventListener("click", () => show("start"));
-$("home").addEventListener("click", () => { speechSynthesis && speechSynthesis.cancel(); show("start"); });
+$("home").addEventListener("click", () => { hush(); sfx("tap"); show("start"); });
 drawGirls($("startGirls"));
 </script>
 </body>
