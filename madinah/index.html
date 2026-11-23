@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yusra &amp; Huda Quiz</title>
+<meta name="description" content="A Madinah trivia game for kids, hosted by Yusra and Huda.">
+<meta name="theme-color" content="#7f9a62">
+<style>
+:root{
+  --sky1:#f6ecd4; --sky2:#ead6aa; --sand:#d9bf8c; --sand-dark:#b99a62;
+  --hill-far:#b8b98c; --hill-mid:#97a874; --hill-near:#6f8f55;
+  --green:#3f7d5c; --green-dark:#2c5c42; --green-soft:#e3eed8;
+  --ink:#3b3324; --ink-soft:#6b5d44; --card:#fffaf0; --line:#e5d6b4;
+  --good:#3f8f5a; --bad:#c0564a; --gold:#e1a93b;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+:root{color-scheme:light}
+body{
+  background:var(--sky1); color:var(--ink);
+  font-family:"Nunito","Baloo 2",ui-rounded,"SF Pro Rounded","Segoe UI",system-ui,sans-serif;
+  overflow-x:hidden; -webkit-tap-highlight-color:transparent;
+}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+
+/* ---------- scene (background) ---------- */
+#scene{position:fixed;inset:0;z-index:0;width:100%;height:100%}
+.app{position:relative;z-index:1;min-height:100%;display:flex;flex-direction:column;align-items:center;
+  padding:max(14px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom))}
+.screen{width:100%;max-width:720px;display:none;flex-direction:column;align-items:center;gap:14px}
+.screen.on{display:flex;animation:pop .35s ease}
+@keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---------- title ---------- */
+.title{text-align:center;margin-top:6px}
+.title small{display:block;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--green-dark);font-size:.8rem}
+.title h1{margin:4px 0 0;font-size:clamp(1.9rem,7vw,3.1rem);line-height:1.05;color:var(--green-dark);
+  text-shadow:0 2px 0 #fff8e6,0 4px 10px rgba(80,60,20,.18)}
+.title h1 span{color:var(--gold)}
+.title p{margin:8px 0 0;color:var(--ink-soft);font-weight:700}
+
+/* ---------- girls ---------- */
+.girls{display:flex;justify-content:center;gap:clamp(10px,5vw,48px);align-items:flex-end}
+.girl{display:flex;flex-direction:column;align-items:center;transition:transform .3s ease,filter .3s}
+.girl svg{width:clamp(96px,24vw,150px);height:auto;overflow:visible;filter:drop-shadow(0 6px 6px rgba(70,50,20,.18))}
+.girls.small .girl svg{width:clamp(64px,15vw,96px)}
+.tag{margin-top:4px;background:var(--card);border:2px solid var(--line);border-radius:999px;padding:4px 14px;
+  font-weight:900;color:var(--green-dark);display:flex;gap:8px;align-items:center;box-shadow:0 3px 0 var(--line)}
+.tag b{background:var(--green);color:#fff;border-radius:999px;min-width:28px;padding:1px 8px;text-align:center}
+.girl.dim{filter:saturate(.55) opacity(.7);transform:scale(.92)}
+.girl.turn .tag{border-color:var(--gold);box-shadow:0 3px 0 var(--gold),0 0 0 4px rgba(225,169,59,.25)}
+.girl.turn svg{animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.girl .arm{transition:transform .35s ease}
+.girl.cheer .arm-l{transform:rotate(120deg)}
+.girl.cheer .arm-r{transform:rotate(-120deg)}
+.girl.cheer svg{animation:jump .5s ease 2}
+@keyframes jump{40%{transform:translateY(-18px)}}
+.girl.sad svg{animation:shake .45s ease}
+@keyframes shake{25%{transform:rotate(-4deg)}75%{transform:rotate(4deg)}}
+
+/* ---------- cards & buttons ---------- */
+.card{width:100%;background:var(--card);border:2px solid var(--line);border-radius:24px;padding:18px;
+  box-shadow:0 6px 0 var(--line),0 14px 30px rgba(80,60,20,.14)}
+.card h2{margin:0 0 10px;font-size:1.05rem;color:var(--green-dark)}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pill{border:2px solid var(--line);background:#fff;border-radius:16px;padding:12px;font-weight:800;text-align:center;
+  box-shadow:0 3px 0 var(--line);transition:transform .1s}
+.pill[aria-pressed="true"]{background:var(--green-soft);border-color:var(--green);box-shadow:0 3px 0 var(--green)}
+.pill span{display:block;font-weight:600;font-size:.85rem;color:var(--ink-soft)}
+.big{background:var(--green);color:#fff;font-weight:900;font-size:1.25rem;border-radius:999px;padding:14px 40px;
+  box-shadow:0 5px 0 var(--green-dark);transition:transform .1s}
+.big:active,.pill:active,.ans:active{transform:translateY(3px)}
+.big.alt{background:var(--card);color:var(--green-dark);border:2px solid var(--line);box-shadow:0 5px 0 var(--line)}
+.row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
+/* ---------- play ---------- */
+.bar{width:100%;display:flex;align-items:center;gap:10px}
+.prog{flex:1;height:14px;background:#fff8e6;border:2px solid var(--line);border-radius:999px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--hill-mid),var(--green));transition:width .4s}
+.count{font-weight:900;color:var(--green-dark);white-space:nowrap}
+.iconbtn{width:44px;height:44px;border-radius:50%;background:var(--card);border:2px solid var(--line);
+  font-size:1.2rem;display:grid;place-items:center;box-shadow:0 3px 0 var(--line);flex:none}
+.who{font-weight:900;color:var(--ink-soft);text-align:center}
+.who b{color:var(--green-dark)}
+.q{font-size:clamp(1.25rem,4.6vw,1.7rem);font-weight:900;line-height:1.25;margin:0 0 14px;text-align:center}
+.answers{display:grid;gap:10px}
+.ans{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;border:2px solid var(--line);
+  border-radius:16px;padding:12px 14px;font-weight:800;font-size:clamp(1rem,3.8vw,1.15rem);box-shadow:0 4px 0 var(--line);
+  transition:transform .1s,background .2s,border-color .2s}
+.ans .let{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--green-soft);color:var(--green-dark);font-weight:900}
+.ans.right{background:#e2f3e4;border-color:var(--good);box-shadow:0 4px 0 var(--good)}
+.ans.right .let{background:var(--good);color:#fff}
+.ans.wrong{background:#f9e3df;border-color:var(--bad);box-shadow:0 4px 0 var(--bad)}
+.ans.wrong .let{background:var(--bad);color:#fff}
+.ans:disabled{cursor:default}
+.ans.fade{opacity:.55}
+.fact{display:none;margin-top:14px;border-radius:16px;padding:14px;background:var(--green-soft);border:2px dashed var(--hill-mid)}
+.fact.on{display:block;animation:pop .3s ease}
+.fact .res{font-weight:900;font-size:1.15rem;margin-bottom:4px}
+.fact .res.good{color:var(--good)} .fact .res.bad{color:var(--bad)}
+.fact p{margin:0 0 6px;line-height:1.45}
+.fact .src{font-size:.85rem;color:var(--ink-soft);font-style:italic;margin:0}
+.next{margin-top:14px;display:none;justify-content:center}
+.next.on{display:flex}
+
+/* ---------- end ---------- */
+.result{text-align:center}
+.result h2{font-size:clamp(1.6rem,6vw,2.3rem);margin:0;color:var(--green-dark)}
+.result p{font-weight:800;color:var(--ink-soft);margin:6px 0 0}
+.stars{font-size:2rem;letter-spacing:4px}
+.review{width:100%}
+.review li{margin:0 0 10px;line-height:1.4}
+.review li b{color:var(--green-dark)}
+.review ul{padding-left:20px;margin:0}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+#confetti i{position:absolute;top:-20px;width:10px;height:14px;border-radius:3px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+
+@media (max-width:420px){
+  .choices{grid-template-columns:1fr}
+  .card{padding:14px;border-radius:20px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ================= Background: tan sky, green mountains, Madinah ================= -->
+<svg id="scene" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7eed8"/><stop offset=".65" stop-color="#eedcb3"/><stop offset="1" stop-color="#e6cf9e"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dcc391"/><stop offset="1" stop-color="#c9aa72"/>
+    </linearGradient>
+    <linearGradient id="uhud" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8fa46c"/><stop offset="1" stop-color="#6f8f55"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="930" cy="170" r="70" fill="#f9e2a6" opacity=".9"/>
+  <circle cx="930" cy="170" r="105" fill="#f9e2a6" opacity=".25"/>
+  <!-- soft clouds -->
+  <g fill="#fffaf0" opacity=".8">
+    <ellipse cx="220" cy="140" rx="90" ry="22"/><ellipse cx="270" cy="124" rx="50" ry="22"/>
+    <ellipse cx="640" cy="90" rx="70" ry="16"/><ellipse cx="680" cy="78" rx="38" ry="16"/>
+  </g>
+  <!-- far mountains (tan-green) -->
+  <path d="M0 470 L90 380 L170 430 L280 330 L380 420 L470 360 L560 440 L660 350 L760 420 L870 330 L980 410 L1080 350 L1200 420 L1200 800 L0 800Z" fill="#c4bf93"/>
+  <!-- mid mountains: Mount Uhud -->
+  <path d="M0 520 L120 430 L200 470 L330 360 L420 420 L520 380 L610 470 L700 500 L800 420 L900 450 L1000 380 L1110 450 L1200 430 L1200 800 L0 800Z" fill="url(#uhud)"/>
+  <path d="M330 360 L360 410 L340 440 L380 470 L420 420Z M1000 380 L1030 430 L1010 455 L1050 470 L1110 450Z" fill="#5f7d48" opacity=".45"/>
+  <!-- near hills -->
+  <path d="M0 600 Q180 520 380 580 T780 570 T1200 560 L1200 800 L0 800Z" fill="#98ab73"/>
+  <!-- Madinah skyline: green dome & minarets -->
+  <g transform="translate(560 470)">
+    <rect x="-150" y="70" width="300" height="60" fill="#efe2c2"/>
+    <rect x="-150" y="66" width="300" height="8" fill="#d8c59a"/>
+    <g fill="#efe2c2">
+      <rect x="-190" y="-10" width="16" height="140"/><rect x="174" y="-10" width="16" height="140"/>
+      <rect x="-60" y="-30" width="14" height="100"/><rect x="46" y="-30" width="14" height="100"/>
+    </g>
+    <g fill="#d8c59a">
+      <rect x="-193" y="30" width="22" height="6"/><rect x="171" y="30" width="22" height="6"/>
+      <rect x="-63" y="5" width="20" height="5"/><rect x="43" y="5" width="20" height="5"/>
+    </g>
+    <path d="M-190 -10 L-182 -38 L-174 -10Z M174 -10 L182 -38 L190 -10Z M-60 -30 L-53 -54 L-46 -30Z M46 -30 L53 -54 L60 -30Z" fill="#3f7d5c"/>
+    <rect x="-30" y="40" width="60" height="30" fill="#e6d6b0"/>
+    <path d="M-34 42 Q-34 -8 0 -16 Q34 -8 34 42Z" fill="#3f7d5c"/>
+    <path d="M-20 30 Q-16 -2 0 -8" stroke="#6fae86" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <rect x="-2" y="-30" width="4" height="16" fill="#e1a93b"/>
+    <g fill="#d1bd8f"><rect x="-130" y="86" width="16" height="26" rx="8"/><rect x="-96" y="86" width="16" height="26" rx="8"/><rect x="80" y="86" width="16" height="26" rx="8"/><rect x="114" y="86" width="16" height="26" rx="8"/></g>
+  </g>
+  <!-- ground -->
+  <path d="M0 640 Q300 600 600 630 T1200 620 L1200 800 L0 800Z" fill="url(#ground)"/>
+  <!-- palm trees -->
+  <g id="palm">
+    <path d="M150 700 Q140 620 160 560" stroke="#8a6a3d" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <g fill="#5f8a4e">
+      <path d="M160 560 Q110 540 80 570 Q120 550 160 562Z"/><path d="M160 560 Q200 530 240 560 Q200 548 160 562Z"/>
+      <path d="M160 560 Q130 510 90 515 Q135 525 158 562Z"/><path d="M160 560 Q190 505 230 510 Q190 525 162 562Z"/>
+      <path d="M160 560 Q160 515 170 495 Q168 530 162 562Z"/>
+    </g>
+    <g fill="#8a5a2b"><circle cx="154" cy="568" r="5"/><circle cx="164" cy="570" r="5"/></g>
+  </g>
+  <use href="#palm" transform="translate(880 10) scale(.9)"/>
+  <use href="#palm" transform="translate(1010 -40) scale(1.05)"/>
+  <use href="#palm" transform="translate(-60 -30) scale(1.1)"/>
+</svg>
+
+<!-- Girl drawing (faceless, modest, green garments). Colours come from CSS variables. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="girl" viewBox="0 0 120 200">
+      <!-- shoes & legs -->
+      <rect x="44" y="172" width="10" height="16" fill="#f3e6cf"/><rect x="66" y="172" width="10" height="16" fill="#f3e6cf"/>
+      <ellipse cx="47" cy="190" rx="11" ry="6" fill="#7a4a2a"/><ellipse cx="73" cy="190" rx="11" ry="6" fill="#7a4a2a"/>
+      <!-- dress -->
+      <path d="M60 74 C44 75 38 92 35 118 L18 176 Q60 190 102 176 L85 118 C82 92 76 75 60 74Z" style="fill:var(--dress)"/>
+      <path d="M18 176 Q60 190 102 176 L100 170 Q60 183 20 170Z" style="fill:var(--trim)"/>
+      <g style="fill:var(--dots)" opacity=".75">
+        <circle cx="44" cy="130" r="2"/><circle cx="60" cy="122" r="2"/><circle cx="76" cy="130" r="2"/>
+        <circle cx="36" cy="155" r="2"/><circle cx="52" cy="148" r="2"/><circle cx="68" cy="148" r="2"/><circle cx="84" cy="155" r="2"/>
+        <circle cx="44" cy="168" r="2"/><circle cx="60" cy="164" r="2"/><circle cx="76" cy="168" r="2"/>
+        <circle cx="52" cy="104" r="2"/><circle cx="68" cy="104" r="2"/>
+      </g>
+      <!-- arms (rotate from shoulders when cheering) -->
+      <g class="arm arm-l" style="transform-origin:44px 88px">
+        <path d="M44 86 Q30 104 30 130" style="stroke:var(--trim)" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <circle cx="30" cy="136" r="6.5" fill="#f1cfae"/>
+      </g>
+      <g class="arm arm-r" style="transform-origin:76px 88px">
+        <path d="M76 86 Q90 104 90 130" style="stroke:var(--trim)" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <circle cx="90" cy="136" r="6.5" fill="#f1cfae"/>
+      </g>
+      <!-- hijab -->
+      <path d="M60 12 C32 12 26 40 30 62 C33 82 44 96 60 98 C76 96 87 82 90 62 C94 40 88 12 60 12Z" style="fill:var(--hijab)"/>
+      <path d="M82 70 Q100 84 94 108 Q86 96 78 88Z" style="fill:var(--hijab)"/>
+      <path d="M38 34 Q60 18 82 34" style="stroke:var(--hijab-line)" stroke-width="2.5" fill="none" opacity=".6"/>
+      <path d="M40 78 Q60 92 80 78" style="stroke:var(--hijab-line)" stroke-width="2.5" fill="none" opacity=".5"/>
+      <!-- face (faceless style, like the main game's illustrations) -->
+      <ellipse cx="60" cy="52" rx="18" ry="21" fill="#f3d4b4"/>
+      <ellipse cx="60" cy="52" rx="18" ry="21" fill="none" stroke="#e3bd98" stroke-width="1.5"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div id="confetti"></div>
+
+<main class="app">
+
+  <!-- ================= Start ================= -->
+  <section class="screen on" id="start">
+    <div class="title">
+      <small>☪ Trivia time</small>
+      <h1>Yusra <span>&amp;</span> Huda's<br>Madinah Trivia</h1>
+      <p>How much do you know about the city of the Prophet ﷺ?</p>
+    </div>
+
+    <div class="girls" id="startGirls"></div>
+
+    <div class="card">
+      <h2>How do you want to play?</h2>
+      <div class="choices" id="modeChoices">
+        <button class="pill" data-mode="vs" aria-pressed="true">⚔️ Yusra vs Huda<span>Take turns, collect stars</span></button>
+        <button class="pill" data-mode="team" aria-pressed="false">🤝 Together<span>Answer as one team</span></button>
+      </div>
+      <h2 style="margin-top:16px">How many questions?</h2>
+      <div class="choices" id="lenChoices">
+        <button class="pill" data-len="10" aria-pressed="true">⭐ Quick round<span>10 questions</span></button>
+        <button class="pill" data-len="25" aria-pressed="false">🌟 All of them<span>25 questions</span></button>
+      </div>
+    </div>
+    <button class="big" id="go">Bismillah, let's play!</button>
+  </section>
+
+  <!-- ================= Play ================= -->
+  <section class="screen" id="play">
+    <div class="bar">
+      <button class="iconbtn" id="home" aria-label="Back to start">🏠</button>
+      <div class="prog" aria-hidden="true"><i id="progFill"></i></div>
+      <span class="count" id="count">1 / 10</span>
+      <button class="iconbtn" id="mute" aria-label="Turn sound effects off">🔔</button>
+      <button class="iconbtn" id="speak" aria-label="Read the question out loud">🔊</button>
+    </div>
+
+    <div class="girls small" id="playGirls"></div>
+    <div class="who" id="who"></div>
+
+    <div class="card">
+      <p class="q" id="q"></p>
+      <div class="answers" id="answers"></div>
+      <div class="fact" id="fact" aria-live="polite">
+        <div class="res" id="res"></div>
+        <p id="factText"></p>
+        <p class="src" id="src"></p>
+      </div>
+      <div class="next" id="nextRow"><button class="big" id="next">Next ➜</button></div>
+    </div>
+  </section>
+
+  <!-- ================= End ================= -->
+  <section class="screen" id="end">
+    <div class="result">
+      <div class="stars" id="endStars"></div>
+      <h2 id="endTitle"></h2>
+      <p id="endText"></p>
+    </div>
+    <div class="girls" id="endGirls"></div>
+    <div class="card review" id="reviewCard">
+      <h2>Let's remember these 💡</h2>
+      <ul id="review"></ul>
+    </div>
+    <div class="row">
+      <button class="big" id="again">Play again</button>
+      <button class="big alt" id="toStart">Change game</button>
+    </div>
+  </section>
+</main>
+
+<script>
+/* ===================== Questions =====================
+   a = correct answer, w = wrong answers, fact = shown after answering, src = where it comes from.
+   Answers are shuffled every game. */
+const QUESTIONS = [
+  { q:"What is the reward for praying in the Prophet's Mosque (Masjid an-Nabawi)?",
+    a:"Better than 1,000 prayers in other mosques", w:["The same as 10 prayers","Better than 100 prayers","The reward of one Hajj"],
+    fact:"The Prophet ﷺ said one prayer in his mosque is better than a thousand prayers anywhere else, except Al-Masjid Al-Haram in Makkah.",
+    src:"Sahih al-Bukhari and Sahih Muslim" },
+  { q:"What is the reward for praying in Masjid Quba?",
+    a:"The reward of an Umrah", w:["The reward of a Hajj","The reward of fasting one day","10 good deeds"],
+    fact:"Whoever makes wudu at home, then goes to Masjid Quba and prays there, gets a reward like an Umrah.",
+    src:"Sunan Ibn Majah and Sunan an-Nasa'i (graded sahih)" },
+  { q:"Which battles took place in Madinah?",
+    a:"Uhud and Al-Khandaq (the Trench)", w:["Hunayn and Ta'if","Tabuk and Khaybar","Mu'tah and Yarmuk"],
+    fact:"Uhud was fought at the foot of Mount Uhud, just north of the city. In the Battle of the Trench, the Muslims dug a big ditch around Madinah to protect it.",
+    src:"Books of Seerah" },
+  { q:"Which 2 battles near Madinah did the Muslims win?",
+    a:"Badr and Al-Khandaq (the Trench)", w:["Uhud and Badr","Uhud and Al-Khandaq (the Trench)"],
+    fact:"Allah gave the Muslims victory at Badr (southwest of Madinah) and at the Trench. Uhud was a hard day that taught the Muslims to always obey the Prophet ﷺ.",
+    src:"Qur'an 3:123 (Badr) and 33:9 (the Trench)" },
+  { q:"In which masjid did the Prophet ﷺ pray for rain?",
+    a:"Masjid al-Ghamamah", w:["Masjid Quba","Masjid al-Qiblatayn","Masjid al-Jumu'ah"],
+    fact:"Ghamamah means \"cloud\". This masjid is close to the Prophet's Mosque, at the place where he ﷺ prayed the Eid prayer and, as the people of Madinah report, the prayer for rain.",
+    src:"Books on the history of Madinah" },
+  { q:"Where did the Prophet ﷺ pray his first Jumu'ah after the Hijrah from Makkah?",
+    a:"Masjid al-Jumu'ah", w:["Masjid an-Nabawi","Masjid al-Ghamamah","Masjid al-Qiblatayn"],
+    fact:"On his way from Quba into the city, the Prophet ﷺ prayed the first Jumu'ah with the tribe of Banu Salim ibn 'Awf. A masjid was built there called Masjid al-Jumu'ah.",
+    src:"As-Seerah an-Nabawiyyah (Ibn Hisham)" },
+  { q:"What was the first masjid built in Madinah?",
+    a:"Masjid Quba", w:["Masjid an-Nabawi","Masjid al-Qiblatayn","Masjid al-Ghamamah"],
+    fact:"Masjid Quba was the very first masjid built in Islam, when the Prophet ﷺ arrived in Quba after the Hijrah.",
+    src:"Books of Seerah; see Qur'an 9:108" },
+  { q:"Who built Masjid Quba?",
+    a:"The Prophet ﷺ and his companions", w:["Prophet Ibrahim","Umar ibn al-Khattab","Uthman ibn Affan"],
+    fact:"The Prophet ﷺ built it with his own blessed hands, carrying stones together with his companions.",
+    src:"Books of Seerah" },
+  { q:"What is the name of the graveyard in Madinah where Muslims are buried?",
+    a:"Al-Baqi' (Jannat al-Baqi')", w:["Al-Ma'la","Wadi al-Aqiq","Al-Qiblatayn"],
+    fact:"Many companions and members of the Prophet's family ﷺ are buried in Al-Baqi', right next to Masjid an-Nabawi. Al-Ma'la is the graveyard of Makkah.",
+    src:"Sahih Muslim (the Prophet ﷺ visiting Al-Baqi')" },
+  { q:"What is the Prophet Muhammad's ﷺ full name?",
+    a:"Muhammad ibn Abdullah ibn Abdul-Muttalib", w:["Muhammad ibn Abu Talib ibn Hashim","Muhammad ibn Abdul-Muttalib ibn Abdullah","Muhammad ibn Hamzah ibn Hashim"],
+    fact:"\"Ibn\" means \"son of\". He ﷺ is Muhammad, son of Abdullah, son of Abdul-Muttalib, son of Hashim, from the tribe of Quraysh.",
+    src:"Sahih al-Bukhari (chapter on the lineage of the Prophet ﷺ)" },
+  { q:"What was the name of the Prophet Muhammad's ﷺ mother?",
+    a:"Aminah bint Wahb", w:["Halimah as-Sa'diyyah","Khadijah bint Khuwaylid","Fatimah bint Asad"],
+    fact:"His mother Aminah passed away when he ﷺ was about six years old. Halimah was the kind lady who nursed him in the desert.",
+    src:"Books of Seerah" },
+  { q:"What was the name of the Prophet Muhammad's ﷺ father?",
+    a:"Abdullah", w:["Abu Talib","Abdul-Muttalib","Hamzah"],
+    fact:"Abdullah passed away before the Prophet ﷺ was born.",
+    src:"Books of Seerah" },
+  { q:"What was the name of the Prophet Muhammad's ﷺ grandfather?",
+    a:"Abdul-Muttalib", w:["Hashim","Abu Talib","Abu Bakr"],
+    fact:"Abdul-Muttalib looked after him ﷺ when his mother passed away. After that, his uncle Abu Talib took care of him.",
+    src:"Books of Seerah" },
+  { q:"How many children did the Prophet ﷺ have?",
+    a:"7", w:["4","5","9"],
+    fact:"He ﷺ had 3 sons and 4 daughters.",
+    src:"Books of Seerah" },
+  { q:"What are the names of the Prophet's ﷺ daughters?",
+    a:"Zainab, Ruqayyah, Umm Kulthum and Fatimah", w:["Aisha, Hafsah, Zainab and Fatimah","Fatimah, Aminah, Khadijah and Ruqayyah","Maryam, Asiyah, Fatimah and Zainab"],
+    fact:"All four daughters were the children of Khadijah, may Allah be pleased with them.",
+    src:"Books of Seerah" },
+  { q:"What are the names of the Prophet's ﷺ sons?",
+    a:"Al-Qasim, Abdullah and Ibrahim", w:["Hasan, Husayn and Ali","Al-Qasim, Zayd and Ibrahim","Abdullah, Umar and Uthman"],
+    fact:"All three passed away when they were little. The Prophet ﷺ was called Abul-Qasim, \"the father of Al-Qasim\". Hasan and Husayn were his grandsons.",
+    src:"Sahih al-Bukhari (Ibrahim) and books of Seerah" },
+  { q:"What was the name of the Prophet's ﷺ first wife?",
+    a:"Khadijah bint Khuwaylid", w:["Aisha bint Abi Bakr","Sawdah bint Zam'ah","Hafsah bint Umar"],
+    fact:"Khadijah was the very first person to believe in him ﷺ, and she supported him with her heart and her wealth.",
+    src:"Sahih al-Bukhari and Sahih Muslim" },
+  { q:"In which year was the Prophet ﷺ born?",
+    a:"The Year of the Elephant (about 570 CE)", w:["The Year of the Hijrah (622 CE)","The Year of Sorrow (619 CE)","The year of Badr (624 CE)"],
+    fact:"It is called the Year of the Elephant because Abrahah came with elephants to destroy the Ka'bah, and Allah protected it. Read Surah Al-Fil!",
+    src:"Qur'an, Surah Al-Fil (105) and books of Seerah" },
+  { q:"Where was the Prophet ﷺ born?",
+    a:"Makkah", w:["Madinah","Ta'if","Jerusalem"],
+    fact:"He ﷺ was born in Makkah and moved to Madinah in the Hijrah when he was 53.",
+    src:"Books of Seerah" },
+  { q:"Which wife of the Prophet ﷺ narrated the most hadiths?",
+    a:"Aisha", w:["Khadijah","Hafsah","Umm Salamah"],
+    fact:"Aisha, may Allah be pleased with her, narrated more than 2,000 hadiths and taught many of the companions.",
+    src:"Books of hadith sciences" },
+  { q:"What did the Prophet ﷺ say about Mount Uhud?",
+    a:"\"Uhud is a mountain that loves us, and we love it\"", w:["\"Uhud is the tallest mountain in the world\"","\"Uhud is made of gold\"","\"Uhud will move to Makkah\""],
+    fact:"When the Prophet ﷺ saw Mount Uhud he said: \"This is a mountain that loves us, and we love it.\"",
+    src:"Sahih al-Bukhari and Sahih Muslim" },
+  { q:"Where is the Rawdah in Masjid an-Nabawi?",
+    a:"Between the Prophet's ﷺ minbar and his house (where his grave is)", w:["Next to the Ka'bah","At the foot of Mount Uhud","Inside Masjid Quba"],
+    fact:"The Prophet ﷺ said: \"Between my house and my minbar is a garden from the gardens of Paradise.\" His house was Aisha's room, where he is buried today.",
+    src:"Sahih al-Bukhari and Sahih Muslim" },
+  { q:"In which city did the Prophet ﷺ pass away?",
+    a:"Madinah", w:["Makkah","Ta'if","Jerusalem"],
+    fact:"He ﷺ passed away in Madinah in the 11th year after the Hijrah, at the age of 63.",
+    src:"Sahih al-Bukhari" },
+  { q:"In whose house did the Prophet ﷺ pass away?",
+    a:"Aisha's house", w:["Khadijah's house","Fatimah's house","Hafsah's house"],
+    fact:"He ﷺ passed away in Aisha's room, with his head resting on her, and he was buried in that same room.",
+    src:"Sahih al-Bukhari" },
+  { q:"Which 2 companions are buried next to the Prophet ﷺ?",
+    a:"Abu Bakr and Umar", w:["Uthman and Ali","Hamzah and Bilal","Abu Bakr and Uthman"],
+    fact:"Abu Bakr as-Siddiq and Umar ibn al-Khattab, the first two khalifahs, are buried right beside him ﷺ.",
+    src:"Sahih al-Bukhari" },
+];
+
+/* ===================== Girls ===================== */
+const GIRLS = [
+  { name:"Yusra", dress:"#8fb07a", trim:"#6f9460", dots:"#eaf3dc", hijab:"#d7e6c4", line:"#a9c290" },
+  { name:"Huda",  dress:"#3f7d5c", trim:"#2c5c42", dots:"#cfe8d6", hijab:"#9cc9a8", line:"#6ea681" },
+];
+function girlHTML(i, extra=""){
+  const g = GIRLS[i];
+  return `<div class="girl ${extra}" data-girl="${i}">
+    <svg viewBox="0 0 120 200" role="img" aria-label="${g.name}" style="--dress:${g.dress};--trim:${g.trim};--dots:${g.dots};--hijab:${g.hijab};--hijab-line:${g.line}">
+      <use href="#girl"/></svg>
+    <div class="tag">${g.name}<b class="score" hidden>0</b></div></div>`;
+}
+// <use> can't reach the arm groups for the cheer animation, so inline the symbol instead.
+const SYMBOL = document.getElementById("girl").innerHTML;
+function drawGirls(el, opts={}){
+  el.innerHTML = girlHTML(0) + girlHTML(1);
+  el.querySelectorAll("svg").forEach(s => s.innerHTML = SYMBOL);
+  if (opts.scores) el.querySelectorAll(".score").forEach(b => b.hidden = false);
+}
+
+/* ===================== State ===================== */
+const $ = id => document.getElementById(id);
+let mode = "vs", len = 10, deck = [], idx = 0, turn = 0, scores = [0,0], teamScore = 0, missed = [], answered = false;
+
+function pick(groupId, attr, set){
+  $(groupId).addEventListener("click", e => {
+    const b = e.target.closest("[data-"+attr+"]"); if (!b) return;
+    $(groupId).querySelectorAll(".pill").forEach(p => p.setAttribute("aria-pressed", p === b));
+    set(b.dataset[attr]);
+  });
+}
+pick("modeChoices","mode", v => mode = v);
+pick("lenChoices","len", v => len = +v);
+
+const shuffle = a => { a = a.slice(); for (let i=a.length-1;i>0;i--){ const j=Math.random()*(i+1)|0; [a[i],a[j]]=[a[j],a[i]]; } return a; };
+function show(id){ document.querySelectorAll(".screen").forEach(s => s.classList.toggle("on", s.id === id)); window.scrollTo(0,0); }
+
+function startGame(){
+  deck = shuffle(QUESTIONS).slice(0, len);
+  idx = 0; turn = Math.random() < .5 ? 0 : 1; scores = [0,0]; teamScore = 0; missed = [];
+  drawGirls($("playGirls"), { scores:true });
+  show("play"); renderQ();
+}
+
+function renderQ(){
+  answered = false;
+  const item = deck[idx];
+  $("count").textContent = `${idx+1} / ${deck.length}`;
+  $("progFill").style.width = (idx / deck.length * 100) + "%";
+  $("q").textContent = item.q;
+  $("fact").classList.remove("on"); $("nextRow").classList.remove("on");
+  const girls = $("playGirls").querySelectorAll(".girl");
+  girls.forEach((g,i) => { g.classList.remove("cheer","sad");
+    g.classList.toggle("turn", mode === "team" || i === turn);
+    g.classList.toggle("dim", mode === "vs" && i !== turn); });
+  $("who").innerHTML = mode === "vs" ? `It's <b>${GIRLS[turn].name}</b>'s turn!` : `<b>Yusra &amp; Huda</b>, answer together!`;
+  const opts = shuffle([item.a, ...item.w]);
+  $("answers").innerHTML = opts.map((o,i) =>
+    `<button class="ans" data-ok="${o === item.a}"><span class="let">${"ABCD"[i]}</span><span>${o}</span></button>`).join("");
+  updateScores();
+}
+
+function updateScores(){
+  $("playGirls").querySelectorAll(".score").forEach((b,i) => b.textContent = mode === "vs" ? scores[i] : teamScore);
+}
+
+$("answers").addEventListener("click", e => {
+  const b = e.target.closest(".ans"); if (!b || answered) return;
+  answered = true;
+  const ok = b.dataset.ok === "true", item = deck[idx];
+  $("answers").querySelectorAll(".ans").forEach(x => {
+    x.disabled = true;
+    if (x.dataset.ok === "true") x.classList.add("right");
+    else if (x !== b) x.classList.add("fade");
+  });
+  if (!ok) b.classList.add("wrong");
+  const actors = mode === "vs" ? [turn] : [0,1];
+  const girls = $("playGirls").querySelectorAll(".girl");
+  actors.forEach(i => girls[i].classList.add(ok ? "cheer" : "sad"));
+  if (ok) { mode === "vs" ? scores[turn]++ : teamScore++; burst(18); sfx("right"); }
+  else { missed.push(item); sfx("wrong"); }
+  updateScores();
+  const name = mode === "vs" ? GIRLS[turn].name : "Yusra & Huda";
+  $("res").className = "res " + (ok ? "good" : "bad");
+  $("res").textContent = ok ? `MashaAllah, ${name}! ⭐` : `Good try! The answer is: ${item.a}`;
+  $("factText").textContent = item.fact;
+  $("src").textContent = "Source: " + item.src;
+  $("fact").classList.add("on"); $("nextRow").classList.add("on");
+  $("next").textContent = idx + 1 < deck.length ? "Next ➜" : "See results 🏁";
+  $("next").focus({ preventScroll:true });
+  $("nextRow").scrollIntoView({ behavior:"smooth", block:"nearest" });
+});
+
+$("next").addEventListener("click", () => {
+  hush(); sfx("tap");
+  idx++;
+  if (mode === "vs") turn = 1 - turn;
+  if (idx < deck.length) renderQ(); else finish();
+});
+
+function finish(){
+  $("progFill").style.width = "100%";
+  drawGirls($("endGirls"), { scores:true });
+  const girls = $("endGirls").querySelectorAll(".girl");
+  let title, text, pct;
+  if (mode === "vs"){
+    girls.forEach((g,i) => g.querySelector(".score").textContent = scores[i]);
+    const [y,h] = scores;
+    if (y === h){ title = "It's a tie! 🤝"; text = `You both got ${y} stars. MashaAllah, you're both winners!`; girls.forEach(g => g.classList.add("cheer")); }
+    else { const w = y > h ? 0 : 1; title = `${GIRLS[w].name} wins! 🏆`; text = `Yusra: ${y} ⭐ · Huda: ${h} ⭐ — well done, both of you!`;
+      girls[w].classList.add("cheer"); }
+    pct = (y + h) / deck.length;
+  } else {
+    girls.forEach(g => { g.querySelector(".score").textContent = teamScore; g.classList.add("cheer"); });
+    title = teamScore === deck.length ? "Perfect score! 🏆" : "MashaAllah, team! 🤝";
+    text = `You got ${teamScore} out of ${deck.length} right together.`;
+    pct = teamScore / deck.length;
+  }
+  const stars = pct >= .9 ? 3 : pct >= .6 ? 2 : 1;
+  $("endStars").textContent = "⭐".repeat(stars) + "☆".repeat(3 - stars);
+  $("endTitle").textContent = title; $("endText").textContent = text;
+  $("reviewCard").hidden = !missed.length;
+  $("review").innerHTML = missed.map(m => `<li>${m.q}<br><b>${m.a}</b></li>`).join("");
+  show("end"); burst(80); sfx("win");
+}
+
+/* ===================== Read aloud ===================== */
+const SPEECH = (() => { try { return window.speechSynthesis && window.SpeechSynthesisUtterance ? window.speechSynthesis : null; } catch(e){ return null; } })();
+function hush(){ try { SPEECH && SPEECH.cancel(); } catch(e){} }
+function say(text){
+  if (!SPEECH) return false;
+  try {
+    hush();
+    const u = new SpeechSynthesisUtterance(text.replace(/ﷺ/g, ", peace be upon him,"));
+    u.lang = "en-US"; u.rate = .92; SPEECH.speak(u); return true;
+  } catch(e){ return false; }
+}
+$("speak").addEventListener("click", () => {
+  const item = deck[idx];
+  const opts = [...$("answers").querySelectorAll(".ans span:last-child")].map((s,i) => `${"ABCD"[i]}: ${s.textContent}`);
+  const text = answered ? $("res").textContent + ". " + item.fact : item.q + " " + opts.join(". ");
+  if (!say(text)) { sfx("wrong"); $("speak").title = "Reading out loud isn't available on this device"; }
+});
+
+/* ===================== Sound effects (made in the browser, no files) ===================== */
+let AC = null, soundOn = true;
+function tone(freq, start, dur, type="sine", vol=.18){
+  const o = AC.createOscillator(), g = AC.createGain(), t = AC.currentTime + start;
+  o.type = type; o.frequency.setValueAtTime(freq, t);
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .02);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(g).connect(AC.destination); o.start(t); o.stop(t + dur + .05);
+}
+function sfx(kind){
+  if (!soundOn) return;
+  try {
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)();
+    if (AC.state === "suspended") AC.resume();
+    if (kind === "tap")   tone(660, 0, .08, "triangle", .12);
+    if (kind === "right") { tone(523, 0, .14, "triangle"); tone(659, .1, .14, "triangle"); tone(784, .2, .28, "triangle"); }
+    if (kind === "wrong") { tone(300, 0, .18, "sine", .15); tone(220, .15, .3, "sine", .15); }
+    if (kind === "win")   [523,659,784,1047,784,1047].forEach((f,i) => tone(f, i*.13, i === 5 ? .5 : .16, "triangle", .16));
+  } catch(e){}
+}
+$("mute").addEventListener("click", () => {
+  soundOn = !soundOn;
+  $("mute").textContent = soundOn ? "🔔" : "🔕";
+  $("mute").setAttribute("aria-label", soundOn ? "Turn sound effects off" : "Turn sound effects on");
+  if (soundOn) sfx("tap");
+});
+
+/* ===================== Confetti ===================== */
+function burst(n){
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const box = $("confetti"), colors = ["#3f7d5c","#8fb07a","#e1a93b","#d7e6c4","#c9aa72"];
+  for (let i=0;i<n;i++){
+    const c = document.createElement("i");
+    c.style.left = Math.random()*100 + "vw";
+    c.style.background = colors[i % colors.length];
+    c.style.animationDuration = 1.6 + Math.random()*1.6 + "s";
+    c.style.animationDelay = Math.random()*.4 + "s";
+    box.appendChild(c); setTimeout(() => c.remove(), 3800);
+  }
+}
+
+/* ===================== Navigation ===================== */
+$("go").addEventListener("click", () => { sfx("tap"); startGame(); });
+$("again").addEventListener("click", () => { sfx("tap"); startGame(); });
+$("toStart").addEventListener("click", () => show("start"));
+$("home").addEventListener("click", () => { hush(); sfx("tap"); show("start"); });
+drawGirls($("startGirls"));
+</script>
+</body>
+</html>
